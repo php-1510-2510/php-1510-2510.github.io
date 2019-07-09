@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Non-parametric Methods</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Non-parametric Methods">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Non-parametric Methods</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Non Parametric Statistics</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What are they?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Non parametrics means that you do not need to specify a specific distribution for the data. </li>
+<li>Many of the methods you have learned up to this point require data dealing with the normal distribution. </li>
+<li>This is due partially to the fact that the t-distribution, \(\chi^2\) distribution, and the \(F\) distribution can all be derived from the normal distribution. </li>
+<li>Traditionally you are just taught to use normallity and made to either transform the data or just go ahead knowing it is incorrect. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Normal vs Skewed Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Data that is normally distributed has:
+
+<ul>
+<li>the mean and the median the same.</li>
+<li>The data is centered about the mean.</li>
+<li>Very specific probability values.</li>
+</ul></li>
+<li>Data that is skewed has: 
+
+<ul>
+<li>Mean less than median for left skewed data.</li>
+<li>Mean greater than median for right skewed data. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Why is this an issue?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In 1998 a survey was given to Harvard students who entered in 1973:
+
+<ul>
+<li>The mean salary was $750,000</li>
+<li>The median salary was $175,000</li>
+</ul></li>
+<li>What could be a problem with this?</li>
+<li>What happened here? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Why do we use Parametric Models?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Parametric Models have more power so can more easily detect significant differences. </li>
+<li>Given large sample size Parametric models perform well even in non-normal data. </li>
+<li>Central limit theorem states that in research that can be perfromed over and over again, that the means are normally distributed. </li>
+<li>There are methods to deal with incorrect variances. </li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Why do we use Non Parametric Models?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Your data is better represented by the median. </li>
+<li>You have small sample sizes. </li>
+<li>You cannot see the ability to replicate this work. </li>
+<li>You have ordinal data, ranked data, or outliers that you can’t remove.</li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What Non Parametric Tests will we cover?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Sign Test</li>
+<li>Wilcoxon Signed-Rank Test</li>
+<li>Wilcoxon Rank-Sum Test (Mann-Whitney U Test, ...)</li>
+<li>Kruskal Wallis test</li>
+<li>Spearman Rank Correlation Coefficient</li>
+<li>Bootstrapping</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-8" style="background:grey;">
+  <hgroup>
+    <h1>The sign Test</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Sign Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The sign test can be used when comparing 2 samples of observarions when there is not independence of samples. </li>
+<li>It actually does compares matches together in order to accomplish its task. </li>
+<li>This is similar to the paired t-test</li>
+<li>No need for the assumption of normality. </li>
+<li>Uses the Binomial Distribution</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Steps of the Sign Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We first match the data </li>
+<li>Then we subtract the 2nd value from the 1st value. </li>
+<li>You then look at the sign of each subtraction. </li>
+<li>If there is no difference between the two groups you shoul have roughly 50% positives and 50% negatives. </li>
+<li>Compare the proportion of positives you have to a binomial with p=0.5. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: Binomial Test Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the scenario where you have patients with Cystic Fibrosis and health individuals. </li>
+<li>Each subject with CF has been matched to a healthy individual on age, sex, height and weight. </li>
+<li>We will compare the Resting Energy Expenditure (kcal/day)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Reading in the Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(readr)
+ree &lt;- read_csv(&quot;ree.csv&quot;)
+ree
+</code></pre>
+
+<pre><code>## # A tibble: 13 x 2
+##       CF Healthy
+##    &lt;dbl&gt;   &lt;dbl&gt;
+##  1  1153     996
+##  2  1132    1080
+##  3  1165    1182
+##  4  1460    1452
+##  5  1634    1162
+##  6  1493    1619
+##  7  1358    1140
+##  8  1453    1123
+##  9  1185    1113
+## 10  1824    1463
+## 11  1793    1632
+## 12  1930    1614
+## 13  2075    1836
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Function in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Comes from the <code>BDSA</code> Package</li>
+</ul>
+
+<pre><code>SIGN.test(x ,y, md=0, alternative = &quot;two.sidesd&quot;,
+conf.level=0.95)
+</code></pre>
+
+<ul>
+<li>Where 
+
+<ul>
+<li><code>x</code> is a vector of values</li>
+<li><code>y</code> is an optional vector of values.</li>
+<li><code>md</code> is median and defaults to 0. </li>
+<li><code>alternative</code> is way to specific type of test.</li>
+<li><code>conf.level</code> specifies \(1-\alpha\).</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Getting Package</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># install.packages(&quot;devtools&quot;)
+# devtools::install_github(&#39;alanarnholt/BSDA&#39;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Our Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(BSDA)
+attach(ree)
+SIGN.test(CF, Healthy)
+detach()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Our Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## 
+##  Dependent-samples Sign-Test
+## 
+## data:  CF and Healthy
+## S = 10, p-value = 0.02
+## alternative hypothesis: true median difference is not equal to 0
+## 95 percent confidence interval:
+##   25.4 324.5
+## sample estimates:
+## median of x-y 
+##           161 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level L.E.pt U.E.pt
+## Lower Achieved CI      0.908   52.0    316
+## Interpolated CI        0.950   25.4    324
+## Upper Achieved CI      0.978    8.0    330
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>By &quot;Hand&quot;</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Subtract Values</li>
+</ul>
+
+<pre><code class="r">library(tidyverse)
+ree &lt;- ree %&gt;%
+mutate(diff = CF - Healthy)
+ree
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>By &quot;Hand&quot;</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>count negatives</li>
+</ul>
+
+<pre><code>## # A tibble: 13 x 3
+##       CF Healthy  diff
+##    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1  1153     996   157
+##  2  1132    1080    52
+##  3  1165    1182   -17
+##  4  1460    1452     8
+##  5  1634    1162   472
+##  6  1493    1619  -126
+##  7  1358    1140   218
+##  8  1453    1123   330
+##  9  1185    1113    72
+## 10  1824    1463   361
+## 11  1793    1632   161
+## 12  1930    1614   316
+## 13  2075    1836   239
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>By &quot;Hand&quot;</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">binom.test(2,13)
+</code></pre>
+
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  2 and 13
+## number of successes = 2, number of trials = 10, p-value = 0.02
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.0192 0.4545
+## sample estimates:
+## probability of success 
+##                  0.154
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-20" style="background:grey;">
+  <hgroup>
+    <h1>Wilcoxon Signed-Rank Test</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Wilcoxon Signed-Rank Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The sign test works well but it truly ignores the magntiude of the differences. </li>
+<li>Sign test often not used due to this problem. </li>
+<li>Wilcoxon Signed Rank takes into account both the sign and the rank</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How does it work?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Pairs the data based on study design. </li>
+<li>Subtracts data just like the sign test.</li>
+<li>Ranks the magnitude of the difference:</li>
+</ul>
+
+<pre><code>8
+-17
+52
+-76
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What happens with these ranks?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th>Subtraction</th>
+<th>Positive Ranks</th>
+<th>Negative Ranks</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>-17</td>
+<td></td>
+<td>-2</td>
+</tr>
+<tr>
+<td>52</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>-76</td>
+<td></td>
+<td>-4</td>
+</tr>
+<tr>
+<td><strong>Sum</strong></td>
+<td><strong>4</strong></td>
+<td><strong>-6</strong></td>
+</tr>
+</tbody></table>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about after the sum?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>\(W_{+}= 1 + 3 = 4\)</li>
+<li>\(W_{-} + -2 + -4 = -6\)</li>
+<li>Mean: \(\dfrac{n(n+1)}{4}\)</li>
+<li>Variance: \(\dfrac{n(n+1)(2n+1)}{24}\)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about after the sum?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Any ties, \(t\): decrease variance by \(t^3-\dfrac{t}{48}\)</li>
+<li>z test:</li>
+</ul>
+
+<p>\[ z =\dfrac{W_{smaller}- \dfrac{n(n+1)}{4}}{\sqrt{\dfrac{n(n+1)(2n+1)}{24}-t^3-\dfrac{t}{48}}}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Wilcoxon Signed Rank in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attach(ree)
+wilcox.test(CF, Healthy, paired=T)
+detach(ree)
+</code></pre>
+
+<pre><code>## 
+##  Wilcoxon signed rank test
+## 
+## data:  CF and Healthy
+## V = 80, p-value = 0.005
+## alternative hypothesis: true location shift is not equal to 0
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-27" style="background:grey;">
+  <hgroup>
+    <h1>Wilcoxon Rank-Sum Test</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Wilcoxon Rank-Sum Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This test is used on indepdent data. </li>
+<li>It is the non-parametric version of the 2-sample \(t\)-test.</li>
+<li>Does not requre normality or equal variance. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we do it?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Order each sample from least to greatest</li>
+<li>Rank them. </li>
+<li>Sum the ranks of each sample</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we do with summed ranks?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>\(W_s\) smaller of 2 sums.</li>
+<li>Mean: \(\dfrac{n_s(n_s+n_L + 1)}{2}\)</li>
+<li>Variance: \(\dfrac{n_sn_L(n_s+n_L+1)}{12}\)</li>
+<li>z-test</li>
+</ul>
+
+<p>\[ z = \dfrac{W_s-\dfrac{n_s(n_s+n_L + 1)}{2}}{\sqrt{\dfrac{n_sn_L(n_s+n_L+1)}{12}}}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Wilcoxon Rank-Sum in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider built in data <code>mtcars</code></li>
+</ul>
+
+<pre><code class="r">library(tidyverse)
+cars &lt;- as_data_frame(mtcars)
+cars
+</code></pre>
+
+<pre><code>## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ... with 22 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Wilcoxon Rank-Sum in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will Consider <code>mpg</code> and <code>am</code></li>
+<li><code>mpg</code>: Miles Per Gallon on Average</li>
+<li><code>am</code>
+
+<ul>
+<li>0: automatic transmission</li>
+<li>1: manual transmission</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Wilcoxon Rank-Sum in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attach(cars)
+wilcox.test(mpg, am)
+detach(cars)
+</code></pre>
+
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  mpg and am
+## W = 1000, p-value = 3e-12
+## alternative hypothesis: true location shift is not equal to 0
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-34" style="background:grey;">
+  <hgroup>
+    <h1>Kruskal Wallis Test</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kruskal Wallis Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If we have multiple groups of independent data that are not normally distributed or have variance issues, you can use the Kruskal Wallis Test.</li>
+<li>It tests significant differences in medians of the groups. </li>
+<li>This is a non-parametric method for One-Way ANOVA.</li>
+<li>Harder to try and calculate by hand, so we will just use R.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kruskal Wallis Test in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>kruskal.test(formula, data, subset, ...)
+</code></pre>
+
+<ul>
+<li>Where
+
+<ul>
+<li><code>formula</code> is <code>y~x</code> or can enter <code>outcome,group</code> instead.</li>
+<li><code>data</code> is the dataframe of interest.</li>
+<li><code>subset</code> if you wish to test subset of data. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Arthritis Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>comes from the <code>BSDA</code> package. </li>
+<li><code>Arthriti</code></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>time</code></td>
+<td>Time in Days until patient felt relief</td>
+</tr>
+<tr>
+<td><code>treatment</code></td>
+<td>Factor with three levels <code>A</code>, <code>B</code>, and <code>C</code></td>
+</tr>
+</tbody></table>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Arthritis Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(BSDA)
+Arthriti
+</code></pre>
+
+<pre><code>## # A tibble: 51 x 2
+##     time treatment
+##    &lt;int&gt; &lt;fct&gt;    
+##  1    40 A        
+##  2    35 A        
+##  3    47 A        
+##  4    52 A        
+##  5    31 A        
+##  6    61 A        
+##  7    92 A        
+##  8    46 A        
+##  9    50 A        
+## 10    49 A        
+## # ... with 41 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kruskal-Wallis Test in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">kruskal.test(time~treatment, data=Arthriti)
+</code></pre>
+
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  time by treatment
+## Kruskal-Wallis chi-squared = 2, df = 2, p-value = 0.4
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-40" style="background:grey;">
+  <hgroup>
+    <h1>Spearman Rank Correlation Coefficient</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Spearman Rank Correlation Coefficient</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Correlation is a measurement of the strength of a linear relationship between variables. </li>
+<li>This means it does not necessarily get the actual magnitude of relationship. </li>
+<li>Spearman Rank Correlation seeks to fix this. </li>
+<li>It works with Montonic Data.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Monotonic Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Spearman Rank Correlation in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can do this the the <code>cor()</code> function. </li>
+</ul>
+
+<pre><code class="r">#Pearson from Monotonic Decreasing
+cor(x2,y2, method=&quot;pearson&quot;)
+
+#Spearman from Monotonic Decreasing
+cor(x2,y2, method=&quot;spearman&quot;)
+</code></pre>
+
+<pre><code>## [1] -0.887
+## [1] -0.996
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-44" style="background:grey;">
+  <hgroup>
+    <h1>Smoothing</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li> Smoothing is a very powerful technique used all across data analysis.</li>
+<li> It is designed to detect trends in the presence of noisy data in cases in which the shape of the trend is unknown. </li>
+<li>The <em>smoothing</em> name comes from the fact that to accomplish this feat, we assume that the trend is <em>smooth</em>, as in a smooth surface. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/signal-plus-noise-example-1.png" alt="plot of chunk signal-plus-noise-example"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Why Smoothing?</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Lets focus on one covariate</li>
+<li>Let&#39;s estimate a time trend on popular vote poll margins</li>
+</ul>
+
+<pre><code class="r">library(tidyverse)
+library(dslabs)
+data(&quot;polls_2008&quot;)
+qplot(day, margin, data = polls_2008)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h1>Why Smoothing?</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Smoothing Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We assume that for any given day \(x\), there is a true preference among the electorate \(f(x)\), but due to the uncertainty introduced by the polling, each data point comes with an error \(\varepsilon\). </li>
+<li>A mathematical model for the observed poll margin \(Y_i\) is:
+\[
+Y_i = f(x_i) + \varepsilon_i
+\]</li>
+<li> If we knew the conditional expectation \(f(x) = \mbox{E}(Y \mid X=x)\), we would use it. </li>
+<li>Since we don&#39;t know this conditional expectation, we have to estimate it.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Smoothing Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s use regression</li>
+</ul>
+
+<pre><code class="r">resid &lt;- ifelse(lm(margin~day, data = polls_2008)$resid &gt; 0, &quot;+&quot;, &quot;-&quot;)
+polls_2008 %&gt;% 
+  mutate(resid = resid) %&gt;% 
+  ggplot(aes(day, margin)) + 
+  geom_smooth(method = &quot;lm&quot;, se = FALSE, color = &quot;black&quot;) +
+  geom_point(aes(color = resid), size = 3)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Smoothing Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Smoothing Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The lines do not fit the data well. </li>
+<li>There is not an evenn distribution of positive and negative residuals.</li>
+<li>There is also not a clear pattern like a polynomial terms we could add. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The general idea of smoothing is to group data points into strata in which the value of \(f(x)\) can be assumed to be constant. </li>
+<li>We can make this assumption because we think \(f(x)\) changes slowly and, as a result, \(f(x)\) is almost constant in small windows of time. </li>
+<li>An example of this idea for the <code>poll_2008</code> data is to assume that public opinion remained approximately the same within a week&#39;s time. With this assumption in place, we have several data points with the same expected value. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If we fix a day to be in the center of our week, call it \(x_0\), then for any other day \(x\) such that \(|x - x_0| \leq 3.5\), we assume \(f(x)\) is a constant \(f(x) = \mu\). </li>
+<li>This assumption implies that: 
+\[
+E[Y_i | X_i = x_i ] \approx \mu \mbox{   if   }  |x_i - x_0| \leq 3.5
+\]</li>
+<li>In smoothing, we call the size of the interval satisfying \(|x_i - x_0| \leq 3.5\) the <em>window size</em>, <em>bandwidth</em> or <em>span</em>. </li>
+<li>Later we will see that we try to optimize this parameter.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This assumption implies that a good estimate for \(f(x)\) is the average of the \(Y_i\) values in the window. </li>
+<li>If we define \(A_0\) as the set of indexes \(i\) such that \(|x_i - x_0| \leq 3.5\) and \(N_0\) as the number of indexes in \(A_0\), then our estimate is: 
+\[
+\hat{f}(x_0) = \frac{1}{N_0} \sum_{i \in A_0}  Y_i
+\]</li>
+<li>The idea behind <em>bin smoothing</em> is to make this calculation with each value of \(x\) as the center.</li>
+<li>In the poll example, for each day, we would compute the average of the values within a week with that day in the center. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Here are two examples: \(x_0 = -125\) and \(x_0 = -55\). </li>
+<li>The blue segment represents the resulting average.</li>
+</ul>
+
+<pre><code class="r">span &lt;- 3.5
+tmp &lt;- polls_2008 %&gt;%
+  crossing(center = polls_2008$day) %&gt;%
+  mutate(dist = abs(day - center)) %&gt;%
+  filter(dist &lt;= span) 
+
+tmp %&gt;% filter(center %in% c(-125, -55)) %&gt;%
+  ggplot(aes(day, margin)) +   
+  geom_point(data = polls_2008, size = 3, alpha = 0.5, color = &quot;grey&quot;) +
+  geom_point(size = 2) +    
+  geom_smooth(aes(group = center), 
+              method = &quot;lm&quot;, formula=y~1, se = FALSE) +
+  facet_wrap(~center)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>By computing this mean for every point, we form an estimate of the underlying curve \(f(x)\). </li>
+<li>At each value of \(x_0\), we keep the estimate \(\hat{f}(x_0)\) and move on to the next point:</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bin smoothing Animation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="binsmoother-animation.gif" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binsmoothing Results</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">span &lt;- 7 
+fit &lt;- with(polls_2008, 
+            ksmooth(day, margin, x.points = day, kernel=&quot;box&quot;, bandwidth = span))
+
+polls_2008 %&gt;% mutate(smooth = fit$y) %&gt;%
+  ggplot(aes(day, margin)) +
+    geom_point(size = 3, alpha = .5, color = &quot;grey&quot;) + 
+  geom_line(aes(day, smooth), color=&quot;red&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binsmoothing Results</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Binsmooth leaves a wiggly results</li>
+<li>This is due to points changing when the window is moved. </li>
+<li>We could weight the center more than outside points to solve this problems. </li>
+<li>Then the outside points no longer have much weight</li>
+<li>This new result would be a weighted average. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Each points receives a weight of either \(0\) or \(1/N_0\), with \(N_0\) the number of points in the week. </li>
+</ul>
+
+<p>\[
+\hat{f}(x_0) = \sum_{i=1}^N w_0(x_i) Y_i
+\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In the code above, we used the argument <code>kernel=box</code> in our call to the function <code>ksmooth</code>. </li>
+<li>This is because the weight function looks like a box:</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/box-kernel-1.png" alt="plot of chunk box-kernel"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The <code>ksmooth</code> function provides a &quot;smoother&quot; option which uses the normal density to assign weights:</li>
+</ul>
+
+<pre><code class="r">x_0 &lt;- -125
+tmp &lt;- with(data.frame(day = seq(min(polls_2008$day), max(polls_2008$day), .25)), 
+                       ksmooth(day, 1*I(day == x_0), kernel = &quot;normal&quot;, x.points = day, bandwidth = span))
+data.frame(x = tmp$x, w_0 = tmp$y) %&gt;%
+  mutate(w_0 = w_0/sum(w_0)) %&gt;%
+  ggplot(aes(x, w_0)) +
+  geom_line()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gaussian-kernel-2-1.png" alt="plot of chunk gaussian-kernel-2"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels Animation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="kernel-animation.gif" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels Code</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>The final code and resulting plot look like this:</p>
+
+<pre><code class="r">span &lt;- 7
+fit &lt;- with(polls_2008, 
+            ksmooth(day, margin,  x.points = day, kernel=&quot;normal&quot;, bandwidth = span))
+
+polls_2008 %&gt;% mutate(smooth = fit$y) %&gt;%
+  ggplot(aes(day, margin)) +
+  geom_point(size = 3, alpha = .5, color = &quot;grey&quot;) + 
+  geom_line(aes(day, smooth), color=&quot;red&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels Code</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/final-ksmooth-normal-kernel-2-1.png" alt="plot of chunk final-ksmooth-normal-kernel-2"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Kernels Comments</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There are several functions in R that implement bin smoothers. </li>
+<li>One example is <code>ksmooth</code>, shown above. </li>
+<li>Usually more complex methods are preferred. </li>
+<li>Even the averaged one is a bit coarse in places. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Local weighted regression (loess)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A limitation of the bin smoother approach just described is that we need small windows for the approximately constant assumptions to hold. </li>
+<li>As a result, we end up with a small number of data points to average and obtain imprecise estimates \(\hat{f}(x)\). </li>
+<li>loess. To do this, we will use a mathematical result, referred to as Taylor&#39;s Theorem, which tells us that if you look closely enough at any smooth function \(f(x)\), it will look like a line.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Instead of assuming constand in a window, we assumes it is linear in a local area. </li>
+<li>We can then have larger window sizes than just a constant number. </li>
+<li>Let&#39;s consider a 3 week window instead of the 1 week. 
+\[
+E[Y_i | X_i = x_i ] = \beta_0 + \beta_1 (x_i-x_0) \mbox{   if   }  |x_i - x_0| \leq 21
+\]</li>
+<li>For every point \(x_0\), loess defines a window and fits a line within that window. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/loess-1.png" alt="plot of chunk loess"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess Animation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="loess-animation.gif" alt=""></p>
+
+<pre><code class="r">library(broom)
+fit &lt;- loess(margin ~ day, degree=1, span = span, data=polls_2008)
+loess_fit &lt;- augment(fit)
+
+if(!file.exists(file.path(&quot;loess-animation.gif&quot;))){
+  p &lt;- ggplot(tmp, aes(day, margin)) +
+    scale_size(range = c(0, 3)) +
+    geom_smooth(aes(group = center, frame = center, weight = weight), method = &quot;lm&quot;, se = FALSE) +
+    geom_point(data = polls_2008, size = 3, alpha = .5, color = &quot;grey&quot;) +
+    geom_point(aes(size = weight, frame = center)) +
+    geom_line(aes(x=day, y = .fitted, frame = day, cumulative = TRUE), 
+              data = loess_fit, color = &quot;red&quot;)
+
+  gganimate(p, filename = file.path(&quot;loess-animation.gif&quot;), interval= .1)
+}
+if(knitr::is_html_output()){
+  knitr::include_graphics(file.path(&quot;loess-animation.gif&quot;))
+} else{
+  centers &lt;- quantile(tmp$center, seq(1,6)/6)
+  tmp_loess_fit &lt;- crossing(center=centers, loess_fit) %&gt;%
+    group_by(center) %&gt;%
+    filter(day &lt;= center) %&gt;%
+    ungroup()
+
+  tmp %&gt;% filter(center %in% centers) %&gt;%
+    ggplot() +
+    geom_smooth(aes(day, margin), method = &quot;lm&quot;, se = FALSE) +
+    geom_point(aes(day, margin, size = weight), data = polls_2008, size = 3, alpha = .5, color = &quot;grey&quot;) +
+    geom_point(aes(day, margin)) +
+    geom_line(aes(x=day, y = .fitted), data = tmp_loess_fit, color = &quot;red&quot;) +
+    facet_wrap(~center, nrow = 2)
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess Final Smooth</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">total_days &lt;- diff(range(polls_2008$day))
+span &lt;- 21/total_days
+
+fit &lt;- loess(margin ~ day, degree=1, span = span, data=polls_2008)
+
+polls_2008 %&gt;% mutate(smooth = fit$fitted) %&gt;%
+  ggplot(aes(day, margin)) +
+  geom_point(size = 3, alpha = .5, color = &quot;grey&quot;) +
+  geom_line(aes(day, smooth), color=&quot;red&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess Final Smooth</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/final-loess-2-1.png" alt="plot of chunk final-loess-2"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess spans</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Different spans give us different estimates. </li>
+<li>We can see how different window sizes lead to different estimates:</li>
+</ul>
+
+<p><img src="loess-multi-span-animation.gif" alt=""></p>
+
+<pre><code class="r">spans &lt;- c(.66, 0.25, 0.15, 0.10)
+
+fits &lt;- data_frame(span = spans) %&gt;% 
+  group_by(span) %&gt;% 
+  do(broom::augment(loess(margin ~ day, degree=1, span = .$span, data=polls_2008)))
+
+tmp &lt;- fits %&gt;%
+  crossing(span = spans, center = polls_2008$day) %&gt;%
+  mutate(dist = abs(day - center)) %&gt;%
+  filter(rank(dist) / n() &lt;= span) %&gt;%
+  mutate(weight = (1 - (dist / max(dist)) ^ 3) ^ 3)
+
+if(!file.exists(file.path( &quot;loess-multi-span-animation.gif&quot;))){
+  p &lt;- ggplot(tmp, aes(day, margin)) +
+    scale_size(range = c(0, 2)) +
+    geom_smooth(aes(group = center, frame = center, weight = weight), method = &quot;lm&quot;, se = FALSE) +
+    geom_point(data = polls_2008, size = 2, alpha = .5, color = &quot;grey&quot;) +
+    geom_line(aes(x=day, y = .fitted, frame = day, cumulative = TRUE), 
+              data = fits, color = &quot;red&quot;) +
+    geom_point(aes(size = weight, frame = center)) +
+    facet_wrap(~span)
+
+  gganimate(p, filename = file.path( &quot;loess-multi-span-animation.gif&quot;), interval= .1)
+}
+if(knitr::is_html_output()){
+  knitr::include_graphics(file.path(&quot;loess-multi-span-animation.gif&quot;))
+} else{
+  centers &lt;- quantile(tmp$center, seq(1,4)/4)
+  tmp_fits &lt;- crossing(center=centers, fits) %&gt;%
+    group_by(center) %&gt;%
+    filter(day &lt;= center) %&gt;%
+    ungroup()
+
+  tmp %&gt;% filter(center %in% centers) %&gt;%
+    ggplot() +
+    geom_smooth(aes(day, margin), method = &quot;lm&quot;, se = FALSE) +
+    geom_point(aes(day, margin, size = weight), data = polls_2008, size = 3, alpha = .5, color = &quot;grey&quot;) +
+    geom_point(aes(day, margin)) +
+    geom_line(aes(x=day, y = .fitted), data = tmp_fits, color = &quot;red&quot;) +
+    facet_grid(span ~ center)
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess Smooths</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## Error in fortify(data): object &#39;fits&#39; not found
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>loess vs Normal Bin Smoother</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There are three other differences between <code>loess</code> and the typical bin smoother. 
+
+<ul>
+<li><code>loess</code> keeps the number of points used in the local fit the same. </li>
+<li>When fitting a line locally, <code>loess</code> uses a <em>weighted</em> approach. Basically, instead of using least squares, we minimize a weighted version. </li>
+<li><code>loess</code> has the option of fitting the local model <em>robustly</em>. An iterative algorithm is implemented in which, after fitting a model in one iteration, outliers are detected and down-weighted for the next iteration. To use this option, we use the argument <code>family=&quot;symmetric&quot;</code>.</li>
+</ul></li>
+</ul>
+
+<p>--- .class #id</p>
+
+<h2>loess Keeping Same number of Points</h2>
+
+<ul>
+<li>This number is controlled via the <code>span</code> argument, which expects a proportion. </li>
+<li>For example, if <code>N</code> is the number of data points and <code>span=0.5</code>, then for a given \(x\), <code>loess</code> will use the <code>0.5 * N</code> closest points to \(x\) for the fit. </li>
+</ul>
+
+<p>-- .class #id</p>
+
+<h2>loess Weighted Approach</h2>
+
+<p>\[
+\sum_{i=1}^N w_0(x_i) \left[Y_i - \left\{\beta_0 + \beta_1 (x_i-x_0)\right\}\right]^2
+\]</p>
+
+<ul>
+<li>Instead of the Gaussian kernel, loess uses a function called the Tukey tri-weight:
+\[
+W(u)= \left( 1  - |u|^3\right)^3 \mbox{ if } |u| \leq 1 \mbox{ and } W(u) = 0 \mbox{ if } |u| > 1
+\]</li>
+<li>To define the weights, we denote \(2h\) as the window size and define:
+\[
+w_0(x_i) = W\left(\frac{x_i - x_0}{h}\right)
+\]</li>
+</ul>
+
+<p>-- .class #id</p>
+
+<h2>loess Weighted Approach</h2>
+
+<ul>
+<li>This kernel differs from the Gaussian kernel in that more points get values closer to the max:</li>
+</ul>
+
+<p><img src="figure/triweight-kernel-1.png" alt="plot of chunk triweight-kernel"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Default Smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>ggplot</code> uses loess in its <code>geom_smooth</code> function: </li>
+</ul>
+
+<p><img src="figure/ggplot-loess-default-1.png" alt="plot of chunk ggplot-loess-default"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Default Smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">polls_2008 %&gt;% ggplot(aes(day, margin)) +
+  geom_point() + 
+  geom_smooth()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Default Smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can change the default smoothing</li>
+</ul>
+
+<pre><code class="r">polls_2008 %&gt;% ggplot(aes(day, margin)) +
+  geom_point() + 
+  geom_smooth(color=&quot;red&quot;,  span = 0.15,
+              method.args = list(degree=1))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Default Smoothing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/ggplot-loess-degree-2-1.png" alt="plot of chunk ggplot-loess-degree-2"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; left: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Non Parametric Statistics'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What are they?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Normal vs Skewed Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Why is this an issue?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Why do we use Parametric Models?'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Why do we use Non Parametric Models?'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='What Non Parametric Tests will we cover?'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='The sign Test'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='The Sign Test'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Steps of the Sign Test'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Example: Binomial Test Function'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Reading in the Data'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Function in R'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Getting Package'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Our Data'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Our Data'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='By &quot;Hand&quot;'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='By &quot;Hand&quot;'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='By &quot;Hand&quot;'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Wilcoxon Signed-Rank Test'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Wilcoxon Signed-Rank Test'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='How does it work?'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='What happens with these ranks?'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='What about after the sum?'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='What about after the sum?'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Wilcoxon Signed Rank in R'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Wilcoxon Rank-Sum Test'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Wilcoxon Rank-Sum Test'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='How do we do it?'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='What do we do with summed ranks?'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Wilcoxon Rank-Sum in R'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Wilcoxon Rank-Sum in R'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Wilcoxon Rank-Sum in R'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Kruskal Wallis Test'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Kruskal Wallis Test'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Kruskal Wallis Test in R'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Arthritis Data'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Arthritis Data'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Kruskal-Wallis Test in R'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Spearman Rank Correlation Coefficient'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Spearman Rank Correlation Coefficient'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Monotonic Data'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Spearman Rank Correlation in R'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Smoothing'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Smoothing'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Smoothing'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Why Smoothing?'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Why Smoothing?'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='Smoothing Example'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Smoothing Example'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Smoothing Example'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Smoothing Example'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Bin smoothing'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='Bin smoothing'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Bin smoothing'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Bin smoothing'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Bin smoothing'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='Bin smoothing'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Bin smoothing Animation'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Binsmoothing Results'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Binsmoothing Results'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='Kernels'>
+         62
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=63 title='Kernels'>
+         63
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=64 title='Kernels'>
+         64
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=65 title='Kernels'>
+         65
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=66 title='Kernels'>
+         66
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=67 title='Kernels'>
+         67
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=68 title='Kernels Animation'>
+         68
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=69 title='Kernels Code'>
+         69
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=70 title='Kernels Code'>
+         70
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=71 title='Kernels Comments'>
+         71
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=72 title='Local weighted regression (loess)'>
+         72
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=73 title='loess'>
+         73
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=74 title='loess'>
+         74
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=75 title='loess Animation'>
+         75
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=76 title='loess Final Smooth'>
+         76
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=77 title='loess Final Smooth'>
+         77
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=78 title='loess spans'>
+         78
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=79 title='loess Smooths'>
+         79
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=80 title='loess vs Normal Bin Smoother'>
+         80
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=81 title='Default Smoothing'>
+         81
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=82 title='Default Smoothing'>
+         82
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=83 title='Default Smoothing'>
+         83
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=84 title='Default Smoothing'>
+         84
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
