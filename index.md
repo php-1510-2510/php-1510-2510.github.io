@@ -5,7 +5,13 @@ title: Course Information
 ### Description
 
 
-This course provides a survey of regression techniques for outcomes common in public health data including continuous, binary, count and survival data.  Emphasis is on developing a conceptual understanding of the application of these techniques to solving problems, rather than to the numerical details. Extensive use of the computer will be made for analysis of datasets.
+
+Intensive first course in biostatistical methodology, focusing on problems arising in public health, life sciences, and biomedical disciplines. Summarizing and representing data; basic probability; fundamentals of inference; hypothesis testing; likelihood methods. Inference for means and proportions; linear regression and analysis of variance; basics of experimental design; nonparametrics; logistic regression. Open to advanced undergraduates with permission from the instructor.
+
+
+This course provides a survey of basic probability and statistical tools for modeling data.  Emphasis is on developing a conceptual understanding of the application of these techniques to solving problems, rather than to the numerical details. Extensive use of the computer will be made for analysis of datasets.
+
+
 
 This course is designed for graduate and advanced undergraduate students who will be analyzing data with scientific colleagues and who want to develop a practical hands-on toolkit and gain experience in distilling complex statistical information into formats understandable to colleagues. This course will feature R programming elements. To make the most of R students will be expected to use [RStudio](https://www.rstudio.com/). There are videos on the course's R page to explain how to get set up and started in RStudio. We will also be using [DataCamp](https://www.datacamp.com) for further R instruction through the semester. 
 
@@ -18,13 +24,13 @@ This course is designed for graduate and advanced undergraduate students who wil
 |------------+---------------------+---------------------|
 |Professor   | [Adam J Sullivan, PhD ](https://vivo.brown.edu/display/asulliv3) | [adam_sullivan@brown.edu](mailto:adam_sullivan@brown.edu)
 |:-----------|:--------------------|:-------------------|
-|TA         | Taylor Fortnam   | [taylor_fortnam@brown.edu](mailto:taylor_fortnam@brown.edu) 
+|TA         | TBD   | TBD
 |:-----------|:--------------------|:-------------------|
-|TA         | Blain Morin | [blainmorin@brown.edu](mailto:blainmorin@brown.edu) 
+|TA         | TBD   | TBD
 |:-----------|:--------------------|:-------------------|
-|TA         | Fuyu Zou | [fuyu_zou@brown.edu](mailto:fuyu_zou@brown.edu @brown.edu @brown.edu) 
+|TA         | TBD   | TBD
 |:-----------|:--------------------|:-------------------|
-| Additional Tutoring / Office Hourse         | Julia Mullokandova   | [julia_mullokandova@brown.edu ](mailto:julia_mullokandova@brown.edu ) 
+| Additional Tutoring / Office Hourse         | TBD   | TBD
 |------------+--------------------+-------------------|
 
 
@@ -38,10 +44,10 @@ This course is designed for graduate and advanced undergraduate students who wil
 |-----------+--------+-----------|
 | What    |  Where | When      
 |:-----------|:--------|:-----------|
-| Lecture |  SPH - Room 375 |  Monday and Wednesday  10:30 - 11:50 |
+| Lecture |  SPH - Room 245 |  Tuesday and Thursday  9-10:20am |
 |:-----------|:--------|:-----------|
-| Discussion/Lab  |  SPH - Room 243 | Monday  3- 4pm|
-| Discussion/Lab  |  SPH - Room 243 | Wednesday 3- 4pm|
+| Discussion/Lab  |  TBD | TBD | 
+| Discussion/Lab  |  TBD | TBD | 
 |:-----------|:--------|:-----------|
 
 
@@ -54,9 +60,9 @@ This course is designed for graduate and advanced undergraduate students who wil
 |:-----------|:--------|:-----------|
 | Office Hours |  |   |
 |:-----------|:--------|:-----------|
-|  |  SPH - Room 243| Wednesday 2:30 - 3:00 pm|
-|  |  SPH - Room 241| Wednesday 4:00 - 5:00 pm|
-|  |  SPH - Room 243| Friday 2:00 - 4:00 pm|
+| |  TBD | TBD | 
+|  |  TBD | TBD | 
+|  |  TBD | TBD | 
 |:-----------|:--------|:-----------|
 
 
@@ -89,7 +95,7 @@ are available on the  [Calendar]({{site.baseurl}}/calendar)
 
 * Link to [Links]({{site.baseurl}}/links) allows access to canvas, slack and the RStudio server. 
 
-* [Github](http://github.com/php-1511-2511) for Class Github Organization
+* [Github](http://github.com/php-1510-2510) for Class Github Organization
   
   
 

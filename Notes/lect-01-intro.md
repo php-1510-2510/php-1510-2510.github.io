@@ -1,5 +1,5 @@
 ---
-title       : Visualization with `ggplot2`
+title       : 
 author      : Adam J Sullivan 
 job         : Assistant Professor of Biostatistics
 work        : Brown University
@@ -34,23 +34,20 @@ assets      : {assets: ../../assets}
 
 * Instructor: Adam J Sullivan, PhD
 * TAs:
-    + Taylor Fortnam
-    + Blain Morin
-    + Fuyu Zou
+    + 
 * Masters Tutoring Office Hour Help:
-    + Julia Mullokandova
-    
+    + 
 
 --- .class #id
 
 ## Course Website
 
-* Main: [https://php-1511-2511.github.io](https://php-1511-2511.github.io)
+* Main: [https://php-1510-2510.github.io](https://php-1510-2510.github.io)
 * Canvas:
-    + PHP 1511: [https://canvas.brown.edu/courses/1077969](https://canvas.brown.edu/courses/1077969)
-    + PHP 2511: [https://canvas.brown.edu/courses/1077129](https://canvas.brown.edu/courses/1077129)
-* Github: [https://github.com/php-1511-2511](https://github.com/php-1511-2511)
-* Slack: [https://php-1511-2511-spring-2019.slack.com/](https://php-1511-2511.slack.com/)
+    + PHP 1511: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078851)
+    + PHP 2511: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078852)
+* Github: [https://github.com/php-1511-2510](https://github.com/php-1510-2510)
+* Slack: [https://php-1510-2510-fall-2019.slack.com/](https://php-1510-2510.slack.com/)
 
 
 --- .class #id
@@ -58,8 +55,10 @@ assets      : {assets: ../../assets}
 
 ## Course Goals
 
-* Recognize when data should be analyzed by regression
-* Plan an appropriate analysis
+* Develop the ability to explore and engage new data. 
+* Recognize and understand basic concept around basic probability distributions.
+* Work with modern tools for reproducible research. 
+* Develop statistical thinking skills. 
 * Bring in, Clean and Analyze data with R.
 * Coherently summarize results.
 
@@ -81,12 +80,11 @@ assets      : {assets: ../../assets}
 
 - Course topics will be drawn (but subject to change) from
 
-* Linear Regression
-* Linear Regression Diagnostics
-* Generalized Linear Models
-* Nonlinear Regression
-* Robust Regression
-* Survey Analysis
+* Basics of Statistical Programming and Reproducible Research
+* Exploratory Data Analysis
+* Simulation and Probability
+* Statistical Comparisons of Data
+* Variability
 
 --- .class #id
 
@@ -157,9 +155,9 @@ assets      : {assets: ../../assets}
 | --------------- | ----------------- | ------------- |
 | Participation       |                    10%   |
 | Homework             |                   20%  | 
-| Exam 1 (03/13/2019)   |                  20% | 
-| Exam 2 (05/8/2019)  |                 20%  |
-| Reproducible Research Project  |           30% |
+| Exam 1 (//2019)   |                  25% | 
+| Exam 2 (//2019)  |                 25%  |
+| Personal Data Analysis and Exploration  |           20% |
 
 
 --- .class #id
@@ -202,30 +200,16 @@ assets      : {assets: ../../assets}
 --- .class #id
 
 
-## Reproducible Research Project
+## Personal Data Analysis and Exploration
 
-Students will spend the semester working on a Reproducible Research Project. This project will require:
+Students will spend the semester working on a Personal Data Analysis and Exploration Project. This project will require:
 
-1. Asking a relevant public Health question for those in 2511 and a relevant scientific question for those in 1511. 
-2. Identify available data to answer this question. 
-3. Model the question with appropriate statistical models. 
+1. Considering a relevant public health dataset for those in 2510 and a relevant scientific dataset for 1510.  
+2. Explore and graphically explain the dataset. 
+3. Develop a relevant scientific question for data. 
 4. Write up a report with appropriate tables, graphs and results. 
 
 
---- .class #id
-
-
-## Reproducible Research Project
-
-
-* The project will consist of individual as well as group content. 
-* For the individual content you will complete the 4 requirements. 
-* For the group component. You will work in small groups to evaluate each others work. 
-* This will require:
-    1. Constructive Criticism of Group members Projects based on Course Content. 
-    2. In depth review of group members work. 
-* You will be graded on both individual and group aspects. 
-* It is important to learn not only how to ask a public health question and answer that question with a study or data but equally important to review others work and arguments. 
 
 
 
@@ -240,7 +224,7 @@ Students will spend the semester working on a Reproducible Research Project. Thi
 | Participation  |                 Graded the same as all students, Must be in class and prepared to work in groups.  |
 | Homework        |                Students will be expected to complete a portion of the material with the exception of some more difficult problems which may be attempted but do not have to be complete. | 
 | Exam 1 & 2              |        Students will be expected to complete a portion of the exam.  |
-| Reproducible Research Project |  Students will be expected to complete a reproducible research project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work. |
+|Personal Data Analysis and Exploration |  Students will be expected to complete a reproducible research project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work. |
 
 
 --- .class #id
@@ -252,7 +236,7 @@ Students will spend the semester working on a Reproducible Research Project. Thi
 | Participation  |                 Graded the same as all students, Must be in class and prepared to work in groups.  |
 | Homework        |                 Students will be expected to complete the entire assignment. | 
 | Exam 1 & 2              |       Students will be expected to complete the entire exam.  |
-| Reproducible Research Project |  Students will be expected to complete a reproducible resaerch project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work.  |
+| Personal Data Analysis and Exploration |  Students will be expected to complete a reproducible resaerch project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work.  |
 
 
 --- .class #id
