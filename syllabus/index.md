@@ -4,7 +4,7 @@ title: Syllabus
 ---
 
 
-[PDF of Syllabus](../syllabus/syllabus.pdf)
+[PDF of Syllabus](../syllabus/php-1510-2510-syllabus.pdf)
 
 ## Course goals & objectives:
 
@@ -95,7 +95,7 @@ Course topics will be drawn (but subject to change) from
 
 
 {:.right}
-![Foundations of Statistics with R](../images/speegle.jpg)
+![Foundations of Statistics with R](../images/speegle.PNG)
 
  **Foundations of Statistics with R** by 
   Darrin Speegle
