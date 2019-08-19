@@ -9,18 +9,31 @@ title: Syllabus
 ## Course goals & objectives:
 
 
-This course provides a survey of regression techniques for outcomes common in public health data including continuous, binary, count and survival data.  Emphasis is on developing a conceptual understanding of the application of these techniques to solving problems, rather than to the numerical details. Extensive use of the computer will be made for analysis of datasets.
 
-This course is designed for graduate and advanced undergraduate students who will be analyzing data with scientific colleagues and who want to develop a practical hands-on toolkit and gain experience in distilling complex statistical information into formats understandable to colleagues. This course will feature R programming elements. To make the most of R students will be expected to use \href{https://www.rstudio.com/}{RStudio}. There are videos on the course's R page to explain how to get set up and started in RStudio. 
+This course is intended to provide a basic foundation in the methods and applications of biostatistics, and is geared towards the students whose fields of study include a substantial statistical or quantitative component. Ideally, this course is the first in a two-part sequence (the sequel being PHP 1511/2511: Applied Regression ), designed to provide students in the public health, biological and life sciences with broad-based exposure to modern methods of biostatistical inference, in addition to an understanding of underlying mathematical principles and motivations.
+
+Applications to real data from a variety of studies in public health and clinical research are used throughout the course to illustrate the materials, but the emphasis is on the principles of inference and the underlying theory.
+
+In this course we also give students experience manipulating and analyzing data using the R
+statistical software package with RStudio interface. Students will work with statistical software during
+the weekly lab sessions, as well as in the homework.
 
 
-After successful completion of this course you will understand and be able to develop and interpret regression models to describe how an outcome is related to one or more predictor variables. In particular these include the following capabilities:
+### Course Objectives
 
-1. Recognize when data should be analyzed by regression
-2. Plan an appropriate analysis
-3. Bring in, Clean and Analyze data with R. 
-4. Coherently summarize results. 
+After successful completion of this course you will understand and be able to use probability, statistical graphics and  hypothesis tests. In particular these include the following capabilities:
 
+1. Manipulate and analyze data in R. 
+2. Students will use RStudio with proficiency. 
+3. Students will understand how to graph, test and interpret results for given probability distributions and data. 
+
+
+
+
+
+## Pre-requisites
+
+No prior coursework in statistics or probability is needed. Prior expereince in college level math such as Calculus will prove helpful but is not necessary. 
 
 
 ### Overall Course Expectations
@@ -42,12 +55,16 @@ Students in this course will be expected to do the following:
 
 Course topics will be drawn (but subject to change) from
 
+* Basic Probability
+* Random Variables
+* Exploratory Data Analysis
+* Sampling Distributions
+* Hypothesis Testing
+    * Basic Methods
+    * Categorical Data Comparisons
+    * Non-parametric Methods
+* Confidence Intervals
 * Linear Regression
-* Linear Regression Diagnostics
-* Generalized Linear Models
-* Nonlinear Regression
-* Robust Regression
-* Mixed Effects Models
 
 
 
@@ -57,42 +74,60 @@ Course topics will be drawn (but subject to change) from
 ### Required
 
 {:.right}
-![Applied Regression Analysis and Generalized Linear Models](../images/fox.jpg)
+![R for Data Science](../images/r4ds.png)
 
- **Applied Regression Analysis and Generalized Linear Models** by
-  John Fox Jr.
-  [Amazon](https://www.amazon.com/Applied-Regression-Analysis-Generalized-Linear-ebook/dp/B00YFSZPTE).
-  We follow this book for content and pacing. 
+ **R for Data Science** by
+  Hadley Wickham and Garrett Grolemund
+  [R4DS](https://r4ds.had.co.nz/).
+  
 
 * * *
 
 {:.right}
-![Regression Methods in Biostatistics](../images/vittinghoff.jpg)
+![Mathematical Statistics with Resampling and R](../images/chest.jpg)
 
- **Regression Methods in Biostatistics** by
-   Eric Vittinghoff, David V. Glidden, Stephen C. Shiboski, Charles E. McCulloch 
-  [Amazon](https://www.amazon.com/Regression-Methods-Biostatistics-Logistic-Statistics/dp/1461413524).
-  We follow this book for content and pacing. 
+ **Mathematical Statistics with Resampling and R** by
+   Laura M. Chihara, Tim C. Hesterberg
+  [Amazon](https://www.amazon.com/Mathematical-Statistics-Resampling-Laura-Chihara/dp/111941654X/ref=sr_1_1?crid=1RCTXHSU4E7TI&keywords=mathematical+statistics+with+resampling+and+r&qid=1566224929&s=gateway&sprefix=mathematical+statistics+%2Caps%2C134&sr=8-1).
+ 
 
 * * *
 
-### Suggested
 
 {:.right}
-![An Introduction to Statistical Learning](../images/ISL.jpg)
+![Foundations of Statistics with R](../images/speegle.jpg)
 
- **An Introduction to Statistical Learning: with Applications in R** by 
-  Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani.
+ **Foundations of Statistics with R** by 
+  Darrin Speegle
+  [Bookdown](https://bookdown.org/speegled/foundations-of-statistics/)
+  
+* * *
 
-We will use this as a reference to some methods as well as a resource for data and R code. 
 
-This is  available freely available as an eBook  [Get it
-  ](http://www-bcf.usc.edu/~gareth/ISL/)
-  .  If you prefer a paperback version you may buy it at cost from
-  Springer (see links from library site) or purchase a hardback version at the through Amazon.
 
-For additional information check out [Videos for
-  the ISL book](https://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/)  
+{:.right}
+![Introduction to Data Science](../images/rafa.PNG)
+
+
+ **Introduction to Data Science** by 
+  Rafael A. Irizarry
+  [Bookdown](https://rafalab.github.io/dsbook/)
+  
+
+* * *
+
+{:.right}
+![Statistical Inference via Data Science](../images/modern.PNG)
+
+
+ **Statistical Inference via Data Science** by 
+  Chester Ismay and Albert Y. Kim
+  [Bookdown](https://moderndive.com/)
+  
+
+
+
+  
 
 
 
@@ -112,13 +147,18 @@ Other resources for reference books, statistical computing using R,
 Students will be evaluated based on:
 
 
-| Grade  | Category | Percentage |
+| Grade  Category | Percentage |
 | --------------- | ----------------- | ------------- |
-| Participation       |                    10%   |
+| Participation       |                    5%   |
 | Homework             |                   20%  | 
-| Exam 1 (03/13/2019)   |                  20% | 
-| Exam 2 (05/8/2019)  |                 20%  |
-| Reproducible Research Project  |           30% |
+| Exam 1 (03/13/2019)   |                  25% | 
+| Exam 2 (05/8/2019)  |                 25%  |
+| Reproducible Research Project  |           25% |
+
+
+
+
+
 
 * * * 
 
@@ -126,10 +166,14 @@ Students will be evaluated based on:
 
 | Task | Hours Spent on Task | 
 | :--------- | :-----------------: | 
-Class Time       |      40|
-| Homework/Class Preparation   |             90 |
-| Exams/Prep  | 25 |
-| Reproducible Research Project |  45 | 
+| Class Time       |      42|
+| Labs | 14 | 
+| Out of Class Work / Reading | 122 | 
+| Take Home Exam | 12 | 
+|TOTAL | 180 | 
+
+
+
 
 * * * 
 
@@ -156,26 +200,14 @@ An in class exam will be given. Students will be expected to interpret and analy
 
 An in class exam will be given. Students will be expected to interpret and analyze regression models. Students will also be expected to understand conceptual ideas. 
 
-### Reproducible Research Project
-
-Students will spend the semester working on a Reproducible Research Project. This project will require:
-
-1. Asking a relevant public Health question for those in 2511 and a relevant scientific question for those in 1511. 
-2. Identify available data to answer this question. 
-3. Model the question with appropriate statistical models. 
-4. Write up a report with appropriate tables, graphs and results. 
+### Take Home Exam         
 
 
-The project will consist of individual as well as group content. For the individual content you will complete the 4 requirements. For the group component. You will work in small groups to evaluate each others work. This will require:
-
-1. Constructive Criticism of Group members Projects based on Course Content. 
-2. In depth review of group members work. 
-
-You will be graded on both individual and group aspects. It is important to learn not only how to ask a public health question and answer that question with a study or data but equally important to review others work and arguments. 
+Students will be expected to complete a final project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. 
 
 
 
-## Differences between PHP 1511/2511
+## Differences between PHP 1510/2510
 
 Given the nature of this course with multiple levels of students from Undergraduate to PhD, it is important to discuss the differences of expectations and how students will be graded. 
 
@@ -187,7 +219,7 @@ Given the nature of this course with multiple levels of students from Undergradu
 | Participation  |                 Graded the same as all students, Must be in class and prepared to work in groups.  |
 | Homework        |                Students will be expected to complete a portion of the material with the exception of some more difficult problems which may be attempted but do not have to be complete. | 
 | Exam 1 & 2              |        Students will be expected to complete a portion of the exam.  |
-| Reproducible Research Project |  Students will be expected to complete a reproducible research project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work. |
+| Take Home Exam  |       This will be a complete data analysis. No part of this is allowed to be discussed with any other student.   |
 
 
 
@@ -200,7 +232,7 @@ Given the nature of this course with multiple levels of students from Undergradu
 | Participation  |                 Graded the same as all students, Must be in class and prepared to work in groups.  |
 | Homework        |                 Students will be expected to complete the entire assignment. | 
 | Exam 1 & 2              |       Students will be expected to complete the entire exam.  |
-| Reproducible Research Project |  Students will be expected to complete a reproducible resaerch project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work.  |
+| Take Home Exam  |       This will be a complete data analysis. No part of this is allowed to be discussed with any other student.   |
 
 
 
@@ -210,14 +242,9 @@ Given the nature of this course with multiple levels of students from Undergradu
 
 ### Statistical Analysis:
 
- We will use R as a programming language for data analysis and use
-  existing packages written in R to support the course. You should have access to a laptop
-  or desktop capable of running [R or
-  RStudio]({{site.baseurl}}/resources).  We will also provide access
-  to a dedicated server running RStudio Pro for all students that will
-  have a unified environment.  See the
-  [Resources]({{site.baseurl}}/resources) page for books and other
-  resources for learning R.
+ We will use R as a programming language for data analysis and use   existing packages written in R to support the course. You should have access to a laptop   or desktop capable of running [R or RStudio]({{site.baseurl}}/resources). 
+ 
+See the   [Resources]({{site.baseurl}}/resources) page for books and other   resources for learning R.
 
 
 
@@ -226,7 +253,7 @@ Given the nature of this course with multiple levels of students from Undergradu
 ### Email and Discussion Forums
 
 * We will be using
-[Slack](https://join.slack.com/t/php15112511sp-uym3228/shared_invite/enQtNTI5OTM4MzczMTY5LWRkMzdjODdjODc0MjRhNzVhMWU5OGUyZTE3NTE2YWUyYjk0ZjVmZGJjMDAzODA1MDBmMWZiODM5ZTA5YjcxOWU) for class
+[Slack](https://join.slack.com/t/php-1510-2510/shared_invite/enQtNzI0NTA2MjQxOTY5LTVjNGNlNjdiYzAyZmFlNWMxZTM1ZTU3MzA3MWU5MTNkNTFlNzNjN2I4MjgyM2I5MWY3ZmNlZTE4YzlhNjkzN2E) for class
 discussion. 
 * The system is highly catered to getting you help fast and efficiently from classmates, the TAs, and myself. 
 * Rather than emailing questions to the teaching staff, I encourage you to post your questions on Slack (peer answers earn participation points!). 
@@ -253,6 +280,9 @@ Brown University is committed to full inclusion of all students. Students who, b
 ## Diversity Statement
 
 This course is designed to support an inclusive learning environment where diverse perspectives are recognized, respected and seen as a source of strength. It is our intent to provide materials and activities that are respectful of various levels of diversity: mathematical background, previous computing skills, gender, sexuality, disability, age, socioeconomic status, ethnicity, race, and culture.  
+
+Note: When we get involved with human subjects data, there can be very sensitive topics. The reality is that much of data that has been collected and used in research leaves out various groups or identities. We will pay close attention to understanding biases that this can induce in the data. However, this may bring up stressful situations or difficult memories at times. Please contact Professor Sullivan if any of these data cause you any harm.
+
 
 ## English Language Learners
 
