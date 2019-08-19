@@ -6,8 +6,8 @@ layouts_dir: ./_noita
 baseurl: /
 
 noita:
-  name: PHP 1511 / PHP 2511 Applied Regression Analsis
-  description: A first course in Regression!
+  name: PHP 1510 / PHP 2510 Principles of Biostatistics and Data Analysis
+  description: A first course in Statistics and Analysis!
   author:
     name: Adam J Sullivan
     url: https://vivo.brown.edu/display/asulliv3
@@ -30,7 +30,7 @@ noita:
         url: /links
         absolute: true
       - name: Github
-        url: https://github.com/php-1511-2511
+        url: https://github.com/php-1510-2510
         absolute: true
 social:
   github: sullivanstatistics

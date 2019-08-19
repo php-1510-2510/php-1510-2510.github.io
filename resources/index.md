@@ -2,15 +2,6 @@
 layout: page
 title: Course Resources & Links
 ---
-### Course Texts
-
-* Applied Regression Analysis and Generalized Linear Models
-  John Fox Jr.   [Amazon](https://www.amazon.com/Applied-Regression-Analysis-Generalized-Linear-ebook/dp/B00YFSZPTE).
-* An Introduction to Statistical Learning: with Applications in R
-  Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani [Online PDF](http://www-bcf.usc.edu/~gareth/ISL/)
-
-
-
 
 * * *
 
