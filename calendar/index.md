@@ -29,19 +29,11 @@ title: Calendar
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
-<td align="left">5-Sep</td>
+<td align="left">10-Sep</td>
 <td align="left">Course Introduction</td>
 <td align="left"><a href="../Notes/lect-01-intro.html">Lect-01-Intro</a></td>
 <td align="left">No Reading Prior to Class</td>
 <td align="left">Install <a href="https://www.rstudio.com/products/rstudio/download3/">Rstudio</a> and <a href="https://php-1511-2511.github.io/Introduction-to-R/">Go through Introduction to R</a></td>
-</tr>
-<tr>
-<td align="left">Week 2</td>
-<td align="left">10-Sep</td>
-<td align="left">Basic Probability</td>
-<td align="left"></td>
-<td align="left">CHEST: Appendix A; <a href="https://bookdown.org/speegled/foundations-of-statistics/prob.html">SPEEGLE Ch. 2</a>;  <a href="https://rafalab.github.io/dsbook/probability.html">RAFA Ch. 14</a></td>
-<td align="left">Datacamp Assignment</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -62,9 +54,9 @@ title: Calendar
 <tr>
 <td align="left">Week 3</td>
 <td align="left">17-Sep</td>
-<td align="left">Random Variables</td>
+<td align="left">Basic Probability</td>
 <td align="left"></td>
-<td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
+<td align="left">CHEST: Appendix A; <a href="https://bookdown.org/speegled/foundations-of-statistics/prob.html">SPEEGLE Ch. 2</a>;  <a href="https://rafalab.github.io/dsbook/probability.html">RAFA Ch. 14</a></td>
 <td align="left">Datacamp Assignment</td>
 </tr>
 <tr>
@@ -86,18 +78,18 @@ title: Calendar
 <tr>
 <td align="left">Week 4</td>
 <td align="left">24-Sep</td>
-<td align="left">Simulations with Random Variables</td>
+<td align="left">Random Variables</td>
 <td align="left"></td>
-<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
-<td align="left">HW 1: Random Variables</td>
+<td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left">26-Sep</td>
-<td align="left">Manipulating Data with R</td>
+<td align="left">Simulations with Random Variables</td>
 <td align="left"></td>
-<td align="left"><a href="https://r4ds.had.co.nz/workflow-basics.html">R4DS Ch. 4-5</a> ;<a href="https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html">SPEEGLE Ch. 5</a></td>
-<td align="left"></td>
+<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
+<td align="left">HW 1: Random Variables</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -110,10 +102,10 @@ title: Calendar
 <tr>
 <td align="left">Week 5</td>
 <td align="left">1-Oct</td>
-<td align="left">Exploratory Data Analysis</td>
+<td align="left">Manipulating Data with R</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 2; <a href="https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html">SPEEGLE Ch. 6</a>; <a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">R4DS Ch. 7</a></td>
-<td align="left">HW 2: Basic R and Simulations</td>
+<td align="left"><a href="https://r4ds.had.co.nz/workflow-basics.html">R4DS Ch. 4-5</a> ;<a href="https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html">SPEEGLE Ch. 5</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -121,7 +113,7 @@ title: Calendar
 <td align="left">Exploratory Data Analysis</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 2; <a href="https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html">SPEEGLE Ch. 6</a>; <a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">R4DS Ch. 7</a></td>
-<td align="left"></td>
+<td align="left">HW 2: Basic R and Simulations</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -134,10 +126,10 @@ title: Calendar
 <tr>
 <td align="left">Week 6</td>
 <td align="left">8-Oct</td>
-<td align="left">Introduction to Hypothesis Testing</td>
+<td align="left">Exploratory Data Analysis</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 3</td>
-<td align="left">HW 3: EDA</td>
+<td align="left">CHEST Ch. 2; <a href="https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html">SPEEGLE Ch. 6</a>; <a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">R4DS Ch. 7</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -145,7 +137,7 @@ title: Calendar
 <td align="left">Introduction to Hypothesis Testing</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 3</td>
-<td align="left"></td>
+<td align="left">HW 3: EDA</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -158,10 +150,10 @@ title: Calendar
 <tr>
 <td align="left">Week 7</td>
 <td align="left">15-Oct</td>
-<td align="left">Sampling Distributions</td>
+<td align="left">Introduction to Hypothesis Testing</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 4;  <a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.5</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.6-15.9</a></td>
-<td align="left">HW 4: Hypothesis Testing 1</td>
+<td align="left">CHEST Ch. 3</td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -169,7 +161,7 @@ title: Calendar
 <td align="left">Sampling Distributions</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 4;  <a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.5</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.6-15.9</a></td>
-<td align="left"></td>
+<td align="left">HW 4: Hypothesis Testing 1</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -182,9 +174,9 @@ title: Calendar
 <tr>
 <td align="left">Week 8</td>
 <td align="left">22-Oct</td>
-<td align="left">Introduction to Confidence Intervals</td>
+<td align="left">Sampling Distributions</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 5; <a href="https://moderndive.com/9-confidence-intervals.html">Modern Ch. 9</a></td>
+<td align="left">CHEST Ch. 4;  <a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.5</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.6-15.9</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -209,15 +201,15 @@ title: Calendar
 <td align="left">Introduction to Confidence Intervals</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 5; <a href="https://moderndive.com/9-confidence-intervals.html">Modern Ch. 9</a></td>
-<td align="left">HW 5: Sampling Distributions</td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left">31-Oct</td>
-<td align="left">Hypothesis Testing</td>
+<td align="left">Introduction to Confidence Intervals</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
-<td align="left"></td>
+<td align="left">CHEST Ch. 5; <a href="https://moderndive.com/9-confidence-intervals.html">Modern Ch. 9</a></td>
+<td align="left">HW 5: Sampling Distributions</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -233,15 +225,15 @@ title: Calendar
 <td align="left">Hypothesis Testing</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
-<td align="left">HW 6: Confidence Intervals</td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left">7-Nov</td>
-<td align="left">Non-Parametric Testing</td>
+<td align="left">Hypothesis Testing</td>
 <td align="left"></td>
-<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/RBT.html">SPEEGLE Ch. 8</a></td>
-<td align="left"></td>
+<td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
+<td align="left">HW 6: Confidence Intervals</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -254,10 +246,10 @@ title: Calendar
 <tr>
 <td align="left">Week 11</td>
 <td align="left">12-Nov</td>
-<td align="left">Categorical Data Comparisons</td>
+<td align="left">Non-Parametric Testing</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
-<td align="left">HW 7: Hypothesis Testing 2</td>
+<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/RBT.html">SPEEGLE Ch. 8</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -265,7 +257,7 @@ title: Calendar
 <td align="left">Categorical Data Comparisons</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
-<td align="left"></td>
+<td align="left">HW 7: Hypothesis Testing 2</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -286,10 +278,10 @@ title: Calendar
 <tr>
 <td align="left">Week 12</td>
 <td align="left">19-Nov</td>
-<td align="left">Simple Linear Regression</td>
+<td align="left">Categorical Data Comparisons</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 9.1-9.3.2; <a href="https://bookdown.org/speegled/foundations-of-statistics/SimpleReg.html">SPEEGLE Ch. 10-11</a></td>
-<td align="left">HW 8: Catergorical Data Comparisons</td>
+<td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -297,7 +289,7 @@ title: Calendar
 <td align="left">Simple Linear Regression</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 9.1-9.3.2; <a href="https://bookdown.org/speegled/foundations-of-statistics/SimpleReg.html">SPEEGLE Ch. 10-11</a></td>
-<td align="left"></td>
+<td align="left">HW 8: Catergorical Data Comparisons</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -310,10 +302,10 @@ title: Calendar
 <tr>
 <td align="left">Week 13</td>
 <td align="left">26-Nov</td>
-<td align="left">Multiple Linear Regression</td>
+<td align="left">Simple Linear Regression</td>
 <td align="left"></td>
-<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/multiple-regression.html">SPEEGLE Ch. 12</a>; <a href="https://rafalab.github.io/dsbook/linear-models.html">RAFA Ch. 19</a></td>
-<td align="left">HW 9: Simple Linear Regression</td>
+<td align="left">CHEST Ch. 9.1-9.3.2; <a href="https://bookdown.org/speegled/foundations-of-statistics/SimpleReg.html">SPEEGLE Ch. 10-11</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -337,15 +329,15 @@ title: Calendar
 <td align="left">Multiple Linear Regression</td>
 <td align="left"></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/multiple-regression.html">SPEEGLE Ch. 12</a>; <a href="https://rafalab.github.io/dsbook/linear-models.html">RAFA Ch. 19</a></td>
-<td align="left"></td>
+<td align="left">HW 9: Simple Linear Regression</td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left">5-Dec</td>
-<td align="left">Inference for Linear Regression</td>
+<td align="left">Multiple Linear Regression</td>
 <td align="left"></td>
-<td align="left">CHEST 9.3.3-9.5.2</td>
-<td align="left">HW 10: Multiple Linear Regression</td>
+<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/multiple-regression.html">SPEEGLE Ch. 12</a>; <a href="https://rafalab.github.io/dsbook/linear-models.html">RAFA Ch. 19</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -358,10 +350,10 @@ title: Calendar
 <tr>
 <td align="left">Week 15</td>
 <td align="left">10-Dec</td>
-<td align="left">Many Models</td>
+<td align="left">Inference for Linear Regression</td>
 <td align="left"></td>
-<td align="left"><a href="https://r4ds.had.co.nz/many-models.html">R4DS Ch 25</a></td>
-<td align="left"></td>
+<td align="left">CHEST 9.3.3-9.5.2</td>
+<td align="left">HW 10: Multiple Linear Regression</td>
 </tr>
 <tr>
 <td align="left"></td>

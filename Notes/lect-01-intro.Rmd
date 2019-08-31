@@ -49,9 +49,9 @@ knitr::opts_chunk$set(message=FALSE)
 
 * Main: [https://php-1510-2510.github.io](https://php-1510-2510.github.io)
 * Canvas:
-    + PHP 1511: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078851)
-    + PHP 2511: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078852)
-* Github: [https://github.com/php-1511-2510](https://github.com/php-1510-2510)
+    + PHP 1510: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078851)
+    + PHP 2510: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078852)
+* Github: [https://github.com/php-1510-2510](https://github.com/php-1510-2510)
 * Slack: [https://php-1510-2510-fall-2019.slack.com/](https://php-1510-2510.slack.com/)
 
 

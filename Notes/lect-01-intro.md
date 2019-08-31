@@ -1,5 +1,5 @@
 ---
-title       : 
+title       : Introduction to Course
 author      : Adam J Sullivan 
 job         : Assistant Professor of Biostatistics
 work        : Brown University
@@ -19,14 +19,14 @@ assets      : {assets: ../../assets}
 
 
 
-# PHP 1511/2511: Applied Regression Analysis
+# PHP 1510/2510 Principles of Biostatistics and Data Analyis
 
 ---  .segue bg:grey
 
 
 
 
-# Basics
+# Course Basics
 
 --- .class #id
 
@@ -44,9 +44,9 @@ assets      : {assets: ../../assets}
 
 * Main: [https://php-1510-2510.github.io](https://php-1510-2510.github.io)
 * Canvas:
-    + PHP 1511: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078851)
-    + PHP 2511: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078852)
-* Github: [https://github.com/php-1511-2510](https://github.com/php-1510-2510)
+    + PHP 1510: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078851)
+    + PHP 2510: [https://canvas.brown.edu/courses/](https://canvas.brown.edu/courses/1078852)
+* Github: [https://github.com/php-1510-2510](https://github.com/php-1510-2510)
 * Slack: [https://php-1510-2510-fall-2019.slack.com/](https://php-1510-2510.slack.com/)
 
 
@@ -86,6 +86,7 @@ assets      : {assets: ../../assets}
 * Statistical Comparisons of Data
 * Variability
 
+
 --- .class #id
 
 ## Main Textbook
@@ -97,7 +98,8 @@ assets      : {assets: ../../assets}
   John Fox Jr.
 * [Amazon](https://www.amazon.com/Applied-Regression-Analysis-Generalized-Linear-ebook/dp/B00YFSZPTE).
   We follow this book for content and pacing.
-  
+
+
 --- .class #id
   
 ## Main Textbook
@@ -155,8 +157,8 @@ assets      : {assets: ../../assets}
 | --------------- | ----------------- | ------------- |
 | Participation       |                    10%   |
 | Homework             |                   20%  | 
-| Exam 1 (//2019)   |                  25% | 
-| Exam 2 (//2019)  |                 25%  |
+| Exam 1 (10/24/2019)   |                  25% | 
+| Exam 2 (12/12/2019)  |                 25%  |
 | Personal Data Analysis and Exploration  |           20% |
 
 
@@ -180,7 +182,7 @@ assets      : {assets: ../../assets}
 
 --- .class #id
 
-## Exam 1 (March 13, 2019)
+## Exam 1 (October 24, 2019)
 
 * An in class exam will be given. 
 * Students will be expected to interpret and analyze regression models. 
@@ -190,7 +192,7 @@ assets      : {assets: ../../assets}
 --- .class #id
 
 
-## Exam  2 (May 8, 2019)
+## Exam  2 (December 12, 2019)
 
 * An in class exam will be given. 
 * Students will be expected to interpret and analyze regression models. 
@@ -217,7 +219,7 @@ Students will spend the semester working on a Personal Data Analysis and Explora
 
 
 
-## PHP 1511: Specifics
+## PHP 1510s: Specifics
 
 | Grade Category | Comments | 
 | ----------------- | ---------------------------------------------------- |
@@ -229,7 +231,7 @@ Students will spend the semester working on a Personal Data Analysis and Explora
 
 --- .class #id
 
-## PHP 2511: Specifics
+## PHP 2510: Specifics
 
 | Grade Category | Comments | 
 | ----------------- | ---------------------------------------------------- |

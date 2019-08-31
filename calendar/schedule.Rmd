@@ -21,7 +21,7 @@ output: md_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, message=F, warning=F, results='asis', echo=F}
+```{r}
 library(readr)
 schedule <- read_csv("../_csv/schedule.csv")
 options(knitr.kable.NA = '')
