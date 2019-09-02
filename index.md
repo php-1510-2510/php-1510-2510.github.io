@@ -66,19 +66,6 @@ This course is designed for graduate and advanced undergraduate students who wil
 |:-----------|:--------|:-----------|
 
 
-
-* * *
-
-
-### Project Office Hours:
-
-Please sign up for a slot for appointments. Sign up for 1 during this first week and then we can add more in the upcoming weeks. 
-
-[Google Calendar Appointments](https://calendar.google.com/calendar/selfsched?sstoken=UUEzS2dGMjluUDRifGRlZmF1bHR8ZTVkODU0MGIyMDg5NzQ1ODFkNGU3OTQ2YmE2OWE0N2U)
-
-
-Additional Hours held by Julia Mullokandova:
-<a href="http://signup.com/go/hVadReE" target="_blank"><img src="https://signup.com/imgs/icons/signup-choose-a-spot-btn.png" alt="Click to View Julia's Hours"></a>
 * * * 
 
 ### Additional Course Information via Main Menu

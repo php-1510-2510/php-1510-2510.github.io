@@ -6,19 +6,19 @@ title: Useful Links & Resources
 ## Canvas
 
 
-### PHP 1511: 
+### PHP 1510: 
 
-- [Assignments]()
-- [Gradebook]()
+- [Assignments](https://canvas.brown.edu/courses/1078851/assignments)
+- [Gradebook](https://canvas.brown.edu/courses/1078851/grades)
 
 
 
 * * * 
 
-### PHP 1511: 
+### PHP 2510: 
 
-- [Assignments]()
-- [Gradebook]()
+- [Assignments](https://canvas.brown.edu/courses/1078852/assignments)
+- [Gradebook](https://canvas.brown.edu/courses/1078852/grades)
 
 
 
