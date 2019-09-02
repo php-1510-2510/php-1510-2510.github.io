@@ -23,10 +23,12 @@ the weekly lab sessions, as well as in the homework.
 
 After successful completion of this course you will understand and be able to use probability, statistical graphics and  hypothesis tests. In particular these include the following capabilities:
 
-1. Manipulate and analyze data in R. 
-2. Students will use RStudio with proficiency. 
-3. Students will understand how to graph, test and interpret results for given probability distributions and data. 
-
+1. Develop the ability to explore and engage new data. 
+2. Recognize and understand basic concept around basic probability distributions.
+3. Work with modern tools for reproducible research. 
+4. Develop statistical thinking skills. 
+5. Bring in, Clean and Analyze data with R.
+6. Coherently summarize results.
 
 
 

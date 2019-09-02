@@ -85,62 +85,82 @@ knitr::opts_chunk$set(message=FALSE)
 
 - Course topics will be drawn (but subject to change) from
 
-* Basics of Statistical Programming and Reproducible Research
+* Basic Probability
+* Random Variables
 * Exploratory Data Analysis
-* Simulation and Probability
-* Statistical Comparisons of Data
-* Variability
+* Sampling Distributions
+* Hypothesis Testing
+    * Basic Methods
+    * Categorical Data Comparisons
+    * Non-parametric Methods
+* Confidence Intervals
+* Linear Regression
 
 
 --- .class #id
 
-## Main Textbook
+## Main Textbooks
 
+![R for Data Science](../images/r4ds.png)
 
-![Applied Regression Analysis and Generalized Linear Models](assets/img/fox.jpg)
-
-*  **Applied Regression Analysis and Generalized Linear Models** by
-  John Fox Jr.
-* [Amazon](https://www.amazon.com/Applied-Regression-Analysis-Generalized-Linear-ebook/dp/B00YFSZPTE).
-  We follow this book for content and pacing.
-
-
---- .class #id
+- **R for Data Science** by
+  Hadley Wickham and Garrett Grolemund
+  [R4DS](https://r4ds.had.co.nz/).
   
-## Main Textbook
 
-
-![Regression Methods in Biostatistics](assets/img/vittinghoff.jpg)
-
- **Regression Methods in Biostatistics** by
-   Eric Vittinghoff, David V. Glidden, Stephen C. Shiboski, Charles E. McCulloch 
-  [Amazon](https://www.amazon.com/Regression-Methods-Biostatistics-Logistic-Statistics/dp/1461413524).
-  We follow this book for content and pacing.
 
 
 --- .class #id
 
-## Extra Textbook
+## Main Tetbooks
+
+![Mathematical Statistics with Resampling and R](../images/chest.jpg)
+
+-  **Mathematical Statistics with Resampling and R** by
+   Laura M. Chihara, Tim C. Hesterberg
+  [Amazon](https://www.amazon.com/Mathematical-Statistics-Resampling-Laura-Chihara/dp/111941654X/ref=sr_1_1?crid=1RCTXHSU4E7TI&keywords=mathematical+statistics+with+resampling+and+r&qid=1566224929&s=gateway&sprefix=mathematical+statistics+%2Caps%2C134&sr=8-1).
+  
 
 
-![An Introduction to Statistical Learning](assets/img/ISL.jpg)
-
-*  **An Introduction to Statistical Learning: with Applications in R** by 
-  Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani.
-* We will use this as a reference to some methods as well as a resource for data and R code. 
 
 --- .class #id
 
+## Main Tetbooks
 
-## Extra Textbook
+
+![Foundations of Statistics with R](../images/speegle.PNG)
+
+- **Foundations of Statistics with R** by 
+  Darrin Speegle
+  [Bookdown](https://bookdown.org/speegled/foundations-of-statistics/)
+  
 
 
-![An Introduction to Statistical Learning](assets/img/ISL.jpg)
+--- .class #id
 
-* This is  available freely available as an eBook  [Get it](http://www-bcf.usc.edu/~gareth/ISL/)
-    + If you prefer a paperback version you may buy it at cost from
-  Springer (see links from library site) or purchase a hardback version at the through Amazon.
-* For additional information check out [Videos for the ISL book](https://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/)  
+## Main Textbooks
+
+![Introduction to Data Science](../images/rafa.PNG)
+
+
+- **Introduction to Data Science** by 
+  Rafael A. Irizarry
+  [Bookdown](https://rafalab.github.io/dsbook/)
+
+
+--- .class #id
+
+## Main Textbooks
+
+![Statistical Inference via Data Science](../images/modern.PNG)
+
+
+- **Statistical Inference via Data Science** by 
+  Chester Ismay and Albert Y. Kim
+  [Bookdown](https://moderndive.com/)
+  
+
+
 
 --- .class #id
 
@@ -158,13 +178,14 @@ knitr::opts_chunk$set(message=FALSE)
 -Students will be evaluated based on:
 
 
-| Grade  | Category | Percentage |
+| Grade  Category | Percentage |
 | --------------- | ----------------- | ------------- |
-| Participation       |                    10%   |
+| Participation       |                    5%   |
 | Homework             |                   20%  | 
 | Exam 1 (10/24/2019)   |                  25% | 
 | Exam 2 (12/12/2019)  |                 25%  |
-| Personal Data Analysis and Exploration  |           20% |
+| Final Take Home   |           25% |
+
 
 
 --- .class #id
@@ -180,7 +201,7 @@ knitr::opts_chunk$set(message=FALSE)
 ## Homework
 
 * Assignments will be given out to students. Assignments will require data handling, data cleaning and interpretation of the results.  
-* It is expected that all assignments are completed on time. No late assignments will be accepted. 
+* It is expected that all assignments are completed on time. **No late assignments will be accepted.** 
 * Students will also be graded on the conciseness and quality of work. 
 * Turning in many pages of just computer code and output will affect the grade in a negative fashion.
 * All work must be done in R. No other Stat software is accepted. 
@@ -207,16 +228,9 @@ knitr::opts_chunk$set(message=FALSE)
 --- .class #id
 
 
-## Personal Data Analysis and Exploration
+## Final Take Home Exam
 
-Students will spend the semester working on a Personal Data Analysis and Exploration Project. This project will require:
-
-1. Considering a relevant public health dataset for those in 2510 and a relevant scientific dataset for 1510.  
-2. Explore and graphically explain the dataset. 
-3. Develop a relevant scientific question for data. 
-4. Write up a report with appropriate tables, graphs and results. 
-
-
+There will be a comprehensive take home data analysis from a real dataset.
 
 
 
@@ -231,7 +245,7 @@ Students will spend the semester working on a Personal Data Analysis and Explora
 | Participation  |                 Graded the same as all students, Must be in class and prepared to work in groups.  |
 | Homework        |                Students will be expected to complete a portion of the material with the exception of some more difficult problems which may be attempted but do not have to be complete. | 
 | Exam 1 & 2              |        Students will be expected to complete a portion of the exam.  |
-|Personal Data Analysis and Exploration |  Students will be expected to complete a reproducible research project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work. |
+|Take Home Exam | This will be a complete data analysis. No part of this exam is to be discussed or collaborated on with any other student.  |
 
 
 --- .class #id
@@ -243,7 +257,7 @@ Students will spend the semester working on a Personal Data Analysis and Explora
 | Participation  |                 Graded the same as all students, Must be in class and prepared to work in groups.  |
 | Homework        |                 Students will be expected to complete the entire assignment. | 
 | Exam 1 & 2              |       Students will be expected to complete the entire exam.  |
-| Personal Data Analysis and Exploration |  Students will be expected to complete a reproducible resaerch project. Data as well as questions explored will be at a level appropriate of the background and other statistical courses taken. This will be a semester long project so it will require a great deal of work.  |
+|Take Home Exam | This will be a complete data analysis. No part of this exam is to be discussed or collaborated on with any other student.  |
 
 
 --- .class #id
@@ -251,7 +265,7 @@ Students will spend the semester working on a Personal Data Analysis and Explora
 ## Statistical Analysis
 
 
-* We will use R as a programming language for data analysis and use   existing packages written in R to support the course. 
+* We will use R as a programming language for data analysis and use existing packages written in R to support the course. 
 * You should have access to a laptop   or desktop capable of running [R or RStudio]({{site.baseurl}}/resources).  
 * We will also provide access   to a dedicated server running RStudio Pro for all students that will have a unified environment.  
 * See the [Resources]({{site.baseurl}}/resources) page for books and other resources for learning R.
