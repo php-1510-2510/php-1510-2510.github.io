@@ -24,7 +24,7 @@ title: Useful Links & Resources
 
 ## Slack
 
-- [PHP-1510-2510.slack.com](PHP-1510-2510.slack.com)
+- [PHP-1510-2510.slack.com](https://PHP-1510-2510.slack.com)
 
 
 ## RStudio Server
