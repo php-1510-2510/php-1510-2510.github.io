@@ -42,7 +42,7 @@ This course is designed for graduate and advanced undergraduate students who wil
 |-----------+--------+-----------|
 | What    |  Where | When      
 |:-----------|:--------|:-----------|
-| Lecture |  Life Sciences Room: Marcuvitz Auditorium |  Tuesday and Thursday  9-10:20am |
+| Lecture |  [Life Sciences Room: Sydney E Frank Hall](http://brown.edu/Facilities/Facilities_Management/maps/index.php#building/SFRANKHLSB) |  Tuesday and Thursday  9-10:20am |
 |:-----------|:--------|:-----------|
 | Discussion/Lab  |  TBD | TBD | 
 | Discussion/Lab  |  TBD | TBD | 
