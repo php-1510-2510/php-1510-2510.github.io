@@ -28,9 +28,7 @@ This course is designed for graduate and advanced undergraduate students who wil
 |:-----------|:--------------------|:-------------------|
 |TA         | TBD   | TBD
 |:-----------|:--------------------|:-------------------|
-|TA         | TBD   | TBD
-|:-----------|:--------------------|:-------------------|
-| Additional Tutoring / Office Hourse         | TBD   | TBD
+| Additional Tutoring / Office Hours         | TBD   | TBD
 |------------+--------------------+-------------------|
 
 
@@ -44,7 +42,7 @@ This course is designed for graduate and advanced undergraduate students who wil
 |-----------+--------+-----------|
 | What    |  Where | When      
 |:-----------|:--------|:-----------|
-| Lecture |  SPH - Room 245 |  Tuesday and Thursday  9-10:20am |
+| Lecture |  Life Sciences Room: Marcuvitz Auditorium |  Tuesday and Thursday  9-10:20am |
 |:-----------|:--------|:-----------|
 | Discussion/Lab  |  TBD | TBD | 
 | Discussion/Lab  |  TBD | TBD | 
