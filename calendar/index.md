@@ -17,21 +17,12 @@ title: Calendar
     <col width="25%" />
     <col width="10%" />
     </colgroup>
-<table><thead>
-<tr>
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Handouts</th>
-<th align="left">Readings</th>
-<th align="left">HW</th>
-</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
 <td align="left">10-Sep</td>
 <td align="left">Course Introduction</td>
-<td align="left"><a href="../Notes/lect-01-intro.html">Lect-01-Intro</a></td>
+<td align="left"><a href="../Notes/lect-01-intro.html">Lect-01-Intro</a> <a href="https://vimeo.com/359114175/8b5828601d">Video</a></td>
 <td align="left">No Reading Prior to Class</td>
 <td align="left">Install <a href="https://www.rstudio.com/products/rstudio/download3/">Rstudio</a> and <a href="https://php-1511-2511.github.io/Introduction-to-R/">Go through Introduction to R</a></td>
 </tr>
@@ -39,9 +30,9 @@ title: Calendar
 <td align="left"></td>
 <td align="left">12-Sep</td>
 <td align="left">Basic Probability</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-02-probability.html">Lect-02-Probability</a></td>
 <td align="left">CHEST: Appendix A; <a href="https://bookdown.org/speegled/foundations-of-statistics/prob.html">SPEEGLE Ch. 2</a>;  <a href="https://rafalab.github.io/dsbook/probability.html">RAFA Ch. 14</a></td>
-<td align="left">Datacamp Assignment</td>
+<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -57,7 +48,7 @@ title: Calendar
 <td align="left">Basic Probability</td>
 <td align="left"></td>
 <td align="left">CHEST: Appendix A; <a href="https://bookdown.org/speegled/foundations-of-statistics/prob.html">SPEEGLE Ch. 2</a>;  <a href="https://rafalab.github.io/dsbook/probability.html">RAFA Ch. 14</a></td>
-<td align="left">Datacamp Assignment</td>
+<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -65,7 +56,7 @@ title: Calendar
 <td align="left">Random Variables</td>
 <td align="left"></td>
 <td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
-<td align="left">Datacamp Assignment</td>
+<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -81,7 +72,7 @@ title: Calendar
 <td align="left">Random Variables</td>
 <td align="left"></td>
 <td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
-<td align="left"></td>
+<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -89,7 +80,7 @@ title: Calendar
 <td align="left">Simulations with Random Variables</td>
 <td align="left"></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
-<td align="left">HW 1: Random Variables</td>
+<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -105,7 +96,7 @@ title: Calendar
 <td align="left">Manipulating Data with R</td>
 <td align="left"></td>
 <td align="left"><a href="https://r4ds.had.co.nz/workflow-basics.html">R4DS Ch. 4-5</a> ;<a href="https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html">SPEEGLE Ch. 5</a></td>
-<td align="left"></td>
+<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
 <tr>
 <td align="left"></td>
