@@ -30,7 +30,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">12-Sep</td>
 <td align="left">Basic Probability</td>
-<td align="left"><a href="../Notes/lect-02-probability.html">Lect-02-Probability</a></td>
+<td align="left"><a href="../Notes/lect-02-probability.html">Lect-02-Probability</a> <a href="https://vimeo.com/359605430/28765378db">Video</a></td>
 <td align="left">CHEST: Appendix A; <a href="https://bookdown.org/speegled/foundations-of-statistics/prob.html">SPEEGLE Ch. 2</a>;  <a href="https://rafalab.github.io/dsbook/probability.html">RAFA Ch. 14</a></td>
 <td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>

@@ -1,6 +1,6 @@
 Week,Date,Topic,Lecture Resources,Readings,HW
 Week 1,10-Sep,Course Introduction,[Lect-01-Intro](../Notes/lect-01-intro.html) [Video](https://vimeo.com/359114175/8b5828601d),No Reading Prior to Class,Install [Rstudio](https://www.rstudio.com/products/rstudio/download3/) and [Go through Introduction to R](https://php-1511-2511.github.io/Introduction-to-R/)
-,12-Sep,Basic Probability,[Lect-02-Probability](../Notes/lect-02-probability.html),CHEST: Appendix A; [SPEEGLE Ch. 2](https://bookdown.org/speegled/foundations-of-statistics/prob.html);  [RAFA Ch. 14](https://rafalab.github.io/dsbook/probability.html),[Datacamp Assignment](../datacamp)
+,12-Sep,Basic Probability,[Lect-02-Probability](../Notes/lect-02-probability.html) [Video](https://vimeo.com/359605430/28765378db),CHEST: Appendix A; [SPEEGLE Ch. 2](https://bookdown.org/speegled/foundations-of-statistics/prob.html);  [RAFA Ch. 14](https://rafalab.github.io/dsbook/probability.html),[Datacamp Assignment](../datacamp)
 ,,,,,
 Week 3,17-Sep,Basic Probability,,CHEST: Appendix A; [SPEEGLE Ch. 2](https://bookdown.org/speegled/foundations-of-statistics/prob.html);  [RAFA Ch. 14](https://rafalab.github.io/dsbook/probability.html),[Datacamp Assignment](../datacamp)
 ,19-Sep,Random Variables,,CHEST: Appendix B; [SPEEGLE Ch. 3](https://bookdown.org/speegled/foundations-of-statistics/random-variables.html); [RAFA Ch. 15.1-15.6](https://rafalab.github.io/dsbook/random-variables.html),[Datacamp Assignment](../datacamp)

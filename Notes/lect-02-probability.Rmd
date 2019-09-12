@@ -70,7 +70,7 @@ knitr::opts_chunk$set(message=FALSE)
 
 ## The two approaches
 
-- Consider the data drawn from 1894-96 cholera innoculations in Calcutta, India. Of the 818 subjectes exposed to cholera 29 received an innoculation and 539 did not:
+- Consider the data drawn from 1894-96 cholera innoculations in Calcutta, India. Of the 818 subjects exposed to cholera 29 received an innoculation and 539 did not:
   
 | | Infected | Not Infected |  | 
 | ----- | ------- | -------- | ------- |

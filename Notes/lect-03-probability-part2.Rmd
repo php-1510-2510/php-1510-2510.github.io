@@ -111,3 +111,12 @@ prop.table(table(test))
 ```
 
 - ***See now you don't mind using R, since I could make you do so many fun math formulas instead***
+
+
+
+--- .class #id
+
+## Further Simulations
+
+- Let's consider rolling 2 die.
+- In R This i
