@@ -17,15 +17,6 @@ title: Calendar
     <col width="25%" />
     <col width="10%" />
     </colgroup>
-<thead>
-<tr>
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Lecture Resources</th>
-<th align="left">Readings</th>
-<th align="left">HW</th>
-</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -63,7 +54,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">19-Sep</td>
 <td align="left">Random Variables</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-04-random-variables.html">Lect-04-Random-Variables</a></td>
 <td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
 <td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
