@@ -17,6 +17,15 @@ title: Calendar
     <col width="25%" />
     <col width="10%" />
     </colgroup>
+<thead>
+<tr>
+<th align="left">Week</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Lecture Resources</th>
+<th align="left">Readings</th>
+<th align="left">HW</th>
+</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -46,7 +55,7 @@ title: Calendar
 <td align="left">Week 3</td>
 <td align="left">17-Sep</td>
 <td align="left">Basic Probability</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-03-probability-part2.html">Lect-03-Probability-Part 2</a></td>
 <td align="left">CHEST: Appendix A; <a href="https://bookdown.org/speegled/foundations-of-statistics/prob.html">SPEEGLE Ch. 2</a>;  <a href="https://rafalab.github.io/dsbook/probability.html">RAFA Ch. 14</a></td>
 <td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
@@ -80,7 +89,7 @@ title: Calendar
 <td align="left">Simulations with Random Variables</td>
 <td align="left"></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
-<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
+<td align="left">HW 1: Random Variables</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -96,7 +105,7 @@ title: Calendar
 <td align="left">Manipulating Data with R</td>
 <td align="left"></td>
 <td align="left"><a href="https://r4ds.had.co.nz/workflow-basics.html">R4DS Ch. 4-5</a> ;<a href="https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html">SPEEGLE Ch. 5</a></td>
-<td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>

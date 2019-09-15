@@ -2,13 +2,13 @@ Week,Date,Topic,Lecture Resources,Readings,HW
 Week 1,10-Sep,Course Introduction,[Lect-01-Intro](../Notes/lect-01-intro.html) [Video](https://vimeo.com/359114175/8b5828601d),No Reading Prior to Class,Install [Rstudio](https://www.rstudio.com/products/rstudio/download3/) and [Go through Introduction to R](https://php-1511-2511.github.io/Introduction-to-R/)
 ,12-Sep,Basic Probability,[Lect-02-Probability](../Notes/lect-02-probability.html) [Video](https://vimeo.com/359605430/28765378db),CHEST: Appendix A; [SPEEGLE Ch. 2](https://bookdown.org/speegled/foundations-of-statistics/prob.html);  [RAFA Ch. 14](https://rafalab.github.io/dsbook/probability.html),[Datacamp Assignment](../datacamp)
 ,,,,,
-Week 3,17-Sep,Basic Probability,,CHEST: Appendix A; [SPEEGLE Ch. 2](https://bookdown.org/speegled/foundations-of-statistics/prob.html);  [RAFA Ch. 14](https://rafalab.github.io/dsbook/probability.html),[Datacamp Assignment](../datacamp)
+Week 3,17-Sep,Basic Probability,[Lect-03-Probability-Part 2](../Notes/lect-03-probability-part2.html),CHEST: Appendix A; [SPEEGLE Ch. 2](https://bookdown.org/speegled/foundations-of-statistics/prob.html);  [RAFA Ch. 14](https://rafalab.github.io/dsbook/probability.html),[Datacamp Assignment](../datacamp)
 ,19-Sep,Random Variables,,CHEST: Appendix B; [SPEEGLE Ch. 3](https://bookdown.org/speegled/foundations-of-statistics/random-variables.html); [RAFA Ch. 15.1-15.6](https://rafalab.github.io/dsbook/random-variables.html),[Datacamp Assignment](../datacamp)
 ,,,,,
 Week 4,24-Sep,Random Variables,,CHEST: Appendix B; [SPEEGLE Ch. 3](https://bookdown.org/speegled/foundations-of-statistics/random-variables.html); [RAFA Ch. 15.1-15.6](https://rafalab.github.io/dsbook/random-variables.html),[Datacamp Assignment](../datacamp)
-,26-Sep,Simulations with Random Variables,,[SPEEGLE Ch.  4.1-4.4](https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html) ,[Datacamp Assignment](../datacamp)
+,26-Sep,Simulations with Random Variables,,[SPEEGLE Ch.  4.1-4.4](https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html) ,HW 1: Random Variables
 ,,,,,
-Week 5,1-Oct,Manipulating Data with R,,[R4DS Ch. 4-5](https://r4ds.had.co.nz/workflow-basics.html) ;[SPEEGLE Ch. 5](https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html),[Datacamp Assignment](../datacamp)
+Week 5,1-Oct,Manipulating Data with R,,[R4DS Ch. 4-5](https://r4ds.had.co.nz/workflow-basics.html) ;[SPEEGLE Ch. 5](https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html),
 ,3-Oct,Exploratory Data Analysis,,CHEST Ch. 2; [SPEEGLE Ch. 6](https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html); [R4DS Ch. 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) ,HW 2: Basic R and Simulations
 ,,,,,
 Week 6,8-Oct,Exploratory Data Analysis,,CHEST Ch. 2; [SPEEGLE Ch. 6](https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html); [R4DS Ch. 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) ,

@@ -15,6 +15,156 @@ biglogo     : publichealthlogo.png
 assets      : {assets: ../../assets}
 ---  .segue bg:grey
 
+# Counting
+
+
+
+
+--- .class #id
+
+## Counting
+
+- We will discuss counting with the following methods:
+    - Multiplication Rule
+    - Permutations
+    - Combinations
+    
+
+
+--- .class #id
+
+## Multiplication Rule 
+
+- We have seen this rule play out already. 
+- Consider 1 die:
+    - Our Sample Space is:
+    - 1, 2, 3, 4, 5, 6
+- With 2 die:
+    - The sample space became size 36. 
+
+
+--- .class #id
+
+## Multiplication Rule
+
+- For 2 trials:
+    - Trial one has $n_1$ ways of happening. 
+    - Trial two has $n_2$ ways of happening.
+    - Then the total number of ways the for the 2 trials to happen together is:
+  
+  $$ N=n_1*n_2$$
+
+
+--- .class #id
+
+## Multiplication Rule
+
+- This is because for each number on the first die you could roll 6 numbers on the second die. 
+- The picture below shows how this works
+  
+![](https://qph.fs.quoracdn.net/main-qimg-6fe0ee70e3ca357140d0f4489e0cfb3f-c)
+
+
+--- .class #id
+
+## General Multiplication Rule
+
+- In general, if we assume that we have `r` decisions to be made. 
+- If there are $n_1$ ways to decide Decision 1, $n_2$ ways to decide Decision 2, and so on
+- The total number of ways to make all `r` decisions is:
+$$N = n_1*n_2\cdots n_r$$
+
+
+--- .class #id
+
+## More Counting
+
+- What if we wanted to know how many ways there are to throw 5 heads in 10 coin tosses? 
+- What if we wanted to know how many ways there are to take 9 cell cultures and split 3 into a treatment group and 6 into a control? 
+- These are more complicated ways of counting and we need to talk about permutations and combinations to do this. 
+
+
+
+--- .class #id 
+
+## Permutations
+
+- A permutation is a way of understanding how many ways there are to arrnge objects. 
+- Consider a race with 9 individuals. 
+- Furthermore we are going to give medals to the first 3 places only. 
+- How many ways are there for this race to go? 
+
+--- .class #id
+
+## Permutations
+
+- We have 9 ways for first place, then it leaves 8 for second and finally 7 left for third.
+- This means we have:
+  
+$$9\times8\times7 =504$$
+
+- This also is equal to:
+  
+$$\dfrac{9!}{(9-3)!}=\dfrac{9!}{6!} = \dfrac{9*8*7*6!}{6!} = 9*8*7$$
+
+
+--- .class #id
+
+## Permutations
+
+- Generally speaking, if we wish to arrange `r` objects out of `N` objects, the number of ways to do this is:
+  
+$$\dfrac{N!}{(N-r)!}$$
+
+where, 
+
+$$N! = N\times (N-1) \times (N-2) \times (N-3) \times \cdots \times 2 \times 1$$
+
+--- class #id
+
+## Combinations 
+
+- What happens if we do not care about how things are ordered? 
+- Consider if instead of 9 racers, we have 9 cell cultures and we wish to treat three of them in a certain manner. 
+- Now the order of them doesn't matter. 
+- We have something similar to a permutation here but we need to get rid of the ordering. 
+    - Consider the 3 elements, we can order them in the following ways:
+
+$$ 3\times2\times1 = 3!$$
+
+--- .class #id
+
+## Combinations
+
+- We know then if we care about ordering that we have:
+  
+$$\dfrac{9!}{(9-3)!}=\dfrac{9!}{6!} = \dfrac{9*8*7*6!}{6!} = 9*8*7=504 \text{ ways}$$
+
+- Then we would have to divided these ways by the $3!$ repeats. 
+- Giving us:
+
+$$\dfrac{9!}{(9-3)!3!}=\dfrac{9!}{6!3!} = \dfrac{9*8*7*6!}{6!3!} = \dfrac{9*8*7}{3*2*1}=3*4*7=84 \text{ ways}$$
+
+
+--- .class #id
+
+## Combinations
+
+- Generally speaking, if we wish to choose `r` objects out of `N` objects, the number of ways to do this is:
+  
+$$\dfrac{N!}{(N-r)!r!}$$
+
+where, 
+
+$$N! = N\times (N-1) \times (N-2) \times (N-3) \times \cdots \times 2 \times 1$$
+
+--- .class #id
+
+## Combinations vs Permutations
+
+- Both count the number of ways to pick from a larger number of objects. 
+- Permutations are picking when order matters. 
+- Combinations are for when order does not matter. 
 
 
 
@@ -25,6 +175,17 @@ assets      : {assets: ../../assets}
 ## Conditional Probability
 
 ![xkcd.com](https://imgs.xkcd.com/comics/conditional_risk.png)
+
+
+--- .class #id
+
+## Conditional Probability
+
+- We have talked about simple scenarios where nothing outside of the problem matters. 
+- What happens if you flip a coin with different hands? 
+- What happens if you choose cell cultures that were prepared by different people? 
+- Do these things matter?
+- How does the probability change?
 
 --- .class #id
 
@@ -43,20 +204,16 @@ assets      : {assets: ../../assets}
 
 
 ```r
+T <- 100000
 donut <- rep(c("plain", "glazed", "jelly"), times=c(5,5,2))
 test <- replicate(T, sample(donut,1))
-```
-
-```
-## Error in integer(n): invalid 'length' argument
-```
-
-```r
 prop.table(table(test))
 ```
 
 ```
-## Error in table(test): object 'test' not found
+## test
+##  glazed   jelly   plain 
+## 0.41635 0.16790 0.41575
 ```
 
 --- .class #id
@@ -70,18 +227,13 @@ prop.table(table(test))
 ```r
 donut <- rep(c("plain", "glazed", "jelly"), times=c(5,5,2))
 test <- replicate(T, sample(donut[-12],1))
-```
-
-```
-## Error in integer(n): invalid 'length' argument
-```
-
-```r
 prop.table(table(test))
 ```
 
 ```
-## Error in table(test): object 'test' not found
+## test
+##  glazed   jelly   plain 
+## 0.45074 0.09075 0.45851
 ```
 
 
@@ -132,18 +284,83 @@ cond
 ```r
 donut <- rep(c("plain", "glazed", "jelly"), times=c(5,5,2))
 test <- replicate(T, sample(donut[-12],1))
-```
-
-```
-## Error in integer(n): invalid 'length' argument
-```
-
-```r
 prop.table(table(test))
 ```
 
 ```
-## Error in table(test): object 'test' not found
+## test
+##  glazed   jelly   plain 
+## 0.45474 0.09032 0.45494
 ```
 
 - ***See now you don't mind using R, since I could make you do so many fun math formulas instead***
+
+
+
+--- .class #id
+
+## Further Simulations
+
+- A die is rolled until the first time that a number comes up twice.
+- What is the probability that the die is rolled three times?
+- 121 and 455 would work. 
+- 112 and 554 would not work. 
+- Can you imagine how this would play out with formulas? 
+- Can you easily see a way to do count the number of ways for this to happen? 
+
+--- .class #id
+
+## One Possible Solution
+
+- We use R. 
+    - Roll 3 die. 
+    - The 3rd die can be equal to either the first or the second. 
+    - The 1st and 2nd cannot be equal. 
+    - If those 2 things hold then we had same number twice in three rolls. 
+- Run this simulation over and over again. 
+
+--- .class #id
+
+## With R
+
+
+```r
+set.seed(123)
+successes <- 0
+trials <- 10000
+
+for(i in 1:trials) {
+  DieRoll <- sample(6,3,TRUE)
+  if(DieRoll[3] %in% DieRoll[1:2] && !(DieRoll[2] == DieRoll[1])) 
+    successes <- successes + 1
+}
+
+print(successes/trials)
+```
+
+```
+## [1] 0.2816
+```
+
+
+
+--- .class #id
+
+## By Hand
+
+- We have 6 ways to choose the first die. 
+- Then since the first cannot equal the second we have 5 ways to choose that. 
+- Then:
+    - if the third matches the first there is 1 way to do that. (30 Ways)
+    - If the third matches the second there is 1 way to do that. (30 Ways)
+- So 60 ways together. 
+- Then for 3 die, there are $6*6*6=216$ ways to roll. 
+- This gives us $\dfrac{60}{216}=0.27777778$
+
+
+--- .class #id
+
+## Conditional Simulations
+
+- In the lab video I will go over further simulations for this. 
+- These are harder to simulate but worthwhile to work through. 

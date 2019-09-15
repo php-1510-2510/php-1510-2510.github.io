@@ -56,8 +56,349 @@
 
     <!-- SLIDES -->
     <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Counting</h1>
+    <hr>
+  </hgroup>
   <article data-timings="">
     
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will discuss counting with the following methods:
+
+<ul>
+<li>Multiplication Rule</li>
+<li>Permutations</li>
+<li>Combinations</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Multiplication Rule</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have seen this rule play out already. </li>
+<li>Consider 1 die:
+
+<ul>
+<li>Our Sample Space is:</li>
+<li>1, 2, 3, 4, 5, 6</li>
+</ul></li>
+<li>With 2 die:
+
+<ul>
+<li>The sample space became size 36. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Multiplication Rule</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>For 2 trials:</p>
+
+<ul>
+<li>Trial one has \(n_1\) ways of happening. </li>
+<li>Trial two has \(n_2\) ways of happening.</li>
+<li>Then the total number of ways the for the 2 trials to happen together is:</li>
+</ul>
+
+<p>\[ N=n_1*n_2\]</p></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Multiplication Rule</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is because for each number on the first die you could roll 6 numbers on the second die. </li>
+<li>The picture below shows how this works</li>
+</ul>
+
+<p><img src="https://qph.fs.quoracdn.net/main-qimg-6fe0ee70e3ca357140d0f4489e0cfb3f-c" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>General Multiplication Rule</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In general, if we assume that we have <code>r</code> decisions to be made. </li>
+<li>If there are \(n_1\) ways to decide Decision 1, \(n_2\) ways to decide Decision 2, and so on</li>
+<li>The total number of ways to make all <code>r</code> decisions is:
+\[N = n_1*n_2\cdots n_r\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>More Counting</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What if we wanted to know how many ways there are to throw 5 heads in 10 coin tosses? </li>
+<li>What if we wanted to know how many ways there are to take 9 cell cultures and split 3 into a treatment group and 6 into a control? </li>
+<li>These are more complicated ways of counting and we need to talk about permutations and combinations to do this. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Permutations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A permutation is a way of understanding how many ways there are to arrnge objects. </li>
+<li>Consider a race with 9 individuals. </li>
+<li>Furthermore we are going to give medals to the first 3 places only. </li>
+<li>How many ways are there for this race to go? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Permutations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have 9 ways for first place, then it leaves 8 for second and finally 7 left for third.</li>
+<li>This means we have:</li>
+</ul>
+
+<p>\[9\times8\times7 =504\]</p>
+
+<ul>
+<li>This also is equal to:</li>
+</ul>
+
+<p>\[\dfrac{9!}{(9-3)!}=\dfrac{9!}{6!} = \dfrac{9*8*7*6!}{6!} = 9*8*7\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Permutations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Generally speaking, if we wish to arrange <code>r</code> objects out of <code>N</code> objects, the number of ways to do this is:</li>
+</ul>
+
+<p>\[\dfrac{N!}{(N-r)!}\]</p>
+
+<p>where, </p>
+
+<p>\[N! = N\times (N-1) \times (N-2) \times (N-3) \times \cdots \times 2 \times 1\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="id" style="background:;">
+  <hgroup>
+    <h2>Combinations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What happens if we do not care about how things are ordered? </li>
+<li>Consider if instead of 9 racers, we have 9 cell cultures and we wish to treat three of them in a certain manner. </li>
+<li>Now the order of them doesn&#39;t matter. </li>
+<li>We have something similar to a permutation here but we need to get rid of the ordering. 
+
+<ul>
+<li>Consider the 3 elements, we can order them in the following ways:</li>
+</ul></li>
+</ul>
+
+<p>\[ 3\times2\times1 = 3!\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Combinations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We know then if we care about ordering that we have:</li>
+</ul>
+
+<p>\[\dfrac{9!}{(9-3)!}=\dfrac{9!}{6!} = \dfrac{9*8*7*6!}{6!} = 9*8*7=504 \text{ ways}\]</p>
+
+<ul>
+<li>Then we would have to divided these ways by the \(3!\) repeats. </li>
+<li>Giving us:</li>
+</ul>
+
+<p>\[\dfrac{9!}{(9-3)!3!}=\dfrac{9!}{6!3!} = \dfrac{9*8*7*6!}{6!3!} = \dfrac{9*8*7}{3*2*1}=3*4*7=84 \text{ ways}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Combinations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Generally speaking, if we wish to choose <code>r</code> objects out of <code>N</code> objects, the number of ways to do this is:</li>
+</ul>
+
+<p>\[\dfrac{N!}{(N-r)!r!}\]</p>
+
+<p>where, </p>
+
+<p>\[N! = N\times (N-1) \times (N-2) \times (N-3) \times \cdots \times 2 \times 1\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Combinations vs Permutations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Both count the number of ways to pick from a larger number of objects. </li>
+<li>Permutations are picking when order matters. </li>
+<li>Combinations are for when order does not matter. </li>
+</ul>
+
     
     <footer class = 'logo'>
 <div style="position: absolute; right: 900px; top: 600px; z-index:100">
@@ -75,6 +416,30 @@
   </hgroup>
   <article data-timings="">
     <p><img src="https://imgs.xkcd.com/comics/conditional_risk.png" alt="xkcd.com"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conditional Probability</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have talked about simple scenarios where nothing outside of the problem matters. </li>
+<li>What happens if you flip a coin with different hands? </li>
+<li>What happens if you choose cell cultures that were prepared by different people? </li>
+<li>Do these things matter?</li>
+<li>How does the probability change?</li>
+</ul>
 
     
     <footer class = 'logo'>
@@ -119,17 +484,15 @@
 <li>We can calculate your probabilites using R:</li>
 </ul>
 
-<pre><code class="r">donut &lt;- rep(c(&quot;plain&quot;, &quot;glazed&quot;, &quot;jelly&quot;), times=c(5,5,2))
+<pre><code class="r">T &lt;- 100000
+donut &lt;- rep(c(&quot;plain&quot;, &quot;glazed&quot;, &quot;jelly&quot;), times=c(5,5,2))
 test &lt;- replicate(T, sample(donut,1))
+prop.table(table(test))
 </code></pre>
 
-<pre><code>## Error in integer(n): invalid &#39;length&#39; argument
-</code></pre>
-
-<pre><code class="r">prop.table(table(test))
-</code></pre>
-
-<pre><code>## Error in table(test): object &#39;test&#39; not found
+<pre><code>## test
+##  glazed   jelly   plain 
+## 0.41635 0.16790 0.41575
 </code></pre>
 
     
@@ -155,15 +518,12 @@ test &lt;- replicate(T, sample(donut,1))
 
 <pre><code class="r">donut &lt;- rep(c(&quot;plain&quot;, &quot;glazed&quot;, &quot;jelly&quot;), times=c(5,5,2))
 test &lt;- replicate(T, sample(donut[-12],1))
+prop.table(table(test))
 </code></pre>
 
-<pre><code>## Error in integer(n): invalid &#39;length&#39; argument
-</code></pre>
-
-<pre><code class="r">prop.table(table(test))
-</code></pre>
-
-<pre><code>## Error in table(test): object &#39;test&#39; not found
+<pre><code>## test
+##  glazed   jelly   plain 
+## 0.45074 0.09075 0.45851
 </code></pre>
 
     
@@ -249,19 +609,152 @@ cond
 
 <pre><code class="r">donut &lt;- rep(c(&quot;plain&quot;, &quot;glazed&quot;, &quot;jelly&quot;), times=c(5,5,2))
 test &lt;- replicate(T, sample(donut[-12],1))
+prop.table(table(test))
 </code></pre>
 
-<pre><code>## Error in integer(n): invalid &#39;length&#39; argument
-</code></pre>
-
-<pre><code class="r">prop.table(table(test))
-</code></pre>
-
-<pre><code>## Error in table(test): object &#39;test&#39; not found
+<pre><code>## test
+##  glazed   jelly   plain 
+## 0.45474 0.09032 0.45494
 </code></pre>
 
 <ul>
 <li><strong><em>See now you don&#39;t mind using R, since I could make you do so many fun math formulas instead</em></strong></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Further Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A die is rolled until the first time that a number comes up twice.</li>
+<li>What is the probability that the die is rolled three times?</li>
+<li>121 and 455 would work. </li>
+<li>112 and 554 would not work. </li>
+<li>Can you imagine how this would play out with formulas? </li>
+<li>Can you easily see a way to do count the number of ways for this to happen? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>One Possible Solution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We use R. 
+
+<ul>
+<li>Roll 3 die. </li>
+<li>The 3rd die can be equal to either the first or the second. </li>
+<li>The 1st and 2nd cannot be equal. </li>
+<li>If those 2 things hold then we had same number twice in three rolls. </li>
+</ul></li>
+<li>Run this simulation over and over again. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>With R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">set.seed(123)
+successes &lt;- 0
+trials &lt;- 10000
+
+for(i in 1:trials) {
+  DieRoll &lt;- sample(6,3,TRUE)
+  if(DieRoll[3] %in% DieRoll[1:2] &amp;&amp; !(DieRoll[2] == DieRoll[1])) 
+    successes &lt;- successes + 1
+}
+
+print(successes/trials)
+</code></pre>
+
+<pre><code>## [1] 0.2816
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>By Hand</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have 6 ways to choose the first die. </li>
+<li>Then since the first cannot equal the second we have 5 ways to choose that. </li>
+<li>Then:
+
+<ul>
+<li>if the third matches the first there is 1 way to do that. (30 Ways)</li>
+<li>If the third matches the second there is 1 way to do that. (30 Ways)</li>
+</ul></li>
+<li>So 60 ways together. </li>
+<li>Then for 3 die, there are \(6*6*6=216\) ways to roll. </li>
+<li>This gives us \(\dfrac{60}{216}=0.27777778\)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conditional Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In the lab video I will go over further simulations for this. </li>
+<li>These are harder to simulate but worthwhile to work through. </li>
 </ul>
 
     
@@ -280,50 +773,164 @@ test &lt;- replicate(T, sample(donut[-12],1))
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='NA'>
+        data-slide=1 title='Counting'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Conditional Probability'>
+        data-slide=2 title='Counting'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Conditional Probability'>
+        data-slide=3 title='Multiplication Rule'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Conditional Probability'>
+        data-slide=4 title='Multiplication Rule'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Conditional Probability'>
+        data-slide=5 title='Multiplication Rule'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Why Conditional Probability?'>
+        data-slide=6 title='General Multiplication Rule'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Conditional Probability'>
+        data-slide=7 title='More Counting'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Recall'>
+        data-slide=8 title='Permutations'>
          8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Permutations'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Permutations'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Combinations'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Combinations'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Combinations'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Combinations vs Permutations'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Conditional Probability'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Conditional Probability'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Conditional Probability'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Conditional Probability'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Conditional Probability'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Why Conditional Probability?'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Conditional Probability'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Recall'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Further Simulations'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='One Possible Solution'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='With R'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='By Hand'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Conditional Simulations'>
+         27
       </a>
     </li>
   </ul>
