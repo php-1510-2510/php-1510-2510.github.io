@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Variables</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Random Variables">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Random Variables</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Random Variables</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>All the probability we have been working with requires counting. </li>
+<li>We need to be able to count:
+
+<ul>
+<li>The total elements in the sample space. </li>
+<li>The total elements in the event of interest. </li>
+<li>The total number of ways in which the event of interest can occur. </li>
+</ul></li>
+<li>You have seen that just with rolling die this can get complicated. </li>
+<li>What happens if we add in more than just the die roll? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>In Comes Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Random variables are spoken about a lot in probability and statistics. </li>
+<li>They confuse most people because we misunderstand the word variable in this. </li>
+<li>They are key to many things:
+
+<ul>
+<li>Models for random events. </li>
+<li>Numerical summaries and methods for data. </li>
+<li>Estimators for the population.</li>
+<li>Hypothesis testing.</li>
+<li class='..</li>'></ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is a Random Variable?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A random variable is a function that takes elements from a sample space and maps them to a real number. </li>
+<li>Consider the Sample Space of 3 coin flips:</li>
+</ul>
+
+<p>\[\Omega = \{hhh, ttt, hht, hth, thh, tth, tht, htt\}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Random variables could be:
+
+<ul>
+<li>The total number of heads. </li>
+<li>The total number of tails.</li>
+<li>The total number of heads minus the number of tails. </li>
+</ul></li>
+<li>Each take from coin flips and place a numerical value on them. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Types of Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have 2 main types of random variables
+
+<ul>
+<li>Discrete</li>
+<li>Continuous</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Discrete Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A random variable is said to be <strong>discrete</strong> if it only takes on a finite or countable infinite number of discrete values. </li>
+<li>Note:
+
+<ul>
+<li>Finite means we can see the end. </li>
+<li>Countably infinite means that even though it doesn&#39;t end, we can place a mathematical formula on counting it. </li>
+<li>Like even numbers (<code>2*k</code>) where <code>k</code> represents the integers.</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Discrete Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Now we could think of many, many discrete random variables. </li>
+<li>This would be difficult as each scenario would pose different counts and probabilities. </li>
+<li>Each one would have what we call a different <strong><em>distribution</em></strong>, or way in which probability is spread out. </li>
+<li>Instead we focus on common ones that occur in nature. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Discrete Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will consider the following in the course sequence:
+
+<ul>
+<li>Bernoulli</li>
+<li>Binomial</li>
+<li>Poisson (Introduced in the Spring)</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bernoulli Random Variable</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In Bernoulli trial we have only two outcomes possible:
+
+<ul>
+<li>Success</li>
+<li>Failure</li>
+</ul></li>
+<li>We then know the following probabilities
+
+<ul>
+<li>Success: <code>p</code></li>
+<li>Failure: <code>1-p</code></li>
+</ul></li>
+<li>We would then call this scenario a bernoulli random variable with paramater <code>p</code>.</li>
+<li>This has a probability mass function:</li>
+</ul>
+
+<p>\[ Pr(X=k) = p^k(1-p)^{1-k}\] </p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial Random Variable</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider if you have \(n\) people each with probability <code>p</code> of having a success. </li>
+<li>This would then be a binomial random variable with parameters <code>n</code> and <code>p</code>. </li>
+<li>This would then have a probability</li>
+<li>This has a probability mass function:</li>
+</ul>
+
+<p>\[ Pr(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Properties of Discrete Random Variables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Probability Mass Functions</li>
+<li>Cumulative Distribution Functions</li>
+<li>Expectations</li>
+<li>Mean</li>
+<li>Variance/Standard Deviation</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Probability Mass Functions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A probability mass function has common properties across all discrete distribution:</li>
+<li>Let \(p\) be a probability mass function, then
+
+<ul>
+<li>\(p(k)\ge0\) for all \(k\)</li>
+<li>\(\sum_k p(k) =1\)</li>
+</ul></li>
+<li>Then each discrete distribution has a different probability mass function that can be described by the story behind in. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bernoulli Probability Mass Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the Bernoulli where it only takes on 2 values.
+
+<ul>
+<li>Success (1) with probability \(p\)</li>
+<li>Failure (0) with probability \(1-p\)</li>
+</ul></li>
+<li>Then the PMF is:</li>
+</ul>
+
+<p>\[ Pr(X=k) = p^k(1-p)^{1-k}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bernoulli PMF</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider if we sum over all values of \(k=0,1\):</li>
+</ul>
+
+<p>\[\sum_{k=0}^1 = p^0(1-p)^{1-0} + p^1(1-p)^{1-1} = (1-p) + p = 1\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial PMF</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The Binomial PMF is:</li>
+</ul>
+
+<p>\[ Pr(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\]</p>
+
+<ul>
+<li>Part of this looks familiar since it is similar to the Bernoulli. </li>
+<li>\(\binom{n}{k}\) is how many ways there are to order the \(k\) successes. </li>
+<li>\(p^k\) is because it trial is independent so we multiply all \(k\) successes together. </li>
+<li>\((1-p)^{n-k}\) same as above except we have \(n-k\) failures. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Expected Value</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is what we expect to get when we perform an experiment. </li>
+<li>Typically we think, what would I <em>expect</em> on average?</li>
+<li>There are complicated ways to do this by using mathematical sums:</li>
+</ul>
+
+<p>\[E[X] = \sum_{k} kPr(X=k)\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Variance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The variance uses expected values but is uses the expected value of the random variable squared:</li>
+</ul>
+
+<p>\[E[X^2] = \sum_k k^2Pr(X=k)\]</p>
+
+<ul>
+<li>Then the variance is:</li>
+</ul>
+
+<p>\[Var(X) = E[X^2] - \left( E[X]\right)^2\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Expected Value and Variance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Expectations can be solved using sums or infinite sums. </li>
+<li>In this course we will focus on using R to help us find the values for these.</li>
+<li>Thankfully R has some nice tool built in for most distributions you will need to use. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bernoulli</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Expected Value (Mean) is: \(p\)</li>
+<li>Variance is: \(p(1-p)\)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Expected Value (Mean) is: \(np\)</li>
+<li>Variance is: \(np(1-p)\)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Cumulative Distribution Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is the probability that:</li>
+</ul>
+
+<p>\[Pr(X\le j) = \sum_{k=0}^j Pr(X=k)\]</p>
+
+<ul>
+<li>Many times we wish to know what is the probability of something up to a certain value. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>R Functions for Distributions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Density (PMF for discrete)</li>
+<li>Cumulative Distribution Function</li>
+<li>Random Generation</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial Density Function in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>dbinom(x, size, prob)</code></li>
+<li>where
+
+<ul>
+<li><code>x</code> is a vector of numbers</li>
+<li><code>size</code> is number of trials</li>
+<li><code>prob</code> is probability of success of each trial.</li>
+</ul></li>
+<li>So if we were to roll 10 times and want to know the probability of getting 3, 1&#39;s it would be:</li>
+</ul>
+
+<pre><code class="r">p1 = 1/6
+dbinom(x=3, size=10, prob=p1)
+</code></pre>
+
+<pre><code>## [1] 0.1550454
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial CDF</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>pbinom(q, size, prob)</code></li>
+<li>where
+
+<ul>
+<li><code>q</code> is a vector of numbers</li>
+<li><code>size</code> is number of trials</li>
+<li><code>prob</code> is probability of success of each trial.</li>
+</ul></li>
+<li>So if we were to roll 10 times and want to know the probability of getting less than or equal to 3, 1&#39;s it would be:</li>
+</ul>
+
+<pre><code class="r">pbinom(q=3, size=10, prob=p1)
+</code></pre>
+
+<pre><code>## [1] 0.9302722
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial CDF</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Does it make sense that it was over 93%?</li>
+<li>Let&#39;s see:</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">dbinom(x=0, size=10, prob=p1)
+</code></pre>
+
+<pre><code>## [1] 0.1615056
+</code></pre>
+
+<pre><code class="r">dbinom(x=1, size=10, prob=p1)
+</code></pre>
+
+<pre><code>## [1] 0.3230112
+</code></pre>
+
+<pre><code class="r">dbinom(x=2, size=10, prob=p1)
+</code></pre>
+
+<pre><code>## [1] 0.29071
+</code></pre>
+
+<pre><code class="r">dbinom(x=3, size=10, prob=p1)
+</code></pre>
+
+<pre><code>## [1] 0.1550454
+</code></pre>
+
+<ul>
+<li>They add up to what we saw before. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial Random Generation Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>- <code>rbinom(n, size, prob)</code></li>
+<li>where
+
+<ul>
+<li><code>n</code> is how many binomial trials you want to run</li>
+<li><code>size</code> is number of trials</li>
+<li><code>prob</code> is probability of success of each trial.</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial Random Generation Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Say we wish to roll 10 die 10 times and count the number of times we roll a 1 in each:</li>
+</ul>
+
+<pre><code class="r">rbinom(n=10, size=10, prob=p1)
+</code></pre>
+
+<pre><code>##  [1] 2 3 3 4 1 1 0 2 3 3
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Using R to find Properties</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can use R to define expectations. </li>
+<li>Consider rolling 2 dice and a success is getting a 1. </li>
+<li>Expectation: \(np = 2*1/6 = 0.3333\) 
+\[E[X] = \sum_{k} kPr(X=k)\]
+\[E[X] = 0*pr(X=0) + 1*Pr(X=1) + 2*Pr(X=2)\]</li>
+<li>In R:</li>
+</ul>
+
+<pre><code class="r">0*dbinom(x=0, size=2,p1) + 1*dbinom(x=1, size=2,p1) + 2*dbinom(x=2, size=2,p1)
+</code></pre>
+
+<pre><code>## [1] 0.3333333
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Using R to simulate Expectation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">trials &lt;- rbinom(n=10, size=2, prob=p1)
+mean(trials)
+</code></pre>
+
+<pre><code>## [1] 0.1
+</code></pre>
+
+<ul>
+<li>Did not quite work</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Using R to simulate Expectation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Remember probability is about the long run</li>
+</ul>
+
+<pre><code class="r">trials &lt;- rbinom(n=100000, size=2, prob=p1)
+mean(trials)
+</code></pre>
+
+<pre><code>## [1] 0.33433
+</code></pre>
+
+<ul>
+<li>Closer to the real 0.3333 now. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Using R to simulate Variance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Variance \(np(1-p)=2*1/6*5/6 = 0.2777778\)</li>
+<li>Simulation:
+
+<ul>
+<li>Remember probability is about the long run</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">trials &lt;- rbinom(n=100000, size=2, prob=p1)
+var(trials)
+</code></pre>
+
+<pre><code>## [1] 0.2771966
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Shapes of Binomial</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">graph &lt;- function(n,p){
+  x &lt;- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste(&#39;bin. dist. &#39;,n,p,sep=&#39;:&#39;)))
+}
+par(mfcol=c(2,5))
+  mapply(graph,20,seq(0.1,1,0.1))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Shapes of Binomial</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p>
+
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7   0.7
+##  [2,]  1.9  1.9  1.9  1.9  1.9  1.9  1.9  1.9  1.9   1.9
+##  [3,]  3.1  3.1  3.1  3.1  3.1  3.1  3.1  3.1  3.1   3.1
+##  [4,]  4.3  4.3  4.3  4.3  4.3  4.3  4.3  4.3  4.3   4.3
+##  [5,]  5.5  5.5  5.5  5.5  5.5  5.5  5.5  5.5  5.5   5.5
+##  [6,]  6.7  6.7  6.7  6.7  6.7  6.7  6.7  6.7  6.7   6.7
+##  [7,]  7.9  7.9  7.9  7.9  7.9  7.9  7.9  7.9  7.9   7.9
+##  [8,]  9.1  9.1  9.1  9.1  9.1  9.1  9.1  9.1  9.1   9.1
+##  [9,] 10.3 10.3 10.3 10.3 10.3 10.3 10.3 10.3 10.3  10.3
+## [10,] 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5  11.5
+## [11,] 12.7 12.7 12.7 12.7 12.7 12.7 12.7 12.7 12.7  12.7
+## [12,] 13.9 13.9 13.9 13.9 13.9 13.9 13.9 13.9 13.9  13.9
+## [13,] 15.1 15.1 15.1 15.1 15.1 15.1 15.1 15.1 15.1  15.1
+## [14,] 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3  16.3
+## [15,] 17.5 17.5 17.5 17.5 17.5 17.5 17.5 17.5 17.5  17.5
+## [16,] 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7  18.7
+## [17,] 19.9 19.9 19.9 19.9 19.9 19.9 19.9 19.9 19.9  19.9
+## [18,] 21.1 21.1 21.1 21.1 21.1 21.1 21.1 21.1 21.1  21.1
+## [19,] 22.3 22.3 22.3 22.3 22.3 22.3 22.3 22.3 22.3  22.3
+## [20,] 23.5 23.5 23.5 23.5 23.5 23.5 23.5 23.5 23.5  23.5
+## [21,] 24.7 24.7 24.7 24.7 24.7 24.7 24.7 24.7 24.7  24.7
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Random Variables'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Random Variables'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='In Comes Random Variables'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='What is a Random Variable?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Random Variables'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Types of Random Variables'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Discrete Random Variables'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Discrete Random Variables'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Discrete Random Variables'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Bernoulli Random Variable'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Binomial Random Variable'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Properties of Discrete Random Variables'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Probability Mass Functions'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Bernoulli Probability Mass Function'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Bernoulli PMF'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Binomial PMF'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Expected Value'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Variance'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Expected Value and Variance'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Bernoulli'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Binomial'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Cumulative Distribution Function'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='R Functions for Distributions'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Binomial Density Function in R'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Binomial CDF'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Binomial CDF'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='NA'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Binomial Random Generation Function'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Binomial Random Generation Function'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Using R to find Properties'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Using R to simulate Expectation'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Using R to simulate Expectation'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Using R to simulate Variance'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Shapes of Binomial'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Shapes of Binomial'>
+         35
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
