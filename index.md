@@ -24,11 +24,9 @@ This course is designed for graduate and advanced undergraduate students who wil
 |------------+---------------------+---------------------|
 |Professor   | [Adam J Sullivan, PhD ](https://vivo.brown.edu/display/asulliv3) | [adam_sullivan@brown.edu](mailto:adam_sullivan@brown.edu)
 |:-----------|:--------------------|:-------------------|
-|TA         | TBD   | TBD
+|TA         | Camilla Calmasini | [Contact through slack](https://php-1510-2510.slack.com)
 |:-----------|:--------------------|:-------------------|
-|TA         | TBD   | TBD
-|:-----------|:--------------------|:-------------------|
-| Additional Tutoring / Office Hours         | TBD   | TBD
+|TA         | Alyson Singleton   | [Contact through slack](https://php-1510-2510.slack.com)
 |------------+--------------------+-------------------|
 
 
@@ -44,8 +42,7 @@ This course is designed for graduate and advanced undergraduate students who wil
 |:-----------|:--------|:-----------|
 | Lecture |  [Life Sciences Room: Sydney E Frank Hall](http://brown.edu/Facilities/Facilities_Management/maps/index.php#building/SFRANKHLSB) |  Tuesday and Thursday  9-10:20am |
 |:-----------|:--------|:-----------|
-| Discussion/Lab  |  TBD | TBD | 
-| Discussion/Lab  |  TBD | TBD | 
+| Discussion/Lab  | Online | [Check Calendar for Labs]({{site.baseurl}}/calendar/) | 
 |:-----------|:--------|:-----------|
 
 
@@ -53,14 +50,18 @@ This course is designed for graduate and advanced undergraduate students who wil
 
 ### Office Hours:
 
+Below is a quick table for when office hours will be held regularly. [Check This Google Calendar to make sure no changes have been made. ](https://calendar.google.com/calendar/embed?src=brown.edu_t7i57drkqalvmkn2815v1vo48o%40group.calendar.google.com&ctz=America%2FNew_York)
+
 |-----------+--------+-----------|
-| What    |  Where | When      
+| What    |  When  | Where      
 |:-----------|:--------|:-----------|
 | Office Hours |  |   |
 |:-----------|:--------|:-----------|
-| |  TBD | TBD | 
-|  |  TBD | TBD | 
-|  |  TBD | TBD | 
+| |  SPH Room 347 | Tuesdays 2-3pm | 
+|  |  SPH Grad Student Library  | Tuesdays 3-5pm | 
+|  |  SPH Room 241 | Wednesdays 4-5pm | 
+|  |  SPH Room 251 | Thursdays 3-6pm | 
+|  |  SPH Room 251 | Fridays 10-12am | 
 |:-----------|:--------|:-----------|
 
 

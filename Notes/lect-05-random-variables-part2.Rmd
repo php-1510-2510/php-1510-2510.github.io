@@ -26,6 +26,39 @@ knitr::opts_chunk$set(message=FALSE)
 
 --- .class #id
 
+
+
+## Shapes of Binomial
+
+```{r,eval=F}
+graph <- function(n,p){
+  x <- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
+}
+par(mfcol=c(2,5))
+  mapply(graph,20,seq(0.1,1,0.1))
+```
+
+--- .class #id
+
+## Shapes of Binomial
+
+```{r,echo=F, fig.width=14}
+graph <- function(n,p){
+  x <- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
+}
+par(mfcol=c(2,5))
+  mapply(graph,20,seq(0.1,1,0.1))
+```
+
+
+
+--- .class #id
+
+
 ## Continuous Random Variables
 
 - The actual definition of a random variable is:
@@ -277,16 +310,81 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 --- .class #id
 
+## Normal Distribution Probabilities
+
+![](http://faculty.virginia.edu/PullenLab/WJIIIDRBModule/standard%20normal%20distribution.jpg)
+
+--- .class #id
+
 ## Interesting facts about Continuous Distributions.
 
 - $Pr(X=k)= 0$ for any $k$
     - This is because a continuous distribution has an infinite number of points so the probability of any point is 0. 
 - CDF: $Pr(X\le x)$
     - We use the CDF to help us understand probability ranges. 
-    - Since we cannot calculate $Pr(x=1)$, we may wish to calculate $Pr(0.9\le1.1)$ instead. 
-    
+    - Since we cannot calculate $Pr(x=1)$, we may wish to calculate $Pr(0.9\le X \le 1.1)$ instead. 
+
+
+
 --- .class #id
 
 ## Using CDF to calculate Probabilities
 
 - If we wish to calculate the following: 
+$$Pr(-1\le X \le 1)$$
+- We can use the CDF, remember the CDF is of the form $Pr(X\le k)$. 
+- $Pr(X\le 1)$ is everything to the left of 1
+- $Pr(X\le -1)$ is everything to the left of -1
+- This means
+$$Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)$$
+
+
+
+--- .class #id
+
+
+## Visual Display
+
+- $Pr(X\le 1)$ 
+
+```{r, echo=F}
+library(ggplot2)
+ggplot(NULL, aes(c(-3,3))) +
+  geom_area(stat = "function", fun = dnorm, fill = "#00998a", xlim = c(-3, 1)) +
+  geom_area(stat = "function", fun = dnorm, fill = "grey80", xlim = c(1, 3)) +
+  labs(x = "z", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks = 1)
+```
+
+--- .class #id
+
+
+## Visual Display
+
+- $Pr(X\le -1)$ 
+
+```{r, echo=F}
+ggplot(NULL, aes(c(-3,3))) +
+  geom_area(stat = "function", fun = dnorm, fill = "#00998a", xlim = c(-3, -1)) +
+  geom_area(stat = "function", fun = dnorm, fill = "grey80", xlim = c(-1, 3)) +
+  labs(x = "z", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks = -1)
+```
+
+--- .class #id
+
+## Visual Display
+
+- $Pr(X\le -1)$  and $Pr(X\le 1)$ 
+
+```{r, echo=F}
+ggplot(NULL, aes(c(-3,3))) +
+  geom_area(stat = "function", fun = dnorm, fill = "#00998a", xlim = c(-3, 1)) +
+  geom_area(stat = "function", fun = dnorm, fill = "red", xlim = c(-3, -1), alpha=0.1) + 
+  geom_area(stat = "function", fun = dnorm, fill = "grey80", xlim = c(1, 3)) +
+  labs(x = "z", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks = c(-1, 1))
+```

@@ -74,6 +74,73 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>Shapes of Binomial</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">graph &lt;- function(n,p){
+  x &lt;- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste(&#39;bin. dist. &#39;,n,p,sep=&#39;:&#39;)))
+}
+par(mfcol=c(2,5))
+  mapply(graph,20,seq(0.1,1,0.1))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Shapes of Binomial</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7   0.7
+##  [2,]  1.9  1.9  1.9  1.9  1.9  1.9  1.9  1.9  1.9   1.9
+##  [3,]  3.1  3.1  3.1  3.1  3.1  3.1  3.1  3.1  3.1   3.1
+##  [4,]  4.3  4.3  4.3  4.3  4.3  4.3  4.3  4.3  4.3   4.3
+##  [5,]  5.5  5.5  5.5  5.5  5.5  5.5  5.5  5.5  5.5   5.5
+##  [6,]  6.7  6.7  6.7  6.7  6.7  6.7  6.7  6.7  6.7   6.7
+##  [7,]  7.9  7.9  7.9  7.9  7.9  7.9  7.9  7.9  7.9   7.9
+##  [8,]  9.1  9.1  9.1  9.1  9.1  9.1  9.1  9.1  9.1   9.1
+##  [9,] 10.3 10.3 10.3 10.3 10.3 10.3 10.3 10.3 10.3  10.3
+## [10,] 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5  11.5
+## [11,] 12.7 12.7 12.7 12.7 12.7 12.7 12.7 12.7 12.7  12.7
+## [12,] 13.9 13.9 13.9 13.9 13.9 13.9 13.9 13.9 13.9  13.9
+## [13,] 15.1 15.1 15.1 15.1 15.1 15.1 15.1 15.1 15.1  15.1
+## [14,] 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3  16.3
+## [15,] 17.5 17.5 17.5 17.5 17.5 17.5 17.5 17.5 17.5  17.5
+## [16,] 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7  18.7
+## [17,] 19.9 19.9 19.9 19.9 19.9 19.9 19.9 19.9 19.9  19.9
+## [18,] 21.1 21.1 21.1 21.1 21.1 21.1 21.1 21.1 21.1  21.1
+## [19,] 22.3 22.3 22.3 22.3 22.3 22.3 22.3 22.3 22.3  22.3
+## [20,] 23.5 23.5 23.5 23.5 23.5 23.5 23.5 23.5 23.5  23.5
+## [21,] 24.7 24.7 24.7 24.7 24.7 24.7 24.7 24.7 24.7  24.7
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>Continuous Random Variables</h2>
     <hr>
   </hgroup>
@@ -132,7 +199,7 @@ plot(k,pbinom(k,size=7,prob=.4),type=&quot;l&quot;)
 <li>Lets consider the Binomial CDF</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+<p><img src="figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
 
     
     <footer class = 'logo'>
@@ -287,7 +354,7 @@ plot(k, dunif(k,  min=0, max=1), type=&quot;l&quot;)
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
+    <p><img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"></p>
 
     
     <footer class = 'logo'>
@@ -325,7 +392,7 @@ plot(k, dunif(k,  min=-1, max=2), type=&quot;l&quot;)
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"></p>
+    <p><img src="figure/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"></p>
 
     
     <footer class = 'logo'>
@@ -347,7 +414,7 @@ plot(k, dunif(k,  min=-1, max=2), type=&quot;l&quot;)
 <li>Look at the CDF</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
+<p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p>
 
     
     <footer class = 'logo'>
@@ -512,7 +579,7 @@ legend(-6,2,legend=c(&quot;N(0,0.2)&quot;,&quot;N(0,1)&quot;,&quot;N(0,5)&quot;,
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p>
+    <p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"></p>
 
     
     <footer class = 'logo'>
@@ -555,7 +622,7 @@ legend(-6,2,legend=c(&quot;N(0,0.2)&quot;,&quot;N(0,1)&quot;,&quot;N(0,5)&quot;,
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"></p>
+    <p><img src="figure/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"></p>
 
     
     <footer class = 'logo'>
@@ -590,6 +657,24 @@ legend(-6,2,legend=c(&quot;N(0,0.2)&quot;,&quot;N(0,1)&quot;,&quot;N(0,5)&quot;,
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>Normal Distribution Probabilities</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="http://faculty.virginia.edu/PullenLab/WJIIIDRBModule/standard%20normal%20distribution.jpg" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>Interesting facts about Continuous Distributions.</h2>
     <hr>
   </hgroup>
@@ -604,17 +689,101 @@ legend(-6,2,legend=c(&quot;N(0,0.2)&quot;,&quot;N(0,1)&quot;,&quot;N(0,5)&quot;,
 
 <ul>
 <li>We use the CDF to help us understand probability ranges. </li>
-<li>Since we cannot calculate \(Pr(x=1)\), we may wish to calculate \(Pr(0.9\le1.1)\) instead. </li>
+<li>Since we cannot calculate \(Pr(x=1)\), we may wish to calculate \(Pr(0.9\le X \le 1.1)\) instead. </li>
 </ul></li>
 </ul>
 
-<p>--- .class #id</p>
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<h2>Using CDF to calculate Probabilities</h2>
-
-<ul>
-<li>If we wish to calculate the following: </li>
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Using CDF to calculate Probabilities</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If we wish to calculate the following: 
+\[Pr(-1\le X \le 1)\]</li>
+<li>We can use the CDF, remember the CDF is of the form \(Pr(X\le k)\). </li>
+<li>\(Pr(X\le 1)\) is everything to the left of 1</li>
+<li>\(Pr(X\le -1)\) is everything to the left of -1</li>
+<li>This means
+\[Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)\]</li>
 </ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Visual Display</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>\(Pr(X\le 1)\) </li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Visual Display</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>\(Pr(X\le -1)\) </li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Visual Display</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>\(Pr(X\le -1)\)  and \(Pr(X\le 1)\) </li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"></p>
 
     
     <footer class = 'logo'>
@@ -638,55 +807,55 @@ legend(-6,2,legend=c(&quot;N(0,0.2)&quot;,&quot;N(0,1)&quot;,&quot;N(0,5)&quot;,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Continuous Random Variables'>
+        data-slide=2 title='Shapes of Binomial'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Binomial CDF'>
+        data-slide=3 title='Shapes of Binomial'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Binomial CDF'>
+        data-slide=4 title='Continuous Random Variables'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Key Features'>
+        data-slide=5 title='Binomial CDF'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Normal CDF'>
+        data-slide=6 title='Binomial CDF'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Differences'>
+        data-slide=7 title='Key Features'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Continuous Random Variables'>
+        data-slide=8 title='Normal CDF'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Uniform Distribution'>
+        data-slide=9 title='Differences'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Uniform Distribution'>
+        data-slide=10 title='Continuous Random Variables'>
          10
       </a>
     </li>
@@ -698,86 +867,128 @@ legend(-6,2,legend=c(&quot;N(0,0.2)&quot;,&quot;N(0,1)&quot;,&quot;N(0,5)&quot;,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Further Uniform'>
+        data-slide=12 title='Uniform Distribution'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Further Uniform'>
+        data-slide=13 title='Uniform Distribution'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Is this really continuous?'>
+        data-slide=14 title='Further Uniform'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Properties of Uniform'>
+        data-slide=15 title='Further Uniform'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Why the Uniform?'>
+        data-slide=16 title='Is this really continuous?'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Normal Distribution'>
+        data-slide=17 title='Properties of Uniform'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Features of a Normal Distribution'>
+        data-slide=18 title='Why the Uniform?'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Properties of a Normal Distribution'>
+        data-slide=19 title='Normal Distribution'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Normal PDF Plot'>
+        data-slide=20 title='Features of a Normal Distribution'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Normal PDF Plot'>
+        data-slide=21 title='Properties of a Normal Distribution'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Normal CDF Plot'>
+        data-slide=22 title='Normal PDF Plot'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Normal CDF Plot'>
+        data-slide=23 title='Normal PDF Plot'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Why Normal?'>
+        data-slide=24 title='Normal CDF Plot'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Interesting facts about Continuous Distributions.'>
+        data-slide=25 title='Normal CDF Plot'>
          25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Why Normal?'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Normal Distribution Probabilities'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Interesting facts about Continuous Distributions.'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Using CDF to calculate Probabilities'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Visual Display'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Visual Display'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Visual Display'>
+         32
       </a>
     </li>
   </ul>

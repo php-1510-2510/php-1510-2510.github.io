@@ -21,6 +21,57 @@ assets      : {assets: ../../assets}
 
 --- .class #id
 
+
+
+## Shapes of Binomial
+
+
+```r
+graph <- function(n,p){
+  x <- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
+}
+par(mfcol=c(2,5))
+  mapply(graph,20,seq(0.1,1,0.1))
+```
+
+--- .class #id
+
+## Shapes of Binomial
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+
+```
+##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7   0.7
+##  [2,]  1.9  1.9  1.9  1.9  1.9  1.9  1.9  1.9  1.9   1.9
+##  [3,]  3.1  3.1  3.1  3.1  3.1  3.1  3.1  3.1  3.1   3.1
+##  [4,]  4.3  4.3  4.3  4.3  4.3  4.3  4.3  4.3  4.3   4.3
+##  [5,]  5.5  5.5  5.5  5.5  5.5  5.5  5.5  5.5  5.5   5.5
+##  [6,]  6.7  6.7  6.7  6.7  6.7  6.7  6.7  6.7  6.7   6.7
+##  [7,]  7.9  7.9  7.9  7.9  7.9  7.9  7.9  7.9  7.9   7.9
+##  [8,]  9.1  9.1  9.1  9.1  9.1  9.1  9.1  9.1  9.1   9.1
+##  [9,] 10.3 10.3 10.3 10.3 10.3 10.3 10.3 10.3 10.3  10.3
+## [10,] 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5  11.5
+## [11,] 12.7 12.7 12.7 12.7 12.7 12.7 12.7 12.7 12.7  12.7
+## [12,] 13.9 13.9 13.9 13.9 13.9 13.9 13.9 13.9 13.9  13.9
+## [13,] 15.1 15.1 15.1 15.1 15.1 15.1 15.1 15.1 15.1  15.1
+## [14,] 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3  16.3
+## [15,] 17.5 17.5 17.5 17.5 17.5 17.5 17.5 17.5 17.5  17.5
+## [16,] 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7  18.7
+## [17,] 19.9 19.9 19.9 19.9 19.9 19.9 19.9 19.9 19.9  19.9
+## [18,] 21.1 21.1 21.1 21.1 21.1 21.1 21.1 21.1 21.1  21.1
+## [19,] 22.3 22.3 22.3 22.3 22.3 22.3 22.3 22.3 22.3  22.3
+## [20,] 23.5 23.5 23.5 23.5 23.5 23.5 23.5 23.5 23.5  23.5
+## [21,] 24.7 24.7 24.7 24.7 24.7 24.7 24.7 24.7 24.7  24.7
+```
+
+
+
+--- .class #id
+
+
 ## Continuous Random Variables
 
 - The actual definition of a random variable is:
@@ -50,7 +101,7 @@ plot(k,pbinom(k,size=7,prob=.4),type="l")
 
 - Lets consider the Binomial CDF
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 
 --- .class #id
@@ -116,7 +167,7 @@ plot(k, dunif(k,  min=0, max=1), type="l")
 
 ## Uniform Distribution
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 
 --- .class #id
@@ -136,7 +187,7 @@ plot(k, dunif(k,  min=-1, max=2), type="l")
 
 ## Further Uniform
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
 
 
 --- .class #id
@@ -145,7 +196,7 @@ plot(k, dunif(k,  min=-1, max=2), type="l")
 
 - Look at the CDF
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
 
 
 --- .class #id
@@ -219,7 +270,7 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal PDF Plot
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 
 --- .class #id
 
@@ -240,7 +291,7 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal CDF Plot
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
 
 --- .class #id
 
@@ -251,16 +302,58 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 --- .class #id
 
+## Normal Distribution Probabilities
+
+![](http://faculty.virginia.edu/PullenLab/WJIIIDRBModule/standard%20normal%20distribution.jpg)
+
+--- .class #id
+
 ## Interesting facts about Continuous Distributions.
 
 - $Pr(X=k)= 0$ for any $k$
     - This is because a continuous distribution has an infinite number of points so the probability of any point is 0. 
 - CDF: $Pr(X\le x)$
     - We use the CDF to help us understand probability ranges. 
-    - Since we cannot calculate $Pr(x=1)$, we may wish to calculate $Pr(0.9\le1.1)$ instead. 
-    
+    - Since we cannot calculate $Pr(x=1)$, we may wish to calculate $Pr(0.9\le X \le 1.1)$ instead. 
+
+
+
 --- .class #id
 
 ## Using CDF to calculate Probabilities
 
 - If we wish to calculate the following: 
+$$Pr(-1\le X \le 1)$$
+- We can use the CDF, remember the CDF is of the form $Pr(X\le k)$. 
+- $Pr(X\le 1)$ is everything to the left of 1
+- $Pr(X\le -1)$ is everything to the left of -1
+- This means
+$$Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)$$
+
+
+
+--- .class #id
+
+
+## Visual Display
+
+- $Pr(X\le 1)$ 
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+
+--- .class #id
+
+
+## Visual Display
+
+- $Pr(X\le -1)$ 
+
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png)
+
+--- .class #id
+
+## Visual Display
+
+- $Pr(X\le -1)$  and $Pr(X\le 1)$ 
+
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)

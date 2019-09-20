@@ -370,31 +370,3 @@ mean(trials)
 trials <- rbinom(n=100000, size=2, prob=p1)
 var(trials)
 ```
-
---- .class #id
-
-## Shapes of Binomial
-
-```{r,eval=F}
-graph <- function(n,p){
-  x <- dbinom(0:n,size=n,prob=p)
-  barplot(x,names.arg=0:n,
-         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
-}
-par(mfcol=c(2,5))
-  mapply(graph,20,seq(0.1,1,0.1))
-```
-
---- .class #id
-
-## Shapes of Binomial
-
-```{r,echo=F, fig.width=14}
-graph <- function(n,p){
-  x <- dbinom(0:n,size=n,prob=p)
-  barplot(x,names.arg=0:n,
-         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
-}
-par(mfcol=c(2,5))
-  mapply(graph,20,seq(0.1,1,0.1))
-```
