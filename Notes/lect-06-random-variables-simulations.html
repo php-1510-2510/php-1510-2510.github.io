@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Variables</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Random Variables">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Random Variables</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Random Variables</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Random Variables Simulation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have discussed the importance of simulations throughout the past few lectures. </li>
+<li>They help us to:
+
+<ul>
+<li>Understand complex mathematical problems. </li>
+<li>Adapt real life situations in which we may not understand the exact probabilitiy formulas. </li>
+<li>Consider further variation and understand what may lead to a change in outcome. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binomial Simulation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>I want to use an example from a statistics textbook. </li>
+<li><strong><em>Disclaimer</em></strong> the example they use is not actually the basis of the case but none the less is interesting. </li>
+<li>We will consider a 1978 Supreme Court Case
+
+<ul>
+<li>Ballew v. Georgia </li>
+<li>435 U.S. 223, 236-237 (1978)</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Ballew v. Georgia (1978)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The author stated that this case was about Ballew feeling his rights had been violated by having a 12 member jury of all white jurors. </li>
+<li>I don&#39;t present problems without reading them myself, and found that the Ballew Case was actually about the size of the jury being 5 was a violation of his constitutional rights. </li>
+<li>Reason for me stating this: Do not just trust a textbook. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Racial Discrimination in Jury Selection</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Even though this was not the supreme court case I wanted to model, let&#39;s consider the problem at hand. </li>
+<li>The author of the textbook states the following pieces of the problem:
+
+<ul>
+<li>A jury of 12 members was all white. </li>
+<li>The proportion of the community the jury was selected from was 90% white. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>With a Binomial</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can do this fairly simply if we consider a success being that a non-white juror is selected, we can assume 10% probability for a success. </li>
+<li>Then we have the case in which out of 12, we had 0 success. </li>
+<li>This means by the binomial we have:
+\[0.9^{12}= 0.2824295\]</li>
+<li>This suggests just shy of a 30% chance of not having a non-white person on a jury. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="#" style="background:;">
+  <hgroup>
+    <h2>With R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s simulate these trials</li>
+</ul>
+
+<pre><code class="r">set.seed(100)
+t &lt;- 100
+p &lt;- 0.10
+n &lt;- 12
+
+juries &lt;- rbinom(n=t, size=n, prob=p)
+tab &lt;- table(juries)
+prop.table(tab)
+</code></pre>
+
+<pre><code>## juries
+##    0    1    2    3    4 
+## 0.24 0.42 0.24 0.08 0.02
+</code></pre>
+
+<ul>
+<li>We see something very close to the actual probability of 28%. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What if we change the parameters</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Ballew only had 5 jurors in his case</li>
+</ul>
+
+<pre><code class="r">set.seed(100)
+t &lt;- 100
+p &lt;- 0.10
+n &lt;- 5
+
+juries &lt;- rbinom(n=t, size=n, prob=p)
+tab &lt;- table(juries)
+prop.table(tab)
+</code></pre>
+
+<pre><code>## juries
+##    0    1    2 
+## 0.58 0.35 0.07
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Court Decision</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Ballew should have had at least 6</li>
+</ul>
+
+<pre><code class="r">set.seed(100)
+t &lt;- 100
+p &lt;- 0.10
+n &lt;- 6
+
+juries &lt;- rbinom(n=t, size=n, prob=p)
+tab &lt;- table(juries)
+prop.table(tab)
+</code></pre>
+
+<pre><code>## juries
+##    0    1    2    3 
+## 0.51 0.39 0.09 0.01
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There would have been no evidence of a biased jury with 12 all white members.</li>
+<li>Do you believe that? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Important Considerations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If the pool of jurors is 90% white, then the decision of no bias would be correct. </li>
+<li>This is an important fact. </li>
+<li>When you want to attack biases, you need to attack the source of the problem.</li>
+<li>The source is the jury pool, not the particular jury that was selected.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Making a Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We keep repeating this experiment over and over by copying and pasting in values. </li>
+<li>We can make a function in R that represents a binomial problem. </li>
+</ul>
+
+<pre><code class="r">binom.sim &lt;- function(t, n, p) {
+juries &lt;- rbinom(n=t, size=n, prob=p)
+tab &lt;- table(juries)
+
+return(prop.table(tab))
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Further Explorations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Now we can explore by changing proportions of jury pool. </li>
+<li>The lab will play with this function and consider what proportions might make for a more fair jury. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Birthday Problem</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The birthday problem is common in statistics. </li>
+<li>The goal how many people do we need to poll before we find common birthdays</li>
+<li>How do we do this? 
+
+<ul>
+<li>Ask a person their birthday</li>
+<li>Check if we have that birthday</li>
+<li>If not add it to our list and ask another. </li>
+<li>Stop when we have 2 in common</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Uniform Distribution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is going to be a uniform distribution simulation. </li>
+<li>We will assume that each birthday has a \(1/366=0.00273224\) chance of happening. </li>
+<li>We will then build the simulation with this concept. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Birthday Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">bday &lt;- function(){
+total_samp &lt;- NULL
+
+for (i in 1:100) {
+samp &lt;- sample(1:366, size=1)
+
+if (samp %in% total_samp) {
+  break
+
+} else
+{
+total_samp[i] = samp
+}
+}
+return(length(total_samp))
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulate</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">T &lt;- 100000
+n &lt;- replicate(T, bday())
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot Shape</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(ggplot2)
+ggplot(data=NULL, aes(x=n)) + 
+    geom_bar(fill=&quot;red&quot;) + 
+    theme_minimal() + 
+    ylab(&quot;Number of Occurences&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot Shape</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot Probabilities</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(data=NULL, aes(x=n)) + 
+    geom_bar(aes(y=..count../sum(..count..)), fill=&quot;red&quot;) + 
+    theme_minimal() + 
+    ylab(&quot;Probability of Occurences&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot Probabilities</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Actual Probabilities of Birthdays</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have a dataset that is contained in the code for the notes.</li>
+<li>It contains a count of all the births in the US on each day of the year from 1994 to 2014. </li>
+<li>We will first explore the probability of this. </li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Multiple days of the year there are less births. 
+
+<ul>
+<li>New Years</li>
+<li>Valentines Day</li>
+<li>Christmas</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Modify Birthday Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">bday_real &lt;- function(){
+total_samp &lt;- NULL
+
+for (i in 1:100) {
+samp &lt;- sample(1:366, size=1, prob=days$prop)
+
+if (samp %in% total_samp) {
+  break
+
+} else
+{
+total_samp[i] = samp
+}
+}
+return(length(total_samp))
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulate</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">T &lt;- 100000
+n2 &lt;- replicate(T, bday_real())
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot Shape</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot Both Together</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Turns out there is very little difference between the real and uniform probability. </li>
+<li>Properties of real:
+
+<ul>
+<li>Expecation (mean): 23.62066 days</li>
+<li>Variance: 148.0134413</li>
+</ul></li>
+<li>Properties of Uniform:
+
+<ul>
+<li>Expecation (mean): 23.65677 days</li>
+<li>Variance: 150.3335665</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Random Variables'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Random Variables Simulation'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Binomial Simulation'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Ballew v. Georgia (1978)'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Racial Discrimination in Jury Selection'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='With a Binomial'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='With R'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='What if we change the parameters'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Court Decision'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Conclusions'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Important Considerations'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Making a Function'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Further Explorations'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Birthday Problem'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Uniform Distribution'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Birthday Function'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Simulate'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Plot Shape'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Plot Shape'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Plot Probabilities'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Plot Probabilities'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Actual Probabilities of Birthdays'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='What do we see?'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Modify Birthday Function'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Simulate'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Plot Shape'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Plot Both Together'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='What do we see?'>
+         28
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

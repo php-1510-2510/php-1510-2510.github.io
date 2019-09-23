@@ -1,0 +1,605 @@
+---
+title       : Transforming Data with `dplyr`
+author      : Adam J Sullivan 
+job         : Assistant Professor of Biostatistics
+work        : Brown University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js # {highlight.js, prettify, highlight}
+hitheme     :  github     # 
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3, libraries/leaflet, libraries/dygraphs]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : publichealthlogo.png
+biglogo     : publichealthlogo.png
+assets      : {assets: ../../assets}
+---  .segue bg:grey
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(cache=FALSE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+```
+
+```{r, echo=F}
+require(tidyverse)
+```
+
+
+
+# The `dplyr` Package
+
+
+--- .class #id
+
+## The `dplyr` Package
+
+- When we work with data, we need to be able to clean it and modify it as needed.  
+- We may wish to  do things like:
+    - add additional variables.
+    - Scale variables
+    - Collapse variables 
+- The `dplyr` package allows us to further work with our data. 
+
+--- .class #id
+
+
+## `dplyr` Functionality
+
+- With `dplyr` we have five basic verbs that we will learn to work with:
+  - `filter()`
+  - `select()`
+  - `arrange()`
+  - `mutate()`
+  - `summarize()`
+
+
+  
+
+
+---  .segue bg:grey
+
+
+# Filtering 
+
+
+--- .class #id
+
+## Filtering
+
+
+- At this point we will consider how we pick the rows of the data that we wish to work with. 
+- If you consider many modern data sets, we have so much information that we may not want to bring it all in at once. 
+- R brings data into the RAM of your computer. This means you can be limited for what size data you can bring in at once. 
+- Very rarely do you need the entire data set. 
+- We will focus on how to pick the rows or observations we want now.
+
+
+--- .class #id
+
+## Enter the `filter()` Function
+
+- The `filter()` function chooses rows that meet a specific criteria. 
+- We can do this with Base R functions or with   `dplyr`. 
+
+```{r}
+library(dplyr)
+```
+
+--- .class #id
+
+## The Data
+
+- We will begin by looking at some data from [FiveThirtyEight](https://fivethirtyeight.com/)
+- They have a wealth of data stored with an R package and lots of data analysis done online. 
+- We will work with a dataset behind the story ["Comic Books Are Still Made By Men, For Men And About Men"](https://fivethirtyeight.com/features/women-in-comic-books/).
+- *I know this is not public health but it has some interesting attributes to the data*.
+
+
+
+--- .class #id
+
+## Exploring the Data
+
+- It is always good to learn how to explore the data and we will learn this more as we go. 
+- We will start with a simple command to look at the structure of the data. 
+
+
+--- .class #id
+
+## Structure of the Data
+
+```{R, eval=F}
+library(tidyverse)
+library(fivethirtyeight)
+
+str(comic_characters)
+```
+
+
+--- .class #id
+
+## Structure of the Data
+
+```{R, echo=F, message=F}
+library(fivethirtyeight)
+
+str(comic_characters)
+```
+
+
+
+--- .class #id
+
+## Filtering Example
+
+- Filtering is the idea of considering only certain observations. 
+- THis means filtering is done at the observation/person level.
+- Let's say we only want to consider "Marvel Characters"
+- Traditionally in R, this was done with what is called indexing but we will use the `dplyr` tools for this. 
+
+--- .class #id
+
+## Filtering Example
+
+```{r,eval=F}
+library(tidyverse)
+comic_characters %>%
+  filter(publisher=="Marvel")
+```
+
+--- .class #id
+
+## Filtering Example
+
+```{r,echo=F, message=F}
+library(tidyverse)
+comic_characters %>%
+  filter(publisher=="Marvel")
+```
+
+--- .class #id
+
+## More than One Variable Filtered
+
+- We can also filter on more than just one variable. 
+- We could filter by characters before 1970 and from Marvel. 
+
+```{r, eval=F}
+comic_characters %>%
+    filter(publisher=="Marvel" & year<1970)
+```
+
+
+--- .class #id
+
+## More than One Variable Filtered
+
+- We can also chain together more than one filter command and achieve the same results:
+
+```{r, eval=F}
+comic_characters %>%
+    filter(publisher=="Marvel") %>%
+    filter(year<1970)
+```
+
+
+--- .class #id
+
+## Results
+
+```{R, echo=F}
+comic_characters %>%
+    filter(publisher=="Marvel") %>%
+    filter(year<1970)
+```
+
+
+
+
+--- .class #id
+
+
+## Further Filtering
+
+- `filter()` supports the use of multiple conditions where we can use Boolean. 
+- For example if we wanted to consider only observations that have a  first year of between 1980 and 1985:
+
+```{r, eval=FALSE}
+comic_characters %>% 
+    filter(year>=1980 & year<=1985)
+```
+
+--- .class #id
+
+
+## Further Filtering
+
+```{r, echo=FALSE}
+comic_characters %>% 
+    filter(year>=1980 & year<=1985)
+```
+
+--- .class #id
+
+
+## Further Filtering
+
+- We can also use the `filter()` function to remove missing data for us. 
+- On Datacamp you learned a class of functions called `is.`*foo*`()` where *foo* represents a data type. 
+- We could choose to only use observations that have gender stated. 
+- That means we wish to not have missing data for gender. 
+
+
+```{r, eval=FALSE}
+comic_characters %>% filter(!is.na(sex))
+```
+
+--- .class #id
+
+
+## On Your Own: RStudio Practice
+
+- These slides are for you to practice on your own when you are at home. 
+- I will state the problem and data on one slide.
+- On the next I will show what your answer should look like. 
+- Code for the solutions can be found on github. 
+
+--- .class #id
+
+## On Your Own: RStudio Practice
+
+- For these data we will consider the gapminder dataset. 
+- You will need the `gapminder` package.
+- You can run `install.packages("gapminder")` to get it. 
+
+--- .class #id 
+
+## On Your Own: RStudio Practice
+
+Using the `filter()` function and chaining: 
+
+- Choose only rows associated with
+  - Uganda
+  - Rwanda
+
+--- .class #id
+
+
+## On Your Own: RStudio Practice
+
+
+Your end result should be:
+
+```{R, echo=FALSE}
+library(gapminder)
+filter(gapminder, country=="Uganda" | country=="Rwanda")
+```
+
+---  .segue bg:grey
+
+
+
+# Selecting
+
+
+--- .class #id
+
+## Selecting
+
+- The next logical step would be to select the columns we want as well. 
+- Many times we have so many columns that we are not interested in for a particular analysis. 
+- Instead of slowing down your analysis by continuing to run through extra data, we could just select the columns we care about. 
+
+--- .class #id
+
+
+## Enter the `select()` Function
+
+- The `select()` function chooses columns that we specify. 
+- Again we can do this with base functions or with `dplyr`. 
+- We feel that as you continue on with your R usage that you will most likely want to go the route of `dplyr` functions instead.
+
+
+
+--- .class #id
+
+## Selecting Example 
+
+- If we explore the comics data further, we can see that there may be some variables we are more interested than others. 
+- Consider character attributes, we may wish to just consider name, gender, eye color and hair color. 
+
+We could then do the following
+
+```{r,eval= FALSE}
+comic_characters %>%
+    select(name, sex, eye, hair)
+```
+
+
+--- .class #id
+
+## Selecting Example Continued
+
+
+```{r,echo= FALSE}
+comic_characters %>%
+    select(name, sex, eye, hair)
+```
+
+
+--- .class #id
+
+## Removing Columns
+
+
+- We may wish to pick certain columns that we wish to have but we also may want to remove certain columns. 
+- It is quite common to de-identify a dataset before actually distributing it to a research team. 
+- The `select()` function will also remove columns. 
+
+
+
+--- .class #id
+
+## Removing Columns
+
+- Lets say that we wished to remove the `page_id` and `urlslug` of the characters:
+
+```{R, eval=FALSE}
+comic_characters %>%
+  select(-page_id,-urlslug)
+```
+
+--- .class #id
+
+## Removing Columns
+
+We also could use a vector for this:
+
+```{R, eval=F}
+
+cols <- c("url_slug", "page_id")
+gapminder %>%
+  select(-one_of(cols))
+```
+
+
+
+--- .class #id
+
+## On Your Own: RStudio Practice
+
+- Consider the gapminder data: `gapminder`. 
+  1. Select all but the `pop` column.
+  2. Remove the year and lifeExp from them.
+  3. Select values which contain "p" in them (hint: look up `contains()` function). 
+  4. Chain these together so that you run a command and it does all of these things. 
+
+--- .class #id
+
+## On Your Own: RStudio Practice
+
+
+Your answer should look like:
+
+```{R, echo=FALSE}
+gapminder %>% select(-pop)  %>% select(-lifeExp,-year) %>% select(contains("p"))
+```
+
+
+
+--- .segue bg:grey
+
+# Arranging the Data
+
+--- .class #id
+
+## Arranging the Data
+
+- We also have need to make sure the data is ordered in a certain manner. This can be easily done in R with the `arrange()` function. 
+- Again we can do this in base R but this is not always a clear path. 
+
+--- .class #id
+
+## Arranging the Data Example
+
+- Let's say that we wish to look characters year of entry and total appearances. 
+- Then say further we want to sort it by appearances. 
+
+
+--- .class #id
+
+## Arranging the Data Example Continued
+
+```{r, eval=FALSE}
+
+comic_characters %>%
+    select(name,year,  appearances) %>%
+    arrange(appearances)
+```
+
+--- .class #id
+
+## Arranging the Data Example Continued
+
+```{r, echo=FALSE}
+
+comic_characters %>%
+    select(name,year,  appearances) %>%
+    arrange(appearances)
+```
+
+--- .class #id
+
+## Arranging the Data Example Continued
+
+- With `arrange()` we first use `select()` to pick the only columns that we want and then we arrange by the `appearances`. 
+- If we had wished to order them in a descending manner we could have simply used the `desc()` function:
+
+```{r, eval=FALSE }
+comic_characters %>%
+    select(name,year,  appearances) %>%
+    arrange(desc(appearances))
+```
+
+--- .class #id
+
+
+## More Complex Arrange
+
+- Lets consider that we wish to look at the top 3 Appearances for each year.
+- Then we wish to order them from largest to smallest Appearances. 
+- We then need to do the following:
+    1. Group by year.
+    2. Pick the top 3 appearance.
+    3. order them largest to smallest.
+    
+
+
+
+--- .class #id
+
+## More Complex Arrange Continued
+
+
+```{R, eval=FALSE}
+comic_characters %>% 
+  group_by(year) %>%  
+  top_n(3, appearances) %>% 
+  arrange(desc(appearances))
+```
+
+- Where
+    - `group_by()` is a way to group data. This way we perform operations on a group. So top 3 appearances are grouped by year. 
+    - `top_n()`takes a tibble and returns a specific number of rows based on a chosen value. 
+
+
+--- .class #id
+
+## More Complex Arrange Continued
+
+
+```{R, echo=FALSE}
+comic_characters %>% 
+  group_by(year) %>%  
+  top_n(3, appearances) %>% 
+  arrange(desc(appearances))
+```
+
+
+
+--- .class #id
+
+## On Your Own: RStudio Practice
+
+- Perform the following operations:
+  - Group by year. 
+  - use `sample_n()` to pick 1 observation per year 
+  - Arrange by longest to smallest life expectancy. 
+
+
+
+--- .class #id
+
+
+
+
+
+## On Your Own: RStudio Practice
+
+
+Your answer ***may*** look like:
+
+```{r, echo=FALSE}
+gapminder %>%
+  group_by(year) %>%
+  sample_n(1) %>%
+  arrange(desc(lifeExp))
+```
+
+---  .segue bg:grey
+
+
+# Adding New Variables
+
+
+--- .class #id
+
+## Adding New Variables
+
+- There is usually no way around needing a new variable in your data. 
+- For example, most medical studies have height and weight in them, however many times what a researcher is interested in using is Body Mass Index (BMI). 
+- We would need to add BMI in. 
+
+
+--- .class #id
+
+## Adding New Variables
+
+- Using the `tidyverse` we can add new variables in multiple ways
+  - `mutate()`
+  - `transmute()`
+
+
+--- .class #id
+
+## Example
+
+- Consider appearances, this can be deceiving as some characters have been around for 50 years more than others. 
+- A more logical way might be to consider average appearances per year. 
+- This means we could create 2 variables for this. 
+    - Total Years
+    - Average Appearances per year. 
+
+--- .class #id
+
+## Adding Appearances
+
+
+- We can do this with the `mutate()` function. 
+
+```{r, eval=FALSE}
+comic_characters %>%
+    select(name, year, appearances) %>%
+    mutate(total_years = 2014-year) %>%
+    mutate(avg_appearances = appearances/total_years) %>%
+    arrange(desc(total_years))
+```
+
+--- .class #id
+
+## Example: Mutate
+
+```{r, echo=FALSE}
+comic_characters %>%
+    select(name, year, appearances) %>%
+    mutate(total_years = 2014-year) %>%
+    mutate(avg_appearances = appearances/total_years) %>%
+    arrange(desc(total_years))
+```
+
+
+--- .class #id
+
+## Changing the sort
+
+```{r, echo=FALSE}
+comic_characters %>%
+    select(name, year, appearances) %>%
+    mutate(total_years = 2014-year) %>%
+    mutate(avg_appearances = appearances/total_years) %>%
+    arrange(total_years)
+```
+
+
+--- .class #id
+
+## What can we see? 
+
+- Our initial premise of more appearances is based on more time may not be accurate when weighting by year.
+- Why?
+    - Some might be characters that died and we didnt calculate this. 
+    - Some may have been introduced and then dropped. 
+    - Maybe more comics are produced now than in 1935. 
