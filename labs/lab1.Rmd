@@ -1,9 +1,8 @@
 ---
-title: "Lab 1 - Single and Multiple Regression"
-author: "Your Name"
-output: 
-  html_document
+title: PHP 1510/2510 Lab 1
+subtitle: Probability and Random Variables
 ---
+
 
 ```{r setup, include = FALSE, cache = FALSE}
 knitr::opts_chunk$set(error = TRUE)
@@ -14,143 +13,131 @@ knitr::opts_chunk$set(cache=F)
 ```
 
 
-## Introduction
-This lab will be using R and R studio. Please have these on your computer prior to coming to lab. If you would like to work with R Markdown and learn that more, please download the R markdown file that created this, [Lab 1](https://php-1511-2511.github.io/labs/lab1.Rmd)
+## Objectives
+
+In this lab we will focus on using R to model probabilities based on common distributions. 
 
 
+## Discrete Random Variable
 
-**Dataset**: Poverty. 
+1. Bernoulli
 
-You will be using data from the paper [The Statistics of Poverty and Inequality](http://www.amstat.org/publications/jse/datasets/poverty.dat.txt). There is the following data from 97 countries:
+- Recall: Bernoulli random variable takes on only 2 values:
+    - Success with probability $p$
+    - Failure with probability $1-p$
 
-* **birthrate**: Live Birth Rate per 1,000 of population
-* **deathrate**: Death Rate per 1,000 of population
-* **infdeath**: Infant deaths per 1,000 of population(under 1 yr old)
-* **le.male**: Life expectancy at birth for males
-* **le.female**: life expectancy at birht for females
-* **gnp**: Gross National Product (GNP) per capita
-* **group**: Group
-  1.  Eastern Europe
-  2.  South America and Mexico
-  3.  Western Europe, North America, Japan, Australia, New Zealand
-  4.  Middle East
-  5.  Asia
-  6.  Africa
-* **country**: Country
+2. Binomial
+
+- Recall: Binomial is a sequence of $n$ independet Bernoulli trials. 
+- Recall: This time we are interested in the total number of successes. 
+
+### Discrete Random Variable Examples
+
+1. Suppose that 10 randomly selected Breast cancer patients were observed for 5 year, and each patient from that population has an equal survival probability of 0.8. You are interested in the number of breast cancer patients who survive 5 years. 
+    (a) What is the probability that exactly 2 patients will survive? 
+    - Mathematically this would be:
+$$Pr(X=2)$$
+    - We recognize this as the PMF function which in R is the `dbinom()`. 
+    ```{r}
+    dbinom(2, 10, 0.8)
+    ```
+
+    (b) What is the probability that all patients survive? 
+    - Mathematically this would be:
+$$Pr(X=10)$$
+    - We recognize this as the PMF function which in R is the `dbinom()`. 
+    ```{r}
+    dbinom(10, 10, 0.8)
+    ```
+    (c) What is the probability that less than 7 patients survive. 
+    - Mathematically this would be:
+$$Pr(X\le 7)$$
+    - We recognize this as the CDF function which in R is the `dbinom()`. 
+    ```{r}
+    pbinom(7, 10, 0.8)
+    ```
+    (d) What is the probability that between 3 and 7 patients survive?
+    - Mathematically this would be:
+$$Pr(3\le X\le 7)= PR(X\le 7) - Pr(X\le 3)$$
+    - We recognize this as the CDF function which in R is the `dbinom()`. 
+    ```{r}
+    dbinom(7, 10, 0.8) - dbinom(3, 10, 0.8)
+    ```
+    (e) What is the probability that at least one patient will survive? 
+    - Mathematically this would be:
+$$Pr(X\ge 1)= 1 - Pr(X<1) = 1- Pr(X=0)$$
+    - We recognize this as the PMF function which in R is the `dbinom()`. 
+    ```{r}
+    1-dbinom(0, 10, 0.8)
+    ```
+    (f) What is the number of patients we expect to survive and what is the variance? 
+    - We know that this is binomial and that
+    $$ E(X) = n\times p = 10*0.8 = 8$$
+    $$Var(X) = np(1-p)= 10\times 0.8 \times 0.2 = 1.6$$
+    - We can also simulate this:
+    ```{r}
+    T <- 100000
+    data <- rbinom(T, 10, 0.8)
+    mean(data)
+    var(data)
+    ```
+    
+2. Suppose you want to repeat this experiment 100 times over in a population that have a 75% chance of survival after 5 years.
+    (a) Perform this simulation
+    ```{r}
+    set.seed(246)
+    data2 <- rbinom(100, 10, 0.75)
+    ```
+    (b) Create a table of results
+    ```{r}
+    table(data2)
+    ```
+    (c) Graph the results:
+    ```{R}
+    library(ggplot2)
+    ggplot(data=NULL, aes(x=data2)) +
+      geom_bar()
+    ```
+    (c) How does the sample mean compare to the theoretical mean? 
+    $$np = 10*0.75=7.5$$
+    ```{r}
+    mean(data2)
+    ```
+    - We can see that we have a slightly higher value of `r 7.68` compared the the theoretical mean of 7.5. 
+    
+## Further Simulations
+
+- In notes there was a problem given that discussed considering bias of a jury were the population was 90% white. 
+- Consider the code below which simulated this data for us:
+
+```{R}
+
+binom.sim <- function(t, n, p) {
+juries <- rbinom(n=t, size=n, prob=p)
+tab <- table(juries)
+
+return(prop.table(tab))
+}
 
 
+```
 
-You can copy and paste the text below to read the data into R:
+- Set a seed and run this model and see what your proportions are. 
+
 
 ```{r}
 
-poverty<- read.table(file="http://www.amstat.org/publications/jse/datasets/poverty.dat.txt", header=FALSE, sep="")
+binom.sim(1000, 12,0.1)
 ```
 
+- We can actually plot this out:
 
-When you open this data you will see that there are no column names to show what these variables are. We can go ahead and add these with the following command:
-
-```{r}
-library(tidyverse)
-  colnames(poverty)<- c("birthrate", "deathrate", "infdeath", "le.male", "le.female",
-"gnp", "group", "country")
-
-#This will print some of the beginning rows of data
-head(poverty)
+```{R}
+juries <- binom.sim(1000, 12,0.1)
+ggplot(data=NULL, aes(x=juries)) + 
+  geom_bar()
 ```
 
-If we start to look at the data we realize that when the authors of this data set had missing data they used an * symbol to represent missing data. R does not handle this kind of data so we will fix this. We can also see that gnp is not being treated as a numeric variable and need to correct this.
+- Play around by changing the probability for a success and see what number seems to provide a solution for having a non-white member on the jury. 
 
-```{r}
-library(tidyverse)
-#R thinks gnp is factor(group) data
-class(poverty$gnp)
-
-
-#Replace the * values with NA
-poverty[poverty=="*"] <- NA
-
-# Tell R that gnp is numeric data 
-poverty$gnp <- as.numeric(as.character(poverty$gnp))
-
-#log.gnp most economic models use log.gnp instead of gnp
-poverty$log.gnp <- log(poverty$gnp)
-```
-
-The above few steps allow us to load our data into R and do a little cleaning. We want you to do these steps so you can grow and gain experience with real data. 
-
-## Looking at Data
-It is always a good idea to take an informal look at the data before model fitting. First take the time to start by exploring the data using various graphs
-```{r}
-library(ggplot2)
-#Histogram
-ggplot(poverty, aes(birthrate)) + geom_histogram()
-
-#Boxplots
-ggplot(poverty, aes(x= "", y=le.female)) + geom_boxplot() + xlab("")
-
-
-#Scatter Plots
-ggplot(poverty, aes(x=le.female, y=infdeath)) + geom_point()
-
-```
-
-Take some time to explore each this data and perform some basic number summaries. For example:
-```{r, message=F, warning=F, results="asis"}
-#install.packages("stargazer")
-library(tidyverse)
-library(stargazer)
-poverty %>%
-  stargazer(., type="html", title="Descriptive statistics", digits=2)
-```
-For more on stargazer, here is a [cheatsheet](https://www.jakeruss.com/cheatsheets/stargazer/)
-
-
-
-
-## Fitting a Regression Model
-We will begin exploring the modeling potential of this data by considering the relationship between Life Expectancy of Females and Infant Death Rates. Using the **lm()** function we will regress the infant death rates onto life expectancy of females
-
-```{r}
-library(broom)
-fit1 <- lm(infdeath ~ le.female, data=poverty)
-tidy(fit1, conf.int=T)[,-c(3:4)]
-```
-
-1. Create a scatter plot of infant death rates and life expectancy of females to see what this relationship looks like. Describe this relationship. 
-
-2. What is the slope of this regression line? What is the intercept?
-
-3. Perform a t-test for significance of the slope. What are your findings?
-
-4. Interpret the intercept of this model. Does this have meaning in our problem?
-
-5. Interpret the slope of this model. What conclusions might you draw from this?
-
-6. Use the **confint()** function to find the confidence intervals of the coefficients of the the model. 
-
-
-7. Using these confidence intervals would you make the same conclusion as the t-test performed in question 3? 
-
-## Testing Further Relationships
-
-8. Quickly go through questions 1-7 for other relationships (On Your Own)
-* Infant Death Rate on log gnp
-* Infant Death Rate on birthrate
-
-
-
-## Multiple Regressions
-
-
-9. Build a multiple linear regression model predicting `infdeath` with the following variables:
-*  `le.female`
-*  `birthrate`
-* `log.gnp`
-
-
-10. What is the adjusted $R^2$ for this model. What does this number tell you? 
-
-11. How does the combined adjusted $R^2$ model compare to the single variable  model $R^2$'s? 
-
-
+    

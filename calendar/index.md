@@ -86,8 +86,8 @@ title: Calendar
 <tr>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">Lab 1:</td>
+<td align="left"><a href="../labs/lab1.html">Lab 1 - html</a> <a href="../labs/lab1.Rmd">Lab 1 - rmd</a></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
