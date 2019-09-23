@@ -130,13 +130,6 @@ return(prop.table(tab))
 binom.sim(1000, 12,0.1)
 ```
 
-- We can actually plot this out:
-
-```{R}
-juries <- binom.sim(1000, 12,0.1)
-ggplot(data=NULL, aes(x=juries)) + 
-  geom_bar()
-```
 
 - Play around by changing the probability for a success and see what number seems to provide a solution for having a non-white member on the jury. 
 
