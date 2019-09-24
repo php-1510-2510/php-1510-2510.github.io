@@ -283,7 +283,7 @@ plot(x, pnorm(x, 0, 0.2), type="l", col="blue", lwd=3)
 curve(pnorm(x, 0, 1.0), add=TRUE, col="red", lwd=3)
 curve(pnorm(x, 0, 5.0), add=TRUE, col="yellow", lwd=3)
 curve(pnorm(x, 0, 0.5), add=TRUE, col="green", lwd=3)
-legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue", "red", 
+legend(-6,1,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue", "red", 
 "yellow", "green"))
 ```
 
