@@ -1,11 +1,11 @@
 ---
 title: "Homework 1"
 author: "Your Name"
-date: "February 14, 2019 at 11:59pm"
+date: "Due: October 4, 2019 at 11:59pm"
 output:
+  word_document: default
   html_document: default
   pdf_document: default
-  word_document: default
 ---
 
 
@@ -24,64 +24,56 @@ output:
 
 *All answers must be in complete sentences and all graphs must be properly labeled.*
 
-***For the PDF Version of this assignment: [PDF](https://raw.githubusercontent.com/php-1511-2511/php-1511-2511.github.io/master/homework/hw1.pdf)***
+***For the PDF Version of this assignment: [PDF](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.pdf)***
 
-***For the R Markdown Version of this assignment: [RMarkdown](https://raw.githubusercontent.com/php-1511-2511/php-1511-2511.github.io/master/homework/hw1.Rmd)***
+***For the R Markdown Version of this assignment: [RMarkdown](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.Rmd)***
 
 ### Turning the Homework in:
 
 *Please turn the homework in through canvas. You may use a pdf, html or word doc file to turn the assignment in.*
 
-[PHP 1511 Assignment Link](https://canvas.brown.edu/courses/1077969/assignments/7723027)
+[PHP 1510 Assignment Link](https://canvas.brown.edu/courses/1078851/assignments/7744128)
 
-[PHP 2511 Assignment Link](https://canvas.brown.edu/courses/1077129/assignments/7723045)
+[PHP 2510 Assignment Link](https://canvas.brown.edu/courses/1078852/assignments/7744130)
 
-## The Data
-
-We will consider the data behind the story: ["Comic Books are Still Made By Men, For Men and About Men"](http://fivethirtyeight.com/features/women-in-comic-books/). This data is part of the `fivethirtyeight` package. To use this data you can run the following code:
-
-```{r, eval=F}
-library(fivethirtyeight)
-?comic_characters
-```
-
-***Note in the Rmd file of this, there is an option`eval=F` which tells Rmd not to run this code, to get your work to knit, change this to `eval=T`. ***
-
-
-## Questions
-
-It is obvious that this is not directly a public health dataset but in society at large we can notice that there are a lot of inequities and biases that are interwoven into mast aspects of life. This includes something as simple as comic book characters. This homework will give you a chance to evaluate basic statistical methods you learned previously and practice improving your R coding. 
-
-
-1. We will evaluate the number of appearances as the outcome. Create a plot to display the distribution of this variable. Then interpret the graph and note the normality, skewness and anything else you notice about this. 
-
-
-2. Hopefully you noted that this was not normally distributed so the next step would be to consider a `log` transform of this variable. Use the `mutate()` function to add a variable `log_app` which is the log of the appearances. Then create teh same distribution plot above for `log_app`. 
-
-
-3. We will now consider the variable `sex` in the dataset. Make a table of counts of how many characters are in each group. You can use `tally()` or `count()` for this. Comment on what you notice about these groups. 
+## Probability Distributions
 
 
 
-4. Run an ANOVA considering `log_app` over the different genders (`sex`). Are the appearances different by gender (`sex`)? Do you think ANOVA is appropriate across all these categories? Why or Why not?
 
-
-5. (PHP 2511 Only) What are the assumptions of ANOVA? Which if any would be a problem with `log_app` and `sex` ?
-
-
-6. Using `mutate()` and `fct_relevel()` create a new variable called `gender` with three categories:
-    - `male`
-    - `female`
-    - `non-binary`
+1. There are n patients, each one has the same probability of being chosen for study screening with probability $p$ (*Independently - No one patient has an effect on the other*). Each of these enters the study with probability $r$, independently.  
+    a. What is the distribution of the number of patients chosen for screening?
+    b. What is the distribution of the number of patients who enter the study? 
     
-7. Run an ANOVA considering `log_app` over the new gender variable. Are there differences between your three gender categories?
+2. A company with $n$ interns and $m$ part time employees and is deciding which employees to promote. Now suppose that instead of having a predetermined number of promotions to give, the company decides independently for each employee, promoting the employee with probability $p$. Find the distributions of:
+    a. the number of interns who are promoted
+    b. the number of part time emplyees who are not promoted
+    c. the total number of employees who are promoted.
+    
+3.  Let $X \sim Bin(n,p)$ and $Y\sim Bin(m,p)$, where $X$ and $Y$ are independent.
+    a. What is the distribution of $X+Y$? 
+    b. Explain why your answer in part $a$ nmakes sense.
+    c. Give a good example of why $X-Y$ is not binomial. 
+    
+4. **(PHP 2510 Only)** It is important to begin to learn new distributions. The  `exponential` distribution is a time distribution which looks at time until an event happens. It has one parameter $\lambda$ which is the rate at which events occur. Give an example of data that connects the following distributions together:
+    - Bernoulli
+    - Exponential
+    
+    Please come up with a reasonable variable that we might consider studying in your field. Make sure you explain what kinds of questions asked on this data would lead to the above distributions. 
 
 
-8. Using `TukeyHSD()` perform p-value adjusted t-tests to compare each category of `gender`. What groups are different than the others? 
 
+## Simulations
 
-
-9. Interpret the overall results of this ANOVA. What does this tell you about appearances and gender. 
-
-10. (PHP 2511 only) Does your interpretation make sense for what you think is going on? Why might the one particular group be lower than the others? 
-
+5. Rolling two dice
+    a. Simulate rolling two dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.
+    b. You can buy trick dice, which look (sort of) like normal dice. One die has numbers 5, 5, 5, 5, 5, 5. The other has numbers 2, 2, 2, 6, 6, 6.
+    Simulate rolling the two trick dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.
+    c. Sicherman dice also look like normal dice, but have unusual numbers.
+    One die has numbers 1, 2, 2, 3, 3, 4. The other has numbers 1, 3, 4, 5, 6, 8.
+    Simulate rolling the two Sicherman dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.
+    How does your answer compare to part a?
+    
+6. **(PHP 2510 Only)** Read sections [14.12](https://rafalab.github.io/dsbook/probability.html#monte-carlo-simulations-for-continuous-variables) and [14.13](https://rafalab.github.io/dsbook/probability.html#continuous-distributions) from [Introduction to Data Science](https://rafalab.github.io/dsbook/). Then complete the problems below:
+    a. Assume the distribution of female heights is approximated by a normal distribution with a mean of 64 inches and a standard deviation of 3 inches. If we pick a female at random, what is the probability that she is between 61 and 67 inches?
+    b. Repeat the exercise above, but convert everything to centimeters. That is, multiply every height, including the standard deviation, by 2.54. What is the answer now?

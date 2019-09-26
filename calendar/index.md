@@ -11,13 +11,23 @@ title: Calendar
 <colgroup>
     <col width="8%" />
     <col width="8%" />
-    <col width="29%" />
-    <col width="10%" />
-    <col width="20%" />
-    <col width="25%" />
-    <col width="10%" />
+    <col width="17%" />
+    <col width="17%" />
+    <col width="17%" />
+    <col width="17%" />
+    <col width="17%" />
     </colgroup>
 
+<table><thead>
+<tr>
+<th align="left">Week</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Lecture Resources</th>
+<th align="left">Readings</th>
+<th align="left">HW Assigned</th>
+<th align="left">HW Due</th>
+</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -55,7 +65,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">19-Sep</td>
 <td align="left">Random Variables</td>
-<td align="left"><a href="../Notes/lect-04-random-variables.html">Lect-04-Random-Variables</a> <a href="https://vimeo.com/361201132/918618680c">Video</a></td>
+<td align="left"><a href="../Notes/lect-04-random-variables.html">Lect-04-Random-Variables</a></td>
 <td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
 <td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
@@ -71,7 +81,7 @@ title: Calendar
 <td align="left">Week 4</td>
 <td align="left">24-Sep</td>
 <td align="left">Random Variables</td>
-<td align="left"><a href="../Notes/lect-05-random-variables-part2.html">Lect-05-random-variables-part2</a></td>
+<td align="left"><a href="../Notes/lect-05-random-variables-part2.html">Lect-05-NOT COMPLETE</a></td>
 <td align="left">CHEST: Appendix B; <a href="https://bookdown.org/speegled/foundations-of-statistics/random-variables.html">SPEEGLE Ch. 3</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.1-15.6</a></td>
 <td align="left"><a href="../datacamp">Datacamp Assignment</a></td>
 </tr>
@@ -79,15 +89,15 @@ title: Calendar
 <td align="left"></td>
 <td align="left">26-Sep</td>
 <td align="left">Simulations with Random Variables</td>
-<td align="left"><a href="../Notes/lect-06-random-variables-simulations.html">Lect-06-random-variables-simulations</a></td>
+<td align="left"></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
 <td align="left">HW 1: Random Variables</td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">Lab 1:</td>
-<td align="left"><a href="../labs/lab1.html">Lab 1 - html</a> <a href="../labs/lab1.Rmd">Lab 1 - rmd</a></td>
+<td align="left"></td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -95,7 +105,7 @@ title: Calendar
 <td align="left">Week 5</td>
 <td align="left">1-Oct</td>
 <td align="left">Manipulating Data with R</td>
-<td align="left"><a href="../Notes/lect-07-data-manipulation.html">Lect-07-data-manipulation</a></td>
+<td align="left"></td>
 <td align="left"><a href="https://r4ds.had.co.nz/workflow-basics.html">R4DS Ch. 4-5</a> ;<a href="https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html">SPEEGLE Ch. 5</a></td>
 <td align="left"></td>
 </tr>

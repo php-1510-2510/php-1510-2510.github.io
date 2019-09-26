@@ -70,9 +70,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -103,8 +101,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -179,14 +175,23 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 
 <div class="fluid-row" id="header">
 
 
 
 <h1 class="title toc-ignore">Homework 1</h1>
-<h4 class="author"><em>Your Name</em></h4>
-<h4 class="date"><em>February 14, 2019 at 11:59pm</em></h4>
+<h4 class="author">Your Name</h4>
+<h4 class="date">Due: October 4, 2019 at 11:59pm</h4>
 
 </div>
 
@@ -203,41 +208,57 @@ $(document).ready(function () {
 <h3>Homework Policies:</h3>
 <p><em>You are encouraged to discuss problem sets with your fellow students (and with the Course Instructor of course), but you must write your own final answers, in your own words. Solutions prepared ``in committee’’ or by copying someone else’s paper are not acceptable. This violates the Brown standards of plagiarism, and you will not have the benefit of having thought about and worked the problem when you take the examinations.</em></p>
 <p><em>All answers must be in complete sentences and all graphs must be properly labeled.</em></p>
-<p><strong><em>For the PDF Version of this assignment: <a href="https://raw.githubusercontent.com/php-1511-2511/php-1511-2511.github.io/master/homework/hw1.pdf">PDF</a></em></strong></p>
-<p><strong><em>For the R Markdown Version of this assignment: <a href="https://raw.githubusercontent.com/php-1511-2511/php-1511-2511.github.io/master/homework/hw1.Rmd">RMarkdown</a></em></strong></p>
+<p><strong><em>For the PDF Version of this assignment: <a href="https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.pdf">PDF</a></em></strong></p>
+<p><strong><em>For the R Markdown Version of this assignment: <a href="https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.Rmd">RMarkdown</a></em></strong></p>
 </div>
 <div id="turning-the-homework-in" class="section level3">
 <h3>Turning the Homework in:</h3>
 <p><em>Please turn the homework in through canvas. You may use a pdf, html or word doc file to turn the assignment in.</em></p>
-<p><a href="https://canvas.brown.edu/courses/1077969/assignments/7723027">PHP 1511 Assignment Link</a></p>
-<p><a href="https://canvas.brown.edu/courses/1077129/assignments/7723045">PHP 2511 Assignment Link</a></p>
+<p><a href="https://canvas.brown.edu/courses/1078851/assignments/7744128">PHP 1510 Assignment Link</a></p>
+<p><a href="https://canvas.brown.edu/courses/1078852/assignments/7744130">PHP 2510 Assignment Link</a></p>
 </div>
-<div id="the-data" class="section level2">
-<h2>The Data</h2>
-<p>We will consider the data behind the story: <a href="http://fivethirtyeight.com/features/women-in-comic-books/">“Comic Books are Still Made By Men, For Men and About Men”</a>. This data is part of the <code>fivethirtyeight</code> package. To use this data you can run the following code:</p>
-<pre class="r"><code>library(fivethirtyeight)
-?comic_characters</code></pre>
-<p><strong><em>Note in the Rmd file of this, there is an option<code>eval=F</code> which tells Rmd not to run this code, to get your work to knit, change this to <code>eval=T</code>. </em></strong></p>
-</div>
-<div id="questions" class="section level2">
-<h2>Questions</h2>
-<p>It is obvious that this is not directly a public health dataset but in society at large we can notice that there are a lot of inequities and biases that are interwoven into mast aspects of life. This includes something as simple as comic book characters. This homework will give you a chance to evaluate basic statistical methods you learned previously and practice improving your R coding.</p>
+<div id="probability-distributions" class="section level2">
+<h2>Probability Distributions</h2>
 <ol style="list-style-type: decimal">
-<li><p>We will evaluate the number of appearances as the outcome. Create a plot to display the distribution of this variable. Then interpret the graph and note the normality, skewness and anything else you notice about this.</p></li>
-<li><p>Hopefully you noted that this was not normally distributed so the next step would be to consider a <code>log</code> transform of this variable. Use the <code>mutate()</code> function to add a variable <code>log_app</code> which is the log of the appearances. Then create teh same distribution plot above for <code>log_app</code>.</p></li>
-<li><p>We will now consider the variable <code>sex</code> in the dataset. Make a table of counts of how many characters are in each group. You can use <code>tally()</code> or <code>count()</code> for this. Comment on what you notice about these groups.</p></li>
-<li><p>Run an ANOVA considering <code>log_app</code> over the different genders (<code>sex</code>). Are the appearances different by gender (<code>sex</code>)? Do you think ANOVA is appropriate across all these categories? Why or Why not?</p></li>
-<li><p>(PHP 2511 Only) What are the assumptions of ANOVA? Which if any would be a problem with <code>log_app</code> and <code>sex</code> ?</p></li>
-<li>Using <code>mutate()</code> and <code>fct_relevel()</code> create a new variable called <code>gender</code> with three categories:
+<li>There are n patients, each one has the same probability of being chosen for study screening with probability <span class="math inline">\(p\)</span> (<em>Independently - No one patient has an effect on the other</em>). Each of these enters the study with probability <span class="math inline">\(r\)</span>, independently.
+<ol style="list-style-type: lower-alpha">
+<li>What is the distribution of the number of patients chosen for screening?</li>
+<li>What is the distribution of the number of patients who enter the study?</li>
+</ol></li>
+<li>A company with <span class="math inline">\(n\)</span> interns and <span class="math inline">\(m\)</span> part time employees and is deciding which employees to promote. Now suppose that instead of having a predetermined number of promotions to give, the company decides independently for each employee, promoting the employee with probability <span class="math inline">\(p\)</span>. Find the distributions of:
+<ol style="list-style-type: lower-alpha">
+<li>the number of interns who are promoted</li>
+<li>the number of part time emplyees who are not promoted</li>
+<li>the total number of employees who are promoted.</li>
+</ol></li>
+<li>Let <span class="math inline">\(X \sim Bin(n,p)\)</span> and <span class="math inline">\(Y\sim Bin(m,p)\)</span>, where <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent.
+<ol style="list-style-type: lower-alpha">
+<li>What is the distribution of <span class="math inline">\(X+Y\)</span>?</li>
+<li>Explain why your answer in part <span class="math inline">\(a\)</span> nmakes sense.</li>
+<li>Give a good example of why <span class="math inline">\(X-Y\)</span> is not binomial.</li>
+</ol></li>
+<li><strong>(PHP 2510 Only)</strong> It is important to begin to learn new distributions. The <code>exponential</code> distribution is a time distribution which looks at time until an event happens. It has one parameter <span class="math inline">\(\lambda\)</span> which is the rate at which events occur. Give an example of data that connects the following distributions together:
 <ul>
-<li><code>male</code></li>
-<li><code>female</code></li>
-<li><code>non-binary</code></li>
-</ul></li>
-<li><p>Run an ANOVA considering <code>log_app</code> over the new gender variable. Are there differences between your three gender categories?</p></li>
-<li><p>Using <code>TukeyHSD()</code> perform p-value adjusted t-tests to compare each category of <code>gender</code>. What groups are different than the others?</p></li>
-<li><p>Interpret the overall results of this ANOVA. What does this tell you about appearances and gender.</p></li>
-<li><p>(PHP 2511 only) Does your interpretation make sense for what you think is going on? Why might the one particular group be lower than the others?</p></li>
+<li>Bernoulli</li>
+<li>Exponential</li>
+</ul>
+Please come up with a reasonable variable that we might consider studying in your field. Make sure you explain what kinds of questions asked on this data would lead to the above distributions.</li>
+</ol>
+</div>
+<div id="simulations" class="section level2">
+<h2>Simulations</h2>
+<ol start="5" style="list-style-type: decimal">
+<li>Rolling two dice
+<ol style="list-style-type: lower-alpha">
+<li>Simulate rolling two dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.</li>
+<li>You can buy trick dice, which look (sort of) like normal dice. One die has numbers 5, 5, 5, 5, 5, 5. The other has numbers 2, 2, 2, 6, 6, 6. Simulate rolling the two trick dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.</li>
+<li>Sicherman dice also look like normal dice, but have unusual numbers. One die has numbers 1, 2, 2, 3, 3, 4. The other has numbers 1, 3, 4, 5, 6, 8. Simulate rolling the two Sicherman dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred. How does your answer compare to part a?</li>
+</ol></li>
+<li><strong>(PHP 2510 Only)</strong> Read sections <a href="https://rafalab.github.io/dsbook/probability.html#monte-carlo-simulations-for-continuous-variables">14.12</a> and <a href="https://rafalab.github.io/dsbook/probability.html#continuous-distributions">14.13</a> from <a href="https://rafalab.github.io/dsbook/">Introduction to Data Science</a>. Then complete the problems below:
+<ol style="list-style-type: lower-alpha">
+<li>Assume the distribution of female heights is approximated by a normal distribution with a mean of 64 inches and a standard deviation of 3 inches. If we pick a female at random, what is the probability that she is between 61 and 67 inches?</li>
+<li>Repeat the exercise above, but convert everything to centimeters. That is, multiply every height, including the standard deviation, by 2.54. What is the answer now?</li>
+</ol></li>
 </ol>
 </div>
 
