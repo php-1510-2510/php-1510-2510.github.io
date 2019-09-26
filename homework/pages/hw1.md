@@ -13,6 +13,6 @@ This is your first homework assignment. Please start the assignment early so you
 
 Here are some important links:
 
-- [HTML Version of Homework](../homework/hw1.html)
+- [HTML Version of Homework](../hw1.html)
 - [Word Version of Homework](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.docx)
 - [PDF Version of Homework](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.pdf)
