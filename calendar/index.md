@@ -98,7 +98,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1/">HW 1: Random Variables</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -107,7 +107,7 @@ title: Calendar
 <td align="left">Simulations with Random Variables</td>
 <td align="left"><a href="../Notes/lect-06-random-variables-simulations.html">Lect-06-random-variables-simulations</a></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
-<td align="left">HW 1: Random Variables</td>
+<td align="left"></td>
 <td align="left"><a href="https://www.datacamp.com/courses/importing-cleaning-data-in-r-case-studies">Datacamp Work Due</a></td>
 </tr>
 <tr>
@@ -144,7 +144,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1/">HW 1 DUE</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a></td>
 </tr>
 <tr>
 <td align="left">Week 6</td>
