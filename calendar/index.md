@@ -98,14 +98,14 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a></td>
+<td align="left"><a href="../homework/pages/hw1/">HW 1: Random Variables</a></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left">26-Sep</td>
 <td align="left">Simulations with Random Variables</td>
-<td align="left"><a href="../Notes/lect-06-random-variables-simulations.html">Lect-06-random-variables-simulations</a></td>
+<td align="left"><a href="../Notes/lect-06-random-variables-simulations.html">Lect-06-random-variables-simulations</a> <a href="https://vimeo.com/362639646/039f38861b">Video</a></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.1-4.4</a></td>
 <td align="left"></td>
 <td align="left"><a href="https://www.datacamp.com/courses/importing-cleaning-data-in-r-case-studies">Datacamp Work Due</a></td>
@@ -114,7 +114,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Lab 1:</td>
-<td align="left"><a href="../labs/lab1.html">Lab 1 - html</a> <a href="../labs/lab1.Rmd">Lab 1 - rmd</a></td>
+<td align="left"><a href="../labs/lab1.html">Lab 1 - html</a> <a href="../labs/lab1.Rmd">Lab 1 - rmd</a> <a href="https://vimeo.com/362639601/d210ab3ece">Video</a></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -144,7 +144,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a></td>
+<td align="left"><a href="../homework/pages/hw1/">HW 1 DUE</a></td>
 </tr>
 <tr>
 <td align="left">Week 6</td>
