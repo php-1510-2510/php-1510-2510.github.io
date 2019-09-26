@@ -6,11 +6,12 @@ Week 3,17-Sep,Basic Probability,[Lect-03-Probability-Part 2](../Notes/lect-03-pr
 ,19-Sep,Random Variables,[Lect-04-Random-Variables](../Notes/lect-04-random-variables.html) [Video](https://vimeo.com/361201132/918618680c),CHEST: Appendix B; [SPEEGLE Ch. 3](https://bookdown.org/speegled/foundations-of-statistics/random-variables.html); [RAFA Ch. 15.1-15.6](https://rafalab.github.io/dsbook/random-variables.html),[Datacamp Assignment](../datacamp),
 ,,,,,,
 Week 4,24-Sep,Random Variables,[Lect-05-random-variables-part2](../Notes/lect-05-random-variables-part2.html) [Video](https://vimeo.com/362123037/8c070bfaed),CHEST: Appendix B; [SPEEGLE Ch. 3](https://bookdown.org/speegled/foundations-of-statistics/random-variables.html); [RAFA Ch. 15.1-15.6](https://rafalab.github.io/dsbook/random-variables.html),[Datacamp Assignment](../datacamp),
+,25-Sep,,,,[HW 1: Random Variables](../homework/pages/hw1/),
 ,26-Sep,Simulations with Random Variables,[Lect-06-random-variables-simulations](../Notes/lect-06-random-variables-simulations.html),[SPEEGLE Ch.  4.1-4.4](https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html) ,HW 1: Random Variables,[Datacamp Work Due](https://www.datacamp.com/courses/importing-cleaning-data-in-r-case-studies)
 ,,Lab 1:,[Lab 1 - html](../labs/lab1.html) [Lab 1 - rmd](../labs/lab1.Rmd),,,
 Week 5,1-Oct,Manipulating Data with R,[Lect-07-data-manipulation](../Notes/lect-07-data-manipulation.html),[R4DS Ch. 4-5](https://r4ds.had.co.nz/workflow-basics.html) ;[SPEEGLE Ch. 5](https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html),,
 ,3-Oct,Exploratory Data Analysis,,CHEST Ch. 2; [SPEEGLE Ch. 6](https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html); [R4DS Ch. 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) ,HW 2: Basic R and Simulations,
-,,,,,,
+,4-Oct,,,,,[HW 1 DUE](../homework/pages/hw1/)
 Week 6,8-Oct,Exploratory Data Analysis,,CHEST Ch. 2; [SPEEGLE Ch. 6](https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html); [R4DS Ch. 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) ,,
 ,10-Oct,Introduction to Hypothesis Testing,,CHEST Ch. 3,HW 3: EDA,
 ,,,,,,
