@@ -98,7 +98,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1/">HW 1: Random Variables</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a></td>
 <td align="left"></td>
 </tr>
 <tr>
