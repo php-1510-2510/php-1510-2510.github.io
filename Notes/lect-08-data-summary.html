@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Summarization of Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Summarization of Data">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Summarization of Data</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Summarizing Data</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Piping or Chaining</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will discuss a concept that will help us greatly when it comes to working with our data. </li>
+<li>The usual way to perform multiple operations in one line is by nesting. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Piping or Chaining</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>To consider an example we will look at the data provided in the gapminder package:</p>
+
+<pre><code class="r">library(gapminder)
+head(gapminder)
+</code></pre>
+
+<pre><code>## # A tibble: 6 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Nesting vs Chaining</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s say that we want to have the GDP per capita and life expectancy Kenya.</li>
+<li>Traditionally speaking we could do this in a nested manner:</li>
+</ul>
+
+<pre><code class="r">filter(select(gapminder, country, lifeExp, gdpPercap), country==&quot;Kenya&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Nesting vs Chaining</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>It is not easy to see exactly what this code was doing but we can write this in a manner that follows our logic much better. </li>
+<li>The code below represents how to do this with chaining. </li>
+</ul>
+
+<pre><code class="r">gapminder %&gt;%
+    select(country, lifeExp, gdpPercap) %&gt;%
+    filter(country==&quot;Kenya&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Breaking Down the Code</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We now have something that is much clearer to read.</li>
+<li>Here is what our chaining command says:</li>
+</ul>
+
+<ol>
+<li>Take the <code>gapminder</code> data</li>
+<li>Select the variables: <code>country</code>, <code>lifeExp</code> and <code>gdpPercap</code>.</li>
+<li>Only keep information from Kenya. </li>
+</ol>
+
+<ul>
+<li>The nested code says the same thing but it is hard to see what is going on if you have not been coding for very long.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Breaking Down the Code</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The result of this search is below: </li>
+</ul>
+
+<pre><code># A tibble: 12 x 3
+   country lifeExp gdpPercap
+    &lt;fctr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1   Kenya  42.270  853.5409
+ 2   Kenya  44.686  944.4383
+ 3   Kenya  47.949  896.9664
+ 4   Kenya  50.654 1056.7365
+ 5   Kenya  53.559 1222.3600
+ 6   Kenya  56.155 1267.6132
+ 7   Kenya  58.766 1348.2258
+ 8   Kenya  59.339 1361.9369
+ 9   Kenya  59.285 1341.9217
+10   Kenya  54.407 1360.4850
+11   Kenya  50.992 1287.5147
+12   Kenya  54.110 1463.2493
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is <code>%&gt;%</code></h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In the previous code we saw that we used <code>%&gt;%</code> in the command you can think of this as saying <strong><em>then</em></strong>.</li>
+<li>For example:</li>
+</ul>
+
+<pre><code class="r">gapminder %&gt;%
+    select(country, lifeExp, gdpPercap) %&gt;%
+    filter(country==&quot;Kenya&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What Does this Mean?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This translates to:
+
+<ul>
+<li>Take Gapminder <strong><em>then</em></strong> select these columns select(country, lifeExp, gdpPercap) <strong><em>then</em></strong> filter out so we only keep Kenya</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Why Chain?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We still might ask why we would want to do this. </li>
+<li>Chaining increases readability significantly when there are many commands. </li>
+<li>With many packages we can replace the need to perform nested arguments. </li>
+<li>The chaining operator is automatically imported from the <a href="https://github.com/smbache/magrittr">magrittr</a> package. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>User Defined Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s say that we wish to find the Euclidean distance between two vectors say, <code>x1</code> and <code>x2</code>. </li>
+<li>We could use the math formula:</li>
+</ul>
+
+<p>\[\sqrt{sum(x1-x2)^2}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>User Defined Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In the nested manner this would be:</li>
+</ul>
+
+<pre><code class="r">x1 &lt;- 1:5; x2 &lt;- 2:6
+sqrt(sum((x1-x2)^2))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>User Defined Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>However, if we chain this we can see how we would perform this mathematically. </li>
+</ul>
+
+<pre><code class="r"># chaining method
+(x1-x2)^2 %&gt;% sum() %&gt;% sqrt()
+</code></pre>
+
+<ul>
+<li>If we did it by hand we would perform elementwise subtraction of <code>x2</code> from <code>x1</code> <strong><em>then</em></strong> we would sum those elementwise values <strong><em>then</em></strong> we would take the square root of the sum. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>User Defined Function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># chaining method
+(x1-x2)^2 %&gt;% sum() %&gt;% sqrt()
+</code></pre>
+
+<pre><code>## [1] 2.236068
+</code></pre>
+
+<ul>
+<li>Many of us have been performing calculations by this type of method for years, so that chaining really is more natural for us. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summarizing Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>As you have seen in your own work, being able to summarize information is crucial. </li>
+<li>We need to be able to take out data and summarize it as well. </li>
+<li>We will consider doing this using the <code>summarise()</code> function. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summarizing Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will begin with a simple summary:
+
+<ol>
+<li>Create a table grouped by <code>gender</code>.</li>
+<li>Summarize each group by taking mean of <code>appearances</code>.</li>
+</ol></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Renaming Variable</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>First we need to correct the data and rename the variable <code>sex</code> to <code>gender</code>. </li>
+</ul>
+
+<pre><code class="r">library(fivethirtyeight)
+comic_characters &lt;- comic_characters %&gt;%
+                      mutate(gender=sex)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summarizing Data Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">comic_characters %&gt;%
+    group_by(gender) %&gt;%
+    summarise(avg_appear = mean(appearances, na.rm=TRUE))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summarizing Data Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 7 x 2
+##   gender                 avg_appear
+##   &lt;chr&gt;                       &lt;dbl&gt;
+## 1 Agender Characters          19.7 
+## 2 Female Characters           21.0 
+## 3 Genderfluid Characters     282.  
+## 4 Genderless Characters       12.8 
+## 5 Male Characters             19.0 
+## 6 Transgender Characters       4   
+## 7 &lt;NA&gt;                         5.13
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Another Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Lets say that we would like to have more than just the averages but we wish to have the minimum and the maximum year of entry by gender:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;%
+    group_by(gender) %&gt;%
+    summarise_each(funs(min(., na.rm=TRUE), max(., na.rm=TRUE)), year)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Another Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 7 x 3
+##   gender                   min   max
+##   &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Agender Characters      1964  2013
+## 2 Female Characters       1936  2013
+## 3 Genderfluid Characters  1949  2005
+## 4 Genderless Characters   1961  2007
+## 5 Male Characters         1935  2013
+## 6 Transgender Characters  2009  2009
+## 7 &lt;NA&gt;                    1939  2013
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>On Your Own: RStudio Practice</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The following is a new function:
+
+<ul>
+<li>Helper function <code>n()</code> counts the number of rows in a group</li>
+</ul></li>
+<li>Then for each year and continent:
+
+<ul>
+<li>count total lifeExp</li>
+<li>Sort in descending order. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>On Your Own: RStudio Practice</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>Your answer should look like:</p>
+
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year lifeExp_count
+##    &lt;fct&gt;     &lt;int&gt;         &lt;int&gt;
+##  1 Africa     1952            52
+##  2 Africa     1957            52
+##  3 Africa     1962            52
+##  4 Africa     1967            52
+##  5 Africa     1972            52
+##  6 Africa     1977            52
+##  7 Africa     1982            52
+##  8 Africa     1987            52
+##  9 Africa     1992            52
+## 10 Africa     1997            52
+## # ... with 50 more rows
+</code></pre>
+
+<p>We could also have used what is called the  <code>tally()</code> function:</p>
+
+<pre><code class="r">gapminder %&gt;%
+    group_by(country, year) %&gt;%
+    tally(sort = TRUE)
+</code></pre>
+
+<pre><code>## # A tibble: 1,704 x 3
+## # Groups:   country [142]
+##    country      year     n
+##    &lt;fct&gt;       &lt;int&gt; &lt;int&gt;
+##  1 Afghanistan  1952     1
+##  2 Afghanistan  1957     1
+##  3 Afghanistan  1962     1
+##  4 Afghanistan  1967     1
+##  5 Afghanistan  1972     1
+##  6 Afghanistan  1977     1
+##  7 Afghanistan  1982     1
+##  8 Afghanistan  1987     1
+##  9 Afghanistan  1992     1
+## 10 Afghanistan  1997     1
+## # ... with 1,694 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Further Summaries</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have so far discussed how one could find the basic number summaries:
+
+<ul>
+<li>mean</li>
+<li>median</li>
+<li>standard deviation</li>
+<li>variance</li>
+<li>minimum </li>
+<li>maximum</li>
+</ul></li>
+<li>However there are many more operations that you may wish to do for summarizing data. </li>
+<li>In fact many of the following examples are excellent choices for working with categorical data which does not always make sense to do the above summaries for. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Further Summaries</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will consider:
+
+<ol>
+<li>Grouping and Counting</li>
+<li>Grouping, Counting and Sorting</li>
+<li>Other Groupings</li>
+<li>Counting Groups</li>
+</ol></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping and Counting</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have seen the functions <code>tally()</code> and <code>count()</code>. </li>
+<li>Both of these can be used for grouping and counting. </li>
+<li>They also are very concise in how they are called. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping and Counting</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>For example if we wished to know how many characters there were by year, we would use <code>tally()</code> in this manner: </li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;%
+  group_by(year) %&gt;% 
+  tally()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping and Counting</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Where as we could do the same thing with <code>count()</code></li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% 
+  count(year)
+</code></pre>
+
+<p>*Notice: <code>count()</code> allowed for month to be called inside of it, removing the need for the <code>group_by()</code> function. </p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping, counting and sorting.</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Both <code>tally()</code> and <code>count()</code> have an argument called <code>sort()</code>. </li>
+<li>This allows you to go one step further and group by, count and sort at the same time. </li>
+<li>For <code>tally()</code> this would be:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% 
+    group_by(year) %&gt;% 
+    tally(sort=TRUE)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping, counting and sorting: <code>tally()</code></h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 80 x 2
+##     year     n
+##    &lt;int&gt; &lt;int&gt;
+##  1    NA   884
+##  2  1993   763
+##  3  1994   715
+##  4  2006   684
+##  5  1992   633
+##  6  2010   603
+##  7  1988   590
+##  8  1989   587
+##  9  2008   571
+## 10  1990   532
+## # ... with 70 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping with other functions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can also sum over other values rather than just counting the rows like the above examples. </li>
+<li>For example let us say we were interested in knowing the total appearances for characters in a given gender and publisher.</li>
+<li>We could do this with the <code>summarise()</code> function, <code>tally()</code> function or the <code>count()</code> function:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% 
+  group_by(gender, publisher) %&gt;% 
+  summarise(total_app = sum(appearances))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping with other functions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 10 x 3
+## # Groups:   gender [?]
+##    gender                 publisher total_app
+##    &lt;chr&gt;                  &lt;chr&gt;         &lt;int&gt;
+##  1 Agender Characters     Marvel           NA
+##  2 Female Characters      DC               NA
+##  3 Female Characters      Marvel           NA
+##  4 Genderfluid Characters Marvel          565
+##  5 Genderless Characters  DC               NA
+##  6 Male Characters        DC               NA
+##  7 Male Characters        Marvel           NA
+##  8 Transgender Characters DC                4
+##  9 &lt;NA&gt;                   DC               NA
+## 10 &lt;NA&gt;                   Marvel           NA
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping with other functions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>For  <code>tally()</code> we could do:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% 
+  group_by(gender, publisher) %&gt;% 
+  tally(wt = appearances)
+</code></pre>
+
+<p><em>Note: in <code>tally()</code> the <code>wt</code> stands for weight and allows you to weight the sum based on the appearances</em>. </p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Grouping with other functions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>With the <code>count()</code> function we also use <code>wt</code>:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% count(gender, publisher, wt = appearances)
+</code></pre>
+
+<pre><code>## # A tibble: 10 x 3
+##    gender                 publisher      n
+##    &lt;chr&gt;                  &lt;chr&gt;      &lt;int&gt;
+##  1 Agender Characters     Marvel       826
+##  2 Female Characters      DC         42271
+##  3 Female Characters      Marvel     73005
+##  4 Genderfluid Characters Marvel       565
+##  5 Genderless Characters  DC           244
+##  6 Male Characters        DC        110911
+##  7 Male Characters        Marvel    182601
+##  8 Transgender Characters DC             4
+##  9 &lt;NA&gt;                   DC          1102
+## 10 &lt;NA&gt;                   Marvel      3273
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting Groups</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We may want to know how large our groups are. To do this we can use the following functions:
+
+<ul>
+<li><code>group_size()</code> is a function that returns counts of group. </li>
+<li><code>n_groups()</code> returns the number of groups</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting Groups</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>So if wanted to count the number of characters by hair color, we could group by hair color and find the groups size using <code>group_size()</code>:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% 
+  group_by(hair) %&gt;% 
+  group_size()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting Groups</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##  [1]   78  838 5329 2326   97    1 3487    1   13  159  688    6    5 1176
+## [15]    3   64   42    2   79 1081    6    3   19   75   32    4 1100   20
+## [29] 6538
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting Groups</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If we just wished to know how many years were represented in our data we could use the <code>n_groups()</code> function:</li>
+</ul>
+
+<pre><code class="r">comic_characters %&gt;% 
+  group_by(year) %&gt;% 
+  n_groups()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting Groups</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## [1] 80
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Summarizing Data'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Piping or Chaining'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Piping or Chaining'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Nesting vs Chaining'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Nesting vs Chaining'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Breaking Down the Code'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Breaking Down the Code'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='What is <code>%&gt;%</code>'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='What Does this Mean?'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Why Chain?'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='User Defined Function'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='User Defined Function'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='User Defined Function'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='User Defined Function'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Summarizing Data'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Summarizing Data'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Renaming Variable'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Summarizing Data Example'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Summarizing Data Example'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Another Example'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Another Example'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='On Your Own: RStudio Practice'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='On Your Own: RStudio Practice'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Further Summaries'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Further Summaries'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Grouping and Counting'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Grouping and Counting'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Grouping and Counting'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Grouping, counting and sorting.'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Grouping, counting and sorting: <code>tally()</code>'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Grouping with other functions'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Grouping with other functions'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='NA'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Grouping with other functions'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Grouping with other functions'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Counting Groups'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Counting Groups'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Counting Groups'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Counting Groups'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Counting Groups'>
+         40
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

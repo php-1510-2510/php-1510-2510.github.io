@@ -1,0 +1,629 @@
+---
+title       : Exploratory Data Analysis
+author      : Adam J Sullivan 
+job         : Assistant Professor of Biostatistics
+work        : Brown University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js # {highlight.js, prettify, highlight}
+hitheme     :  github     # 
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3, libraries/leaflet, libraries/dygraphs]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : publichealthlogo.png
+biglogo     : publichealthlogo.png
+assets      : {assets: ../../assets}
+---  .segue bg:grey
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(cache=FALSE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+```
+
+```{r, echo=F}
+require(tidyverse)
+require(gapminder)
+```
+
+# Exploratory Data Analysis
+
+--- .class #id
+
+## Exploratory Data Analysis
+
+- We have already started the basic steps to exploratory data analysis. 
+- So far we have:
+    - Looked at Data
+    - Summarized characteristics
+    - Graphed relationships and distributions. 
+
+
+--- .class #id
+
+## Exploratory Data Analysis
+
+- First step
+- Know your dataset. 
+
+ 
+
+--- .class #id
+
+## Checkout the Data
+
+```{R, eval=F}
+library(dplyr)
+library(ggplot2)
+glimpse(diamonds)
+str(diamonds)
+```
+
+--- .class #id
+
+## `glimpse()` Function
+
+```{R, echo=F}
+library(ggplot2)
+glimpse(diamonds)
+```
+
+
+--- .class #id
+
+## `str()` Function
+
+```{R, echo=F}
+str(diamonds)
+```
+
+--- .class #id
+
+## Data Look
+
+- Using the `glimpse()` function and `str()` function. 
+- This shows you the variables, what type they are and some information on values. 
+- This is the first step you take with any dataset. 
+
+--- .class #id
+
+## Exploring the Dataset
+
+- The rest of exploring comes from summaries and visualizations. 
+- We tend to use different statistical summaries and visualizations depending on the type of data:
+    - Categorical (Discrete)
+    - Continuous
+
+--- .class #id
+
+
+## Descriptive Statistics
+
+| Categorical | Continuous| 
+| ----- | ----- | 
+| Frequency | Mean |
+| Proportion | Median |
+| | Variance | 
+| | Standard Deviation | 
+| | Minimum | 
+| | Maximum | 
+| | Percentiles | 
+| | etc. | 
+
+--- .class #id
+
+## Graphical Methods
+
+| Categorical | Continuous| 
+| ----- | ----- | 
+| Bar Plots | Histograms | 
+| | Boxplots | 
+| | etc. |
+
+
+--- .class #id
+
+## Again with all of them?
+
+- In the class on summarizing data we actually showed how to do these counts and basic stats. 
+- In the class on data visualizations we showed how to make graphs. 
+- What should we be doing for EDA? 
+
+--- .class #id
+
+## Purpose of EDA
+
+- For now we will consider the purpose of EDA to be:
+    - Visualizing the distribution.
+    - Understanding the center. 
+    - Understanding the variation.
+    - Relationships of variables. 
+    
+
+
+--- .class #id
+
+## Purpose of EDA
+
+- We will use EDA to:
+    - Help us explore interesting features of the data. 
+    - Generate more questions about data. 
+    - Learn what models might be possible. 
+    - Connect data to mathematical models. 
+- There is **no right way** to do EDA but it is crucial to begin with this. 
+
+--- .segue bg:grey
+
+# EDA
+
+--- .class #id
+
+## Exploring Distributions
+
+- We learned about the story of different distributions. 
+- We also need to know what data looks like to help us know if the data follows that story or a similar one. 
+- We will do this with some basic graphs. 
+
+--- .class #id
+
+## Distribution of Categorical
+
+```{r, eval=F}
+library(ggplot2)
+ggplot(data = diamonds) + 
+      geom_bar(aes(x=cut))
+```
+
+
+--- .class #id
+
+## Distribution of Categorical
+
+```{r eda-barplot, echo=F}
+library(ggplot2)
+ggplot(data = diamonds) + 
+      geom_bar(aes(x=cut))
+```
+
+
+--- .class #id
+
+## Counts with R
+
+```{r}
+diamonds %>%
+    count(cut)
+```
+
+
+--- .class #id
+
+## What do we see? 
+
+- We can see that this not even close to a uniform distribution. 
+- It appear to increase with quality. 
+
+--- .class #id
+
+
+## Distribution of Continuous
+
+- We can do similar plots for continuous values. 
+
+
+```{r, eval=F}
+ggplot(data = diamonds) +
+  geom_histogram(aes(x = carat), binwidth = 0.5)
+```
+
+
+--- .class #id
+
+
+## Distribution of Continuous
+
+ 
+
+
+```{r eda-hist, echo=F}
+ggplot(data = diamonds) +
+  geom_histogram(aes(x = carat), binwidth = 0.5)
+```
+
+--- .class #id
+
+## Count in R
+
+```{r}
+diamonds %>% 
+  count(cut_width(carat, 0.5))
+```
+
+--- .class #id
+
+## What do we see? 
+
+- There are the most in 0.25 to 0.75 carat. 
+- We should try other bin sizes to see if there are differences. 
+
+--- .class #id
+
+## Bin size 0.1
+
+```{r eda-hist-2, echo=F}
+ggplot(data = diamonds) +
+  geom_histogram(aes(x = carat), binwidth = 0.1)
+```
+
+
+--- .class #id
+
+## Hardly any beyond 3
+
+```{r}
+diamonds2 <- diamonds %>%
+                  filter(carat<3)
+```
+
+
+--- .class #id
+
+## Plotting Again
+
+
+```{r eda-hist-3, echo=F}
+ggplot(data = diamonds2) +
+  geom_histogram(aes(x = carat), binwidth = 0.1)
+```
+
+
+--- .class #id
+
+## EDA Questions
+
+- EDA leads us to more questions as we explore. 
+    - Which values are most common? Why?
+    - Which value are rare? Does this make sense?
+    - Any patterns in the data? 
+
+--- .class #id
+
+## Bin width 0.01
+
+```{R eda-hist-4, echo=F}
+ggplot(data = diamonds2, aes(x = carat)) +
+  geom_histogram(binwidth = 0.01)
+```
+
+--- .class #id
+
+## Questions raised
+
+- Why are there more whole number than fractional carats? 
+- Why are there more diamonds slightly to the right and left of each peak? 
+- Why are there none larger than 3? 
+
+
+--- .class #id
+
+## Clusters
+
+- How are the observations within each cluster similar to each other?
+- How are the observations in separate clusters different from each other?
+- How can you explain or describe the clusters?
+- Why might the appearance of clusters be misleading?
+
+--- .class #id
+
+## Variation
+
+- Variance: `r var(diamonds2$carat)`
+- Standard Deviation: `r sd(diamonds2$carat)`
+- Just the number doesn't tell the whole story. 
+- It doesn't show us the groupings or relationships. 
+- We need to understand how a distribution looks and varies within itself. 
+
+
+---  .segue bg:grey
+
+# Relationships Between Variables
+
+
+--- .class #id
+
+## Relationships Between Variables
+
+- We will explore how variables covary together by considering the following:
+    - Categorical and Continuous Variables
+    - Two Categorical Variables
+    - Two Continuous Variables
+
+   
+
+---  .segue bg:grey
+
+# Categorical and Continuous Variables
+
+
+--- .class #id
+
+## Box plots
+
+![R4DS](https://d33wubrfki0l68.cloudfront.net/153b9af53b33918353fda9b691ded68cd7f62f51/5b616/images/eda-boxplot.png)
+
+
+
+--- .class #id
+
+## Boxplot
+
+```{r, eval=F}
+ggplot(data = diamonds, aes(x = cut, y = price)) +
+  geom_boxplot()
+```
+
+--- .class #id
+
+## Boxplot
+
+```{r boxplot-1, echo=F}
+ggplot(data = diamonds, aes(x = cut, y = price)) +
+  geom_boxplot()
+```
+
+--- .class #id
+
+## Boxplots: What we see
+
+- Display a lot of information.
+- We get a sense of the center by the median line. 
+- We get a sense of variation based on the width of the box. 
+- We get a sense of outliers by the points that are graphed. 
+
+--- .class #id
+
+## More Boxplots
+
+```{R, eval=F}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot()
+```
+
+--- .class #id
+
+## More Boxplots
+
+```{R boxplot-3, eval=F}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot()
+```
+
+--- .class #id
+
+## Categories
+
+- `cut` had a natural ordering. 
+- `class` does not, so we could order in our own fashion. 
+
+--- .class #id
+
+## Re-ordering
+
+```{r, eval=F}
+ggplot(data = mpg) +
+  geom_boxplot( aes(x = reorder(class, hwy, FUN = median), y = hwy))
+```
+
+
+--- .class #id
+
+## Re-ordering
+
+```{r boxplot-4, echo=F}
+ggplot(data = mpg) +
+  geom_boxplot( aes(x = reorder(class, hwy, FUN = median), y = hwy))
+```
+
+
+--- .class #id
+
+## Flipping the Coordinates
+
+```{r, eval=F}
+ggplot(data = mpg) +
+  geom_boxplot(aes(x = reorder(class, hwy, FUN = median), y = hwy)) +
+  coord_flip()
+```
+
+
+--- .class #id
+
+## Flipping the Coordinates
+
+```{r boxplot-5, echo=F}
+ggplot(data = mpg) +
+  geom_boxplot(aes(x = reorder(class, hwy, FUN = median), y = hwy)) +
+  coord_flip()
+```
+
+
+
+---  .segue bg:grey
+
+# Two Categorical Variables
+
+--- .class #id
+
+## Count Plots
+
+```{r, eval=F}
+ggplot(data = diamonds) +
+  geom_count(aes(x = cut, y = color))
+```
+
+
+
+--- .class #id
+
+## Count Plots
+
+```{r count, echo=F}
+ggplot(data = diamonds) +
+  geom_count(aes(x = cut, y = color))
+```
+
+--- .class #id
+
+## Points Counted
+
+```{r}
+diamonds %>%
+    count(color, cut)
+```
+
+--- .class #id
+
+## Color Plots
+
+```{r, eval=F}
+diamonds %>% 
+  count(color, cut) %>%  
+  ggplot(aes(x = color, y = cut)) +
+    geom_tile(aes(fill = n))
+```
+
+
+--- .class #id
+
+## Color Plots
+
+```{r color, echo=F}
+diamonds %>% 
+  count(color, cut) %>%  
+  ggplot(aes(x = color, y = cut)) +
+    geom_tile(aes(fill = n))
+```
+
+
+
+---  .segue bg:grey
+
+# Two Categorical Variables
+
+
+--- .class #id
+
+## Scatterplots
+
+```{r, eval=F}
+ggplot(data = diamonds) +
+  geom_point(aes(x = carat, y = price))
+```
+
+--- .class #id
+
+## Scatterplots
+
+```{r scatter-1, echo=F}
+ggplot(data = diamonds) +
+  geom_point(aes(x = carat, y = price))
+```
+
+--- .class #id
+
+## What Can we See?
+
+- There appears to be a relationship between price and carat. 
+- The relationship is not exactly linear. 
+- There are so many points it is hard to tell. 
+
+--- .class #id
+
+## Transparent Scatterplot
+
+```{r, eval=F}
+ggplot(data = diamonds) + 
+  geom_point(aes(x = carat, y = price), alpha = 1 / 100)
+```
+
+
+
+--- .class #id
+
+## Transparent Scatterplot
+
+```{r scatter-2, echo=F}
+ggplot(data = diamonds) + 
+  geom_point(aes(x = carat, y = price), alpha = 1 / 100)
+```
+
+
+--- .class #id
+
+## Binning Observations
+
+```{r, eval=F}
+ggplot(data = diamonds2) +
+  geom_bin2d( aes(x = carat, y = price))
+```
+
+
+--- .class #id 
+
+## Binning Observations
+
+```{r scatter-color, echo=F}
+ggplot(data = diamonds2) +
+  geom_bin2d(aes(x = carat, y = price))
+```
+
+
+--- .class #id
+
+## Turning to Categorical
+
+```{R, eval=F}
+ggplot(data = diamonds2, aes(x = carat, y = price)) + 
+  geom_boxplot(aes(group = cut_width(carat, 0.1)), varwidth=TRUE)
+```
+
+
+--- .class #id
+
+## Turning to Categorical
+
+```{R scatter-binned, echo=F}
+ggplot(data = diamonds2, aes(x = carat, y = price)) + 
+  geom_boxplot(aes(group = cut_width(carat, 0.1)), varwidth=TRUE)
+```
+
+--- .class #id
+
+## Another binning
+
+```{r, eval=F}
+ggplot(data = diamonds2, aes(x = carat, y = price)) + 
+  geom_boxplot(aes(group = cut_number(carat, 20))   , varwidth=TRUE)
+```
+
+
+--- .class #id
+
+## Another binning
+
+```{r scatter-binned-2, echo=F}
+ggplot(data = diamonds2,  aes(x = carat, y = price)) + 
+  geom_boxplot(aes(group = cut_number(carat, 20)))
+```
+
+
+--- .class #id
+
+## Differences
+
+- `cut(x, width)` divides the `x` axis variable by the `width`. 
+- `varwidth` increases the width of the boxplot based on the number of points contained in the summary. 
+- `cutnumber` cuts the data up into a pre-specified number of points. 
+

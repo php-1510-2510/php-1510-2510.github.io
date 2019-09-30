@@ -248,7 +248,7 @@ ggplot(data=NULL, aes(x=n)) +
 
 ## Plot Shape
 
-```{r, echo=FALSE}
+```{r bdays-uniform, echo=FALSE}
 library(ggplot2)
 ggplot(data=NULL, aes(x=n)) + 
     geom_bar(fill="red") + 
@@ -278,7 +278,7 @@ ggplot(data=NULL, aes(x=n)) +
 
 
 
-```{r, echo=FALSE}
+```{r bdays-uniform-probs, echo=FALSE}
 
 ggplot(data=NULL, aes(x=n)) + 
     geom_bar(aes(y=..count../sum(..count..)), fill="red") + 
@@ -295,7 +295,7 @@ ggplot(data=NULL, aes(x=n)) +
 - It contains a count of all the births in the US on each day of the year from 1994 to 2014. 
 - We will first explore the probability of this. 
 
-```{r, echo=F, message=F}
+```{r bdays-time, echo=F, message=F}
 library(tidyverse)
 library(lubridate)
 library(fivethirtyeight)
@@ -372,7 +372,7 @@ n2 <- replicate(T, bday_real())
 
 ## Plot Shape
 
-```{r, echo=FALSE}
+```{r real-bdays , echo=FALSE}
 
 ggplot(data=NULL, aes(x=n2)) + 
     geom_bar(fill="gray") + 
@@ -387,7 +387,7 @@ ggplot(data=NULL, aes(x=n2)) +
 ## Plot Both Together
 
 
-```{r, echo=FALSE}
+```{r both-together, echo=FALSE}
 
 ggplot(data=NULL) + 
     geom_bar(fill="red", aes(x=n)) + 

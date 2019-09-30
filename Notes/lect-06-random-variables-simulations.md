@@ -266,7 +266,7 @@ ggplot(data=NULL, aes(x=n)) +
 
 ## Plot Shape
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk bdays-uniform](figure/bdays-uniform-1.png)
 
 
 --- .class #id
@@ -290,7 +290,7 @@ ggplot(data=NULL, aes(x=n)) +
 
 
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk bdays-uniform-probs](figure/bdays-uniform-probs-1.png)
 
 --- .class #id
 
@@ -301,7 +301,7 @@ ggplot(data=NULL, aes(x=n)) +
 - It contains a count of all the births in the US on each day of the year from 1994 to 2014. 
 - We will first explore the probability of this. 
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
+![plot of chunk bdays-time](figure/bdays-time-1.png)
 
 
 
@@ -355,7 +355,7 @@ n2 <- replicate(T, bday_real())
 
 ## Plot Shape
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+![plot of chunk real-bdays ](figure/real-bdays -1.png)
 
 
 
@@ -364,7 +364,7 @@ n2 <- replicate(T, bday_real())
 ## Plot Both Together
 
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+![plot of chunk both-together](figure/both-together-1.png)
 
 --- .class #id
 
