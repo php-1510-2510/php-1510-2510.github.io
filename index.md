@@ -26,7 +26,7 @@ This course is designed for graduate and advanced undergraduate students who wil
 |:-----------|:--------------------|:-------------------|
 |TA         | Camilla Calmasini | [Contact through slack](https://php-1510-2510.slack.com)
 |:-----------|:--------------------|:-------------------|
-|TA         | Alyson Singleton   | [Contact through slack](https://php-1510-2510.slack.com)
+|TA         | My Vu   | [Contact through slack](https://php-1510-2510.slack.com)
 |------------+--------------------+-------------------|
 
 
@@ -57,7 +57,7 @@ Below is a quick table for when office hours will be held regularly. [Check This
 |:-----------|:--------|:-----------|
 | Office Hours |  |   |
 |:-----------|:--------|:-----------|
-| |  SPH Room 347 | Tuesdays 2-3pm | 
+| |  SPH Room 754 | Tuesdays 2-3pm | 
 |  |  SPH Grad Student Library  | Tuesdays 3-5pm | 
 |  |  SPH Room 241 | Wednesdays 4-5pm | 
 |  |  SPH Room 251 | Thursdays 3-6pm | 
