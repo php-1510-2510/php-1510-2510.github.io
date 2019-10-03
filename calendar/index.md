@@ -17,6 +17,16 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
+<table><thead>
+<tr>
+<th align="left">Week</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Lecture Resources</th>
+<th align="left">Readings</th>
+<th align="left">HW Assigned</th>
+<th align="left">HW Due</th>
+</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -134,6 +144,15 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"><a href="../homework/pages/hw1/">HW 1 DUE</a></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Lab 2:</td>
+<td align="left"><a href="../labs/lab2.Rmd">Lab 2 - rmd</a> <a href="../labs.lab2-sol.html">Lab 2- Solutions</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left">Week 6</td>

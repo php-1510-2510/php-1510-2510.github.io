@@ -218,35 +218,3 @@ flights %>%
   d. Does your rewritten command give the same results? 
   
 
-
-
-14. Consider the function below
-
-    ```
-    hourly_delay <- filter(
-              summarise(
-                  group_by(
-                      filter(
-                        flights, 
-                        !is.na(dep_delay)
-                        ),
-                        month, day, year, hour
-                        ),
-                        delay=mean(dep_delay),
-                        n=n()
-                        ),
-                        n>10
-                        )
-                                          
-    ```
-
-
-  a. What are some problems with this function? 
-  b. How easy is it to follow the logic of this? 
-  c. Rewrite this using piping to make it more understandable. 
-  d. Does your rewritten command give the same results? 
-  
-
-
-
-## Consider how to join information from the other datasets in the package with the current information. Is there a way to tell if weather affected the departure  time? Ask yourself other questions about this data and then answer them below. 

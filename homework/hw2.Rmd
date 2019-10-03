@@ -3,9 +3,9 @@ title: "Homework 2"
 author: "Your Name"
 date: "Due: October 12, 2019 at 11:59pm"
 output:
-  pdf_document: default
-  html_document: default
   word_document: default
+  html_document: default
+  pdf_document: default
 ---
 
 
@@ -85,5 +85,31 @@ Use **dplyr** functions to address the following questions. For some you can jus
 
 11. Which combinations of continent (besides Asia) and year have the highest average population across all countries? *your output should include all results sorted by highest average population*. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. 
 
+12.  Consider the function below
+
+    ```
+    hourly_delay <- filter(
+              summarise(
+                  group_by(
+                      filter(
+                        flights, 
+                        !is.na(dep_delay)
+                        ),
+                        month, day, year, hour
+                        ),
+                        delay=mean(dep_delay),
+                        n=n()
+                        ),
+                        n>10
+                        )
+                                          
+    ```
+
+
+  a. What are some problems with this function? 
+  b. How easy is it to follow the logic of this? 
+  c. Rewrite this using piping to make it more understandable. 
+  d. Does your rewritten command give the same results? 
+  
 
 
