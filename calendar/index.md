@@ -149,7 +149,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Lab 2:</td>
-<td align="left"><a href="../labs/lab2.Rmd">Lab 2 - rmd</a> <a href="../labs.lab2-sol.html">Lab 2- Solutions</a></td>
+<td align="left"><a href="../labs/lab2.Rmd">Lab 2 - rmd</a> <a href="../labs/lab2-sol.html">Lab 2- Solutions</a></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
