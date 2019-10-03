@@ -1,0 +1,89 @@
+---
+title: "Homework 2"
+author: "Your Name"
+date: "Due: October 12, 2019 at 11:59pm"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+
+
+<style type="text/css">
+.table {
+
+    width: 80%;
+    margin-left:10%; 
+    margin-right:10%;
+}
+</style>
+
+### Homework Policies:
+
+*You are encouraged to discuss problem sets with your fellow students (and with the Course Instructor of course), but you must write your own final answers, in your own words. Solutions prepared ``in committee'' or by copying someone else's paper are not acceptable.  This violates the Brown standards of plagiarism, and you will not have the benefit of having thought about and worked the problem when you take the examinations.*
+
+*All answers must be in complete sentences and all graphs must be properly labeled.*
+
+***In this homework you will be required to use .Rmd to do it., you can then knit to a word document of PDF to turn it in.***
+
+***For the PDF Version of this assignment: [PDF](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw2.pdf)***
+
+***For the R Markdown Version of this assignment: [RMarkdown](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw2.Rmd)***
+
+### Turning the Homework in:
+
+*Please turn the homework in through canvas. You may use a pdf, html or word doc file to turn the assignment in.*
+
+[PHP 1510 Assignment Link](https://canvas.brown.edu/courses/1078851/assignments/7744738)
+
+[PHP 2510 Assignment Link](https://canvas.brown.edu/courses/1078852/assignments/7744739)
+
+
+## The Data
+
+
+
+We will work with the dataset called [gapminder](https://github.com/jennybc/gapminder), this is a cleaned up version from [Gapminder Data](http://www.gapminder.org/data/). Gapminder contains a lot of great data on all of the nations of the world. We first need to install the gapminder package in R. 
+
+```
+install.packages("gapminder")
+```
+
+
+
+```
+library(dplyr)
+library(gapminder)
+gapminder
+```
+
+
+
+### Problems for Everyone
+
+
+Use **dplyr** functions to address the following questions. For some you can just use arrange to print your solutions to the top. 
+
+1. How many unique countries are represented per continent?
+2. Which European nation had the lowest GDP per capita in 1997? 
+3. According to the data available, what was the average life expectancy across each continent in the 1980s?
+4. What 5 countries have the highest total GDP over all years combined?
+5. What countries and years had life expectancies of _at least_ 80 years? *Only output the columns of interest: country, life expectancy and year (in that order).*
+6. Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data? 
+7. Follow the steps below to create a plot about life expectancy.  
+    a. Create a plot of life expectancy over time where each country has its own line (`group=country`).  
+    b. Add a layer to this plot where you use `geom_smooth(method="lm")`
+    c. Add a layer to this plot where you use `geom_smooth(method="lm")` but it is colored by continent. 
+8. Interpret the graph you created in 7. 
+    a. What types of patterns are you seeing? 
+    b. Do all countries follow this pattern? 
+    c. etc...
+9. Create boxplots of life expectancy by continent. Add a layer using `geom_jitter()` to see how the points fall in these boxplots. **Hint: using `alpha=0.04` inside the jitter will lighten the points*
+10. Interpret the plot you made in 9. 
+
+## PHP 2560 Only
+
+11. Which combinations of continent (besides Asia) and year have the highest average population across all countries? *your output should include all results sorted by highest average population*. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. 
+
+
+

@@ -459,3 +459,127 @@ ggplot(data=comic_characters, aes(x=log_app)) +
 
 
 ![plot of chunk ggplot-hist](figure/ggplot-hist-1.png)
+
+
+
+--- .class #id 
+
+## More Complicated
+
+- Let's say that we wish to see how the number of characters introduced each year change by:
+      - year
+      - gender
+      - publisher
+- We could do this with dplyr and ggplot. 
+
+--- .class #id
+
+## Counting
+
+- We first need to count this:
+  
+
+
+
+```r
+gender_year <- comic_characters %>%
+    group_by(year, gender, publisher) %>%
+    tally()
+```
+
+--- .class #id
+
+## What do we have?
+
+
+```r
+gender_year
+```
+
+```
+## # A tibble: 457 x 4
+## # Groups:   year, gender [?]
+##     year gender            publisher     n
+##    <int> <chr>             <chr>     <int>
+##  1  1935 Male Characters   DC            1
+##  2  1936 Female Characters DC            2
+##  3  1936 Male Characters   DC            7
+##  4  1937 Female Characters DC            1
+##  5  1937 Male Characters   DC            3
+##  6  1938 Female Characters DC            1
+##  7  1938 Male Characters   DC            9
+##  8  1939 Female Characters DC            5
+##  9  1939 Female Characters Marvel       10
+## 10  1939 Male Characters   DC           13
+## # ... with 447 more rows
+```
+
+--- .class #id
+
+## The plot: All publishers together
+
+
+```r
+ggplot(gender_year, aes(x=year, y=n, color=gender)) + 
+      geom_line()
+```
+
+
+--- .class #id
+
+## The plot: All publishers together
+
+![plot of chunk gender-pub](figure/gender-pub-1.png)
+
+
+--- .class #id
+
+## Graph by Publisher
+
+
+
+```r
+ggplot(gender_year, aes(x=year, y=n, color=gender)) + 
+      geom_line() + 
+      facet_wrap(~publisher)
+```
+
+
+--- .class #id
+
+## Graph by Publisher
+
+
+![plot of chunk gender-pub-sep](figure/gender-pub-sep-1.png)
+
+--- .class #id
+
+## What can we see?
+
+- Hard to see genders other than male or female.
+- Marvel shows another category but that is `NA`. 
+- We need to remove male and female in order to see more distinction in other genders. 
+
+--- .class #id
+
+## Removing certain Genders
+
+
+```r
+gender_year_subset <- comic_characters %>%
+    group_by(year, gender, publisher) %>%
+    filter(gender != "Female Characters" & gender != "Male Characters") %>%
+    tally()
+
+ggplot(gender_year_subset, aes(x=year, y=n, color=gender)) + 
+      geom_line() + 
+      facet_wrap(~publisher)
+```
+
+
+--- .class #id
+
+## Removing certain Genders
+
+![plot of chunk gender-removed](figure/gender-removed-1.png)
+

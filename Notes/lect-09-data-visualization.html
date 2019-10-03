@@ -959,6 +959,237 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>More Complicated</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s say that we wish to see how the number of characters introduced each year change by:
+
+<ul>
+<li>year</li>
+<li>gender</li>
+<li>publisher</li>
+</ul></li>
+<li>We could do this with dplyr and ggplot. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Counting</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We first need to count this:</li>
+</ul>
+
+<pre><code class="r">gender_year &lt;- comic_characters %&gt;%
+    group_by(year, gender, publisher) %&gt;%
+    tally()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we have?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">gender_year
+</code></pre>
+
+<pre><code>## # A tibble: 457 x 4
+## # Groups:   year, gender [?]
+##     year gender            publisher     n
+##    &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;     &lt;int&gt;
+##  1  1935 Male Characters   DC            1
+##  2  1936 Female Characters DC            2
+##  3  1936 Male Characters   DC            7
+##  4  1937 Female Characters DC            1
+##  5  1937 Male Characters   DC            3
+##  6  1938 Female Characters DC            1
+##  7  1938 Male Characters   DC            9
+##  8  1939 Female Characters DC            5
+##  9  1939 Female Characters Marvel       10
+## 10  1939 Male Characters   DC           13
+## # ... with 447 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The plot: All publishers together</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(gender_year, aes(x=year, y=n, color=gender)) + 
+      geom_line()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The plot: All publishers together</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gender-pub-1.png" alt="plot of chunk gender-pub"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Graph by Publisher</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(gender_year, aes(x=year, y=n, color=gender)) + 
+      geom_line() + 
+      facet_wrap(~publisher)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Graph by Publisher</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gender-pub-sep-1.png" alt="plot of chunk gender-pub-sep"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Hard to see genders other than male or female.</li>
+<li>Marvel shows another category but that is <code>NA</code>. </li>
+<li>We need to remove male and female in order to see more distinction in other genders. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Removing certain Genders</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">gender_year_subset &lt;- comic_characters %&gt;%
+    group_by(year, gender, publisher) %&gt;%
+    filter(gender != &quot;Female Characters&quot; &amp; gender != &quot;Male Characters&quot;) %&gt;%
+    tally()
+
+ggplot(gender_year_subset, aes(x=year, y=n, color=gender)) + 
+      geom_line() + 
+      facet_wrap(~publisher)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Removing certain Genders</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gender-removed-1.png" alt="plot of chunk gender-removed"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -1219,6 +1450,66 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
       <a href="#" target="_self" rel='tooltip' 
         data-slide=43 title='Other Plots: Histogram'>
          43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='More Complicated'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Counting'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='What do we have?'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='The plot: All publishers together'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='The plot: All publishers together'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='Graph by Publisher'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Graph by Publisher'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='What can we see?'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Removing certain Genders'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Removing certain Genders'>
+         53
       </a>
     </li>
   </ul>
