@@ -27,6 +27,16 @@ title: Calendar
 <th align="left">HW Assigned</th>
 <th align="left">HW Due</th>
 </tr>
+<table><thead>
+<tr>
+<th align="left">Week</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Lecture Resources</th>
+<th align="left">Readings</th>
+<th align="left">HW Assigned</th>
+<th align="left">HW Due</th>
+</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -122,7 +132,7 @@ title: Calendar
 <td align="left">Week 5</td>
 <td align="left">1-Oct</td>
 <td align="left">Manipulating Data with R</td>
-<td align="left"><a href="../Notes/lect-07-data-manipulation.html">Lect-07-data-manipulation</a></td>
+<td align="left"><a href="../Notes/lect-07-data-manipulation.html">Lect-07-data-manipulation</a> <a href="https://vimeo.com/364345127/4efa76cd92">Video</a></td>
 <td align="left"><a href="https://r4ds.had.co.nz/workflow-basics.html">R4DS Ch. 4-5</a> ;<a href="https://bookdown.org/speegled/foundations-of-statistics/data-manipulation.html">SPEEGLE Ch. 5</a></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -131,7 +141,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">3-Oct</td>
 <td align="left">Summarizing Data in R</td>
-<td align="left"><a href="../Notes/lect-08-data-summary.html">Lect-08-data-summary</a></td>
+<td align="left"><a href="../Notes/lect-08-data-summary.html">Lect-08-data-summary</a> <a href="https://vimeo.com/364345233/ff47d73d4c">Video</a></td>
 <td align="left">CHEST Ch. 2; <a href="https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html">SPEEGLE Ch. 6</a></td>
 <td align="left"><a href="../homework/pages/hw2">HW 2: Working with Data in R</a></td>
 <td align="left"></td>
@@ -143,13 +153,13 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1/">HW 1 DUE</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a></td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Lab 2:</td>
-<td align="left"><a href="../labs/lab2.Rmd">Lab 2 - rmd</a> <a href="../labs/lab2-sol.html">Lab 2- Solutions</a></td>
+<td align="left"><a href="../labs/lab2.Rmd">Lab 2 - rmd</a> <a href="../labs.lab2-sol.html">Lab 2- Solutions</a> <a href="https://vimeo.com/user52646642/review/365407058/0c86d41c24">Video</a></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -158,7 +168,7 @@ title: Calendar
 <td align="left">Week 6</td>
 <td align="left">8-Oct</td>
 <td align="left">Data Visualization</td>
-<td align="left"><a href="../Notes/lect-09-data-visualization.html">Lect-09-data-visualization</a></td>
+<td align="left"><a href="../Notes/lect-09-data-visualization.html">Lect-09-data-visualization</a> <a href="https://vimeo.com/365077519/11291d9244">Video</a></td>
 <td align="left">CHEST Ch. 2; <a href="https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html">SPEEGLE Ch. 6</a>;</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -197,7 +207,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw2/">HW 2 DUE</a></td>
+<td align="left"><a href="../homework/pages/hw2">HW 2 DUE</a></td>
 </tr>
 <tr>
 <td align="left"></td>

@@ -1,0 +1,542 @@
+---
+title       : Introduction to Hypothesis Testing
+author      : Adam J Sullivan 
+job         : Assistant Professor of Biostatistics
+work        : Brown University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js # {highlight.js, prettify, highlight}
+hitheme     :  github     # 
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3, libraries/leaflet, libraries/dygraphs]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : publichealthlogo.png
+biglogo     : publichealthlogo.png
+assets      : {assets: ../../assets}
+---  .segue bg:grey
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(cache=FALSE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+```
+
+```{r, echo=F}
+require(tidyverse)
+require(gapminder)
+```
+
+# Introduction to Hypothesis Testing
+
+--- .class #id
+
+## Introduction to Hypothesis Testing
+
+
+
+
+```{r, echo=F}
+library(tidyverse)
+library(haven)
+nhanes <- read_xpt("https://wwwn.cdc.gov/Nchs/Nhanes/2009-2010/CBQPFA_F.XPT")
+nhanes2 <- read_xpt("https://wwwn.cdc.gov/Nchs/Nhanes/2009-2010/HSQ_F.XPT")
+nhanes3 <- read_xpt("https://wwwn.cdc.gov/Nchs/Nhanes/2009-2010/INQ_F.XPT")
+nhanes4 <- read_xpt("https://wwwn.cdc.gov/Nchs/Nhanes/2009-2010/SMQ_F.XPT")
+data <- full_join(nhanes, nhanes2, by="SEQN")
+data <- full_join(data, nhanes3, by="SEQN")
+data <- full_join(data, nhanes4, by="SEQN")
+
+data <- data %>%
+    select(SEQN, IND235, CBD740, SMQ020, HSD010 , CBD630) %>%
+    filter(IND235 < 77 & CBD740<3 & SMQ020 <7 & HSD010 <7, CBD630<16) %>%
+    mutate(health = as.factor(HSD010)) %>%
+    mutate(organic = as.factor(CBD740)) %>%
+    mutate(income = as.factor(IND235)) %>%
+    mutate(smoke = as.factor(SMQ020))  %>%
+    mutate(veggies = as.factor(CBD630))
+
+organic <- data %>%
+    mutate(health = fct_recode( health, 
+        Poor =  "5", 
+        Fair = "4",
+        Good = "3",
+        `Very Good` = "2",
+        Excellent = "1"
+        )) %>%
+        mutate(health.bin = fct_collapse( health, 
+        `Poor/Fair/Good` =  c("Poor", "Fair", "Good"),
+        `Very Good/Excellent` = c("Very Good", "Excellent")
+        )) %>%
+    mutate(smoke = fct_recode( smoke, 
+        Yes = "1", 
+        No = "2"
+        )) %>%   
+    mutate(organic = fct_recode( organic, 
+        Yes = "1", 
+        No = "2"
+        )) %>%
+    mutate(income = fct_recode( income, 
+        `199.5` = "1", 
+        `599.5` = "2", 
+        `1024.5` = "3",
+        `1449.5` = "4", 
+        `1874.5` = "5", 
+        `2499.5` = "6", 
+        `3324.5` = "7", 
+        `4174.5` = "8", 
+        `4999.5` = "9", 
+        `5824.5` = "10", 
+        `7324.5` = "11", 
+        `9000` = "12"
+        )) %>%
+    mutate(income = as.numeric(as.character(income))) %>%
+    mutate(veggies = as.numeric(as.character(veggies)))
+
+
+```
+
+- In most statistics courses you get to hypothesis testing at the end of the course. 
+- We will do things a little different. 
+- We should consider important concepts when trying to understand testing hypothesis. 
+
+--- .class #id
+
+## What is hypothesis Testing? 
+
+- Many times we want to be able to compare things. 
+- We wish to test whether something is better than something else. 
+    - Should you buy computer "A" vs computer "B". 
+- We also wish to test the validity of statements. 
+    - A friend says they can force a coin to get Heads.
+    - You give them a coin and they flip three times in a row and get heads. 
+    - Do you believe them?
+
+--- .class #id
+
+## Coin Toss
+
+```{r}
+
+coin <- c(1, 0)
+
+flips <- replicate(100000, sum(sample(coin, 3, replace=T)))
+tab <- table(flips)
+prop.table(tab)
+```
+
+
+--- .class #id
+
+## Testing Our Friend
+
+- The probability of 3 heads in 3 coin flips is 12.5%
+- We may not believe that they can force heads. 
+- Many times our hypothesis testing is about different groups. 
+
+
+--- .class #id
+
+## Big Question
+
+- Does eating organic food improve your health? 
+- Consider some evidence
+
+--- .class #id
+
+## Data Study 1
+
+- This data comes from [NHANES: National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm)
+- Large national random sample
+- 2009 – 2010 data
+- n = 3777
+
+--- .class #id
+
+## Organic Food
+
+"In the past 30 days, did you buy any food that had the word 'organic' on the package?"
+
+```{r organic, echo=FALSE, fig.height=5}
+ggplot(organic, aes(x=organic, fill=organic)) + 
+      geom_bar() + 
+      xlab("Bought Organic?") + 
+      theme_minimal() + 
+      theme(legend.position = "none")
+
+```
+
+
+--- .class #id
+
+## Current Health Status
+
+"Would you say your health in general is Excellent, Very Good, Good, Fair or Poor"
+
+```{r health-all, echo=FALSE, fig.height=5}
+ggplot(organic, aes(x=health, fill=health)) + 
+      geom_bar() + 
+      xlab("Current Health Status")+ 
+      theme_minimal() + 
+      theme(legend.position = "none")
+
+```
+
+
+--- .class #id
+
+## Current Health Status
+
+```{r health, echo=FALSE, fig.height=5}
+ggplot(organic, aes(x=health.bin, fill=health.bin)) + 
+      geom_bar() + 
+      xlab("Current Health Status")+ 
+      theme_minimal() + 
+      theme(legend.position = "none")
+
+```
+
+
+--- .class #id
+
+## Health by Organic
+
+```{r health-organic, echo=F, fig.height=5}
+ggplot(organic, aes(x=organic, fill=health.bin)) + 
+      geom_bar(position="dodge") + 
+      xlab("Bought Organic?")+ 
+      labs(fill="Health") + 
+      theme_minimal() 
+      
+```
+
+
+
+--- .class #id
+
+## The Difference
+
+- We could consider the difference between healthy with organic food vs healthy with conventional food. 
+
+```{r, echo=F}
+organic %>% group_by(health.bin, organic) %>% summarise(n=n()) %>% mutate(freq = n/sum(n))
+
+0.452 - 0.325
+```
+
+--- .class #id
+
+## Evaluating Evidence
+
+- In this data, people who bout organic are healthier. 
+- Possible Explanations
+    - Eating organic improves health.
+    - Groups Differed at Baseline.
+    - <del>Random Chance.</del> 
+
+--- .class #id
+
+## Evaluating Evidence
+
+- In this data, people who bout organic are healthier. 
+- Possible Explanations
+    - Eating organic improves health.
+    - Groups Differed at Baseline.
+    - <del>Random Chance.</del> 
+- P-value: <0.00000000000002 (Will Explain Later)
+
+--- .class #id
+
+## People Who Buy Organic Make More Money
+
+```{r, echo=F}
+ggplot(organic, aes(y=income, x= organic, fill=organic)) + geom_boxplot() + theme_minimal() + xlab("Bought Organic?") + ylab("Monthly Income ($)") + 
+      theme(legend.position = "none")
+```
+
+
+
+--- .class #id
+
+
+## People Make More are Healthier
+
+```{r rich-box, echo=F}
+ggplot(organic, aes(y=income, x= health, fill=health)) + geom_boxplot() + theme_minimal() + xlab("Bought Organic?") + ylab("Monthly Income ($)") + 
+      theme(legend.position = "none")
+```
+
+--- .class #id
+
+
+## People Make More are Healthier
+
+
+
+```{r rich-line, echo=F, fig.height=5}
+new_plot <- organic %>% 
+    group_by(income, health.bin) %>%
+    summarise(n= n()) %>%
+    mutate(freq=n/sum(n)) %>%
+    filter(health.bin=="Very Good/Excellent") 
+new_plot2 <- organic %>% group_by(income) %>% summarise(n2=n())
+full_join(new_plot, new_plot2, by="income") %>%
+    ggplot(aes(x=income, y=freq)) + geom_point(aes(size=n2)) + geom_line() + ylab("P(Very Good/Excellent Health") + xlab("Monthly Income ($)") + theme_minimal()
+
+
+    
+   
+```
+
+
+
+--- .class #id
+
+## People Make More are Healthier
+
+
+```{r top-bottom, echo=F, fig.height=5}
+
+library(gridExtra)
+
+top <- ggplot(organic, aes(y=income, x= organic)) + geom_boxplot() + coord_flip() + theme_minimal()
+bottom <- full_join(new_plot, new_plot2, by="income") %>%
+    ggplot(aes(x=income, y=freq)) + geom_point(aes(size=n2)) + geom_line() + ylab("P(Very Good/Excellent Health") + xlab("Monthly Income ($)") + theme_minimal()
+
+grid.arrange(top, bottom, nrow=2)
+```
+
+
+--- .class #id
+
+
+## Evaluating Evidence
+
+- In this data, people who bout organic are healthier. 
+- Possible Explanations
+    - Eating organic improves health.
+    - Groups Differed at Baseline.
+    - <del>Random Chance.</del> 
+- **We cannot make a decision here with their being more than one option**
+
+--- .class # id
+
+## Causal Claims
+
+- We cannot make causal claims with groups that are not comparable at baseline. 
+- We can look within similar groups to compare though. 
+
+
+--- .class #id
+
+## Line Plots by Organic vs Conventional
+
+```{r line-organ-conv, echo=F, fig.height=5}
+
+new_plot <- organic %>% 
+    group_by(income,organic,  health.bin) %>%
+    summarise(n= n()) %>%
+    mutate(freq=n/sum(n)) %>%
+    filter(health.bin=="Very Good/Excellent") 
+new_plot2 <- organic %>% group_by(income, health.bin) %>% summarise(n2=n())
+full_join(new_plot, new_plot2, by="income") %>%
+    ggplot( aes(x=income, y=freq, color=organic)) + geom_point(aes(size=n2)) + geom_line() + ylab("P(Very Good/Excellent Health") + xlab("Monthly Income ($)") + theme_minimal() 
+
+```
+
+
+--- .class #id
+
+## Evidence Enough?
+
+- Does this satisfy our thoughts? 
+
+
+
+
+--- .class #id
+
+## Health by Smoking
+
+- Poople who buy organic are less likely to smoke
+
+```{r health-smoke, echo=F, fig.height=4.5}
+ggplot(organic, aes(x=organic, fill=smoke)) + 
+      geom_bar(position="dodge") + 
+      xlab("Current Health Status")+ 
+      theme_minimal() 
+```
+
+--- .class #id
+
+## Health by Veggies
+
+```{r health-veggies, echo=FALSE, fig.height=5}
+ggplot(organic, aes(x=organic, y=veggies, color=health.bin)) + 
+      geom_boxplot() + 
+      xlab("Current Health Status")+ 
+      theme_minimal() 
+```
+
+--- .class #id
+
+## Conclusions
+
+- Cannot make comparisons on non-comparable groups. 
+- What can happen? 
+     - Baseline difference shifts effect. 
+     - Baseline difference reverses effect. 
+     - Baseline difference masks true effect. 
+     - Baseline difference creates false effect. 
+
+
+--- .class #id
+
+## Still Not Convinced?
+
+- Let's simulate organic based on income only. 
+- Then organc food choice is only associated with income and not with health directly. 
+
+--- .class #id
+
+## Simulation
+
+```{r, echo=F}
+
+set.seed(12345)
+
+organic_pct <- organic %>%
+        group_by(income, organic) %>%
+        summarize(n=n()) %>%
+        mutate(pct = n/sum(n)) %>%
+        select(pct) %>%
+        unlist()
+        
+organic_pct <- organic_pct[25:48]
+
+organic$organic.sim = NA
+for (i in 1:nrow(organic)) {
+    if (organic$income[i]==199.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[1], organic_pct[2]) )  
+    } else if (organic$income[i]==599.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[3], organic_pct[4]) )  
+    } else if (organic$income[i]==1024.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[5], organic_pct[6]) )  
+    } else if (organic$income[i]==1449.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[7], organic_pct[8]) )  
+    } else if (organic$income[i]==1874.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[9], organic_pct[10]) )  
+    } else if (organic$income[i]==2499.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[11], organic_pct[12]) )  
+    } else if (organic$income[i]==3324.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[13], organic_pct[14]) )  
+    } else if (organic$income[i]==4174.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[15], organic_pct[16]) )  
+    } else if (organic$income[i]==4999.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[17], organic_pct[18]) )  
+    } else if (organic$income[i]==5824.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[19], organic_pct[20]) )  
+    } else if (organic$income[i]==7324.5) {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[21], organic_pct[22]) )  
+    } else  {
+    organic$organic.sim[i] = sample(c("Yes", "No"), 1, prob=c(organic_pct[24], organic_pct[24]) )  
+    } 
+}   
+
+
+```
+
+
+
+--- .class #id 
+
+
+## Health by Organic Sim
+
+- Difference exists even though we made up organic food purchases. 
+
+```{r health-organic-sim, echo=F, fig.height=5, fig.width=13}
+
+organic <- organic %>%
+        mutate(organic.sim = as.factor(organic.sim)) %>%
+        mutate(organic.sim = factor(organic.sim, levels= c("Yes", "No")))
+p1 <- ggplot(organic, aes(x=organic, fill=health.bin)) + 
+      geom_bar(position="dodge") + 
+      xlab("Bought Organic?")+ 
+      labs(fill="Health") + 
+      theme_minimal() + 
+      ggtitle("Original Data")
+p2<- ggplot(organic, aes(x=organic.sim, fill=health.bin)) + 
+      geom_bar(position="dodge") + 
+      xlab("Bought Organic?")+ 
+      labs(fill="Health") + 
+      theme_minimal() + 
+      ggtitle("Simulated Data")
+
+grid.arrange(p1, p2, nrow=1)
+```
+
+
+--- .class #id
+
+## Simulated Line Plots by Organic vs Conventional
+
+```{r line-organsim-conv, echo=F, fig.height=5, fig.width=13}
+
+new_plot <- organic %>% 
+    group_by(income,organic,  health.bin) %>%
+    summarise(n= n()) %>%
+    mutate(freq=n/sum(n)) %>%
+    filter(health.bin=="Very Good/Excellent") 
+new_plot2 <- organic %>% group_by(income, health.bin) %>% summarise(n2=n())
+p1 <- full_join(new_plot, new_plot2, by="income") %>%
+    ggplot( aes(x=income, y=freq, color=organic)) + geom_point(aes(size=n2)) + geom_line() + ylab("P(Very Good/Excellent Health") + xlab("Monthly Income ($)") + theme_minimal() + ggtitle("Original Data")
+
+new_plot <- organic %>% 
+    group_by(income,organic.sim,  health.bin) %>%
+    summarise(n= n()) %>%
+    mutate(freq=n/sum(n)) %>%
+    filter(health.bin=="Very Good/Excellent") 
+new_plot2 <- organic %>% group_by(income, health.bin) %>% summarise(n2=n())
+p2 <- full_join(new_plot, new_plot2, by="income") %>%
+    ggplot( aes(x=income, y=freq, color=organic.sim)) + geom_point(aes(size=n2)) + geom_line() + ylab("P(Very Good/Excellent Health") + xlab("Monthly Income ($)") + theme_minimal() + ggtitle("Simulated Data")
+
+grid.arrange(p1, p2, nrow=1)
+```
+
+
+--- .class #id
+
+## What do we do? 
+
+- Ideally We randomize at baseline so that we can make causal claims. 
+- If not, there are methods to determine causal inference but they are much more difficult. 
+
+
+--- .class #id
+
+## Data Problem #2: Fruit Flies
+
+- Fruit flies **randomly** divided into two groups of 500 each
+- One group fed organic food, the other conventional food
+- Measured longevity, fertility, stress resistance, activity
+-  Study done by a 16-year-old girl for a science project!
+- [Organically Grown Food Provides Health Benefits to Drosophila melanogaster](http://journals.plos.org/plosone/article?id=info:doi/10.1371/journal.pone.0052988)
+
+
+--- .class #id
+
+## Longevity by Organic Food
+
+- *Data simulated to be similar to paper*
+
+```{r fruit-flies, echo=F, fig.height=5}
+set.seed(1234)
+organic <- rnorm(250, 18.9, 7.4)
+conventional <- rnorm(250, 15.5, 5.4)
+data2 <- as_tibble(cbind(organic, conventional))
+data3 <- gather(data2, key="Food", value="days")
+
+ggplot(data=data3, aes(y=days, fill=Food)) + geom_boxplot()
+```

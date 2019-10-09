@@ -217,4 +217,5 @@ flights %>%
 
   d. Does your rewritten command give the same results? 
   
+  yes. 
 
