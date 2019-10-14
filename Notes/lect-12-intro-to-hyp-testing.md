@@ -322,3 +322,195 @@ prop.table(tab)
 - *Data simulated to be similar to paper*
 
 ![plot of chunk fruit-flies](figure/fruit-flies-1.png)
+
+
+
+--- .class #id
+
+## Evaluating Evidence
+
+- Fruit flies who eat organic food live longer in this sample. 
+- Mean: $\bar{Y}_O - \bar{Y}_C = 4.23$
+- Possible reasons?
+    - Eating organic increases longevity. 
+    - <delete>The groups differed at baseline</delete>
+    - Just random chance. 
+
+
+--- .class #id
+
+## How do we check random chance?
+
+- We can simulate this. 
+- The next slide will detail the steps of this. 
+
+--- .class #id
+
+## Simulations
+
+1. Assume no difference in days survived, regardless of food. 
+2. Mimic random chance: Randomize into groups.
+3. Compute the difference in means. 
+4. Repeat the steps many times. 
+
+--- .class #id
+
+## Simulations
+
+Start with the data:
+
+
+```r
+data3
+```
+
+```
+## # A tibble: 500 x 2
+##    Food     days
+##    <chr>   <dbl>
+##  1 organic  14.0
+##  2 organic  20.5
+##  3 organic  25.3
+##  4 organic  10.4
+##  5 organic  21.4
+##  6 organic  21.8
+##  7 organic  16.5
+##  8 organic  16.6
+##  9 organic  16.5
+## 10 organic  15.2
+## # ... with 490 more rows
+```
+
+--- .class #id
+
+## What do we see?
+
+- 500 rows of data. 
+- Food in one column. 
+- Days survived in another. 
+- We can simulated 500 organic or conventional values. 
+
+--- .class #id
+
+## Simulations
+
+- One simulation
+
+```r
+T = 500
+Food.sim = replicate(T, sample(c("organic", "conventional"), 1))
+Food.sim = enframe(Food.sim, name=NULL, value="Food.sim")
+data3 <- bind_cols(data3, Food.sim)
+test <- data3 %>% group_by(Food.sim) %>% summarise(m=mean(days))
+difference = test$m[1] - test$m[2]
+difference
+```
+
+```
+## [1] 0.653801
+```
+
+--- .class #id
+
+## Simulations
+
+
+```r
+diff_sim <- function(data){
+new.col = replicate(500, sample(c("organic", "conventional"), 1))
+new.col2 = enframe(new.col, name=NULL, value="Food.sim")
+data <- bind_cols(data, new.col2)
+test <- data %>% group_by(Food.sim) %>% summarise(m=mean(days))
+difference = test$m[1] - test$m[2]
+return(difference)
+}
+
+diff = replicate(1000, diff_sim(data3))
+```
+
+
+--- .class #id
+
+## Histogram of Simulated Differences
+
+![plot of chunk fruit-hist](figure/fruit-hist-1.png)
+
+--- .class #id
+
+## How Likely is our value?
+
+
+```r
+mean(diff>4.231288)
+```
+
+```
+## [1] 0
+```
+
+
+--- .class #id
+
+## Evaluating Evidence
+
+- Possible reasons?
+    - Eating organic increases longevity. 
+    - <delete>The groups differed at baseline</delete>
+    - <delete>Just random chance.</delete>
+
+--- .class #id
+
+## Conclusion
+
+- Eating organic lenthens life. 
+- **For a fruit fly**
+
+--- .class #id
+
+## Hypothesis Testing
+
+- With testing we are interested in comparing different groups and having a mathematical way to judge differences. 
+- Traditionally this is done with 2 hypothesis:
+    - **Null Hypothesis**
+    - **Alternative Hypothesis**
+
+--- .class #id
+
+## Hypothesis
+
+- **Null Hypothesis**: This is what we assume to be true. Typically:
+      - Suggest no difference between groups. 
+      - Set population value equal to some known quantity. 
+- **Alternative Hypothesis**: This is what we are testing and what we believe about the population. 
+    - We must provide enough evidence that this is true. 
+    
+
+--- .class #id
+
+## Hypothesis Testing
+
+- It is important to understand that we are testing an unknown value in the ***population*** using ***sample*** data. 
+- This means we need to have a way to approximate the population distribution from the sampling distribution. 
+- We will explore sampling distributions in the next set of notes. 
+
+
+--- .class #id
+
+## Consider US Court System
+
+- In the US a person is presumed innocent until proven guilty. 
+- This is also apart of the Unitd Nations Declaration of Human Rights. 
+- The goal of the prosecutor is to present enough evidence that they jury believes guilt beyond a reasonable doubt. 
+- The goal of the defense is to display the doubt. 
+
+--- .class #id
+
+## Hypothesis Testing as Court Case
+
+- In science we also do something similar. 
+- As a scientist many times you take the role of prosecution and your goal is to make a claim and provide enough evidence so people will believe your claim. 
+- Other times as reviewers and commentors we play defense and suggest flaws in the evidence and reasons not to believe the research. 
+
+
+
+

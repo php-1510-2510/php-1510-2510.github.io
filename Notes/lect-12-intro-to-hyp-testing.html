@@ -756,6 +756,408 @@ prop.table(tab)
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Evaluating Evidence</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Fruit flies who eat organic food live longer in this sample. </li>
+<li>Mean: \(\bar{Y}_O - \bar{Y}_C = 4.23\)</li>
+<li>Possible reasons?
+
+<ul>
+<li>Eating organic increases longevity. </li>
+<li><delete>The groups differed at baseline</delete></li>
+<li>Just random chance. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we check random chance?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can simulate this. </li>
+<li>The next slide will detail the steps of this. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Assume no difference in days survived, regardless of food. </li>
+<li>Mimic random chance: Randomize into groups.</li>
+<li>Compute the difference in means. </li>
+<li>Repeat the steps many times. </li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>Start with the data:</p>
+
+<pre><code class="r">data3
+</code></pre>
+
+<pre><code>## # A tibble: 500 x 2
+##    Food     days
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 organic  14.0
+##  2 organic  20.5
+##  3 organic  25.3
+##  4 organic  10.4
+##  5 organic  21.4
+##  6 organic  21.8
+##  7 organic  16.5
+##  8 organic  16.6
+##  9 organic  16.5
+## 10 organic  15.2
+## # ... with 490 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>500 rows of data. </li>
+<li>Food in one column. </li>
+<li>Days survived in another. </li>
+<li>We can simulated 500 organic or conventional values. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>One simulation</li>
+</ul>
+
+<pre><code class="r">T = 500
+Food.sim = replicate(T, sample(c(&quot;organic&quot;, &quot;conventional&quot;), 1))
+Food.sim = enframe(Food.sim, name=NULL, value=&quot;Food.sim&quot;)
+data3 &lt;- bind_cols(data3, Food.sim)
+test &lt;- data3 %&gt;% group_by(Food.sim) %&gt;% summarise(m=mean(days))
+difference = test$m[1] - test$m[2]
+difference
+</code></pre>
+
+<pre><code>## [1] 0.653801
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">diff_sim &lt;- function(data){
+new.col = replicate(500, sample(c(&quot;organic&quot;, &quot;conventional&quot;), 1))
+new.col2 = enframe(new.col, name=NULL, value=&quot;Food.sim&quot;)
+data &lt;- bind_cols(data, new.col2)
+test &lt;- data %&gt;% group_by(Food.sim) %&gt;% summarise(m=mean(days))
+difference = test$m[1] - test$m[2]
+return(difference)
+}
+
+diff = replicate(1000, diff_sim(data3))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Histogram of Simulated Differences</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/fruit-hist-1.png" alt="plot of chunk fruit-hist"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How Likely is our value?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mean(diff&gt;4.231288)
+</code></pre>
+
+<pre><code>## [1] 0
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Evaluating Evidence</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Possible reasons?
+
+<ul>
+<li>Eating organic increases longevity. </li>
+<li><delete>The groups differed at baseline</delete></li>
+<li><delete>Just random chance.</delete></li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusion</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Eating organic lenthens life. </li>
+<li><strong>For a fruit fly</strong></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>With testing we are interested in comparing different groups and having a mathematical way to judge differences. </li>
+<li>Traditionally this is done with 2 hypothesis:
+
+<ul>
+<li><strong>Null Hypothesis</strong></li>
+<li><strong>Alternative Hypothesis</strong></li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong>Null Hypothesis</strong>: This is what we assume to be true. Typically:
+
+<ul>
+<li>Suggest no difference between groups. </li>
+<li>Set population value equal to some known quantity. </li>
+</ul></li>
+<li><strong>Alternative Hypothesis</strong>: This is what we are testing and what we believe about the population. 
+
+<ul>
+<li>We must provide enough evidence that this is true. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>It is important to understand that we are testing an unknown value in the <strong><em>population</em></strong> using <strong><em>sample</em></strong> data. </li>
+<li>This means we need to have a way to approximate the population distribution from the sampling distribution. </li>
+<li>We will explore sampling distributions in the next set of notes. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Consider US Court System</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In the US a person is presumed innocent until proven guilty. </li>
+<li>This is also apart of the Unitd Nations Declaration of Human Rights. </li>
+<li>The goal of the prosecutor is to present enough evidence that they jury believes guilt beyond a reasonable doubt. </li>
+<li>The goal of the defense is to display the doubt. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing as Court Case</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In science we also do something similar. </li>
+<li>As a scientist many times you take the role of prosecution and your goal is to make a claim and provide enough evidence so people will believe your claim. </li>
+<li>Other times as reviewers and commentors we play defense and suggest flaws in the evidence and reasons not to believe the research. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -950,6 +1352,102 @@ prop.table(tab)
       <a href="#" target="_self" rel='tooltip' 
         data-slide=32 title='Longevity by Organic Food'>
          32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Evaluating Evidence'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='How do we check random chance?'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Simulations'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Simulations'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='What do we see?'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Simulations'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Simulations'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Histogram of Simulated Differences'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='How Likely is our value?'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Evaluating Evidence'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Conclusion'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Hypothesis Testing'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Hypothesis'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Hypothesis Testing'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Consider US Court System'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Hypothesis Testing as Court Case'>
+         48
       </a>
     </li>
   </ul>
