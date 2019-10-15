@@ -17,6 +17,7 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
+
 <table><thead>
 <tr>
 <th align="left">Week</th>
@@ -167,7 +168,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">10-Oct</td>
 <td align="left">Exploratory Data Analysis</td>
-<td align="left"><a href="../Notes/lect-10-11-exploratory-data-analysis">Lect-10-11-exploratory-data-analysis</a></td>
+<td align="left"><a href="../Notes/lect-10-11-exploratory-data-analysis">Lect-10-11-exploratory-data-analysis</a> <a href="https://vimeo.com/366483044/16d76eb6ab">Video</a></td>
 <td align="left">CHEST Ch. 2; <a href="https://bookdown.org/speegled/foundations-of-statistics/ggplot-and-descriptive-statistics.html">SPEEGLE Ch. 6</a>;</td>
 <td align="left"></td>
 <td align="left"></td>
