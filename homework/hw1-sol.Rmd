@@ -1,0 +1,178 @@
+---
+title: "Homework 1"
+author: "Your Name"
+date: "Due: October 4, 2019 at 11:59pm"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+
+<style type="text/css">
+.table {
+
+    width: 80%;
+    margin-left:10%; 
+    margin-right:10%;
+}
+</style>
+
+### Homework Policies:
+
+*You are encouraged to discuss problem sets with your fellow students (and with the Course Instructor of course), but you must write your own final answers, in your own words. Solutions prepared ``in committee'' or by copying someone else's paper are not acceptable.  This violates the Brown standards of plagiarism, and you will not have the benefit of having thought about and worked the problem when you take the examinations.*
+
+*All answers must be in complete sentences and all graphs must be properly labeled.*
+
+***For the PDF Version of this assignment: [PDF](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.pdf)***
+
+***For the R Markdown Version of this assignment: [RMarkdown](https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw1.Rmd)***
+
+### Turning the Homework in:
+
+*Please turn the homework in through canvas. You may use a pdf, html or word doc file to turn the assignment in.*
+
+[PHP 1510 Assignment Link](https://canvas.brown.edu/courses/1078851/assignments/7744128)
+
+[PHP 2510 Assignment Link](https://canvas.brown.edu/courses/1078852/assignments/7744130)
+
+## Probability Distributions
+
+
+
+
+1. (8 points) There are n patients, each one has the same probability of being chosen for study screening with probability $p$ (*Independently - No one patient has an effect on the other*). Each of these enters the study with probability $r$, independently.  
+    a.(4 points) What is the distribution of the number of patients chosen for screening?
+    **This is the story of the Binomial Distribution. Each of the $n$ patients has same probability of being chosen which is $p$. This is then $Bin(n,p)$**
+    b. (4 points) What is the distribution of the number of patients who enter the study? 
+    **This is also the story of the binomial. In this case with the problem at hand we do not know the actual sample size but once the trial has been chosen they have $m\le n$ patients who each have the same probability of choosing to entering the study. This is $Bin(m,r)$.** 
+2. (12 points) A company with $n$ interns and $m$ part time employees and is deciding which employees to promote. Now suppose that instead of having a predetermined number of promotions to give, the company decides independently for each employee, promoting the employee with probability $p$. Find the distributions of:
+    a. (4 points) the number of interns who are promoted
+    **This is the story of the binomial distribution. The particular one is $Bin(n p)$.** 
+    b. (4 points) the number of part time emplyees who are not promoted
+    **This is the story of the binomial. Each employee has the same probability of being promoted $p$ which means they each have the same probability of not being promoted $1-p$. This would then be a binomial. Specifically $Bin(m, 1-p)$**
+    c. (4 points) the total number of employees who are promoted.
+    **The total number of employees is still binomial. Our total number to have successes from is now $m+n$. Since they have the same probability it is still a binomial, specifically $Bin(n+m, p)$**
+    
+3. (8 points) Let $X \sim Bin(n,p)$ and $Y\sim Bin(m,p)$, where $X$ and $Y$ are independent.
+    a. (2 points)  What is the distribution of $X+Y$? 
+    **$X+Y\sim Bin(n+m, p)$**
+    b. (3 points) Explain why your answer in part $a$ makes sense.
+    **This is similar to 2c. Due to the fact that they have the same probability, we can assume that adding $X$ and $Y$ together just changes the total number that we are running through the same trial. Since a Binomial is the total successes, $X$ and $Y$ both represent total successes with probability $p$. $X+Y\sim Bin(n+m, p)$.**
+    c. (3 points) Give a good example of why $X-Y$ is not binomial.
+    **If $X=2$ successes and $Y=3$ successes, then $X-Y=-1$, we cannot have $-1$ successes so this is not binomial.**
+    
+4. (6 points) **(PHP 2510 Only)** It is important to begin to learn new distributions. The  `exponential` distribution is a time distribution which looks at time until an event happens. It has one parameter $\lambda$ which is the rate at which events occur. Give an example of data that connects the following distributions together:
+    - Bernoulli
+    - Exponential
+    
+    Please come up with a reasonable variable that we might consider studying in your field. Make sure you explain what kinds of questions asked on this data would lead to the above distributions. 
+
+**The story of the bernoulli is that it is an event with a probability $p$ of a certain outcome. Then exponential is the waiting time for that event. So we could consider children with untreated ashtma. There is a strong possibility that they will present to an ER with asthma related symptoms. This would be the bernoulli. A study that looked at how long after failing to treat asthma does a child present in the ER with asthma related symptoms is a comnination of these two.**
+
+
+## Simulations
+
+5. (18 points) Rolling two dice
+    a. (6 points) Simulate rolling two dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.
+    ```{R}
+    two.dice <- replicate(100000, sum(sample(1:6,2)))
+    library(ggplot2)
+    ggplot(data=NULL, aes(x=two.dice)) + geom_bar() + theme_minimal()+ ylab("Number of outcomes") + xlab("Sum of two die")
+    ```
+    
+    ```{R}
+    ## Many dont know that they need replace=T accept both answers. 
+    two.dice <- replicate(100000, sum(sample(1:6,2, replace=T)))
+    library(ggplot2)
+    ggplot(data=NULL, aes(x=two.dice)) + geom_bar() + theme_minimal() + ylab("Number of outcomes") + xlab("Sum of two die")
+    ```
+    b. (6 points) You can buy trick dice, which look (sort of) like normal dice. One die has numbers 5, 5, 5, 5, 5, 5. The other has numbers 2, 2, 2, 6, 6, 6.
+    Simulate rolling the two trick dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.
+    ```{R}
+    trick.dice <- function(){
+    die.1 <- c(5,5,5,5,5,5)
+    die.2 <- c(2,2,2,6,6,6)
+    samp.1 <- sample(die.1, 1)
+    samp.2 <- sample(die.2, 1)
+    
+    return(sum(samp.1 + samp.2))
+    }
+    two.trick.dice <- replicate(100000, trick.dice())
+     ggplot(data=NULL, aes(x=two.trick.dice)) + geom_bar() + theme_minimal() + ylab("Number of outcomes") + xlab("Sum of two die")
+    ``` 
+    c. ( 6 points) Sicherman dice also look like normal dice, but have unusual numbers.
+    One die has numbers 1, 2, 2, 3, 3, 4. The other has numbers 1, 3, 4, 5, 6, 8.
+    Simulate rolling the two Sicherman dice and adding their values. Do 100000 simulations and make a bar chart showing how many of each outcome occurred.
+    How does your answer compare to part a?
+    ```{r}
+    sicherman.dice <- function(){
+    die.1 <- c(1,2,2,3,3,4)
+    die.2 <- c(1,3,4,5,6,8)
+    samp.1 <- sample(die.1, 1)
+    samp.2 <- sample(die.2, 1)
+    
+    return(sum(samp.1 + samp.2))
+    }
+    two.sicherman.dice <- replicate(100000, sicherman.dice())
+     ggplot(data=NULL, aes(x=two.sicherman.dice)) + geom_bar() + theme_minimal() + ylab("Number of outcomes") + xlab("Sum of two die")
+    ```
+    **Part a and part c are close but part c resembles more of a normal distribution than part a.**
+6. (12 Points) **(PHP 2510 Only)** Read sections [14.12](https://rafalab.github.io/dsbook/probability.html#monte-carlo-simulations-for-continuous-variables) and [14.13](https://rafalab.github.io/dsbook/probability.html#continuous-distributions) from [Introduction to Data Science](https://rafalab.github.io/dsbook/). Then complete the problems below:
+    a. (6 points) Assume the distribution of female heights is approximated by a normal distribution with a mean of 64 inches and a standard deviation of 3 inches. If we pick a female at random, what is the probability that she is between 61 and 67 inches?
+    **We can get the code from the rafa text.**
+    ```{R}
+    t <- 100
+    m <- 64
+    s <- 3
+    simulated.heights <- rnorm(t, m, s)
+    simulated.heights
+    ```
+    
+    **This gives us the simulated heights of 100 females. However, what we need to do is sample a female and then see if their height was between 61 and 64. We can do this with an if else statement.**
+    ```{r}
+    
+    # This is one way to do it. 
+    set.seed(560)
+     heights.61.67 = NULL # create empty vector
+    for (i in 1:100000){ #run a loop 100000 time
+     height <- rnorm(1, 64, 3) #select 1 female from the distribution
+      if (height>=61 & height<=67){ # If her height is between 61 and 64 
+        heights.61.67[i]=1 # Then we add a 1 to the vector or a success. 
+      } else { #If not
+        heights.61.67[i]=0 # Add a zero for failure. 
+      }
+    }
+     
+     mean(heights.61.67) # Average of these gives the proportion of a 1 or success.
+     
+    ```
+    
+    
+    
+    **With this being normal, we can check out work and see if our simulation was close. **
+    ```{r}
+    pnorm(67, 64,3)- pnorm(61,64,3)
+    ```
+    **Simulated value is  0.68177 and true probability is 0.6826895, these are extremely close, so we know our simulation was correct.**
+    b. (6 points) Repeat the exercise above, but convert everything to centimeters. That is, multiply every height, including the standard deviation, by 2.54. What is the answer now?
+    ```{r}
+    set.seed(560)
+    heights.61.67.cm = NULL # create empty vector
+    for (i in 1:100000){ #run a loop 100000 time
+     height <- rnorm(1, 160, 7.5) #select 1 female from the distribution
+      if (height>=152.5 & height<=167.5){ # If her height is between 152.5 and 160 
+        heights.61.67.cm[i]=1 # Then we add a 1 to the vector or a success. 
+      } else { #If not
+        heights.61.67.cm[i]=0 # Add a zero for failure. 
+      }
+    }
+     
+     mean(heights.61.67.cm) # Average of these gives the proportion of a 1 or success.
+    ```
+    **With this being normal, we can check out work and see if our simulation was close. **
+    ```{r}
+    pnorm(167.5, 160,7.5)- pnorm(152.5,160,7.5)
+    ```
+    **Simulated value is 0.68177 and true probability is 0.6826895, these are extremely close, so we know our simulation was correct.**
+    

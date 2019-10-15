@@ -17,7 +17,6 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
-
 <table><thead>
 <tr>
 <th align="left">Week</th>
@@ -98,7 +97,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a>  <a href="(../homework/hw1-sol.html">HW1 Solutions</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -144,7 +143,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a> <a href="(../homework/hw1-sol.html">HW1 Solutions</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -186,7 +185,7 @@ title: Calendar
 <td align="left">Week 7</td>
 <td align="left">15-Oct</td>
 <td align="left">Exploratory Data Analysis Part 2</td>
-<td align="left"><a href="../Notes/lect-10-11-exploratory-data-analysis">Lect-10-11-exploratory-data-analysis</a></td>
+<td align="left"><a href="../Notes/lect-10-11-exploratory-data-analysis">Lect-10-11-exploratory-data-analysis</a> <a href="https://vimeo.com/366539994/094b42dc5a">Video</a></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
