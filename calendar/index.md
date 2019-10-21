@@ -17,16 +17,6 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
-<table><thead>
-<tr>
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Lecture Resources</th>
-<th align="left">Readings</th>
-<th align="left">HW Assigned</th>
-<th align="left">HW Due</th>
-</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -97,7 +87,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a>  <a href="(../homework/hw1-sol.html">HW1 Solutions</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1: Random Variables</a>  <a href="../homework/hw1_sol.html">HW1 Solutions</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -143,7 +133,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a> <a href="(../homework/hw1-sol.html">HW1 Solutions</a></td>
+<td align="left"><a href="../homework/pages/hw1">HW 1 DUE</a> <a href="../homework/hw1_sol.html">HW1 Solutions</a></td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -197,7 +187,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw2">HW 2 DUE</a> <a href="../homework/pages/hw2-sol">HW2 Solutions</a></td>
+<td align="left"><a href="../homework/pages/hw2">HW 2 DUE</a> <a href="../homework/pages/hw2_sol.html">HW2 Solutions</a></td>
 </tr>
 <tr>
 <td align="left"></td>
