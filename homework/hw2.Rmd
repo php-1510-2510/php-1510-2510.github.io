@@ -3,8 +3,8 @@ title: "Homework 2"
 author: "Your Name"
 date: "Due: October 12, 2019 at 11:59pm"
 output:
-  word_document: default
   html_document: default
+  word_document: default
   pdf_document: default
 ---
 

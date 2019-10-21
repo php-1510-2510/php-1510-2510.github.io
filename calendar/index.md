@@ -197,7 +197,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"><a href="../homework/pages/hw2">HW 2 DUE</a></td>
+<td align="left"><a href="../homework/pages/hw2">HW 2 DUE</a> <a href="../homework/pages/hw2-sol">HW2 Solutions</a></td>
 </tr>
 <tr>
 <td align="left"></td>
