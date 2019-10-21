@@ -40,7 +40,7 @@ par(mfcol=c(2,5))
 
 ## Shapes of Binomial
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk lect-05-04](figure/lect-05-04-1.png)
 
 ```
 ##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
@@ -101,7 +101,7 @@ plot(k,pbinom(k,size=7,prob=.4),type="l")
 
 - Lets consider the Binomial CDF
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk lect-05-07](figure/lect-05-07-1.png)
 
 
 --- .class #id
@@ -167,7 +167,7 @@ plot(k, dunif(k,  min=0, max=1), type="l")
 
 ## Uniform Distribution
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk lect-05-10](figure/lect-05-10-1.png)
 
 
 --- .class #id
@@ -187,7 +187,7 @@ plot(k, dunif(k,  min=-1, max=2), type="l")
 
 ## Further Uniform
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk lect-05-12](figure/lect-05-12-1.png)
 
 
 --- .class #id
@@ -196,7 +196,7 @@ plot(k, dunif(k,  min=-1, max=2), type="l")
 
 - Look at the CDF
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk lect-05-13](figure/lect-05-13-1.png)
 
 
 --- .class #id
@@ -270,7 +270,7 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal PDF Plot
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk lect-05-15](figure/lect-05-15-1.png)
 
 --- .class #id
 
@@ -291,7 +291,7 @@ legend(-6,1,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal CDF Plot
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+![plot of chunk lect-05-17 ](figure/lect-05-17 -1.png)
 
 --- .class #id
 
@@ -339,7 +339,7 @@ $$Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)$$
 
 - $Pr(X\le 1)$ 
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+![plot of chunk lect-05-18](figure/lect-05-18-1.png)
 
 --- .class #id
 
@@ -348,7 +348,7 @@ $$Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)$$
 
 - $Pr(X\le -1)$ 
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png)
+![plot of chunk lect-05-01](figure/lect-05-01-1.png)
 
 --- .class #id
 
@@ -356,4 +356,4 @@ $$Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)$$
 
 - $Pr(X\le -1)$  and $Pr(X\le 1)$ 
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
+![plot of chunk lect-05-02](figure/lect-05-02-1.png)

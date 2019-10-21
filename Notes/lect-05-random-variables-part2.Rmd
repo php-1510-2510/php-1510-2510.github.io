@@ -30,7 +30,7 @@ knitr::opts_chunk$set(message=FALSE)
 
 ## Shapes of Binomial
 
-```{r,eval=F}
+```{r lect-05-03,eval=F}
 graph <- function(n,p){
   x <- dbinom(0:n,size=n,prob=p)
   barplot(x,names.arg=0:n,
@@ -44,7 +44,7 @@ par(mfcol=c(2,5))
 
 ## Shapes of Binomial
 
-```{r,echo=F, fig.width=14}
+```{r lect-05-04,echo=F, fig.width=14}
 graph <- function(n,p){
   x <- dbinom(0:n,size=n,prob=p)
   barplot(x,names.arg=0:n,
@@ -74,7 +74,7 @@ A random variable in which the CDF is differentiable. It is possible for a finit
 
 - Lets consider the Binomial CDF
 
-```{R, eval=F}
+```{R lect-05-06, eval=F}
 k <- seq(0,7, by=0.0001)
 plot(k,pbinom(k,size=7,prob=.4),type="l")
 ```
@@ -87,7 +87,7 @@ plot(k,pbinom(k,size=7,prob=.4),type="l")
 
 - Lets consider the Binomial CDF
 
-```{R, echo=F}
+```{R lect-05-07, echo=F}
 k <- seq(0,7, by=0.0001)
 plot(k,pbinom(k,size=7,prob=.4),type="l")
 ```
@@ -107,7 +107,7 @@ plot(k,pbinom(k,size=7,prob=.4),type="l")
 
 - Lets consider the Normal CDF
 
-```{R, eval=F}
+```{R lect-05-08, eval=F}
 k <- seq(-4,4, by=0.0001)
 plot(k,pnorm(k),type="l")
 ```
@@ -143,7 +143,7 @@ plot(k,pnorm(k),type="l")
 
 ## Uniform Distribution
 
-```{r, eval=F}
+```{r lect-05-09, eval=F}
 k <- seq(-1,2, by = 0.001)
 plot(k, dunif(k,  min=0, max=1), type="l")
 ```
@@ -154,7 +154,7 @@ plot(k, dunif(k,  min=0, max=1), type="l")
 
 ## Uniform Distribution
 
-```{r, echo=F}
+```{r lect-05-10, echo=F}
 k <- seq(-1,2, by = 0.001)
 plot(k, dunif(k,  min=0, max=1), type="l")
 ```
@@ -165,7 +165,7 @@ plot(k, dunif(k,  min=0, max=1), type="l")
 ## Further Uniform
 
 
-```{r, eval=F}
+```{r lect-05-11, eval=F}
 k <- seq(-2,3, by = 0.001)
 plot(k, dunif(k,  min=-1, max=2), type="l")
 ```
@@ -176,7 +176,7 @@ plot(k, dunif(k,  min=-1, max=2), type="l")
 
 ## Further Uniform
 
-```{r, echo=F}
+```{r lect-05-12, echo=F}
 k <- seq(-2,3, by = 0.001)
 plot(k, dunif(k,  min=-1, max=2), type="l")
 ```
@@ -188,7 +188,7 @@ plot(k, dunif(k,  min=-1, max=2), type="l")
 
 - Look at the CDF
 
-```{r, echo=F}
+```{r lect-05-13, echo=F}
 k <- seq(-2,3, by = 0.001)
 plot(k, punif(k,  min=-1, max=2), type="l")
 ```
@@ -249,7 +249,7 @@ $$\sigma^2$$
 
 ## Normal PDF Plot
 
-```{R , eval=F}
+```{R lect-05-14, eval=F}
 x <- seq(-7,7, by =0.001)
 plot(x, dnorm(x, 0, 0.2), type="l", col="blue", lwd=3)
 curve(dnorm(x, 0, 1.0), add=TRUE, col="red", lwd=3)
@@ -264,7 +264,7 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal PDF Plot
 
-```{R , echo=F}
+```{R lect-05-15, echo=F}
 x <- seq(-7,7, by =0.001)
 plot(x, dnorm(x, 0, 0.2), type="l", col="blue", lwd=3)
 curve(dnorm(x, 0, 1.0), add=TRUE, col="red", lwd=3)
@@ -277,7 +277,7 @@ legend(-6,2,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal CDF Plot
 
-```{R , eval=F}
+```{R lect-05-16 , eval=F}
 x <- seq(-7,7, by =0.001)
 plot(x, pnorm(x, 0, 0.2), type="l", col="blue", lwd=3)
 curve(pnorm(x, 0, 1.0), add=TRUE, col="red", lwd=3)
@@ -291,7 +291,7 @@ legend(-6,1,legend=c("N(0,0.2)","N(0,1)","N(0,5)", "N(0,0.5)"),lty=1,col=c("blue
 
 ## Normal CDF Plot
 
-```{R , echo=F}
+```{R lect-05-17 , echo=F}
 x <- seq(-7,7, by =0.001)
 plot(x, pnorm(x, 0, 0.2), type="l", col="blue", lwd=3)
 curve(pnorm(x, 0, 1.0), add=TRUE, col="red", lwd=3)
@@ -347,7 +347,7 @@ $$Pr(-1\le X \le 1)=Pr(X\le 1) - Pr(X\le -1)$$
 
 - $Pr(X\le 1)$ 
 
-```{r, echo=F}
+```{r lect-05-18, echo=F}
 library(ggplot2)
 ggplot(NULL, aes(c(-3,3))) +
   geom_area(stat = "function", fun = dnorm, fill = "#00998a", xlim = c(-3, 1)) +
@@ -364,7 +364,7 @@ ggplot(NULL, aes(c(-3,3))) +
 
 - $Pr(X\le -1)$ 
 
-```{r, echo=F}
+```{r lect-05-01, echo=F}
 ggplot(NULL, aes(c(-3,3))) +
   geom_area(stat = "function", fun = dnorm, fill = "#00998a", xlim = c(-3, -1)) +
   geom_area(stat = "function", fun = dnorm, fill = "grey80", xlim = c(-1, 3)) +
@@ -379,7 +379,7 @@ ggplot(NULL, aes(c(-3,3))) +
 
 - $Pr(X\le -1)$  and $Pr(X\le 1)$ 
 
-```{r, echo=F}
+```{r lect-05-02, echo=F}
 ggplot(NULL, aes(c(-3,3))) +
   geom_area(stat = "function", fun = dnorm, fill = "#00998a", xlim = c(-3, 1)) +
   geom_area(stat = "function", fun = dnorm, fill = "red", xlim = c(-3, -1), alpha=0.1) + 
