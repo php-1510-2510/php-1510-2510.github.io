@@ -230,8 +230,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">24-Oct</td>
 <td align="left"><strong><em>Exam 1</em></strong></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="../exams/php2510_midterm_2019.pdf">PHP 2510 Exam PDF</a> <a href="../exams/php2510_midterm_2019.Rmd">PHP 2510 Exam Rmd</a> <a href="../exams/php1510_midterm_2019.pdf">PHP 1510 Exam PDF</a> <a href="../exams/php1510_midterm_2019.Rmd">PHP 1510 Exam PDF</a></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
