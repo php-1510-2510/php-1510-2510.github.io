@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Summarization of Data</title>
+  <title>Case Study in Data Exploration and Hypothesis Testing</title>
   <meta charset="utf-8">
-  <meta name="description" content="Summarization of Data">
+  <meta name="description" content="Case Study in Data Exploration and Hypothesis Testing">
   <meta name="author" content="Adam J Sullivan">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -46,7 +46,7 @@
     <img src="assets/img/publichealthlogo.png">
   </aside>
   <hgroup class="auto-fadein">
-    <h1>Summarization of Data</h1>
+    <h1>Case Study in Data Exploration and Hypothesis Testing</h1>
     <h2></h2>
     <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
   </hgroup>
@@ -57,27 +57,11 @@
     <!-- SLIDES -->
     <slide class="segue" id="slide-1" style="background:grey;">
   <hgroup>
-    <h1><code>ggplot2</code></h1>
+    <h1>Case Study in Data Exploration and Hypothesis Testing</h1>
     <hr>
   </hgroup>
   <article data-timings="">
     
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="segue quote" id="slide-2" style="background:#C0C8CE;">
-  <article data-timings="">
-    <p><q>  Appropriate graphical analysis may make the conclusions so clearcut that detailed specific analysis is unnecessary </q></p>
-
-<p><q>-- David Cox (1978)</q></p>
-
     
     <footer class = 'logo'>
 <div style="position: absolute; right: 900px; top: 600px; z-index:100">
@@ -90,14 +74,13 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2><code>ggplot2</code></h2>
+    <h2>The Data</h2>
     <hr>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>We will begin our journey into statistical graphics with the package <code>ggplot2</code>. </li>
-<li>This is a package by Hadley Wickham and is part of the tidyverse. </li>
-<li>It is a very comprehensive and easily adaptable language of graphics. </li>
+<li>We will begin working with data from the Behavioral Risk Factor Surveillance System 2014 data. </li>
+<li>We have a small segment of data that contains information on health and access to healthcare. </li>
 </ul>
 
     
@@ -112,374 +95,87 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>What can&#39;t <code>ggplot2</code> do?</h2>
+    <h2>The data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">load(&quot;Data/brfss.rda&quot;)
+str(brfss2)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code>## &#39;data.frame&#39;:    6706 obs. of  16 variables:
+##  $ genhlth       : Factor w/ 5 levels &quot;Excellent&quot;,&quot;Very Good&quot;,..: 4 2 4 3 2 4 2 2 5 1 ...
+##  $ genhlth_bin   : Factor w/ 2 levels &quot;Excell/VG/G&quot;,..: 2 1 2 1 1 2 1 1 2 1 ...
+##  $ unhealthy.days: num  25 0 15 0 0 0 2 23 30 30 ...
+##  $ imprace       : Factor w/ 6 levels &quot;white-non-hisp&quot;,..: 1 1 1 1 1 5 5 1 1 1 ...
+##  $ insurance     : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ trnsgndr_bin  : Factor w/ 2 levels &quot;yes&quot;,&quot;no&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ trnsgndr      : Factor w/ 4 levels &quot;yes-mtf&quot;,&quot;yes-ftm&quot;,..: 4 4 4 4 4 4 4 4 4 4 ...
+##  $ sxorient_bin  : Factor w/ 2 levels &quot;heterosexual&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ sxorient      : Factor w/ 4 levels &quot;heterosexual&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ menthlth      : num  10 2 15 5 2 30 0 4 15 2 ...
+##  $ poorhlth      : num  25 0 15 0 0 15 0 5 NA 0 ...
+##  $ lsatisfy      : Factor w/ 4 levels &quot;Very Satisfied&quot;,..: 2 1 3 2 1 4 1 2 2 2 ...
+##  $ lsatisfy_bin  : Factor w/ 2 levels &quot;Satisfied&quot;,&quot;Disatisfied&quot;: 1 1 2 1 1 2 1 1 1 1 ...
+##  $ emtsuprt      : Factor w/ 5 levels &quot;Always&quot;,&quot;Usually&quot;,..: 3 2 1 2 1 3 1 2 5 2 ...
+##  $ emtsuprt_bin  : Factor w/ 2 levels &quot;Always/Usually&quot;,..: 2 1 1 1 1 2 1 1 2 1 ...
+##  $ medcost       : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-5" style="background:grey;">
+  <hgroup>
+    <h1>Codebook</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>General Health</h2>
     <hr>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>A good place to start might be with what  <code>ggplot2</code> cannot do:
+<li><code>genhlth</code> : Would you say your general health is?
 
 <ul>
-<li>3d graphs.</li>
-<li>Interactive graphs, use <code>ggvis</code></li>
-<li>DAGs, see <code>igraph</code></li>
-</ul></li>
-<li>We will now focus on all the things it can do.</li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>ggplot2</code> components</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li><code>ggplot2</code> is built off the grammar of graphics with a very intuitive structure. </li>
-<li>The base graphics built into R require the use of many different functions and each of them seem to have their own method for how to use them.<br></li>
-<li><code>ggplot2</code> will be more fluid and the more you learn about it the more amazing of graphics you can create. </li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>ggplot2</code> components</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We will get started with the components of every <code>ggplot2</code> object:
-
-<ol>
-<li><strong>data</strong></li>
-<li><strong>aesthetic mappings</strong> between variables in the data and visual properties.</li>
-<li>At least one layer which describes how to render the data. </li>
-<li>Many of these are with the <code>geom_foo()</code> function. </li>
-</ol></li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>ggplot()</code> Basics</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We will begin with a basic graph of appearances by alignment</li>
-</ul>
-
-<pre><code class="r">library(ggplot2)
-library(fivethirtyeight)
-ggplot(data=comic_characters, aes(x=align, y=appearances))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>ggplot()</code> Basics</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/basic-plot-1.png" alt="plot of chunk basic-plot"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>ggplot()</code> Statement</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We can see that all we have is the basic layout of axis. </li>
-<li>The data and aes gives us the basic layout. </li>
-<li>We need <code>geom_foo()</code> to make a proper graph. </li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>geom_point()</code> Statement</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We can add<code>geom_point()</code> to this:</li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align, y=appearances)) + 
-  geom_point()
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2><code>geom_point()</code> Statement</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/scatter-1.png" alt="plot of chunk scatter"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other graphs</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>This graph is not the best use for out data. </li>
-<li>We could try boxplots instead:</li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align, y=appearances)) + 
-  geom_boxplot()
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other graphs</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/boxplot-1.png" alt="plot of chunk boxplot"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Quick Transformation</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We may be having a hard time seeing this due to the outliers in the data. </li>
-<li>We can try a log transform. </li>
-<li>The code below will do this</li>
-<li>By the end of today you will understand this code</li>
-</ul>
-
-<pre><code class="r">comic_characters &lt;- comic_characters %&gt;%
-  mutate(log_app = log(appearances))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Boxplots Again</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/boxplot-2-1.png" alt="plot of chunk boxplot-2"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Bar Graphs</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We could then consider simple bar graphs</li>
-<li>For example if we wanted to know how many characters of each type there were:</li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align)) + 
-  geom_bar()
-</code></pre>
-
-<ul>
-<li>Note: With bar graphs we only need the x-axis. </li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Bar Graphs</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/barplot-1.png" alt="plot of chunk barplot"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Basic Template</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <pre><code>ggplot(data= &lt;DATA&gt;, aes(x=&lt;X-VARIABLE&gt;, y=&lt;Y-VARIABLE&gt;)) + 
-    &lt;GEOM_FUNCTION&gt;()
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="segue" id="slide-19" style="background:grey;">
-  <hgroup>
-    <h1>Aesthetics</h1>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>The basic aesthetics are mapping the data to the x and y axis. </li>
-<li>We can also add:
-
-<ul>
-<li><code>alpha</code>: makes points transparent to see overlaps better</li>
-<li><code>fill</code>: Fills objects with color </li>
-<li><code>color</code>: Changes color of points or lines.</li>
-<li><code>shape</code>: Changes spape of points</li>
+<li>Excellent</li>
+<li>Very Good</li>
+<li>Good</li>
+<li>Fair</li>
+<li>Poor</li>
 </ul></li>
 </ul>
 
@@ -495,13 +191,11 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Aesthetics:  <code>alpha</code></h2>
+    <h2>Plot</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">ggplot(data=comic_characters, aes(x=align, y=log_app)) + 
-  geom_point(aes(alpha=1/100))
-</code></pre>
+    <p><img src="figure/genhealth-1.png" alt="plot of chunk genhealth"></p>
 
     
     <footer class = 'logo'>
@@ -515,465 +209,17 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Aesthetics:  <code>alpha</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-alpha-1.png" alt="plot of chunk ggplot-alpha"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics:  <code>alpha</code></h2>
+    <h2>General Health Binary</h2>
     <hr>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>It can be hard to see the transparency when they are so close.</li>
-<li>We can set the transparency to a variable</li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>On Your Own: RStudio Practice</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>Set <code>alpha=year</code></li>
-<li>How does this change things?</li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>On Your Own: RStudio Practice</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p>Your end result should be:</p>
-
-<p><img src="figure/on-your-own-alpha%20-1.png" alt="plot of chunk on-your-own-alpha "></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics:  <code>color</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We can easily change the color of points and lines using <code>color</code></li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align, y=log_app)) + 
-  geom_point(aes(color=publisher))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics:  <code>color</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-color-1.png" alt="plot of chunk ggplot-color"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>On Your Own: RStudio Practice</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>Set <code>color=&quot;blue&quot;</code></li>
-<li>How does this change things?</li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics: <code>shapes</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We can change the shape of points based on different variables.</li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align, y=log_app)) + 
-  geom_point(aes(shape=publisher))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics: <code>shapes</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-shapes-1.png" alt="plot of chunk ggplot-shapes"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>On Your Own: RStudio Practice</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>Try using both shape and color. </li>
-<li>How does this add dimensionality to the graph?</li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics: <code>fill</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We can fill objects with color as well</li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align)) + 
-  geom_bar(aes(fill=&quot;blue&quot;))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics: <code>fill</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>This doesnt have the same effect as <code>color</code></li>
-</ul>
-
-<p><img src="figure/ggplot-fill-1.png" alt="plot of chunk ggplot-fill"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics: <code>fill</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>We can use other variables to add dimensionality</li>
-</ul>
-
-<pre><code class="r">ggplot(data=comic_characters, aes(x=align)) + 
-  geom_bar(aes(fill=publisher))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Aesthetics: <code>fill</code></h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-fill2-1.png" alt="plot of chunk ggplot-fill2"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="segue" id="slide-36" style="background:grey;">
-  <hgroup>
-    <h1>Geoms</h1>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Geoms</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>There are many <code>geom_foo()</code> functions we can use. </li>
-<li>The Cheatsheet on   <code>ggplot()</code> is a good place to start for more. </li>
-</ul>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other Plots: Density</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">ggplot(data=comic_characters, aes(x=log_app)) + 
-  geom_density()
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other Plots: Density</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-density-1.png" alt="plot of chunk ggplot-density"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other Plots: Density</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">ggplot(data=comic_characters, aes(x=log_app)) + 
-  geom_density(aes(color=publisher))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other Plots: Density</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-density2-1.png" alt="plot of chunk ggplot-density2"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other Plots: Histogram</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">ggplot(data=comic_characters, aes(x=log_app)) + 
-  geom_histogram(aes(fill=publisher))
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Other Plots: Histogram</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/ggplot-hist-1.png" alt="plot of chunk ggplot-hist"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>More Complicated</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>Let&#39;s say that we wish to see how the number of characters introduced each year change by:
+<li><code>genhlth_bin</code> : Would you say your general health is?
 
 <ul>
-<li>year</li>
-<li>gender</li>
-<li>publisher</li>
+<li>Excellent/Very Good/Good</li>
+<li>Fair/Poor</li>
 </ul></li>
-<li>We could do this with dplyr and ggplot. </li>
 </ul>
 
     
@@ -988,19 +234,34 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Counting</h2>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/genhealth-binary-1.png" alt="plot of chunk genhealth-binary"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days</h2>
     <hr>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>We first need to count this:</li>
+<li><code>unhealthy.days</code> : Now thinking about your physical health, which includes physical illness and injury, for how many days during the past
+30 days was your physical health not good?</li>
+<li>Values: 0-30</li>
 </ul>
 
-<pre><code class="r">gender_year &lt;- comic_characters %&gt;%
-    group_by(year, gender, publisher) %&gt;%
-    tally()
-</code></pre>
-
     
     <footer class = 'logo'>
 <div style="position: absolute; right: 900px; top: 600px; z-index:100">
@@ -1013,29 +274,11 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>What do we have?</h2>
+    <h2>Plot</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">gender_year
-</code></pre>
-
-<pre><code>## # A tibble: 457 x 4
-## # Groups:   year, gender [?]
-##     year gender            publisher     n
-##    &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;     &lt;int&gt;
-##  1  1935 Male Characters   DC            1
-##  2  1936 Female Characters DC            2
-##  3  1936 Male Characters   DC            7
-##  4  1937 Female Characters DC            1
-##  5  1937 Male Characters   DC            3
-##  6  1938 Female Characters DC            1
-##  7  1938 Male Characters   DC            9
-##  8  1939 Female Characters DC            5
-##  9  1939 Female Characters Marvel       10
-## 10  1939 Male Characters   DC           13
-## # ... with 447 more rows
-</code></pre>
+    <p><img src="figure/unhealthy-days-1.png" alt="plot of chunk unhealthy-days"></p>
 
     
     <footer class = 'logo'>
@@ -1049,91 +292,14 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>The plot: All publishers together</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">ggplot(gender_year, aes(x=year, y=n, color=gender)) + 
-      geom_line()
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>The plot: All publishers together</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/gender-pub-1.png" alt="plot of chunk gender-pub"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Graph by Publisher</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">ggplot(gender_year, aes(x=year, y=n, color=gender)) + 
-      geom_line() + 
-      facet_wrap(~publisher)
-</code></pre>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Graph by Publisher</h2>
-    <hr>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/gender-pub-sep-1.png" alt="plot of chunk gender-pub-sep"></p>
-
-    
-    <footer class = 'logo'>
-<div style="position: absolute; right: 900px; top: 600px; z-index:100">
-<img src = "assets/img/publichealthlogo.png" height="100" >
-</div>
-</footer>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>What can we see?</h2>
+    <h2>Mental Health Days</h2>
     <hr>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Hard to see genders other than male or female.</li>
-<li>Marvel shows another category but that is <code>NA</code>. </li>
-<li>We need to remove male and female in order to see more distinction in other genders. </li>
+<li><code>menthlth</code> : : Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many
+days during the past 30 days was your mental health not good?</li>
+<li>Values: 0-30</li>
 </ul>
 
     
@@ -1148,18 +314,892 @@ ggplot(data=comic_characters, aes(x=align, y=appearances))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Removing certain Genders</h2>
+    <h2>Plot</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">gender_year_subset &lt;- comic_characters %&gt;%
-    group_by(year, gender, publisher) %&gt;%
-    filter(gender != &quot;Female Characters&quot; &amp; gender != &quot;Male Characters&quot;) %&gt;%
-    tally()
+    <p><img src="figure/mental-health-1.png" alt="plot of chunk mental-health"></p>
 
-ggplot(gender_year_subset, aes(x=year, y=n, color=gender)) + 
-      geom_line() + 
-      facet_wrap(~publisher)
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Poor Physical or Mental Health</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>poorhlth</code> :  During the past 30 days, for about how many days did poor physical or mental health keep you from doing your usual
+activities, such as self-care, work, or recreation?</li>
+<li>Values: 0-30</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/poor-health-1.png" alt="plot of chunk poor-health"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Imputed Race</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>imprace</code> : Imputed race/ethnicity value (This value is the reported race/ethnicity or an imputed race/ethnicity, if the respondent
+refused to give a race/ethnicity. The value of the imputed race/ethnicity will be the most common race/ethnicity response for that region of the state) 
+
+<ul>
+<li>White, Non-Hispanic</li>
+<li>Black, Non-Hispanic</li>
+<li>Asian, Non-Hispanic</li>
+<li>American Indian/Alaska Native, Non-Hispanic</li>
+<li>Hispanic</li>
+<li>Other Race, Non-Hispanic</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/race-1.png" alt="plot of chunk race"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Insurance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>insurance</code> : Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMOs, or government
+plans such as Medicare, or Indian Health Service?
+
+<ul>
+<li>Yes</li>
+<li>No</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/insurance-1.png" alt="plot of chunk insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>trnsgndr</code> :  Do you consider yourself to be transgender? (If yes, ask “Do you consider yourself to be male-to-female, female-to-male, or gender non-conforming?)
+
+<ul>
+<li>Yes, mtf</li>
+<li>Yes, ftm</li>
+<li>Yes, non-conforming</li>
+<li>No</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gender-1.png" alt="plot of chunk gender"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gender Binary</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>trnsgndr_bin</code> :  Do you consider yourself to be transgender? (If yes, ask “Do you consider yourself to be male-to-female, female-to-male, or gender non-conforming?)
+
+<ul>
+<li>Yes</li>
+<li>No</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gender-bin-1.png" alt="plot of chunk gender-bin"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sexual Orientation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>sxorient</code> :  Do you consider yourself to be: (We ask this question in order to better understand the health and health care needs of
+people with different sexual orientations.)
+
+<ul>
+<li>Heterosexual</li>
+<li>Homosexual</li>
+<li>Bisexual</li>
+<li>Other</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/sex-orient-1.png" alt="plot of chunk sex-orient"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sexual Orientation Binary</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>sxorient_bin</code> :  Do you consider yourself to be: (We ask this question in order to better understand the health and health care needs of
+people with different sexual orientations.)
+
+<ul>
+<li>Heterosexual</li>
+<li>Other</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/ex-orient-bin-1.png" alt="plot of chunk ex-orient-bin"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Life Satisfaction</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>lsatisfy</code>: In general, how satisfied are you with life?
+
+<ul>
+<li>Very Satisfied</li>
+<li>Satisfied</li>
+<li>Disatisfied</li>
+<li>Very Disatisfied</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/life-satisfcation-1.png" alt="plot of chunk life-satisfcation"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Life Satisfaction Binary</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>lsatisfy</code>: In general, how satisfied are you with life?
+
+<ul>
+<li>Satisfied</li>
+<li>Disatisfied</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/life-satisfaction-bin-1.png" alt="plot of chunk life-satisfaction-bin"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Emotional Support</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>emtsuprt</code>: How often do you get the social and emotional support you need?
+
+<ul>
+<li>Always</li>
+<li>Usually</li>
+<li>Sometimes</li>
+<li>Rarely</li>
+<li>Never</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/emtsupport-1.png" alt="plot of chunk emtsupport"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Emotional Support Binary</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>emtsuprt_bin</code>: How often do you get the social and emotional support you need?
+
+<ul>
+<li>Always/Usually</li>
+<li>Sometimes/Rarely/Never</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/emtsupport-bin-1.png" alt="plot of chunk emtsupport-bin"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Medical Cost Barrier</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>medcost</code>: Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?
+
+<ul>
+<li>Yes</li>
+<li>No</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Plot</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/medcost-1.png" alt="plot of chunk medcost"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-38" style="background:grey;">
+  <hgroup>
+    <h1>Relationships</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days  vs Insurance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 2 x 4
+##   insurance  mean median    sd
+##   &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Yes        6.43      2  9.63
+## 2 No         5.95      2  9.20
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unhealthy-vs-insurance-1.png" alt="plot of chunk unhealthy-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days  vs Medical Cost</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 2 x 4
+##   medcost  mean median    sd
+##   &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Yes      8.90      3 10.8 
+## 2 No       6.09      2  9.40
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/medcost-vs-insurance-1.png" alt="plot of chunk medcost-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days  vs Emotional Support</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 2 x 4
+##   emtsuprt_bin     mean median    sd
+##   &lt;fct&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Always/Usually   6.08      2  9.35
+## 2 Sometimes-Never  7.98      2 10.6
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/emtsupport-vs-insurance-1.png" alt="plot of chunk emtsupport-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days  vs Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 4 x 4
+##   trnsgndr         mean median    sd
+##   &lt;fct&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 yes-mtf         10.8     2   13.5 
+## 2 yes-ftm         10.2     5   12.0 
+## 3 yes-non-conform  7.17    3.5 11.5 
+## 4 no               6.38    2    9.58
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/gender-vs-insurance-1.png" alt="plot of chunk gender-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days  vs Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 2 x 4
+##   trnsgndr_bin  mean median    sd
+##   &lt;fct&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 yes          10.0     3.5 12.4 
+## 2 no            6.38    2    9.58
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/genderbin-vs-insurance-1.png" alt="plot of chunk genderbin-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days  vs Race</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 6 x 4
+##   imprace         mean median    sd
+##   &lt;fct&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 white-non-hisp  6.32      2  9.58
+## 2 black-non-hisp  8.38      4 10.4 
+## 3 asian-non-hisp  4.29      2  7.21
+## 4 aian-non-hisp   9.28      3 11.2 
+## 5 hisp            6.4       2  9.23
+## 6 other-non-hisp  7.29      2  9.78
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/race-vs-insurance-1.png" alt="plot of chunk race-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days by General Health</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 5 x 4
+##   genhlth    mean median    sd
+##   &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Excellent  2.33      1  5.15
+## 2 Very Good  3.23      1  6.32
+## 3 Good       5.36      2  8.05
+## 4 Fair      13.2      10 11.5 
+## 5 Poor      23.8      30  9.61
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/genhlth-vs-insurance-1.png" alt="plot of chunk genhlth-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unhealthy Days by General Health</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 2 x 4
+##   genhlth_bin  mean median    sd
+##   &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Excell/VG/G  3.95      1  7.02
+## 2 Fair/Poor   16.2      15 12.0
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/genhlthbin-vs-insurance-1.png" alt="plot of chunk genhlthbin-vs-insurance"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Question: Does Reported General Health imply Number of Unhealthy Days</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the data</li>
+</ul>
+
+<pre><code>## # A tibble: 2 x 2
+##   genhlth_bin `mean(unhealthy.days, na.rm = T)`
+##   &lt;fct&gt;                                   &lt;dbl&gt;
+## 1 Excell/VG/G                              3.95
+## 2 Fair/Poor                               16.2
+</code></pre>
+
+<pre><code>## [1] 12.25
 </code></pre>
 
     
@@ -1174,11 +1214,263 @@ ggplot(gender_year_subset, aes(x=year, y=n, color=gender)) +
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Removing certain Genders</h2>
+    <h2>Hypothesis Testing: What is Happening?</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/gender-removed-1.png" alt="plot of chunk gender-removed"></p>
+    <ul>
+<li>Self Reported Health predicts number of days unhealthy. </li>
+<li>Groups Differ at Baseline</li>
+<li>Random Chance</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Groups Differ at Baseline</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We may have noticed that most comparisons in here were not showing a strong connection of unhealthy days. </li>
+<li>This means that with the data we have, there may not be a problem with groups differing at baseline. </li>
+<li>On the exam, you can agree with a statement like this or show otherwise. </li>
+<li>If you were to show otherwise, show a connection between another variable and the outcome (unhealthy days) and that variable and the exposure (self reported health)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing: What is Happening?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Self Reported Health predicts number of days unhealthy. </li>
+<li><delete>Groups Differ at Baseline</delete></li>
+<li>Random Chance</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Random Chance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will simulate this. </li>
+<li>Based on Probabilities</li>
+</ul>
+
+<pre><code class="r">brfss2 %&gt;% 
+    group_by(genhlth_bin) %&gt;% 
+    summarise(n=n()) %&gt;% 
+    mutate(freq=n/sum(n))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Random Chance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will simulate this. </li>
+<li>Based on Probabilities</li>
+</ul>
+
+<pre><code>## # A tibble: 2 x 3
+##   genhlth_bin     n  freq
+##   &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt;
+## 1 Excell/VG/G  5330 0.795
+## 2 Fair/Poor    1376 0.205
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simplify Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss3 &lt;- brfss2 %&gt;%
+          select(unhealthy.days, genhlth_bin)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>One simulation</li>
+</ul>
+
+<pre><code class="r">library(tidyverse)
+T = dim(brfss2)[1]
+health.sim = replicate(T, sample(c(&quot;Excell/VG/G&quot;, &quot;Fair/Poor&quot;), size=1, prob=c(0.795, 0.205)))
+health.sim = enframe(health.sim, name=NULL, value=&quot;health.sim&quot;)
+brfss3 &lt;- bind_cols(brfss3, health.sim)
+test &lt;- brfss3 %&gt;% group_by(health.sim) %&gt;% summarise(m=mean(unhealthy.days, na.rm=TRUE))
+difference = test$m[1] - test$m[2]
+difference
+</code></pre>
+
+<pre><code>## [1] -0.1923031
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Simulations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss3 &lt;- brfss2 %&gt;%
+          select(unhealthy.days, genhlth_bin)
+
+diff_sim &lt;- function(data){
+
+health.sim = replicate(T, sample(c(&quot;Excell/VG/G&quot;, &quot;Fair/Poor&quot;), size=1, prob=c(0.795, 0.205)))
+health.sim = enframe(health.sim, name=NULL, value=&quot;health.sim&quot;)
+data &lt;- bind_cols(data, health.sim)
+test &lt;- data %&gt;% group_by(health.sim) %&gt;% summarise(m=mean(unhealthy.days, na.rm=TRUE))
+difference = test$m[1] - test$m[2]
+return(difference)
+}
+
+diff = replicate(1000, diff_sim(brfss3))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Histogram of Simulated Differences</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/health-sim-hist-1.png" alt="plot of chunk health-sim-hist"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How Likely is our value?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mean(diff&gt;12.25)
+</code></pre>
+
+<pre><code>## [1] 0
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing: What is Happening?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Self Reported Health predicts number of days unhealthy. </li>
+<li><delete>Groups Differ at Baseline</delete></li>
+<li><delete>Random Chance</delete></li>
+<li><strong>Note there is a possibilty that the number of days was asked first prompting their answer for the general health as well.</strong> </li>
+</ul>
 
     
     <footer class = 'logo'>
@@ -1196,320 +1488,398 @@ ggplot(gender_year_subset, aes(x=year, y=n, color=gender)) +
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='<code>ggplot2</code>'>
+        data-slide=1 title='Case Study in Data Exploration and Hypothesis Testing'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='NA'>
+        data-slide=2 title='The Data'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='<code>ggplot2</code>'>
+        data-slide=3 title='The data'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='What can&#39;t <code>ggplot2</code> do?'>
+        data-slide=4 title='NA'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='<code>ggplot2</code> components'>
+        data-slide=5 title='Codebook'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='<code>ggplot2</code> components'>
+        data-slide=6 title='General Health'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='<code>ggplot()</code> Basics'>
+        data-slide=7 title='Plot'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='<code>ggplot()</code> Basics'>
+        data-slide=8 title='General Health Binary'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='<code>ggplot()</code> Statement'>
+        data-slide=9 title='Plot'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='<code>geom_point()</code> Statement'>
+        data-slide=10 title='Unhealthy Days'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='<code>geom_point()</code> Statement'>
+        data-slide=11 title='Plot'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Other graphs'>
+        data-slide=12 title='Mental Health Days'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Other graphs'>
+        data-slide=13 title='Plot'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Quick Transformation'>
+        data-slide=14 title='Poor Physical or Mental Health'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Boxplots Again'>
+        data-slide=15 title='Plot'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Bar Graphs'>
+        data-slide=16 title='Imputed Race'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Bar Graphs'>
+        data-slide=17 title='Plot'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Basic Template'>
+        data-slide=18 title='Insurance'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Aesthetics'>
+        data-slide=19 title='Plot'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Aesthetics'>
+        data-slide=20 title='Gender'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Aesthetics:  <code>alpha</code>'>
+        data-slide=21 title='Plot'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Aesthetics:  <code>alpha</code>'>
+        data-slide=22 title='Gender Binary'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Aesthetics:  <code>alpha</code>'>
+        data-slide=23 title='Plot'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='On Your Own: RStudio Practice'>
+        data-slide=24 title='Sexual Orientation'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='On Your Own: RStudio Practice'>
+        data-slide=25 title='Plot'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Aesthetics:  <code>color</code>'>
+        data-slide=26 title='Sexual Orientation Binary'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Aesthetics:  <code>color</code>'>
+        data-slide=27 title='Plot'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='On Your Own: RStudio Practice'>
+        data-slide=28 title='Life Satisfaction'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Aesthetics: <code>shapes</code>'>
+        data-slide=29 title='Plot'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Aesthetics: <code>shapes</code>'>
+        data-slide=30 title='Life Satisfaction Binary'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='On Your Own: RStudio Practice'>
+        data-slide=31 title='Plot'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='Aesthetics: <code>fill</code>'>
+        data-slide=32 title='Emotional Support'>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Aesthetics: <code>fill</code>'>
+        data-slide=33 title='Plot'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Aesthetics: <code>fill</code>'>
+        data-slide=34 title='Emotional Support Binary'>
          34
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='Aesthetics: <code>fill</code>'>
+        data-slide=35 title='Plot'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Geoms'>
+        data-slide=36 title='Medical Cost Barrier'>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Geoms'>
+        data-slide=37 title='Plot'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Other Plots: Density'>
+        data-slide=38 title='Relationships'>
          38
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='Other Plots: Density'>
+        data-slide=39 title='Unhealthy Days  vs Insurance'>
          39
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='Other Plots: Density'>
+        data-slide=40 title='NA'>
          40
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='Other Plots: Density'>
+        data-slide=41 title='Unhealthy Days  vs Medical Cost'>
          41
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='Other Plots: Histogram'>
+        data-slide=42 title='NA'>
          42
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='Other Plots: Histogram'>
+        data-slide=43 title='Unhealthy Days  vs Emotional Support'>
          43
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='More Complicated'>
+        data-slide=44 title='NA'>
          44
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='Counting'>
+        data-slide=45 title='Unhealthy Days  vs Gender'>
          45
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=46 title='What do we have?'>
+        data-slide=46 title='NA'>
          46
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=47 title='The plot: All publishers together'>
+        data-slide=47 title='Unhealthy Days  vs Gender'>
          47
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=48 title='The plot: All publishers together'>
+        data-slide=48 title='NA'>
          48
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=49 title='Graph by Publisher'>
+        data-slide=49 title='Unhealthy Days  vs Race'>
          49
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=50 title='Graph by Publisher'>
+        data-slide=50 title='NA'>
          50
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=51 title='What can we see?'>
+        data-slide=51 title='Unhealthy Days by General Health'>
          51
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=52 title='Removing certain Genders'>
+        data-slide=52 title='NA'>
          52
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=53 title='Removing certain Genders'>
+        data-slide=53 title='Unhealthy Days by General Health'>
          53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='NA'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Question: Does Reported General Health imply Number of Unhealthy Days'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Hypothesis Testing: What is Happening?'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Groups Differ at Baseline'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='Hypothesis Testing: What is Happening?'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Random Chance'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Random Chance'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Simplify Data'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='Simulations'>
+         62
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=63 title='Simulations'>
+         63
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=64 title='Histogram of Simulated Differences'>
+         64
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=65 title='How Likely is our value?'>
+         65
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=66 title='Hypothesis Testing: What is Happening?'>
+         66
       </a>
     </li>
   </ul>

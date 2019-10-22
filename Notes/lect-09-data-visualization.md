@@ -284,7 +284,7 @@ Your end result should be:
 
 
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk on-your-own-alpha ](figure/on-your-own-alpha -1.png)
 
 --- .class #id
 

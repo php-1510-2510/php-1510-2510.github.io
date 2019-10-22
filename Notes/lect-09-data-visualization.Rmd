@@ -310,7 +310,7 @@ Your end result should be:
 
 
 
-```{r , echo=F}
+```{r on-your-own-alpha , echo=F}
 ggplot(data=comic_characters, aes(x=align, y=log_app)) + 
   geom_point(aes(alpha=year))
 ```

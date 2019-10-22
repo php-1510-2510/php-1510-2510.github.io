@@ -17,6 +17,16 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
+<thead>
+<tr>
+<th align="left">Week</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Lecture Resources</th>
+<th align="left">Readings</th>
+<th align="left">HW Assigned</th>
+<th align="left">HW Due</th>
+</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -193,7 +203,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">17-Oct</td>
 <td align="left">Introduction to Hypothesis Testing</td>
-<td align="left"><a href="../Notes/lect-12-intro-to-hyp-testing.html">Lect-12-intro-to-hyp-testing</a></td>
+<td align="left"><a href="../Notes/lect-12-intro-to-hyp-testing.html">Lect-12-intro-to-hyp-testing</a> <a href="https://vimeo.com/367904220/e82b749f47">Video</a></td>
 <td align="left">CHEST Ch. 3</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -211,7 +221,7 @@ title: Calendar
 <td align="left">Week 8</td>
 <td align="left">22-Oct</td>
 <td align="left">Introduction to Hypothesis Testing</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-13-case-study.html">Lect-13-case-study</a></td>
 <td align="left">CHEST Ch. 3</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -220,6 +230,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">24-Oct</td>
 <td align="left"><strong><em>Exam 1</em></strong></td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
