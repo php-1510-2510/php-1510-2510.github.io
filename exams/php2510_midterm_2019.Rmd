@@ -278,6 +278,9 @@ doesn't become more or less likely to be caught again.)
 
 ## Data Questions
 
+
+Our goal here will to be consider the days that stress, depression, and problems with emotions caused days where mental health was not good. We will be addressing this specifically in context to the transgender experience. The reason for this being that we do see different rates of depression, suicide and other outcomes associated with the transgender experience. It is important to begin to understand what the cause might be. 
+
 - Download the file ***[`brfss.rda`](https://drive.google.com/file/d/188YvZMXQxegZY5oXDoeTa8Lkh8hGbzx4/view?usp=sharing)***
 
 ***Click the link or go to: https://drive.google.com/file/d/188YvZMXQxegZY5oXDoeTa8Lkh8hGbzx4/view?usp=sharing***
@@ -287,7 +290,7 @@ doesn't become more or less likely to be caught again.)
 load("brfss.rda")
 ```
 
-6. **(6 points)** Plot and Describe the Distribution of Mental Health Days off. 
+6. **(6 points)** Plot and Describe the Distribution of poor mental health days. 
 
 ```{r}
 ## Place code for #6 here
@@ -332,7 +335,7 @@ library(ggplot2)
 
 \newpage
 
-10. **(12 points)** Display graphs of variables that have relationships with Mental Health Days off.  (**Note:** Look at the notes with general health to see how to combine multiple plots in a larger grid image. (lect 13 slide 58) )
+10. **(12 points)** Display graphs of variables that have relationships with poor mental health days.  (**Note:** Look at the notes with general health to see how to combine multiple plots in a larger grid image. (lect 13 slide 58) )
 
 ```{r}
 ## Place code for #10 here
@@ -342,9 +345,11 @@ library(gridExtra)
 
 \newpage
 
-11. **20 points** We have been exploring the outcome of days off due to mental health. Papers have been published suggesting that there is a relationship between transgender and mental health. Some of this comes from the fact that there are higher transgender suicide attempts. 
-Transgender health in general has not been well researched and so one good place to start might be to consider the impact of how many days mental health issues were bad. 
-Do you find that those who classify as transgender have higher number of bad mental health days? 
+11. **20 points** We have been exploring the outcome of days off due to mental health. Papers have been published suggesting that there is a relationship between the transgender experience and mental health outcomes. 
+
+Health related to the transgender experience in general has not been well researched. This is an attempt to get everyone to be thinking about the number of days in which stress, depression and other emotions may had led to poor mental health days.
+
+Do there appear to be relationships between the transgender experience and the number of days in which stress, depression and emotions led to poor mental health? 
 
 ***Remember: we have 3 things to consider with a hypothesis.***
 
