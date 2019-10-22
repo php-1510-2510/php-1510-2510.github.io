@@ -134,24 +134,24 @@ prop.table(tab)
 
 ```
 ## # A tibble: 4 x 4
-## # Groups:   health.bin [2]
-##   health.bin          organic     n  freq
-##   <fct>               <fct>   <int> <dbl>
-## 1 Very Good/Excellent Yes       555 0.497
-## 2 Very Good/Excellent No        562 0.503
-## 3 Poor/Fair/Good      Yes       593 0.382
-## 4 Poor/Fair/Good      No        961 0.618
+## # Groups:   organic [2]
+##   organic health.bin              n  freq
+##   <fct>   <fct>               <int> <dbl>
+## 1 Yes     Very Good/Excellent   555 0.483
+## 2 Yes     Poor/Fair/Good        593 0.517
+## 3 No      Very Good/Excellent   562 0.369
+## 4 No      Poor/Fair/Good        961 0.631
 ```
 
 ```
-## [1] 0.127
+## [1] 0.114
 ```
 
 --- .class #id
 
 ## Evaluating Evidence
 
-- In this data, people who bout organic are healthier. 
+- In this data, people who bought organic are healthier. 
 - Possible Explanations
     - Eating organic improves health.
     - Groups Differed at Baseline.
@@ -425,6 +425,7 @@ difference = test$m[1] - test$m[2]
 return(difference)
 }
 
+data3 <- gather(data2, key="Food", value="days")
 diff = replicate(1000, diff_sim(data3))
 ```
 

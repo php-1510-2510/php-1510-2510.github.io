@@ -221,7 +221,7 @@ title: Calendar
 <td align="left">Week 8</td>
 <td align="left">22-Oct</td>
 <td align="left">Introduction to Hypothesis Testing</td>
-<td align="left"><a href="../Notes/lect-13-case-study.html">Lect-13-case-study</a></td>
+<td align="left"><a href="../Notes/lect-13-case-study.html">Lect-13-case-study</a> <a href="https://vimeo.com/368093833/d163a14ccd">Video</a></td>
 <td align="left">CHEST Ch. 3</td>
 <td align="left"></td>
 <td align="left"></td>

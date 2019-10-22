@@ -220,16 +220,16 @@ ggplot(organic, aes(x=organic, fill=health.bin)) +
 - We could consider the difference between healthy with organic food vs healthy with conventional food. 
 
 ```{r, echo=F}
-organic %>% group_by(health.bin, organic) %>% summarise(n=n()) %>% mutate(freq = n/sum(n))
+organic %>% group_by(organic, health.bin) %>% summarise(n=n()) %>% mutate(freq = n/sum(n))
 
-0.452 - 0.325
+0.483 - 0.369
 ```
 
 --- .class #id
 
 ## Evaluating Evidence
 
-- In this data, people who bout organic are healthier. 
+- In this data, people who bought organic are healthier. 
 - Possible Explanations
     - Eating organic improves health.
     - Groups Differed at Baseline.
@@ -620,6 +620,7 @@ difference = test$m[1] - test$m[2]
 return(difference)
 }
 
+data3 <- gather(data2, key="Food", value="days")
 diff = replicate(1000, diff_sim(data3))
 ```
 

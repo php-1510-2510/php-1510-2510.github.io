@@ -307,16 +307,16 @@ prop.table(tab)
 </ul>
 
 <pre><code>## # A tibble: 4 x 4
-## # Groups:   health.bin [2]
-##   health.bin          organic     n  freq
-##   &lt;fct&gt;               &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;
-## 1 Very Good/Excellent Yes       555 0.497
-## 2 Very Good/Excellent No        562 0.503
-## 3 Poor/Fair/Good      Yes       593 0.382
-## 4 Poor/Fair/Good      No        961 0.618
+## # Groups:   organic [2]
+##   organic health.bin              n  freq
+##   &lt;fct&gt;   &lt;fct&gt;               &lt;int&gt; &lt;dbl&gt;
+## 1 Yes     Very Good/Excellent   555 0.483
+## 2 Yes     Poor/Fair/Good        593 0.517
+## 3 No      Very Good/Excellent   562 0.369
+## 4 No      Poor/Fair/Good        961 0.631
 </code></pre>
 
-<pre><code>## [1] 0.127
+<pre><code>## [1] 0.114
 </code></pre>
 
     
@@ -336,7 +336,7 @@ prop.table(tab)
   </hgroup>
   <article data-timings="">
     <ul>
-<li>In this data, people who bout organic are healthier. </li>
+<li>In this data, people who bought organic are healthier. </li>
 <li>Possible Explanations
 
 <ul>
@@ -935,6 +935,7 @@ difference = test$m[1] - test$m[2]
 return(difference)
 }
 
+data3 &lt;- gather(data2, key=&quot;Food&quot;, value=&quot;days&quot;)
 diff = replicate(1000, diff_sim(data3))
 </code></pre>
 

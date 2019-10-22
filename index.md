@@ -61,7 +61,7 @@ Below is a quick table for when office hours will be held regularly. [Check This
 | |  SPH Room 754 | Tuesdays 2-3pm | 
 |  |  SPH Grad Student Library  | Tuesdays 3-5pm | 
 |  |  SPH Room 241 | Wednesdays 4-5pm | 
-|  |  SPH Room 251 | Thursdays 3-6pm | 
+|  |  SPH Room 251 | Thursdays 3-5pm | 
 |  |  SPH Room 251 | Fridays 10-12am | 
 |:-----------|:--------|:-----------|
 
