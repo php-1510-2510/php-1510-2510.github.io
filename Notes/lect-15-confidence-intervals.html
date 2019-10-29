@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confidence Intervals</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Confidence Intervals">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Confidence Intervals</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Beginning Confidence Intervals</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Statistical Estimates</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have been discussing many types of estimates
+
+<ul>
+<li>mean</li>
+<li>median</li>
+<li>min</li>
+<li>max</li>
+</ul></li>
+<li>These are all what we call point estimates. </li>
+<li>Estimates are almost always wrong.</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Problems with Samples</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Each time we sample, we get a different mean. </li>
+<li>The center of the mean distribution is the true mean of the population but we have no way of knowing if our sample mean is the true mean. </li>
+<li>How do we deal with this?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We know we are probably wrong. </li>
+<li>We wish to understand just how wrong we are. </li>
+<li>We use a confidence interval (CI)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Intervals</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We quanity how wrong by calculating a <strong>margin of error (MOE)</strong>. </li>
+<li>We then add and subtract this from our estimate
+\[\text{CI} = \text{Point Estimate} \pm \text{MOE}\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Margin of Error</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is the maximum amount of error we expect in our point estimate. </li>
+<li>We wish to quantify this within a certain amount of confidence. </li>
+<li>We call this: 
+
+<ul>
+<li>&quot;level of confidence&quot;</li>
+<li>&quot;confidence level&quot;</li>
+</ul></li>
+<li>The margin of error is found by using the probability distribution of the point estimate. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Interval on the Mean</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We already know the distribution of the sample mean. </li>
+<li>This distribution is normal, so we can find which value of a normal would give us a certain confidence. </li>
+<li>Suppose we wish to have 95% confidence, then we wish to know what value of the normal distribution give us 95%. </li>
+<li>We need the values that would then cut 2.5% on the left of and 2.5% on the right. This would then mean 95% in the middle. </li>
+<li>We can do this in R. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Critical Values</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
+
+<pre><code class="r"># 2.5 Percentile
+
+qnorm(0.025)
+
+# 9.5 Percentile
+qnorm(0.975)
+</code></pre>
+
+<pre><code>## [1] -1.959964
+## [1] 1.959964
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The normal is symmetric, so we can see that the values are -1.96 and 1.96. </li>
+<li>We can just use the positive value here as both will help the same way. </li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Making the Confidence Interval</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>\[\bar{x} \pm z * \dfrac{sigma}{\sqrt{n}}\]</p>
+
+<ul>
+<li>Where:
+
+<ul>
+<li>\(\bar{x}\) is the sample mean. </li>
+<li>\(z\) critical value assocatiated with % of confidence</li>
+<li>\(\sigma\) is population standard deviation. </li>
+<li>\(n\) is the sample size. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data &lt;- rbinom(10, 10, 0.3)
+
+mn &lt;- mean(data)
+std.dev &lt;- sd(data)
+
+mn - 1.96*std.dev
+mn + 1.96*std.dev
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## [1] 0.215969
+## [1] 0.784031
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does this mean?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>It means that 95% of the intervals constructed like this will cover over thepopulation mean. </li>
+<li>Consider the following app:</li>
+<li><a href="https://istats.shinyapps.io/ExploreCoverage/">Agresti Shiny App</a></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpretation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The interpretation for the previous example is that we are 95% sure that the interval (0.215969, 0.784031) contains the mean. </li>
+<li>This is not the same as saying there is a 95% chance that the population mean is in this interval. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpretation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>While it seems similar, you must remember. </li>
+<li>There is one true population mean. </li>
+<li>You construct a sample, then you create a confidence interval. </li>
+<li>We said that with a 95% confidence interval we know that 95% of these intervals will cover the true mean. </li>
+<li>The interval is what moves each time. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about when we do not know \(\sigma\)?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have shown an example of a binomial where we know the standard devation of the popultion, \(\sqrt{n*p*(1-p)}\). </li>
+<li>What happens when we do not know this? </li>
+<li>The Student&#39;s T Distribution!</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Student&#39;s T Distribution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Created by a man named Sealy Gosset in 1908. </li>
+<li>Published under the name &quot;Student&quot; as he was working for Guinness Brewery in Dublin at the time. 
+
+<ul>
+<li>Either he didn&#39;t want to be known or Guinness did not. </li>
+</ul></li>
+<li>His Desire what to understand the distribution of small samples of data. </li>
+<li>This was for his work in analyzing barley for beer where they may have only very few samples. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Standard Normal</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The standard normal is a normal distribution with mean 0 and variance 1. </li>
+<li>This is important since if we have:
+\[ X\sim N(\mu, \sigma^2)\]</li>
+<li>Then we can standardize this as:</li>
+</ul>
+
+<p>\[Z = \dfrac{X-\mu}{\sigma}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>In Sample Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We know that \(\bar{X}\) is normal such that
+\[ \bar{X}\sim N\left(\mu, \dfrac{\sigma^2}{n}\right)\]</li>
+<li>Then we can make this a standard normal:</li>
+</ul>
+
+<p>\[Z= dfrac{X-\mu}{\sigma/\sqrt{n}}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Student&#39;s t Distribution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>\[t_{n-1} = \dfrac{\bar{X}-\mu}{S/\sqrt{n}}\]</p>
+
+<ul>
+<li>Where:
+
+<ul>
+<li>\(t_{n-1}\) represents a t distribution with \(n-1\) degrees of freedom. </li>
+<li>S is the sample variance:
+\[S=\dfrac{1}{n-1}\sum_{i=1}^n(x_i-\bar{X})^2\]</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Student&#39;s t Distribution plots</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Student&#39;s t Confidence Intervals</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s assume we have some data that we believe to be a from a normal distribution. </li>
+<li>We then would wish to create confidence intervals for the mean. 
+\[\text{CI} = \text{Point Estimate} \pm \text{MOE}\]
+\[ \bar{x} \pm t * \dfrac{S}{\sqrt{n}}\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can simulate some data:</li>
+<li>10 Samples from a \(N(63.8, 3.86)\) distribution. </li>
+</ul>
+
+<pre><code class="r">data = rnorm(10, 63.8, 3.86)
+</code></pre>
+
+<ul>
+<li>In real life we have data that is normal yet we do not know \(\sigma\). </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Margin of Error</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We know that we need to calculate the margin of error. 
+\[\text{MOE} = z*\dfrac{\sigma}{\sqrt{n}}\]</li>
+<li>We do not know \(\sigma\) but we can calculate \(S\). 
+\[\text{MOE} = t*\dfrac{S}{\sqrt{n}}\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Critical Value of \(t\)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># 2.5 percentile
+qt(0.025, 9)
+
+# 97.5 percentile
+qt(0.975, 9)
+</code></pre>
+
+<pre><code>## [1] -2.262157
+## [1] 2.262157
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The critical value is 2.26. </li>
+<li>This is larger than the critical value for the standard normal. </li>
+<li>Why might this be? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Using R to Calculate</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## [1] 53.99775
+## [1] 75.43369
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Recap</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have the concept of a Confidence Interval, which is our sample mean plus or minus some margin of error. </li>
+<li>In order to find that margin of error we needed to use a critical value. </li>
+<li>Those critical values came from the &quot;Normal&quot; and &quot;Student&#39;s t&quot; Distributions.</li>
+<li>What does that mean? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Intervals without Normal Assumption</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What if we wish to find intervals without assuming we have  a normal distribution? </li>
+<li>We can do a technique called <strong><em>bootstrapping</em></strong>
+--- .class #id</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Beginning Confidence Intervals'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Statistical Estimates'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Problems with Samples'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='What can we do?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Confidence Intervals'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Margin of Error'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Confidence Interval on the Mean'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Critical Values'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='What do we see?'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Making the Confidence Interval'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Example'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Example'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='What does this mean?'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Interpretation'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Interpretation'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='What about when we do not know \(\sigma\)?'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Student&#39;s T Distribution'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Standard Normal'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='In Sample Data'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Student&#39;s t Distribution'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Student&#39;s t Distribution plots'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Student&#39;s t Confidence Intervals'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Example'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Margin of Error'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Critical Value of \(t\)'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='What can we see?'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Using R to Calculate'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Recap'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Confidence Intervals without Normal Assumption'>
+         29
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

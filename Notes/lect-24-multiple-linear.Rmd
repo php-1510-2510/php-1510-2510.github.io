@@ -1,0 +1,523 @@
+---
+title       :  Multiple Linear Regression
+author      : Adam J Sullivan 
+job         : Assistant Professor of Biostatistics
+work        : Brown University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js # {highlight.js, prettify, highlight}
+hitheme     :  github     # 
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3, libraries/leaflet, libraries/dygraphs]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : publichealthlogo.png
+biglogo     : publichealthlogo.png
+assets      : {assets: ../../assets}
+---  .segue bg:grey
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(results="hold")
+knitr::opts_chunk$set(cache=FALSE)
+library(ggplot2)
+library(fivethirtyeight)
+require(tidyverse)
+library(broom)
+```
+
+
+
+# Multiple Linear Regression 
+
+
+
+--- .class #id
+
+
+
+
+## Multiple Regression
+
+- We have been discussing simple models so far. 
+- This works well when you have:
+    - Randomized Data to test between specific groups (Treatment vs Control)
+- In most situations we need look at more than just one relationship. 
+- Think of this as needing more information to tell the entire story. 
+
+--- .class #id
+
+
+
+## Multiple Linear Regression with appearances
+
+
+
+- First start with univariate models
+- Then perform the multiple model
+
+
+
+
+
+--- .class #id
+
+## Multivariate Models
+
+
+```{r}
+mod3 <- lm(appearances~publisher + year, data=comic_characters)
+tidy3 <- tidy(mod3, conf.int=T)[,-c(3:4)]
+tidy3
+```
+
+--- .class #id
+
+## Interpreting Multiple Coefficients
+
+- The intercept is when all coefficients are zero. 
+- Each other coefficient is interpreted in context to another. 
+
+
+--- .class #id
+
+## Interpreting Multiple Coefficients: Our Example
+
+- Intercept: DC average appearances at year 0. ***Not Meaningful***
+- Publisher Coefficient: If we consider 2 characters in the same year, the character from Marvel will have on average 9.54 less appearances than the character from DC. 
+- Year Coefficient: If we consider 2 characters from the same publisher, an increase in 1 year will lead to on average 0.62 less appearances. 
+
+
+
+--- .segue bg:grey
+
+
+# Multiple Regression
+
+
+--- .class #id
+
+## Multiple Regression
+
+- We have been discussing simple models so far. 
+- This works well when you have:
+    - Randomized Data to test between specific groups (Treatment vs Control)
+- In most situations we need look at more than just one relationship. 
+- Think of this as needing more information to tell the entire story. 
+
+
+--- .class #id
+
+
+## Motivating Example
+
+- Health disparities are very real and exist across individuals and populations. 
+- Before developing methods of remedying these disparities we need to be able to identify where there are disparities.In this homework we will consider a study by [(Asch & Armstrong, 2007)](http://www.ncbi.nlm.nih.gov/pubmed/17513818).  
+- This paper considers 222 patients with localized prostate cancer. 
+
+
+--- .class #id
+
+
+
+## Motivating Example 
+
+- The table below partitions patients by race, hospital and whether or not the patient received a prostatectomy. 
+
+|       |   Race | Prostatectomy | No Prostatectomy | 
+| -------------- | -------- | ---------- | ------------ |
+University Hospital | White | 54 | 37 | 
+|  | Black | 7 | 5  |
+| VA Hospital | White | 11 | 29 | 
+| | Black | 22 | 57 | 
+
+
+
+--- .class #id
+
+
+
+
+
+
+## Loading the Data
+
+
+You can load this data into R with the code below:
+
+
+```{r}
+phil_disp <- read.table("https://drive.google.com/uc?export=download&id=0B8CsRLdwqzbzOXlIRl9VcjNJRFU", header=TRUE, sep=",")
+```
+
+
+--- .class #id
+
+
+
+## The Data 
+
+This dataset contains the following variables: 
+
+
+| Variable |       Description | 
+| ----------- | -------------------- | 
+| hospital  |     0 - University Hospital |
+|           |     1 - VA Hospital | 
+| race   |      0 - White |
+|      |        1 - Black | 
+| surgery |       0 - No prostatectomy |
+|          |    1 - Had Prostatectomy | 
+| number    |    Count of people in Category |
+
+
+
+
+
+--- .class #id
+
+## Consider Prostatectomy by Race
+
+```{r}
+library(broom)
+prost_race <- glm(surgery ~ race, weight=number, data= phil_disp,
+                  family="binomial")
+tidy(prost_race, exponentiate=T, conf.int=T)[,-c(3:4)]
+```
+
+
+
+--- .class #id
+
+
+
+## Consider Prostatectomy by Race
+
+- What can we conclude? 
+- What kind of policy might we want to invoke based on this discovery?
+
+
+
+--- .class #id
+
+
+## Consider Prostatectomy by Hospital
+
+```{r}
+prost_hosp <- glm(surgery ~ hospital, weight=number, data= phil_disp,
+                  family="binomial")
+tidy(prost_hosp, exponentiate =T, conf.int=T)[,-c(3:4)]
+```
+
+
+--- .class #id
+
+
+## Consider Prostatectomy by Hospital
+
+- What can we conclude? 
+
+
+--- .class #id
+
+## Multiple Regression of Prostatectomy
+
+
+```{r}
+prost <- glm(surgery ~ hospital + race, weight=number, data= phil_disp,
+             family="binomial")
+tidy(prost, exponentiate=T, conf.int=T)[,-c(3:4)]
+```
+
+
+
+
+--- .class #id
+
+
+## Multiple Regression of Prostatectomy
+
+- What can We conclude?
+- What happened here?
+- Does this change our policy suggestion from before?
+
+
+
+
+--- .class #id
+
+
+## Benefits of Multiple Regression
+
+
+- Multiple Regression helps us tell a more complete story. 
+- Multiple regression controls for confounding. 
+
+
+
+
+--- .class #id
+
+
+## Confounding
+
+- Associated with both the Exposure and the Outcome
+- Even if the Exposure and Outcome are not related, unmeasured confounding can show that they are. 
+
+
+
+--- .class #id
+
+
+
+## What Do We Do with Confounding?
+
+- We must add all confounders into our model. 
+- Without adjusting for confounders are results may be highly biased. 
+- Without adjusting for confounding we may make incorrect policies that do not fix the problem. 
+
+
+
+--- .class #id
+
+
+## Multiple Linear Regression with appearances
+
+
+
+- First start with univariate models
+- Then perform the multiple model
+
+
+
+
+
+
+--- .class #id
+
+
+## Multivariate Models
+
+
+```{r}
+library(broom)
+library(fivethirtyeight)
+mod3 <- lm(appearances~publisher + year, data=comic_characters)
+tidy3 <- tidy(mod3, conf.int=T)[,-c(3:4)]
+tidy3
+```
+
+
+
+--- .class #id
+
+## Interpreting Multiple Coefficients
+
+- The intercept is when all coefficients are zero. 
+- Each other coefficient is interpreted in context to another. 
+
+
+
+
+--- .class #id
+
+
+## Interpreting Multiple Coefficients: Our Example
+
+- Intercept: DC average appearances at year 0. ***Not Meaningful***
+- Publisher Coefficient: If we consider 2 characters in the same year, the character from Marvel will have on average 9.54 less appearances than the character from DC. 
+- Year Coefficient: If we consider 2 characters from the same publisher, an increase in 1 year will lead to on average 0.62 less appearances. 
+
+
+
+--- .class #id
+
+## Further Example: Bike Sharing Data
+
+
+- We have hourly data spanning 2 years
+- This dataset has the first 19 days of each month. 
+- Goal is to find the total count of bike rented. 
+
+
+--- .class #id
+
+
+## Further Example: Bike Sharing Data
+
+| Data |  Fields |
+| :------: | :----------------------|
+| datetime | hourly date + timestamp  |
+| season |   1 = spring, 2 = summer, 3 = fall, 4 = winter  |
+| holiday |  whether the day is considered a holiday |
+| workingday |  whether the day is neither a weekend nor holiday |
+
+
+--- .class #id
+
+
+## Further Example: Bike Sharing Data
+
+| Data |  Fields |
+| :------: | :----------------------|
+| weather |  1: Clear, Few clouds, Partly cloudy, Partly cloudy  |
+| | 2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist | 
+| | 3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds |
+| | 4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog |
+| temp |  temperature in Celsius |
+
+
+--- .class #id
+
+
+## Further Example: Bike Sharing Data
+
+| Data |  Fields |
+| :------: | :----------------------|
+| atemp |  "feels like" temperature in Celsius |
+| humidity |  relative humidity |
+| windspeed |  wind speed|
+| casual |  number of non-registered user rentals initiated |
+| registered |  number of registered user rentals initiated |
+| count |  number of total rentals |
+
+
+--- .class #id
+
+## Univariate Regressions
+
+```{r}
+library(readr)
+library(tidyverse)
+bikes <- read_csv("../Notes/Data/bike_sharing.csv") %>%
+        mutate(season = as.factor(season)) %>%
+        mutate(weather=as.factor(weather)) 
+       
+```
+
+
+--- .class #id
+
+## Univariate Regressions
+
+```{r}
+mod1 <- lm(count~season, data=bikes)
+mod2 <- lm(count~holiday, data=bikes)
+mod3 <- lm(count~workingday, data=bikes)
+mod4 <- lm(count~weather, data=bikes)
+mod5 <- lm(count~temp, data=bikes)
+mod6 <- lm(count~atemp, data=bikes)
+mod7 <- lm(count~humidity, data=bikes)
+mod8 <- lm(count~windspeed, data=bikes)
+mod9 <- lm(count~casual, data=bikes)
+mod10 <- lm(count~registered, data=bikes)
+```
+
+
+--- .class #id
+
+## Univariate Regressions
+
+```{r, eval=F}
+library(broom)
+tidy1 <- tidy( mod1, conf.int=T )[-1, -c(3:4) ]
+tidy2 <- tidy(mod2, conf.int=T )[-1, -c(3:4) ]
+tidy3 <- tidy(mod3 , conf.int=T)[-1, -c(3:4) ]
+tidy4 <- tidy(mod4 , conf.int=T)[-1, -c(3:4) ]
+tidy5 <- tidy(mod5, conf.int=T)[-1, -c(3:4) ]
+tidy6 <- tidy(mod6 , conf.int=T)[-1, -c(3:4) ]
+tidy7 <- tidy(mod7 , conf.int=T)[-1, -c(3:4) ]
+tidy8 <- tidy(mod8 , conf.int=T)[-1, -c(3:4) ]
+tidy9 <- tidy(mod9, conf.int=T)[-1, -c(3:4) ]
+tidy10 <- tidy(mod10, conf.int=T)[-1, -c(3:4) ]
+bind_rows(tidy1, tidy2, tidy3, tidy4, tidy5, tidy6, tidy7, tidy8, tidy9, tidy10) 
+
+```
+
+
+
+--- .class #id
+
+## Univariate Regressions
+
+```{r, echo=F}
+library(broom)
+tidy1 <- tidy( mod1, conf.int=T )[-1, -c(3:4) ]
+tidy2 <- tidy(mod2, conf.int=T )[-1, -c(3:4) ]
+tidy3 <- tidy(mod3 , conf.int=T)[-1, -c(3:4) ]
+tidy4 <- tidy(mod4 , conf.int=T)[-1, -c(3:4) ]
+tidy5 <- tidy(mod5, conf.int=T)[-1, -c(3:4) ]
+tidy6 <- tidy(mod6 , conf.int=T)[-1, -c(3:4) ]
+tidy7 <- tidy(mod7 , conf.int=T)[-1, -c(3:4) ]
+tidy8 <- tidy(mod8 , conf.int=T)[-1, -c(3:4) ]
+tidy9 <- tidy(mod9, conf.int=T)[-1, -c(3:4) ]
+tidy10 <- tidy(mod10, conf.int=T)[-1, -c(3:4) ]
+rbind(tidy1, tidy2, tidy3, tidy4, tidy5, tidy6, tidy7, tidy8, tidy9, tidy10)
+```
+
+
+--- .class #id
+
+
+## Multivariate
+
+```{r, eval=F}
+mod.final <- lm(count~season+weather+humidity+windspeed, data=bikes)
+tidy(mod.final)[-1,-c(3:4)]
+glance(mod.final)
+```
+
+--- .class #id
+
+## Multivariate
+
+```{r, echo=F}
+mod.final <- lm(count~season+weather+humidity+windspeed, data=bikes)
+tidy(mod.final)[-1,-c(3:4)]
+```
+
+--- .class #id
+
+
+## Multivariate
+
+```{r, echo=F}
+glance(mod.final)
+```
+
+--- .class #id
+
+## Multiple Variables
+
+
+```{r}
+library(readr)
+library(tidyverse)
+bikes <- read_csv("../Notes/Data/bike_sharing.csv") %>%
+        mutate(season = as.factor(season)) %>%
+        mutate(weather=as.factor(weather)) 
+       
+```
+
+
+--- .class #id
+
+## Multiple Variables
+
+```{r, eval=F}
+mod.final <- lm(count~season+weather+humidity+windspeed, data=bikes)
+tidy(mod.final)[-1,-c(3:4)]
+glance(mod.final)
+```
+
+--- .class #id
+
+
+## Multiple Variables
+
+```{r, echo=F}
+mod.final <- lm(count~season+weather+humidity+windspeed, data=bikes)
+kable(tidy(mod.final)[-1,-c(3:4)])
+```

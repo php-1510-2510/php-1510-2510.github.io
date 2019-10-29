@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sampling Distributions and Central Limit Theorem</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Sampling Distributions and Central Limit Theorem">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Sampling Distributions and Central Limit Theorem</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Law of Large Numbers and Central Limit Theorem</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Important Statistical Concepts</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Two things we use more than most any other concepts is the Law of Large Numbers (LLN) and the Central Limit Theorem (CLT). </li>
+<li>There are similar to what we discussed in probability with the idea of looking at things in the long run. </li>
+<li>In other words considering large sample sizes. </li>
+<li>We will begin with the Law of Large Numbers. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Law of Large Numbers (LLN)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>As sample size increases, the sample mean becomes closer to the true population mean. </li>
+</ul>
+
+<p>\[\lim_{n\to\infty}\bar{X}_n= \mu\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Displaying the Law of Large Numbers</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s consider flipping a coin. </li>
+<li>We expect to get heads 50% of the time. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Law of Large Numbers: 10 Coin Tosses</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/lln-coin-10-1.png" alt="plot of chunk lln-coin-10"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Law of Large Numbers: 100 Coin Tosses</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/lln-coin-100-1.png" alt="plot of chunk lln-coin-100"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Law of Large Numbers: 1000 Coin Tosses</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/lln-coin-1000-1.png" alt="plot of chunk lln-coin-1000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Law of Large Numbers: 10000 Coin Tosses</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/lln-coin-10000-1.png" alt="plot of chunk lln-coin-10000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Additional Expectations</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider rolling a die. </li>
+<li>Remember that expectation is the center or what we get on average:</li>
+</ul>
+
+<p>\[\dfrac{1+2+3+4+5+6}{6}= 3.5\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>LLN Expectation of Dice</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/lln-dice-1000-1.png" alt="plot of chunk lln-dice-1000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>LLN Convergence to mean</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>I have shown you some examples where we can see that the LLN converges to the true average. </li>
+<li>How do we know what sample we might need? </li>
+<li>Answer: Variation matters</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Consider the Following</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s say that we have two groups of people
+
+<ul>
+<li>Group A: Heights which are \(N(63.8,3.86)\)</li>
+<li>Group B: Heights which are \(N(63.8, 12.01)\)</li>
+</ul></li>
+<li>We will sample from these groups and then plot their relationships</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do you see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the plots</li>
+<li>What do you notice about the differences?</li>
+<li>What does variation tell us about the LLN?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/heights-1.png" alt="plot of chunk heights"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What did you see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Within about 50 rolls the smaller variance group was very close to the true mean. </li>
+<li>After 100 rolls the large variance has still not converged on the mean. - The larger the variance, the larger the samples size in order to have the estimate be the true mean. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Why do we care about the LLN?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If we can get a good sample size, then we can have a true estimate of the population. </li>
+<li>Casinos care because even with a few good gamblers, in the long run they come ahead and do not lose money. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Central Limit Theorem</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If you sample repeatedly from the same population with replacement, then the means of each of the samples will be approximately normal in distribution. </li>
+<li>Break down:
+
+<ul>
+<li>Take a sample from any population. </li>
+<li>Take the mean. </li>
+<li>Repeat this over and over again. </li>
+<li>Those means follow a normal distribution. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Assumptions Behind Central Limit Thorem</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Data must be randomly sampled. </li>
+<li>Sample are independent of each other. </li>
+<li>Sample size needs to be sufficiently large (LLN). </li>
+<li>Sample should not be bigger than 10% of the population. (Due to sampling with replacement)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Central Limit Theorem with Normal Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s consider the data from a \(N(63.8, 3.86)\). </li>
+<li>This is already normal but let&#39;s sample from this with 10 samples each time and see what the distribution of means looks like. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-10-1.png" alt="plot of chunk clt-norm-10"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>100 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-100-1.png" alt="plot of chunk clt-norm-100"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>1000 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-1000-1.png" alt="plot of chunk clt-norm-1000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10000 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-10000-1.png" alt="plot of chunk clt-norm-10000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Progression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-prog-10-1.png" alt="plot of chunk clt-norm-prog-10"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Central Limit Theorem with Normal Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s consider the data from a \(N(63.8, 3.86)\). </li>
+<li>This is already normal but let&#39;s sample from this with 100 samples each time and see what the distribution of means looks like. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10 Samples of 100 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-10b-1.png" alt="plot of chunk clt-norm-10b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>100 Samples of 100 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-100b-1.png" alt="plot of chunk clt-norm-100b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>1000 Samples of 100 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-1000b-1.png" alt="plot of chunk clt-norm-1000b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10000 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-10000b-1.png" alt="plot of chunk clt-norm-10000b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Progression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-prog-10b-1.png" alt="plot of chunk clt-norm-prog-10b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Progression of Both</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-norm-prog-10c-1.png" alt="plot of chunk clt-norm-prog-10c"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Even with small samples, normally distributed data&#39;s means converge to normal relatively quickly. </li>
+<li>When the sample size of each sample is increased, we see that there is a decrease in the variance of the sample mean distribution. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Non-normal Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the Poisson Distribution. </li>
+<li>Poisson distribution takes on data where we wish to count. </li>
+<li>It can also be used with rare events data. With Poisson we have a rate and time associated. </li>
+<li>So let&#39;s consider a Poisson distribution with the rate of events beinng 1.2 per day. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Distribution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/poisson-1.png" alt="plot of chunk poisson"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-10-1.png" alt="plot of chunk clt-pois-10"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>100 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-100-1.png" alt="plot of chunk clt-pois-100"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>1000 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-1000-1.png" alt="plot of chunk clt-pois-1000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10000 Samples of 10 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-10000-1.png" alt="plot of chunk clt-pois-10000"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Progression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-prog-10-1.png" alt="plot of chunk clt-pois-prog-10"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Central Limit Theorem with Poisson Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will be looking at the same population with rate of 1.2 per day.</li>
+<li>This time we will do samples of 30 each. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10 Samples of 30 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-10b-1.png" alt="plot of chunk clt-pois-10b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>100 Samples of 30 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-100b-1.png" alt="plot of chunk clt-pois-100b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>1000 Samples of 30 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-1000b-1.png" alt="plot of chunk clt-pois-1000b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>10000 Samples of 30 Each</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-10000b-1.png" alt="plot of chunk clt-pois-10000b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Progression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-prog-10b-1.png" alt="plot of chunk clt-pois-prog-10b"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Progression of Both</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/clt-pois-prog-10c-1.png" alt="plot of chunk clt-pois-prog-10c"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Even with skewed data we can see the sample means have a normal distribution. </li>
+<li>Once again with the increase in sample size, the distribution of means has a tighter variance. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>LLN and CLT review</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The LLN shows us that with a large sample size, the mean of our sample will be the same as the population mean. </li>
+<li>The CLT states that if we perform sampling over and over again, then the distribution of the means of each sample approaches the normal distribution. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How Do they work together?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>When we increase sample size the LLN tells us we are closer to our true mean. </li>
+<li>This means each estimate with a larger sample size is closer to one true value. </li>
+<li>The CLT takes many many samples and when each of those samples is closer to the true mean, then there is less variance. </li>
+<li>We have seen both of these work together. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Variance of Sampling Distributions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the previous example with the Poisson Distribution with rate 1.2. </li>
+<li>We generated the sample to display the distribution</li>
+</ul>
+
+<pre><code class="r">data &lt;- rpois(100000000, 1.2)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Mean and Variance of Poisson</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Mean: 1.1998299</li>
+<li>Var: 1.1998921</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sampling distributions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">t=1000000
+n=10
+
+scores &lt;- rpois(t*n, 1.2)
+samples &lt;- rep(1:t,each=n)
+my_df &lt;- data.frame(samples,scores)
+
+# get the means of the samples
+
+my_df %&gt;%
+    group_by(samples) %&gt;%
+    summarise(means=mean(scores)) %&gt;%
+    summarise(var(means))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sampling distributions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 1 x 1
+##   `var(means)`
+##          &lt;dbl&gt;
+## 1        0.120
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sampling distributions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">t=1000000
+n=100
+
+scores &lt;- rpois(t*n, 1.2)
+samples &lt;- rep(1:t,each=n)
+my_df &lt;- data.frame(samples,scores)
+
+# get the means of the samples
+
+my_df %&gt;%
+    group_by(samples) %&gt;%
+    summarise(means=mean(scores)) %&gt;%
+    summarise(var(means))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sampling distributions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 1 x 1
+##   `var(means)`
+##          &lt;dbl&gt;
+## 1       0.0120
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we see?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Original Distribution 1.2</li>
+<li>Variance of Means of Samples size 10: 0.12</li>
+<li>Variance of Means of Samples size 100: 0.012</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>With a sample of size 10, the variance of the sample means are 1/10th the original. </li>
+<li>What a sample of size 100, the variance of the sample means are 1/100th the original. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Other samples</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>What if the sample is size 26:</p>
+
+<pre><code>## # A tibble: 1 x 1
+##   `var(means)`
+##          &lt;dbl&gt;
+## 1       0.0460
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Comparing Variance</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Variance of means with sample size 26: <code>round(var3, 3)</code></li>
+<li>Variance of original divided by 26: 0.0461538</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Variance of Sample Means</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In short, if the variance of a distribution is \(\sigma^2\), then the variance of the sample means is \(\dfrac{\sigma^2}{n}\). </li>
+<li>Given that each sample is of size \(n\). </li>
+<li>This means that the larger the sample, the smaller the variance. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sampling Distribution of the mean</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider taking samples of size \(n\) from a population. </li>
+<li>Then the mean, \(\bar{X}\), will follow a normal distribution. </li>
+<li>Specifically:
+\[ \bar{X} \sim N\left(\mu, \dfrac{\sigma^2}{n}\right)\]</li>
+<li>Where, \(\mu\) is the mean of the population. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Why is this special?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Many times data follows a distribution where we do not know the exact distribution of the data. </li>
+<li>We can then use the mean and the central limit theorem to assume that the mean follows a normal distribution. </li>
+<li>This means we now understand what the mean is, how it varies and all information on probabilities associated with it. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Law of Large Numbers and Central Limit Theorem'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Important Statistical Concepts'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Law of Large Numbers (LLN)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Displaying the Law of Large Numbers'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Law of Large Numbers: 10 Coin Tosses'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Law of Large Numbers: 100 Coin Tosses'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Law of Large Numbers: 1000 Coin Tosses'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Law of Large Numbers: 10000 Coin Tosses'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Additional Expectations'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='LLN Expectation of Dice'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='LLN Convergence to mean'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Consider the Following'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='What do you see?'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Example'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='What did you see?'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Why do we care about the LLN?'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='The Central Limit Theorem'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Assumptions Behind Central Limit Thorem'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Central Limit Theorem with Normal Data'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='10 Samples of 10 Each'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='100 Samples of 10 Each'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='1000 Samples of 10 Each'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='10000 Samples of 10 Each'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Progression'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Central Limit Theorem with Normal Data'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='10 Samples of 100 Each'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='100 Samples of 100 Each'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='1000 Samples of 100 Each'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='10000 Samples of 10 Each'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Progression'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Progression of Both'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Conclusions'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Non-normal Data'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Distribution'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='10 Samples of 10 Each'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='100 Samples of 10 Each'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='1000 Samples of 10 Each'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='10000 Samples of 10 Each'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Progression'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Central Limit Theorem with Poisson Data'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='10 Samples of 30 Each'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='100 Samples of 30 Each'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='1000 Samples of 30 Each'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='10000 Samples of 30 Each'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Progression'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Progression of Both'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Conclusions'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='LLN and CLT review'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='How Do they work together?'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Variance of Sampling Distributions'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Mean and Variance of Poisson'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Sampling distributions'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Sampling distributions'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='Sampling distributions'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Sampling distributions'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='What do we see?'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Conclusions'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='Other samples'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Comparing Variance'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Variance of Sample Means'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Sampling Distribution of the mean'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='Why is this special?'>
+         62
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Linear Regression Basics</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Linear Regression Basics">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Linear Regression Basics</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-2" style="background:grey;">
+  <hgroup>
+    <h1>Linear Regression</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Outline</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>One Categorical Covariate</li>
+<li>One Continuous Covariate</li>
+<li>Multiple Covariates</li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data for Class</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will consider the data behind the story: <a href="http://fivethirtyeight.com/features/women-in-comic-books/">&quot;Comic Books are Still Made By Men, For Men and About Men&quot;</a>.</li>
+<li>This data is part of the <code>fivethirtyeight</code> package:</li>
+<li>To explore the variable names run the following code:</li>
+</ul>
+
+<pre><code class="r">library(fivethirtyeight)
+?comic_characters
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will consider appearances on the comic books. </li>
+<li>We will see what predicts the number of appearances. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-6" style="background:grey;">
+  <hgroup>
+    <h1>One Categorical Covariate - Binary</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Binary Covariate</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>With this type of covariate, we are comparing some outcome against 2 different groups. </li>
+<li>In order to make these comparisons it depends on the outcome we are working with. </li>
+<li>We will perform these tests based on the outcome and then use confidence intervals to assess. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Differences in appearances by publisher</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s consider the difference in appearances by publisher</li>
+</ul>
+
+<pre><code class="r">library(fivethirtyeight)
+library(tidyverse)
+
+cnt &lt;-  comic_characters%&gt;% 
+  group_by(publisher) %&gt;%
+  tally()
+mn&lt;- comic_characters%&gt;% 
+  group_by(publisher) %&gt;%
+  summarise(mean_app=mean(appearances, na.rm=T))
+full_join(cnt,mn)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Differences in appearances by publisher</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s consider the difference in appearances by publisher</li>
+</ul>
+
+<pre><code>## # A tibble: 2 x 3
+##   publisher     n mean_app
+##   &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;
+## 1 DC         6896     23.6
+## 2 Marvel    16376     17.0
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Differences in Appearances by Publisher</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have learned how to do this previously. </li>
+<li>We first did this comparison with a t-test</li>
+<li>Then we did this with an F-test in ANOVA</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Appearance by Publisher: t-test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider this with a t-test</li>
+</ul>
+
+<pre><code class="r">t.test(appearances~publisher, comic_characters)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  appearances by publisher
+## t = 4.9476, df = 13552, p-value = 7.605e-07
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  3.980214 9.203299
+## sample estimates:
+##     mean in group DC mean in group Marvel 
+##             23.62513             17.03338
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Appearances by publisher: ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider with ANOVA</li>
+</ul>
+
+<pre><code class="r">library(broom)
+tidy(aov(appearances~publisher, comic_characters))
+</code></pre>
+
+<pre><code>## # A tibble: 2 x 6
+##   term         df      sumsq  meansq statistic     p.value
+##   &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1 publisher     1    199019. 199019.      22.6  0.00000197
+## 2 Residuals 21819 191840416.   8792.      NA   NA
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>ANOVA vs t-test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>t-test and ANOVA should give us the same results.</li>
+<li>We can see that in our output this is not true. </li>
+<li>What were the assumptions of ANOVA?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Appearances by publisher: t-test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider this with a t-test</li>
+</ul>
+
+<pre><code class="r">t.test(appearances~publisher, comic_characters, var.equal=TRUE)
+</code></pre>
+
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  appearances by publisher
+## t = 4.7577, df = 21819, p-value = 1.971e-06
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  3.876078 9.307436
+## sample estimates:
+##     mean in group DC mean in group Marvel 
+##             23.62513             17.03338
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Linear Regression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">model &lt;- lm(appearances~publisher, comic_characters)
+tidy(model)
+glance(model)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Linear Regression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 2 x 5
+##   term            estimate std.error statistic  p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)        23.6       1.16     20.4  1.89e-91
+## 2 publisherMarvel    -6.59      1.39     -4.76 1.97e- 6
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1   0.00104      0.000991  93.8      22.6 1.97e-6     2 -1.30e5 2.60e5
+## # ... with 3 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Categorical</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Intercept is the average for the reference group. </li>
+<li>Each coefficient is the average change between the reference group and the one of interest. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Categorical</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Intercept interpretation: Every DC character has on average 23.6 appearances. </li>
+<li>Marvel Coefficient: Every marvel character has on average 6.59 less appearances than DC. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>One Binary Categorical Variable - Continuous Outcome</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can perform
+
+<ul>
+<li>t-test with equal variances</li>
+<li>ANOVA</li>
+<li>Linear Regression</li>
+</ul></li>
+<li>All yield the same exact results</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Assumptions of Linear Regression</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong><em>Linearity:</em></strong> Function \(f\) is linear. </li>
+<li>Mean of error term is 0. 
+\[E(\varepsilon)=0\]</li>
+<li><strong><em>Independence:</em></strong> Error term is independent of covariate. 
+\[Corr(X,\varepsilon)=0\]</li>
+<li><strong><em>Homoscedacity:</em></strong> Variance of error term is same regardless of value of \(X\). 
+\[Var(\varepsilon)=\sigma^2\]</li>
+<li><strong><em>Normality:</em></strong> Errors are normally Distributed</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about more categories?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can also use linear regression with multiple categories. </li>
+</ul>
+
+<pre><code class="r">mod &lt;- lm(appearances~sex, comic_characters)
+tidy(mod)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about more categories?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can also use linear regression with multiple categories. </li>
+</ul>
+
+<pre><code>## # A tibble: 6 x 5
+##   term                      estimate std.error statistic  p.value
+##   &lt;chr&gt;                        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)                 19.7        14.8    1.33   0.182   
+## 2 sexFemale Characters         1.37       14.8    0.0927 0.926   
+## 3 sexGenderfluid Characters  263.         69.2    3.80   0.000146
+## 4 sexGenderless Characters    -6.82       26.4   -0.258  0.796   
+## 5 sexMale Characters          -0.640      14.8   -0.0433 0.965   
+## 6 sexTransgender Characters  -15.7        96.7   -0.162  0.871
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we interpret?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We need to know the baseline. </li>
+</ul>
+
+<pre><code>## # A tibble: 7 x 3
+##   sex                        n mean_sex
+##   &lt;chr&gt;                  &lt;int&gt;    &lt;dbl&gt;
+## 1 Agender Characters        45    19.7 
+## 2 Female Characters       5804    21.0 
+## 3 Genderfluid Characters     2   282.  
+## 4 Genderless Characters     20    12.8 
+## 5 Male Characters        16421    19.0 
+## 6 Transgender Characters     1     4   
+## 7 &lt;NA&gt;                     979     5.13
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Working with Factors</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Since we are interested in knowing whether or not male characters appear more often, we need to change how we view the factor.</li>
+<li>We will work on the following:
+
+<ul>
+<li>Renaming factors</li>
+<li>Reordering factor levels. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Working with Factors: Renaming</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">comic_characters &lt;- comic_characters %&gt;%
+      mutate(sex = fct_recode(sex, 
+      &quot;Agender&quot; = &quot;Agender Characters&quot;,
+      &quot;Female&quot; = &quot;Female Characters&quot;, 
+      &quot;Genderfluid&quot; = &quot;Genderfluid Characters&quot;,
+      &quot;Genderless&quot; = &quot;Genderless Characters&quot;,
+      &quot;Male&quot; = &quot;Male Characters&quot;,
+      &quot;Transgender&quot; = &quot;Transgender Characters&quot;
+      ))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Working with Factors: Relevel</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">comic_characters &lt;- comic_characters %&gt;%
+      mutate(sex = fct_relevel(sex, 
+                  &quot;Female&quot;,
+                 &quot;Male&quot;, 
+                 &quot;Transgender&quot;, 
+                 &quot;Agender&quot;,
+                  &quot;Genderfluid&quot; ,
+                  &quot;Genderless&quot; 
+
+      ))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Regression again</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mod &lt;- lm(appearances~sex, comic_characters)
+tidy(mod)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Regression again</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 6 x 5
+##   term           estimate std.error statistic  p.value
+##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)       21.0       1.29   16.3    2.65e-59
+## 2 sexMale           -2.01      1.50   -1.34   1.81e- 1
+## 3 sexTransgender   -17.0      95.6    -0.178  8.59e- 1
+## 4 sexAgender        -1.37     14.8    -0.0927 9.26e- 1
+## 5 sexGenderfluid   261.       67.6     3.87   1.10e- 4
+## 6 sexGenderless     -8.20     22.0    -0.373  7.09e- 1
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Categorical</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Intercept interpretation: Every Male Character has on average 19 appearances. </li>
+<li>Agender coefficient: Every Agender character has on average 0.64 more appearances than male characters</li>
+<li class='..</li>'></ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Whats happening?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(comic_characters, aes(x = sex, y = appearances)) +
+  geom_point()  + 
+  geom_point(stat = &quot;summary&quot;, fun.y = &quot;mean&quot;, color = &quot;red&quot;, size = 3) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Whats happening?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-32" style="background:grey;">
+  <hgroup>
+    <h1>One Continuous</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>One Continuous Covariate</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will consider one continuous covariate. </li>
+<li>We will consider year. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: Year and Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the effect of year on appearances. </li>
+<li>With categorical data we plotted this with box-whisker plots. </li>
+<li>We can now use a scatter plot</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Scatter Plot: Year and Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(comic_characters, aes(year, appearances)) + 
+  geom_point() + 
+  geom_smooth(method=&quot;lm&quot;) + 
+  xlab(&quot;Year&quot;) + 
+  ylab(&quot;Appearances&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Scatter Plot: Year and Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Modeling What We See</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There might not be a connection or there might be a very small one, let&#39;s explore further.</li>
+<li>How can we do this? </li>
+<li>How does linear regression work?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we Quantify this?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>One way we could quantify this is
+\[\mu_{y|x} = \beta_0 + \beta_1X\]</li>
+<li>where
+
+<ul>
+<li>\(\mu_{y|x}\) is the mean time for those whose year is \(x\). </li>
+<li>\(\beta_0\) is the \(y\)-intercept (mean value of \(y\) when \(x=0\), \(\mu_y|0\))</li>
+<li>\(\beta_1\) is the slope (change in mean value of \(Y\) corresponding to 1 unit increase in \(x\)).</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Population Regression Line</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>With the population regression line we have that the distribution of appearances for those at a particular year, \(x\), is approximately normal with mean, \(\mu_{y|x}\), and standard deviation, \(\sigma_{y|x}\). </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Population Regression Line</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../Notes/images/Pic1.png" alt="Distribution of Y and different levels of X."></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Population Regression Line</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This shows the scatter about the mean due to natural variation. To accommodate this scatter we fit a regression model with 2 parts:
+
+<ul>
+<li>Systematic Part</li>
+<li>Random Part</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Model</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This leads to the model
+\[Y = \beta_0 + \beta_1X + \varepsilon\]</li>
+<li>Where \(\beta_0+\beta_1X\) is the systematic part of the model and implies that \[E(Y|X=x) = \mu_{y|x} = \beta_0 + \beta_1x\]</li>
+<li>the variation part where we have \(\varepsilon\sim N(0,\sigma^2)\) which is independent of \(X\). </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do We Have?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the scenario where we have \(n\) subjects and for each subject we have the data points \((x,y)\). </li>
+<li>This leads to us having data in the form \((X_i,Y_i)\) for \(i=1,\ldots,n\).</li>
+<li>Then we have the model:
+\[Y_i = \beta_0 + \beta_1X_i + \varepsilon_i\]</li>
+<li>\(Y_i|X_i \sim N\left(\beta_0 + \beta_1X_i , \sigma^2\right)\)</li>
+<li>\(E(Y_i|X_i) = \mu_{y|x} = \beta_0 + \beta_1X_i\)</li>
+<li>\(Var(Y|X_i ) = \sigma^2\)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Picture of this</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What Does This Tell Us?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can refer back to our scatter plot now and discuss what is the &quot;best&quot; line. </li>
+<li>Given the previous image we can see that a good estimator would somehow have smaller residual errors. </li>
+<li>So the &quot;best&quot; line would minimize the errors. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Residual Errors</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>In Comes Least Squares</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The least squares estimator of regression coefficients in the estimator that minimizes the sum of squared errors.</li>
+<li>We denote these estimators as \(\hat{\beta}_0\) and \(\hat{\beta}_1\). </li>
+<li>In other words we attempt to minimize 
+\[\sum_{i=1}^n \left(\varepsilon_i\right)^2 = \sum_{i=1}^n \left(Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i\right)^2\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Inferences on OLS</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Once we have our intercept and slope estimators the next step is to determine if they are significant or not. </li>
+<li>Typically with hypothesis testing we have needed the following:
+
+<ul>
+<li>Population/Assumed Value of interest</li>
+<li>Estimated value</li>
+<li>Standard error of Estimate</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Interval Creation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>with 95% confidence intervals of
+\[\hat{\beta}_1 \pm t_{n-2, 0.975} \cdot se\left(\hat{\beta}_1\right)\]
+\[\hat{\beta}_0 \pm t_{n-2, 0.975} \cdot se\left(\hat{\beta}_0\right)\]</li>
+<li>In general we can find a  \(100(1-\alpha)\%\) confidence interval as
+\[\hat{\beta}_1 \pm t_{n-2, 1-\dfrac{\alpha}{2}} \cdot se\left(\hat{\beta}_1\right)\]
+\[\hat{\beta}_0 \pm t_{n-2, 1-\dfrac{\alpha}{2}} \cdot se\left(\hat{\beta}_0\right)\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: Year and Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">model &lt;- lm(appearances~year, data=comic_characters)
+tidy(model, conf.int=TRUE)[,-c(3:4)]
+glance(model)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: Year and Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df  logLik    AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1    0.0146        0.0145  93.8      313. 1.74e-69     2 -1.26e5 2.52e5
+## # ... with 3 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: Year and Appearances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df  logLik    AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1    0.0146        0.0145  93.8      313. 1.74e-69     2 -1.26e5 2.52e5
+## # ... with 3 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Continuous</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Before we can discuss the regression coefficients we need to understand how to interpret what these coefficients mean. </li>
+<li> \(\beta_0\) is mean value for \(Y\) when \(X=0\).</li>
+<li>What about \(\beta_1\)?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Continuous</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Then we consider \(\beta_1\) to see the meaning of this we do the following
+\[
+\begin{aligned}
+E(Y|X=x+1) - E(Y|X=x) &= \beta_0 + \beta_1(x+1) - \beta_0 - \beta_1x\\
+&= \beta_1
+\end{aligned}
+\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Continuous</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We consider \(\beta_0\) first. </li>
+<li>Does this value have meaning with our current data? 
+
+<ul>
+<li>The estimated value of time level is only applicable to year within the range of our data. </li>
+<li>Many times the intercept is scientifically meaningless. </li>
+<li>Even if meaningless on its own, \(\beta_0\) is necessary to specify the equation of our regression line. </li>
+<li><strong>Note:</strong> People do sometimes use mean centered data and the intercept is then interpretable.</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interpreting the Coefficients: Continuous</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This gives us the interpretation that \(\beta_1\) represents the mean change in outcome \(Y\) given a one unit increase in predictor \(X\). </li>
+<li>This is not an actual prescription though, this is considering different subjects or groups of subjects who differ by one unit. </li>
+<li>Below are correct interpretations of \(\beta_1\) in our example. 
+
+<ul>
+<li><em>These results display that the mean difference in appearances for a 1 year difference is -0.596</em></li>
+<li><em>These results display that the mean difference in time for a 10 year difference is -5.96</em></li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Linear Regression'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Outline'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='The Data for Class'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Appearances'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='One Categorical Covariate - Binary'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Binary Covariate'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Differences in appearances by publisher'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Differences in appearances by publisher'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Differences in Appearances by Publisher'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Appearance by Publisher: t-test'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Appearances by publisher: ANOVA'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='ANOVA vs t-test'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Appearances by publisher: t-test'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Linear Regression'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Linear Regression'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Interpreting the Coefficients: Categorical'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Interpreting the Coefficients: Categorical'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='One Binary Categorical Variable - Continuous Outcome'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Assumptions of Linear Regression'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='What about more categories?'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='What about more categories?'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='How do we interpret?'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Working with Factors'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Working with Factors: Renaming'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Working with Factors: Relevel'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Regression again'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Regression again'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Interpreting the Coefficients: Categorical'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Whats happening?'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Whats happening?'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='One Continuous'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='One Continuous Covariate'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Example: Year and Appearances'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Scatter Plot: Year and Appearances'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Scatter Plot: Year and Appearances'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Modeling What We See'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='How do we Quantify this?'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Population Regression Line'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Population Regression Line'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Population Regression Line'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='The Model'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='What do We Have?'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Picture of this'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='What Does This Tell Us?'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Residual Errors'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='In Comes Least Squares'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Inferences on OLS'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='Confidence Interval Creation'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Example: Year and Appearances'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Example: Year and Appearances'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Example: Year and Appearances'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Interpreting the Coefficients: Continuous'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='Interpreting the Coefficients: Continuous'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Interpreting the Coefficients: Continuous'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Interpreting the Coefficients: Continuous'>
+         56
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

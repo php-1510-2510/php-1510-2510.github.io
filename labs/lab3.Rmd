@@ -1,0 +1,317 @@
+---
+title: PHP 1510/2510 Lab 3
+subtitle: Sampling Distributions in R
+---
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(results="hold")
+knitr::opts_chunk$set(cache=F)
+knitr::opts_chunk$set(eval=F)
+```
+
+
+--- .class #id
+
+
+## Central Limit Theorem with Binary Outcome
+
+- Consider a response where we are interested in a whether or not a population has had it. 
+- Let's assume that we have 30% of the population with a "Yes" and that leaves 70% with "No". 
+- Then if we were to sample from this population, `Yes=1` and `No=0`. 
+- This means the mean of these samples represent the proportion of "Yes" responses. 
+
+
+
+--- .class #id
+
+## 10 Samples of 10 Each
+
+```{r clt-bin-10, echo=F}
+# get 10 samples with 10 scores each
+
+
+t=10
+n=10
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p1 <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means") + xlim(-1,1)
+
+p1
+```
+
+
+--- .class #id
+
+## 100 Samples of 10 Each
+
+```{r clt-bin-100, echo=F}
+# get 100 samples with 10 scores each
+
+
+t=100
+n=10 
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p2 <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means") + xlim(-1,1)
+
+p2
+```
+
+
+--- .class #id
+
+## 1000 Samples of 10 Each
+
+```{r clt-bin-1000, echo=F}
+# get 1000 samples with 10 scores each
+
+
+t=1000
+n=10 
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p3 <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means")  + xlim(-1,1)
+
+p3
+```
+
+
+--- .class #id
+
+## 10000 Samples of 10 Each
+
+```{r clt-bin-10000, echo=F}
+# get 10000 samples with 10 scores each
+
+
+t=10000
+n=10 
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p4 <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means") + xlim(-1,1)
+p4
+
+```
+
+--- .class #id
+
+## Progression
+
+```{r clt-bin-prog-10, echo=F, fig.height=5, fig.width=12}
+library(gridExtra)
+grid.arrange(p1,p2,p3,p4, ncol=4)
+```
+
+
+--- .class #id
+
+
+## Central Limit Theorem with Binomial Data
+
+- We will be looking at the same population with 30% "Yes".
+- This time we will do samples of 30 each. 
+
+--- .class #id
+
+## 10 Samples of 30 Each
+
+```{r clt-bin-10b, echo=F}
+# get 10 samples with 30 scores each
+
+
+t=10
+n=30
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p1b <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means") + xlim(-1,1)
+
+p1b
+```
+
+
+--- .class #id
+
+## 100 Samples of 30 Each
+
+```{r clt-bin-100b, echo=F}
+# get 100 samples with 30 scores each
+
+
+t=100
+n=30 
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p2b <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means") + xlim(-1,1)
+
+p2b
+```
+
+
+--- .class #id
+
+## 1000 Samples of 30 Each
+
+```{r clt-bin-1000b, echo=F}
+# get 1000 samples with 30 scores each
+
+
+t=1000
+n=30 
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p3b <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means")  + xlim(-1,1)
+
+p3b
+```
+
+
+--- .class #id
+
+## 10000 Samples of 30 Each
+
+```{r clt-bin-10000b, echo=F}
+# get 10000 samples with 30 scores each
+
+
+t=10000
+n=30 
+
+scores <- rbinom(t*n, 1, 0.3)
+samples <- rep(1:t,each=n)
+my_df <- data.frame(samples,scores)
+
+# get the means of the samples
+
+sample_means <- my_df %>%
+                group_by(samples) %>%
+                summarise(means=mean(scores))
+
+# make a histogram
+
+p4b <-  ggplot(sample_means, aes(x=means))+
+  geom_histogram(color="white")+
+  theme_classic() + xlab("Means") + xlim(-1,1)
+p4b
+
+```
+
+--- .class #id
+
+## Progression
+
+```{r clt-bin-prog-10b, echo=F, fig.height=5, fig.width=12}
+library(gridExtra)
+grid.arrange(p1b,p2b,p3b,p4b, ncol=4)
+```
+
+
+--- .class #id
+
+## Progression of Both
+
+```{r clt-bin-prog-10c, echo=F, fig.height=5, fig.width=12}
+grid.arrange(p1, p2, p3, p4, p1b, p2b, p3b, p4b, ncol=4, nrow=2)
+```
+
+
+--- .class #id
+
+## Conclusions
+
+- The means of binomial data are normally distributed after multiple samples. 
+- When each sample has an increase in sample size, we see the variance of the means decreases. 
