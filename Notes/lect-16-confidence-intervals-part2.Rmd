@@ -1,0 +1,229 @@
+---
+title       : Confidence Intervals - part 2
+author      : Adam J Sullivan 
+job         : Assistant Professor of Biostatistics
+work        : Brown University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js # {highlight.js, prettify, highlight}
+hitheme     :  github     # 
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3, libraries/leaflet, libraries/dygraphs]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : publichealthlogo.png
+biglogo     : publichealthlogo.png
+assets      : {assets: ../../assets}
+---  .segue bg:grey
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(results="hold")
+knitr::opts_chunk$set(cache=FALSE)
+library(ggplot2)
+library(fivethirtyeight)
+require(tidyverse)
+library(broom)
+```
+
+# Continuing Confidence Intervals
+
+--- .class #id
+
+## More Difficult Confidence Intervals 
+
+- Consider the difference in poor mental health among different groups. 
+- We can consider the difference between `emtsuprt_bin`. 
+- We may wish to know if those with emotional support have less poor mental health days than those without emotional support. 
+
+--- .class #id
+
+## Graphing Relationship
+
+```{R emt-supt-metnhlth, echo=F}
+load("Data/brfss.rda")
+library(dplyr)
+library(ggplot2)
+ggplot(brfss2, aes(x=emtsuprt_bin, y=menthlth)) + geom_boxplot()
+```
+
+--- .class #id
+
+## What Can we see?
+
+- The median appears to be higher in the group without as much emotional support. 
+- It can be hard to tell if there is a difference with the variation between the groups. 
+-  We can see a relationship but are unsure if it is due to chance or not. 
+
+--- .class #id
+
+## Hypothesis Testing
+
+- What can be happening? 
+    - Emotional Support influences mental health days. 
+    - Groups differed at Baseline. 
+    - Random Chance
+
+
+--- .class #id
+
+## Random Chance
+
+- We can test this with the permutations as we did in lecture 13 and on the exam. 
+- Let's do this with a permutation test. 
+
+--- .class #id
+
+## Proportions
+
+```{R}
+brfss2 %>% 
+    group_by(emtsuprt_bin) %>% 
+    summarise(n=n()) %>% 
+    mutate(freq=n/sum(n))
+```
+
+--- .class #id
+
+## The Code
+
+```{r, echo=F}
+library(tidyverse)
+brfss3 <- brfss2 %>%
+          select(menthlth, emtsuprt_bin) %>%
+          filter(!is.na(menthlth) & !is.na(emtsuprt_bin))
+          
+diff_sim <- function(data){
+T=dim(data)[1]
+health.sim = replicate(T, sample(c("Always/Usually", "Sometimes-Never"), size=1, prob=c(0.828, 0.172)))
+health.sim = enframe(health.sim, name=NULL, value="health.sim")
+data <- bind_cols(data, health.sim)
+test <- data %>% group_by(health.sim) %>% summarise(m=mean(menthlth, na.rm=TRUE))
+difference = test$m[1] - test$m[2]
+return(difference)
+}
+
+diff = replicate(1000, diff_sim(brfss3))
+```
+
+
+--- .class #id
+
+## The outcome
+
+```{r emtsuprt-menthlth-diff,  echo=F}
+ggplot(data=NULL, aes(diff)) + geom_histogram(binwidth = 0.1)
+```
+
+
+
+--- .class #id
+
+## The Difference in the Data
+
+```{r, echo=FALSE}
+
+brfss2 %>%
+    group_by(emtsuprt_bin) %>%
+    summarise(mean(menthlth, na.rm=T))
+
+#Difference
+
+4.52-10.3
+
+mean(diff<=-5.78)
+```
+
+
+
+--- .class #id
+
+## What do we see? 
+
+- If we randomly assign people to emotional support or no emotional support, the average difference in poor mental health days is centered around 0 days. 
+- However, we saw that those with support have on average $\approx 6$ days. 
+- What other ways could we consider this? 
+
+
+--- .class #id
+
+## In Comes Confidence Intervals
+
+- Let's create our confidence intervals. 
+
+```{r}
+brfss2 %>%
+    group_by(emtsuprt_bin) %>%
+    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T))
+```
+
+--- .class #id
+
+## What can we do? 
+
+- Our normal way of doing this gives us 2 means and 2 standard deviations. 
+- We do not know how to handle this. 
+- We could think of the mean of the differences but we cannot find the SD of this. 
+- Why cant we find the SD?
+
+--- .class #id
+
+## Bootstrapping Saves the Day
+
+- Create 10000 bootstraps
+
+```{R}
+set.seed(123)
+bt_data <- bootstraps(brfss3, times = 100)
+bt_data
+```
+
+
+
+--- .class #id
+
+## Bootstraps 
+
+```{r}
+bt_data$splits[[2]]
+```
+
+- 6585 samples in each split. 
+- 2390 original observations in the second split. 
+- 6585 in the original data. 
+
+--- .class #id
+
+## The Function
+
+```{R}
+
+get_diff <- function(split){
+## get a bootstrap
+split_data <- analysis(split)
+## Calculate the sample mean value
+yes = split_data$emtsuprt_bin=="Always/Usually"
+no = split_data$emtsuprt_bin=="Sometimes-Never"
+mean_yes <- mean(split_data$menthlth[yes,], na.rm=TRUE)
+mean_no <- mean(split_data$menthlth[no,], na.rm=TRUE)
+
+diff = mean_yes - mean_no
+                    
+return(diff)
+}
+
+```
+
+
+--- .class #id
+
+## Differences
+
+```{r}
+bt_data <- bt_data %>%
+    mutate(bt_means = map_dbl(bt_data$splits, get_diff))
+
+bt_data
+```

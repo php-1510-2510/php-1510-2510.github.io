@@ -725,15 +725,556 @@ qt(0.975, 9)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>Further Connection between Z and t</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If you have a t with over 30 samples, you can </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>Confidence Intervals without Normal Assumption</h2>
     <hr>
   </hgroup>
   <article data-timings="">
     <ul>
 <li>What if we wish to find intervals without assuming we have  a normal distribution? </li>
-<li>We can do a technique called <strong><em>bootstrapping</em></strong>
---- .class #id</li>
+<li>We can do a technique called <strong><em>bootstrapping</em></strong></li>
 </ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bootstrapping</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A resampling technique. </li>
+<li>Similar to the permutation test which we did in lectures 12 and 13. </li>
+<li>We will describe how this works and then display a couple of ways to do this in R. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Resampling</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Recall the CLT. </li>
+<li>If you sample from a population over and over again, then the means follow a normal distribution. </li>
+<li>Most of the time we just have one sample. </li>
+<li>We are unsure of which sample that is. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Which sample are we?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/lln-coin-100-1.png" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Margin of Error</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have discussed 2 ways to find the margin of error. </li>
+<li>Sometimes we do not see the ability to obtain a sample like ours over and over again. </li>
+<li>Other times we are interested in getting a confidence interval on something that is a bit harder for us to consider. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is bootstrapping?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="https://blogs.sas.com/content/iml/files/2018/12/bootstrapSummary.png" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bootstrap Basics</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We sample from the data with replacement. </li>
+<li>Then for this sample we calculate a statistic. </li>
+<li>We perform those steps over and over again until we arrive at a distribution of the statistic. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bootstrap steps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Choose the number of bootstraps to perform. </li>
+<li>Choose a sample size. </li>
+<li>For each Bootstrap
+a. Draw a sample with replacement equal to the sample size you set. 
+b. Fit a model or calculate a statistic on this data. </li>
+<li>Calculate an average or range of values from the multiple bootstraps. </li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Advantages</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Very simple once you get used to it. </li>
+<li>Straight forward and does not require extra data. </li>
+<li>Works with extremely complex things where you may not understand the math enough to find a margin of error. </li>
+<li>Naturally checks for stability. </li>
+<li>Many times more accurate than a normal distribution assumption. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Disadvantages</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Works well with small data but does not have any guarantees with small data. </li>
+<li>Hidden assumptions:
+
+<ul>
+<li>independence of samples. </li>
+<li>Population is large enough that the sample effect is not too big. </li>
+<li>Others depending on what statistic you are bootstrapping. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does it do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Basically, bootstrapping treats the data as a population. </li>
+<li>The we repeatedly draw independent samples to create <em>bootstrapped</em> datasets. </li>
+<li>We sample with replacement, allowing observations to be sampled more than once. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="bootstrap.png" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we do this?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Each bootstrap data set \[Z^{*1}, Z^{*2}, \dots, Z^{*B}\] contains <em>n</em> observations, sampled with replacement from the original data set.<br></li>
+<li>Each bootstrap is used to compute the estimated statistic we are interested in \(\hat\alpha^*\). </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Then what?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can then use all the bootstrapped data sets to compute the standard error of \[\hat\alpha^{*1}, \hat\alpha^{*2}, \dots, \hat\alpha^{*B}\] desired statistic as
+\[ SE_B(\hat\alpha) = \sqrt{\frac{1}{B-1}\sum^B_{r=1}\bigg(\hat\alpha^{*r}-\frac{1}{B}\sum^B_{r'=1}\hat\alpha^{*r'}\bigg)^2}  \tag{4} \]</li>
+<li>\[SE_B(\hat\alpha)\] serves as an estimate of the standard error of \[\hat\alpha\] estimated from the original data set. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example 1: Estimating the accuracy of a single statistic</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Performing a bootstrap analysis in R entails two steps:
+
+<ol>
+<li>Create a function that computes the statistic of interest.</li>
+<li>Use the <code>boot</code> function from the <a href="http://cran.r-project.org/web/packages/boot/index.html"><code>boot</code></a> package to perform the boostrapping</li>
+</ol></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This data comes from out midterm. </li>
+<li>We were considering whether or not the number of poor mental health days in the past 30 days was different for those apart of the transgender experience. </li>
+<li>We first might be interested in understanding the average number of days for both groups. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Doing this with tidyverse</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>You will need the following packages:</li>
+</ul>
+
+<pre><code class="r">library(boot)
+library(ggplot2)
+library(dplyr)
+load(&quot;Data/brfss.rda&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss3 &lt;- brfss2 %&gt;%
+      filter(trnsgndr_bin==&quot;no&quot;) %&gt;%
+      select(menthlth)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Creating our function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Lets say we wish to have 10000 bootstraps of the data. </li>
+</ul>
+
+<pre><code class="r">get_mean &lt;- function(data, indices){
+  d &lt;- data[indices,]
+  return(mean(d, na.rm=TRUE))
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Generating Bootstraps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Now we can create the bootstraps</li>
+<li>We will do 1000 bootstraps</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Intervals</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">boot.ci(results, type=&quot;basic&quot;)
+</code></pre>
+
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = results, type = &quot;basic&quot;)
+## 
+## Intervals : 
+## Level      Basic         
+## 95%   ( 5.295,  5.720 )  
+## Calculations and Intervals on Original Scale
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about traditional ways?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss3 %&gt;% 
+    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T))
+ qt(0.975, df=6662)
+
+5.498013 - 1.96032 * 8.639915
+5.498013 + 1.96032 * 8.639915
+</code></pre>
+
+<pre><code>##   mean(menthlth, na.rm = T) sd(menthlth, na.rm = T)
+## 1                  5.498013                8.639915
+## [1] 1.96032
+## [1] -11.43899
+## [1] 22.43501
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we notice?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Big difference in confidence intervals. </li>
+<li>Value of t is the same as the normal. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Graph of this</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/boostrap-ci-1.png" alt="plot of chunk boostrap-ci"></p>
 
     
     <footer class = 'logo'>
@@ -919,8 +1460,152 @@ qt(0.975, 9)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Confidence Intervals without Normal Assumption'>
+        data-slide=29 title='Further Connection between Z and t'>
          29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Confidence Intervals without Normal Assumption'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Bootstrapping'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Resampling'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Which sample are we?'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Margin of Error'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='What is bootstrapping?'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Bootstrap Basics'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Bootstrap steps'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Advantages'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Disadvantages'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='What does it do?'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='NA'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='How do we do this?'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Then what?'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Example 1: Estimating the accuracy of a single statistic'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='The Data'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Doing this with tidyverse'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='The Data'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Creating our function'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='Generating Bootstraps'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Confidence Intervals'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='What about traditional ways?'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='What do we notice?'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Graph of this'>
+         53
       </a>
     </li>
   </ul>
