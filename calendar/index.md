@@ -248,7 +248,7 @@ title: Calendar
 <td align="left">Week 9</td>
 <td align="left">29-Oct</td>
 <td align="left">Sampling Distributions</td>
-<td align="left"><a href="../Notes/lect-14-sampling-distributions.html">lect-14-sampling-distributions</a></td>
+<td align="left"><a href="../Notes/lect-14-sampling-distributions.html">lect-14-sampling-distributions</a> <a href="https://vimeo.com/369653420/8250328a71">Video</a></td>
 <td align="left">CHEST Ch. 4;  <a href="https://bookdown.org/speegled/foundations-of-statistics/simulation-of-random-variables.html">SPEEGLE Ch.  4.5</a>; <a href="https://rafalab.github.io/dsbook/random-variables.html">RAFA Ch. 15.6-15.9</a></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -257,9 +257,18 @@ title: Calendar
 <td align="left"></td>
 <td align="left">31-Oct</td>
 <td align="left">Introduction to Confidence Intervals</td>
-<td align="left"><a href="../Notes/lect-15-confidence-intervals.html">lect-15-confidence-intervals</a></td>
+<td align="left"><a href="../Notes/lect-15-confidence-intervals.html">lect-15-confidence-intervals</a> <a href="https://vimeo.com/370369472/d079b3fe4d">Video</a></td>
 <td align="left">CHEST Ch. 5; <a href="https://moderndive.com/9-confidence-intervals.html">Modern Ch. 9</a></td>
 <td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">1-Nov</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="../homework/pages/hw3">HW 3: LLN/CLT/CI</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -274,8 +283,8 @@ title: Calendar
 <tr>
 <td align="left">Week 10</td>
 <td align="left">5-Nov</td>
-<td align="left">Introduction to Confidence Intervals</td>
-<td align="left"></td>
+<td align="left">Confidence Intervals</td>
+<td align="left"><a href="../Notes/lect-16-confidence-intervals-part2.html">lect-16-confidence-intervals-part2</a></td>
 <td align="left">CHEST Ch. 5; <a href="https://moderndive.com/9-confidence-intervals.html">Modern Ch. 9</a></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -283,9 +292,9 @@ title: Calendar
 <tr>
 <td align="left"></td>
 <td align="left">7-Nov</td>
-<td align="left">Introduction to Confidence Intervals</td>
+<td align="left">Hypothesis Testing</td>
 <td align="left"></td>
-<td align="left">CHEST Ch. 5; <a href="https://moderndive.com/9-confidence-intervals.html">Modern Ch. 9</a></td>
+<td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -305,7 +314,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="../homework/pages/hw3">HW 3: DUE</a></td>
 </tr>
 <tr>
 <td align="left"></td>

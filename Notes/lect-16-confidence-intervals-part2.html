@@ -74,6 +74,515 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>Advantages</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Very simple once you get used to it. </li>
+<li>Straight forward and does not require extra data. </li>
+<li>Works with extremely complex things where you may not understand the math enough to find a margin of error. </li>
+<li>Naturally checks for stability. </li>
+<li>Many times more accurate than a normal distribution assumption. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Disadvantages</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Works well with small data but does not have any guarantees with small data. </li>
+<li>Hidden assumptions:
+
+<ul>
+<li>independence of samples. </li>
+<li>Population is large enough that the sample effect is not too big. </li>
+<li>Others depending on what statistic you are bootstrapping. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does it do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Basically, bootstrapping treats the data as a population. </li>
+<li>The we repeatedly draw independent samples to create <em>bootstrapped</em> datasets. </li>
+<li>We sample with replacement, allowing observations to be sampled more than once. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p><img src="bootstrap.png" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we do this?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Each bootstrap data set \[Z^{*1}, Z^{*2}, \dots, Z^{*B}\] contains <em>n</em> observations, sampled with replacement from the original data set.<br></li>
+<li>Each bootstrap is used to compute the estimated statistic we are interested in \(\hat\alpha^*\). </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Then what?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can then use all the bootstrapped data sets to compute the standard error of \[\hat\alpha^{*1}, \hat\alpha^{*2}, \dots, \hat\alpha^{*B}\] desired statistic as
+\[ SE_B(\hat\alpha) = \sqrt{\frac{1}{B-1}\sum^B_{r=1}\bigg(\hat\alpha^{*r}-\frac{1}{B}\sum^B_{r'=1}\hat\alpha^{*r'}\bigg)^2}  \tag{4} \]</li>
+<li>\[SE_B(\hat\alpha)\] serves as an estimate of the standard error of \[\hat\alpha\] estimated from the original data set. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example 1: Estimating the accuracy of a single statistic</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Performing a bootstrap analysis in R entails two steps:
+
+<ol>
+<li>Create a function that computes the statistic of interest.</li>
+<li>Use the <code>boot</code> function from the <a href="http://cran.r-project.org/web/packages/boot/index.html"><code>boot</code></a> package to perform the boostrapping</li>
+</ol></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This data comes from out midterm. </li>
+<li>We were considering whether or not the number of poor mental health days in the past 30 days was different for those apart of the transgender experience. </li>
+<li>We first might be interested in understanding the average number of days for both groups. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Doing this with tidyverse</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>You will need the following packages:</li>
+</ul>
+
+<pre><code class="r">library(rsample)
+library(purrr)
+library(ggplot2)
+library(dplyr)
+load(&quot;../Notes/Data/brfss.rda&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss3 &lt;- brfss2 %&gt;%
+      filter(trnsgndr_bin==&quot;no&quot;) %&gt;%
+      select(menthlth)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Generate Bootstraps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s say we want to do 1000 bootstraps</li>
+</ul>
+
+<pre><code class="r">bt_data &lt;- bootstraps(brfss3, times = 1000)
+bt_data
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Generate Bootstraps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # Bootstrap sampling 
+## # A tibble: 1,000 x 2
+##    splits              id           
+##    &lt;list&gt;              &lt;chr&gt;        
+##  1 &lt;split [6.7K/2.5K]&gt; Bootstrap0001
+##  2 &lt;split [6.7K/2.5K]&gt; Bootstrap0002
+##  3 &lt;split [6.7K/2.4K]&gt; Bootstrap0003
+##  4 &lt;split [6.7K/2.5K]&gt; Bootstrap0004
+##  5 &lt;split [6.7K/2.4K]&gt; Bootstrap0005
+##  6 &lt;split [6.7K/2.5K]&gt; Bootstrap0006
+##  7 &lt;split [6.7K/2.4K]&gt; Bootstrap0007
+##  8 &lt;split [6.7K/2.5K]&gt; Bootstrap0008
+##  9 &lt;split [6.7K/2.5K]&gt; Bootstrap0009
+## 10 &lt;split [6.7K/2.4K]&gt; Bootstrap0010
+## # ... with 990 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Structure of Bootstraps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">bt_data$splits[[1]]
+</code></pre>
+
+<pre><code>## &lt;6663/2465/6663&gt;
+</code></pre>
+
+<ul>
+<li>6663 values in the bootstrap. </li>
+<li>2465 observations picked. </li>
+<li>6663 values in original sample. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Creating our function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We need a function to create the bootstrap over. </li>
+</ul>
+
+<pre><code class="r">get_mean &lt;- function(split) {
+  # access to the sample data 
+  split_data &lt;- analysis(split)
+  # calculate the sample mean value 
+  split_mean &lt;- mean(split_data$menthlth, na.rm=T)
+  return(split_mean)
+}
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Pass Function to Bootstraps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # Bootstrap sampling 
+## # A tibble: 1,000 x 3
+##    splits              id            bt_means
+##    &lt;list&gt;              &lt;chr&gt;            &lt;dbl&gt;
+##  1 &lt;split [6.7K/2.5K]&gt; Bootstrap0001     5.40
+##  2 &lt;split [6.7K/2.5K]&gt; Bootstrap0002     5.32
+##  3 &lt;split [6.7K/2.4K]&gt; Bootstrap0003     5.43
+##  4 &lt;split [6.7K/2.5K]&gt; Bootstrap0004     5.48
+##  5 &lt;split [6.7K/2.4K]&gt; Bootstrap0005     5.47
+##  6 &lt;split [6.7K/2.5K]&gt; Bootstrap0006     5.41
+##  7 &lt;split [6.7K/2.4K]&gt; Bootstrap0007     5.39
+##  8 &lt;split [6.7K/2.5K]&gt; Bootstrap0008     5.68
+##  9 &lt;split [6.7K/2.5K]&gt; Bootstrap0009     5.60
+## 10 &lt;split [6.7K/2.4K]&gt; Bootstrap0010     5.51
+## # ... with 990 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does the distribution look like?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(bt_data, aes(x = bt_means)) + 
+  geom_line(stat = &quot;density&quot;) + 
+  xlab(&quot;Mean of Poor Mental Health Days&quot;)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does the distribution look like?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/boot-means-density-1.png" alt="plot of chunk boot-means-density"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Intervals</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can get this with the following function</li>
+</ul>
+
+<pre><code class="r">bt_ci &lt;- round(quantile(bt_data$bt_means, c(0.025, 0.975)), 3)
+bt_ci
+</code></pre>
+
+<pre><code>##  2.5% 97.5% 
+## 5.291 5.698
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about traditional ways?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss3 %&gt;% 
+    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T))
+ qt(0.975, df=6662)
+
+5.498013 - 1.96032 * 8.639915
+5.498013 + 1.96032 * 8.639915
+</code></pre>
+
+<pre><code>##   mean(menthlth, na.rm = T) sd(menthlth, na.rm = T)
+## 1                  5.498013                8.639915
+## [1] 1.96032
+## [1] -11.43899
+## [1] 22.43501
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What do we notice?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Big difference in confidence intervals. </li>
+<li>Value of t is the same as the normal. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Graph of this</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/boostrap-ci-1.png" alt="plot of chunk boostrap-ci"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>More Difficult Confidence Intervals</h2>
     <hr>
   </hgroup>
@@ -216,7 +725,24 @@
     <hr>
   </hgroup>
   <article data-timings="">
-    
+    <pre><code class="r">library(tidyverse)
+brfss3 &lt;- brfss2 %&gt;%
+          select(menthlth, emtsuprt_bin) %&gt;%
+          filter(!is.na(menthlth) &amp; !is.na(emtsuprt_bin))
+
+diff_sim &lt;- function(data){
+T=dim(data)[1]
+health.sim = replicate(T, sample(c(&quot;Always/Usually&quot;, &quot;Sometimes-Never&quot;), size=1, prob=c(0.828, 0.172)))
+health.sim = enframe(health.sim, name=NULL, value=&quot;health.sim&quot;)
+data &lt;- bind_cols(data, health.sim)
+test &lt;- data %&gt;% group_by(health.sim) %&gt;% summarise(m=mean(menthlth, na.rm=TRUE))
+difference = test$m[1] - test$m[2]
+return(difference)
+}
+
+diff = replicate(1000, diff_sim(brfss3))
+</code></pre>
+
     
     <footer class = 'logo'>
 <div style="position: absolute; right: 900px; top: 600px; z-index:100">
@@ -251,7 +777,18 @@
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code>## # A tibble: 2 x 2
+    <pre><code class="r">brfss2 %&gt;%
+    group_by(emtsuprt_bin) %&gt;%
+    summarise(mean(menthlth, na.rm=T))
+
+#Difference
+
+4.52-10.3
+
+mean(diff&lt;=-5.78)
+</code></pre>
+
+<pre><code>## # A tibble: 2 x 2
 ##   emtsuprt_bin    `mean(menthlth, na.rm = T)`
 ##   &lt;fct&gt;                                 &lt;dbl&gt;
 ## 1 Always/Usually                         4.52
@@ -354,20 +891,53 @@
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Create 10000 bootstraps</li>
+<li>We can bootstrap in this instance. </li>
+<li>Even if we do not have a nice way to calculate the standard error, bootstrapping will work for us. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">brfss4 &lt;- brfss2 %&gt;%
+    select(menthlth, emtsuprt_bin)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The bootstraps</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will create 1000 bootstraps</li>
 </ul>
 
 <pre><code class="r">set.seed(123)
-bt_data &lt;- bootstraps(brfss3, times = 10000)
-</code></pre>
-
-<pre><code>## Error in bootstraps(brfss3, times = 10000): could not find function &quot;bootstraps&quot;
-</code></pre>
-
-<pre><code class="r">bt_data
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;bt_data&#39; not found
+bt_data2 &lt;- bootstraps(brfss4, times = 1000)
+bt_data2
 </code></pre>
 
     
@@ -382,22 +952,31 @@ bt_data &lt;- bootstraps(brfss3, times = 10000)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Bootstraps</h2>
+    <h2>The bootstraps</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">bt_data$splits[[2]]
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;bt_data&#39; not found
-</code></pre>
-
-<ul>
-<li>6585 samples in each split. </li>
-<li>2390 original observations in the second split. </li>
-<li>6585 in the original data. </li>
+    <ul>
+<li>We will create 1000 bootstraps</li>
 </ul>
 
+<pre><code>## # Bootstrap sampling 
+## # A tibble: 1,000 x 2
+##    splits              id           
+##    &lt;list&gt;              &lt;chr&gt;        
+##  1 &lt;split [6.7K/2.5K]&gt; Bootstrap0001
+##  2 &lt;split [6.7K/2.5K]&gt; Bootstrap0002
+##  3 &lt;split [6.7K/2.4K]&gt; Bootstrap0003
+##  4 &lt;split [6.7K/2.5K]&gt; Bootstrap0004
+##  5 &lt;split [6.7K/2.5K]&gt; Bootstrap0005
+##  6 &lt;split [6.7K/2.5K]&gt; Bootstrap0006
+##  7 &lt;split [6.7K/2.4K]&gt; Bootstrap0007
+##  8 &lt;split [6.7K/2.5K]&gt; Bootstrap0008
+##  9 &lt;split [6.7K/2.5K]&gt; Bootstrap0009
+## 10 &lt;split [6.7K/2.4K]&gt; Bootstrap0010
+## # ... with 990 more rows
+</code></pre>
+
     
     <footer class = 'logo'>
 <div style="position: absolute; right: 900px; top: 600px; z-index:100">
@@ -410,22 +989,66 @@ bt_data &lt;- bootstraps(brfss3, times = 10000)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>The Function</h2>
+    <h2>What the data is like.</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">get_diff &lt;- function(split){
-## get a bootstrap
-split_data &lt;- analysis(split)
-## Calculate the sample mean value
-yes = split_data$emtsuprt_bin==&quot;Always/Usually&quot;
-no = split_data$emtsuprt_bin==&quot;Sometimes-Never&quot;
-#mean_yes &lt;- mean(split_data$menthlth[split_data$emtsuprt_bin==&quot;Always/Usually&quot;,], na.rm=TRUE)
-#mean_no &lt;- mean(split_data$menthlth[,], na.rm=TRUE)
+    <pre><code class="r">analysis(bt_data2$splits[[1]]) %&gt;% as_tibble()
+</code></pre>
 
-#diff = mean_yes - mean_no
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-return(sum(yes) + sum(no))
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What the data is like.</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 6,663 x 1
+##    menthlth
+##       &lt;dbl&gt;
+##  1        1
+##  2        0
+##  3        0
+##  4        0
+##  5        7
+##  6        6
+##  7        1
+##  8        0
+##  9        0
+## 10        0
+## # ... with 6,653 more rows
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Creating our function</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">get_diff &lt;- function(splits) {
+  d &lt;- analysis(splits)
+  mean_yes &lt;- mean(d$menthlth[d$emtsuprt_bin==&quot;Always/Usually&quot;], na.rm=T) 
+  mean_no &lt;- mean(d$menthlth[d$emtsuprt_bin==&quot;Sometimes-Never&quot;], na.rm=T)
+  mean_yes - mean_no
 }
 </code></pre>
 
@@ -441,22 +1064,144 @@ return(sum(yes) + sum(no))
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Differences</h2>
+    <h2>Get Differences</h2>
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">bt_data &lt;- bt_data %&gt;%
-    mutate(bt_means = map_dbl(bt_data$splits, get_diff))
+    <pre><code class="r">bt_data2$bt_diff &lt;- map_dbl(bt_data2$splits, get_diff)
 </code></pre>
 
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;bt_data&#39; not found
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does the distribution look like?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(bt_data2, aes(x = bt_diff)) + 
+  geom_line(stat = &quot;density&quot;) + 
+  xlab(&quot;Difference in Average Poor Mental Health Days (Emotional SUpport vs Not)&quot;)
 </code></pre>
 
-<pre><code class="r">bt_data
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does the distribution look like?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/brfss-diff-density-1.png" alt="plot of chunk brfss-diff-density"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Confidence Intervals</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can get this with the following function</li>
+</ul>
+
+<pre><code class="r">bt_ci &lt;- round(quantile(bt_data2$bt_diff, c(0.025, 0.975)), 3)
+bt_ci
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;bt_data&#39; not found
+<pre><code>##   2.5%  97.5% 
+## -6.482 -5.093
 </code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does this mean?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We are 95% confident that on average, those with emotional support have less poor mental health days than those without it.</li>
+<li>Approximately, 6.482 to 5.093 less days. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Graph of this</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/boostrap-ci-diff-1.png" alt="plot of chunk boostrap-ci-diff"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Testing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What can be happening? 
+
+<ul>
+<li>Emotional Support influences mental health days. </li>
+<li>Groups differed at Baseline. </li>
+<li><strike> Random Chance </strike></li>
+</ul></li>
+</ul>
 
     
     <footer class = 'logo'>
@@ -480,98 +1225,284 @@ return(sum(yes) + sum(no))
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='More Difficult Confidence Intervals'>
+        data-slide=2 title='Advantages'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Graphing Relationship'>
+        data-slide=3 title='Disadvantages'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='What Can we see?'>
+        data-slide=4 title='What does it do?'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Hypothesis Testing'>
+        data-slide=5 title='NA'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Random Chance'>
+        data-slide=6 title='How do we do this?'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Proportions'>
+        data-slide=7 title='Then what?'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='The Code'>
+        data-slide=8 title='Example 1: Estimating the accuracy of a single statistic'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='The outcome'>
+        data-slide=9 title='The Data'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='The Difference in the Data'>
+        data-slide=10 title='Doing this with tidyverse'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='What do we see?'>
+        data-slide=11 title='The Data'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='In Comes Confidence Intervals'>
+        data-slide=12 title='Generate Bootstraps'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='What can we do?'>
+        data-slide=13 title='Generate Bootstraps'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Bootstrapping Saves the Day'>
+        data-slide=14 title='Structure of Bootstraps'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Bootstraps'>
+        data-slide=15 title='Creating our function'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='The Function'>
+        data-slide=16 title='Pass Function to Bootstraps'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Differences'>
+        data-slide=17 title='What does the distribution look like?'>
          17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='What does the distribution look like?'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Confidence Intervals'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='What about traditional ways?'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='What do we notice?'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Graph of this'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='More Difficult Confidence Intervals'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Graphing Relationship'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='What Can we see?'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Hypothesis Testing'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Random Chance'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Proportions'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='The Code'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='The outcome'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='The Difference in the Data'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='What do we see?'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='In Comes Confidence Intervals'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='What can we do?'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Bootstrapping Saves the Day'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='The Data'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='The bootstraps'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='The bootstraps'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='What the data is like.'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='What the data is like.'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Creating our function'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Get Differences'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='What does the distribution look like?'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='What does the distribution look like?'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Confidence Intervals'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='What does this mean?'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Graph of this'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Hypothesis Testing'>
+         48
       </a>
     </li>
   </ul>

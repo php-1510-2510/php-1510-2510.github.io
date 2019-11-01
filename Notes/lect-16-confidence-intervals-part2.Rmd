@@ -30,6 +30,276 @@ library(broom)
 
 # Continuing Confidence Intervals
 
+
+
+--- .class #id
+
+## Advantages
+
+- Very simple once you get used to it. 
+- Straight forward and does not require extra data. 
+- Works with extremely complex things where you may not understand the math enough to find a margin of error. 
+- Naturally checks for stability. 
+- Many times more accurate than a normal distribution assumption. 
+
+--- .class #id
+
+## Disadvantages
+
+- Works well with small data but does not have any guarantees with small data. 
+- Hidden assumptions:
+    - independence of samples. 
+    - Population is large enough that the sample effect is not too big. 
+    - Others depending on what statistic you are bootstrapping. 
+    
+
+
+--- .class #id
+
+## What does it do?
+
+- Basically, bootstrapping treats the data as a population. 
+- The we repeatedly draw independent samples to create *bootstrapped* datasets. 
+- We sample with replacement, allowing observations to be sampled more than once. 
+
+
+
+--- .class #id
+
+
+
+![](bootstrap.png)
+
+
+
+--- .class #id
+
+## How do we do this?
+
+- Each bootstrap data set $$Z^{*1}, Z^{*2}, \dots, Z^{*B}$$ contains *n* observations, sampled with replacement from the original data set.  
+- Each bootstrap is used to compute the estimated statistic we are interested in $\hat\alpha^*$. 
+
+
+--- .class #id
+
+## Then what?
+
+- We can then use all the bootstrapped data sets to compute the standard error of $$\hat\alpha^{*1}, \hat\alpha^{*2}, \dots, \hat\alpha^{*B}$$ desired statistic as
+$$ SE_B(\hat\alpha) = \sqrt{\frac{1}{B-1}\sum^B_{r=1}\bigg(\hat\alpha^{*r}-\frac{1}{B}\sum^B_{r'=1}\hat\alpha^{*r'}\bigg)^2}  \tag{4} $$
+- $$SE_B(\hat\alpha)$$ serves as an estimate of the standard error of $$\hat\alpha$$ estimated from the original data set. 
+
+--- .class #id
+
+## Example 1: Estimating the accuracy of a single statistic
+
+- Performing a bootstrap analysis in R entails two steps:
+    1. Create a function that computes the statistic of interest.
+    2. Use the `boot` function from the [`boot`](http://cran.r-project.org/web/packages/boot/index.html) package to perform the boostrapping
+
+--- .class #id
+
+
+## The Data
+
+- This data comes from out midterm. 
+- We were considering whether or not the number of poor mental health days in the past 30 days was different for those apart of the transgender experience. 
+- We first might be interested in understanding the average number of days for both groups. 
+
+
+
+--- .class #id
+
+
+## Doing this with tidyverse
+
+- You will need the following packages:
+   
+```{r}
+library(rsample)
+library(purrr)
+library(ggplot2)
+library(dplyr)
+load("../Notes/Data/brfss.rda")
+```
+
+--- .class #id
+
+## The Data
+
+```{r}
+brfss3 <- brfss2 %>%
+      filter(trnsgndr_bin=="no") %>%
+      select(menthlth)
+```
+
+
+--- .class #id
+
+## Generate Bootstraps
+
+- Let's say we want to do 1000 bootstraps
+
+```{r, eval=F}
+bt_data <- bootstraps(brfss3, times = 1000)
+bt_data
+```
+
+
+
+--- .class #id
+
+## Generate Bootstraps
+
+
+
+```{r, echo=F}
+set.seed(123)
+bt_data <- bootstraps(brfss3, times = 1000)
+bt_data
+```
+
+
+
+--- .class #id
+
+## Structure of Bootstraps
+
+```{r}
+bt_data$splits[[1]]
+```
+
+- 6663 values in the bootstrap. 
+- 2465 observations picked. 
+- 6663 values in original sample. 
+
+--- .class #id
+
+## Creating our function
+
+- We need a function to create the bootstrap over. 
+
+```{R}
+get_mean <- function(split) {
+  # access to the sample data 
+  split_data <- analysis(split)
+  # calculate the sample mean value 
+  split_mean <- mean(split_data$menthlth, na.rm=T)
+  return(split_mean)
+}
+```
+
+
+--- .class #id
+
+## Pass Function to Bootstraps
+
+
+
+```{R, echo=FALSE}
+bt_data$bt_means <- map_dbl(bt_data$splits, get_mean)
+bt_data
+```
+
+
+
+
+--- .class #id
+
+## What does the distribution look like? 
+
+```{r, eval=F}
+
+ggplot(bt_data, aes(x = bt_means)) + 
+  geom_line(stat = "density") + 
+  xlab("Mean of Poor Mental Health Days")
+```
+
+
+--- .class #id
+
+## What does the distribution look like? 
+
+```{r boot-means-density, echo=F}
+
+ggplot(bt_data, aes(x = bt_means)) + 
+  geom_line(stat = "density") + 
+  xlab("Mean of Poor Mental Health Days")
+```
+
+
+
+
+
+--- .class #id
+
+
+## Confidence Intervals
+
+- We can get this with the following function
+
+```{r}
+bt_ci <- round(quantile(bt_data$bt_means, c(0.025, 0.975)), 3)
+bt_ci
+```
+
+
+
+
+
+--- .class #id
+
+## What about traditional ways?
+
+```{r}
+brfss3 %>% 
+    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T))
+ qt(0.975, df=6662)
+
+5.498013 - 1.96032 * 8.639915
+5.498013 + 1.96032 * 8.639915
+```
+
+
+--- .class #id
+
+## What do we notice?
+
+- Big difference in confidence intervals. 
+- Value of t is the same as the normal. 
+
+
+--- .class #id
+
+## Graph of this
+
+
+```{r boostrap-ci, echo=F}
+bt_ci_lower <- quantile(bt_data$bt_means, c(0.025))
+bt_ci_upper <- quantile(bt_data$bt_means, c(0.975))
+bt_mean <- mean(bt_data$bt_means)
+ 
+bt_data <- bt_data %>% 
+  dplyr::mutate(Color = ifelse(bt_means < bt_ci_lower | bt_means > bt_ci_upper, "Out of 95% CI", "In 95% CI"))
+ 
+ 
+ggplot(bt_data, aes(x = bt_means, y = 0)) + 
+  geom_jitter(aes(color = Color), alpha = 0.6, size = 3, width = 0) + 
+  geom_vline(xintercept = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2), linetype = c(2,1,2)) + 
+  scale_x_continuous(breaks = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2),
+                     labels = c("Lower CI (95%)", "Mean", "Upper CI (95%)"),
+                     sec.axis = sec_axis(~., breaks = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2),
+                                         labels = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2))) + 
+  scale_color_manual(values = c("gray40", "firebrick4")) + 
+  theme_void() + 
+  theme(legend.title = element_blank(),
+        legend.position = "top", 
+        legend.text = element_text(size = 14), 
+        axis.text.x = element_text(size = 14))
+```
+
+
+
+
 --- .class #id
 
 ## More Difficult Confidence Intervals 
@@ -89,7 +359,7 @@ brfss2 %>%
 
 ## The Code
 
-```{r, echo=F}
+```{r}
 library(tidyverse)
 brfss3 <- brfss2 %>%
           select(menthlth, emtsuprt_bin) %>%
@@ -123,7 +393,7 @@ ggplot(data=NULL, aes(diff)) + geom_histogram(binwidth = 0.1)
 
 ## The Difference in the Data
 
-```{r, echo=FALSE}
+```{r}
 
 brfss2 %>%
     group_by(emtsuprt_bin) %>%
@@ -172,58 +442,182 @@ brfss2 %>%
 
 ## Bootstrapping Saves the Day
 
-- Create 10000 bootstraps
+- We can bootstrap in this instance. 
+- Even if we do not have a nice way to calculate the standard error, bootstrapping will work for us. 
 
-```{R}
+
+--- .class #id
+## The Data
+
+```{r}
+brfss4 <- brfss2 %>%
+    select(menthlth, emtsuprt_bin)
+```
+
+--- .class #id
+
+
+
+## The bootstraps
+
+- We will create 1000 bootstraps
+
+```{r, eval=F}
 set.seed(123)
-bt_data <- bootstraps(brfss3, times = 100)
-bt_data
+bt_data2 <- bootstraps(brfss4, times = 1000)
+bt_data2
+```
+
+
+--- .class #id
+
+## The bootstraps
+
+- We will create 1000 bootstraps
+
+```{r, echo=F}
+set.seed(123)
+bt_data2 <- bootstraps(brfss4, times = 1000)
+bt_data2
+```
+
+
+--- .class #id
+
+## What the data is like. 
+
+```{r, eval=F}
+analysis(bt_data2$splits[[1]]) %>% as_tibble()
 ```
 
 
 
 --- .class #id
 
-## Bootstraps 
+## What the data is like. 
 
-```{r}
-bt_data$splits[[2]]
+```{r, echo=F}
+analysis(bt_data$splits[[1]]) %>% as_tibble()
 ```
 
-- 6585 samples in each split. 
-- 2390 original observations in the second split. 
-- 6585 in the original data. 
+
 
 --- .class #id
 
-## The Function
+
+## Creating our function
+
+
 
 ```{R}
-
-get_diff <- function(split){
-## get a bootstrap
-split_data <- analysis(split)
-## Calculate the sample mean value
-yes = split_data$emtsuprt_bin=="Always/Usually"
-no = split_data$emtsuprt_bin=="Sometimes-Never"
-mean_yes <- mean(split_data$menthlth[yes,], na.rm=TRUE)
-mean_no <- mean(split_data$menthlth[no,], na.rm=TRUE)
-
-diff = mean_yes - mean_no
-                    
-return(diff)
+get_diff <- function(splits) {
+  d <- analysis(splits)
+  mean_yes <- mean(d$menthlth[d$emtsuprt_bin=="Always/Usually"], na.rm=T) 
+  mean_no <- mean(d$menthlth[d$emtsuprt_bin=="Sometimes-Never"], na.rm=T)
+  mean_yes - mean_no
 }
-
 ```
 
 
 --- .class #id
 
-## Differences
+## Get Differences
+
+```{R}
+bt_data2$bt_diff <- map_dbl(bt_data2$splits, get_diff)
+```
+
+
+
+
+
+--- .class #id
+
+## What does the distribution look like? 
+
+```{r, eval=F}
+
+ggplot(bt_data2, aes(x = bt_diff)) + 
+  geom_line(stat = "density") + 
+  xlab("Difference in Average Poor Mental Health Days (Emotional SUpport vs Not)")
+```
+
+
+
+--- .class #id
+
+## What does the distribution look like? 
+
+```{r brfss-diff-density, echo=F}
+
+ggplot(bt_data2, aes(x = bt_diff)) + 
+  geom_line(stat = "density") + 
+  xlab("Difference in Average Poor Mental Health Days (Emotional SUpport vs Not)")
+```
+
+
+
+
+
+
+--- .class #id
+
+
+## Confidence Intervals
+
+- We can get this with the following function
 
 ```{r}
-bt_data <- bt_data %>%
-    mutate(bt_means = map_dbl(bt_data$splits, get_diff))
-
-bt_data
+bt_ci <- round(quantile(bt_data2$bt_diff, c(0.025, 0.975)), 3)
+bt_ci
 ```
+
+
+--- .class #id
+
+
+## What does this mean? 
+
+- We are 95% confident that on average, those with emotional support have less poor mental health days than those without it.
+- Approximately, 6.482 to 5.093 less days. 
+
+
+--- .class #id
+
+## Graph of this
+
+
+```{r boostrap-ci-diff, echo=F}
+bt_ci_lower <- quantile(bt_data2$bt_diff, c(0.025))
+bt_ci_upper <- quantile(bt_data2$bt_diff, c(0.975))
+bt_diff <- mean(bt_data2$bt_diff)
+ 
+bt_data2 <- bt_data2 %>% 
+  dplyr::mutate(Color = ifelse(bt_diff < bt_ci_lower | bt_diff > bt_ci_upper, "Out of 95% CI", "In 95% CI"))
+ 
+ 
+ggplot(bt_data2, aes(x = bt_diff, y = 0)) + 
+  geom_jitter(aes(color = Color), alpha = 0.6, size = 3, width = 0) + 
+  geom_vline(xintercept = round(c(bt_ci_lower, bt_diff, bt_ci_upper),2), linetype = c(2,1,2)) + 
+  scale_x_continuous(breaks = round(c(bt_ci_lower, bt_diff, bt_ci_upper),2),
+                     labels = c("Lower CI (95%)", "Mean", "Upper CI (95%)"),
+                     sec.axis = sec_axis(~., breaks = round(c(bt_ci_lower, bt_diff, bt_ci_upper),2),
+                                         labels = round(c(bt_ci_lower, bt_diff, bt_ci_upper),2))) + 
+  scale_color_manual(values = c("gray40", "firebrick4")) + 
+  theme_void() + 
+  theme(legend.title = element_blank(),
+        legend.position = "top", 
+        legend.text = element_text(size = 14), 
+        axis.text.x = element_text(size = 14))
+```
+
+
+
+--- .class #id
+
+## Hypothesis Testing
+
+- What can be happening? 
+    - Emotional Support influences mental health days. 
+    - Groups differed at Baseline. 
+    - <strike> Random Chance </strike>

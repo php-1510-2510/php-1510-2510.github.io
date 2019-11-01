@@ -14,10 +14,9 @@ knitr::opts_chunk$set(eval=F)
 ```
 
 
---- .class #id
 
 
-## Central Limit Theorem with Binary Outcome
+# Central Limit Theorem with Binary Outcome
 
 - Consider a response where we are interested in a whether or not a population has had it. 
 - Let's assume that we have 30% of the population with a "Yes" and that leaves 70% with "No". 
@@ -26,9 +25,14 @@ knitr::opts_chunk$set(eval=F)
 
 
 
---- .class #id
+For Each of the code below, make sure you interpret what you are seeing below the output. 
 
-## 10 Samples of 10 Each
+
+
+
+## Binomial samples with sample size of 10 each time. 
+
+### 10 Samples of 10 Each
 
 ```{r clt-bin-10, echo=F}
 # get 10 samples with 10 scores each
@@ -57,9 +61,9 @@ p1
 ```
 
 
---- .class #id
 
-## 100 Samples of 10 Each
+
+### 100 Samples of 10 Each
 
 ```{r clt-bin-100, echo=F}
 # get 100 samples with 10 scores each
@@ -88,9 +92,7 @@ p2
 ```
 
 
---- .class #id
-
-## 1000 Samples of 10 Each
+### 1000 Samples of 10 Each
 
 ```{r clt-bin-1000, echo=F}
 # get 1000 samples with 10 scores each
@@ -119,9 +121,9 @@ p3
 ```
 
 
---- .class #id
 
-## 10000 Samples of 10 Each
+
+### 10000 Samples of 10 Each
 
 ```{r clt-bin-10000, echo=F}
 # get 10000 samples with 10 scores each
@@ -149,9 +151,9 @@ p4
 
 ```
 
---- .class #id
 
-## Progression
+
+### Progression
 
 ```{r clt-bin-prog-10, echo=F, fig.height=5, fig.width=12}
 library(gridExtra)
@@ -159,17 +161,15 @@ grid.arrange(p1,p2,p3,p4, ncol=4)
 ```
 
 
---- .class #id
 
 
-## Central Limit Theorem with Binomial Data
+
+### Binomial samples with sample size of 30 each time. 
 
 - We will be looking at the same population with 30% "Yes".
 - This time we will do samples of 30 each. 
 
---- .class #id
-
-## 10 Samples of 30 Each
+### 10 Samples of 30 Each
 
 ```{r clt-bin-10b, echo=F}
 # get 10 samples with 30 scores each
@@ -198,9 +198,7 @@ p1b
 ```
 
 
---- .class #id
-
-## 100 Samples of 30 Each
+### 100 Samples of 30 Each
 
 ```{r clt-bin-100b, echo=F}
 # get 100 samples with 30 scores each
@@ -229,9 +227,7 @@ p2b
 ```
 
 
---- .class #id
-
-## 1000 Samples of 30 Each
+### 1000 Samples of 30 Each
 
 ```{r clt-bin-1000b, echo=F}
 # get 1000 samples with 30 scores each
@@ -260,9 +256,7 @@ p3b
 ```
 
 
---- .class #id
-
-## 10000 Samples of 30 Each
+### 10000 Samples of 30 Each
 
 ```{r clt-bin-10000b, echo=F}
 # get 10000 samples with 30 scores each
@@ -290,9 +284,7 @@ p4b
 
 ```
 
---- .class #id
-
-## Progression
+### Progression
 
 ```{r clt-bin-prog-10b, echo=F, fig.height=5, fig.width=12}
 library(gridExtra)
@@ -300,18 +292,153 @@ grid.arrange(p1b,p2b,p3b,p4b, ncol=4)
 ```
 
 
---- .class #id
-
-## Progression of Both
+### Progression of Both
 
 ```{r clt-bin-prog-10c, echo=F, fig.height=5, fig.width=12}
 grid.arrange(p1, p2, p3, p4, p1b, p2b, p3b, p4b, ncol=4, nrow=2)
 ```
 
 
---- .class #id
 
-## Conclusions
 
-- The means of binomial data are normally distributed after multiple samples. 
-- When each sample has an increase in sample size, we see the variance of the means decreases. 
+# Confidence Intervals
+
+
+## Bonmial Data
+
+
+### Using Normal Distribution
+
+```{r}
+data <- rbinom(10, 1, 0.3)
+
+mn <- mean(data)
+std.dev <- sqrt(10*0.3*0.7)/10
+
+low = mn - 1.96*std.dev
+high = mn + 1.96*std.dev
+
+low
+high
+```
+
+
+- When can we use this? 
+
+
+### Using t-distribution
+
+```{r}
+
+std.dev = sd(data)
+
+t <- qt(0.975, df=length(data)-1)
+
+
+low = mn - t*std.dev
+high = mn + t*std.dev
+
+low
+high
+```
+
+
+### Bootstrapping
+
+
+
+```{r}
+library(rsample)
+library(purrr)
+library(ggplot2)
+library(dplyr)
+
+set.seed(1234)
+bt_data <- bootstraps(data, times = 1000)
+
+bt_data
+
+```
+
+
+- What information are we given on the splits?
+
+```{R}
+bt_data$splits[[1]]
+```
+
+
+#### The Function
+
+```{r}
+get_mean <- function(split) {
+  # access to the sample data 
+  split_data <- analysis(split)
+  # calculate the sample mean value 
+  split_mean <- mean(split_data$menthlth, na.rm=T)
+  return(split_mean)
+}
+```
+
+
+#### Pass the data through function:
+
+```{R}
+bt_data$bt_means <- map_dbl(bt_data$splits, get_mean)
+bt_data
+```
+
+
+
+#### Graph Distribution
+
+```{R}
+
+ggplot(bt_data, aes(x = bt_means)) + 
+  geom_line(stat = "density") + 
+  xlab("Mean of Poor Mental Health Days")
+```
+
+
+#### Bootstrap Confidence Intervals
+
+```{r}
+bt_ci <- round(quantile(bt_data$bt_means, c(0.025, 0.975)), 3)
+bt_ci
+```
+
+
+
+- How do these compare? 
+
+
+
+#### Graphical Display of Bootstrap Interval
+
+```{r}
+bt_ci_lower <- quantile(bt_data$bt_means, c(0.025))
+bt_ci_upper <- quantile(bt_data$bt_means, c(0.975))
+bt_mean <- mean(bt_data$bt_means)
+ 
+bt_data <- bt_data %>% 
+  dplyr::mutate(Color = ifelse(bt_means < bt_ci_lower | bt_means > bt_ci_upper, "Out of 95% CI", "In 95% CI"))
+ 
+ 
+ggplot(bt_data, aes(x = bt_means, y = 0)) + 
+  geom_jitter(aes(color = Color), alpha = 0.6, size = 3, width = 0) + 
+  geom_vline(xintercept = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2), linetype = c(2,1,2)) + 
+  scale_x_continuous(breaks = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2),
+                     labels = c("Lower CI (95%)", "Mean", "Upper CI (95%)"),
+                     sec.axis = sec_axis(~., breaks = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2),
+                                         labels = round(c(bt_ci_lower, bt_mean, bt_ci_upper),2))) + 
+  scale_color_manual(values = c("gray40", "firebrick4")) + 
+  theme_void() + 
+  theme(legend.title = element_blank(),
+        legend.position = "top", 
+        legend.text = element_text(size = 14), 
+        axis.text.x = element_text(size = 14))
+```
+
+
+- Modify the code to use with the other 2 styles of confidence intervals. How do these 3 plots compare? 
+```{r}
