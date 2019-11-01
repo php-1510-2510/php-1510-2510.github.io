@@ -266,7 +266,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">1-Nov</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="../labs/lab3.Rmd">Lab 3 - rmd</a></td>
 <td align="left"></td>
 <td align="left"><a href="../homework/pages/hw3">HW 3: LLN/CLT/CI</a></td>
 <td align="left"></td>
