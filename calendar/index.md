@@ -293,7 +293,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">7-Nov</td>
 <td align="left">Hypothesis Testing</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-17-confidence-intervals-hypothesis-testing.html">lect-17-confidence-intervals-hypothesis-testing</a></td>
 <td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -337,16 +337,16 @@ title: Calendar
 <tr>
 <td align="left">Week 12</td>
 <td align="left">19-Nov</td>
-<td align="left">Non-Parametric Testing</td>
-<td align="left"><a href="../Notes/lect-20-non-parametrics.html">Lect-20-non-parametrics</a></td>
-<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/RBT.html">SPEEGLE Ch. 8</a></td>
+<td align="left">Hypothesis Testing</td>
+<td align="left"></td>
+<td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left">21-Nov</td>
-<td align="left">Categorical Data Comparisons</td>
+<td align="left">Hypothesis Testing</td>
 <td align="left"></td>
 <td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
 <td align="left"></td>
@@ -364,9 +364,9 @@ title: Calendar
 <tr>
 <td align="left">Week 13</td>
 <td align="left">26-Nov</td>
-<td align="left">Categorical Data Comparisons</td>
-<td align="left"></td>
-<td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
+<td align="left">Non-Parametric Testing</td>
+<td align="left"><a href="../Notes/lect-22-non-parametrics.html">Lect-22-non-parametrics</a></td>
+<td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/RBT.html">SPEEGLE Ch. 8</a></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>

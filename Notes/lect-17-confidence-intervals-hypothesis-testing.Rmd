@@ -65,7 +65,7 @@ organic
 
 ## What is Hypothesis Testing? 
 
-- *Hypothesis testing* is a procedure where claims about the value of a population parameter (such as $$\mu$$ or $$\pi$$) may be considered using the evidence from the sample.  
+- *Hypothesis testing* is a procedure where claims about the value of a population parameter (such as $\mu$ or $\pi$) may be considered using the evidence from the sample.  
 - Two competing statements, or *hypotheses*, are crafted about the parameter value:
     - The *null hypothesis* $H_0$ is the status quo hypothesis, representing what has been assumed about the value of the parameter.
     - The *alternative hypothesis* represents the alternative claim about the value of the parameter.
@@ -77,57 +77,443 @@ organic
 
 - We typically have drawn two possible conclusions
     - Reject $H_0$
-Traditionally, the two possible conclusions of hypothesis testing have been (i) reject $$H_0$$ or (ii) do not reject $$H_0$$ based on the *p*-value (typically $$p \leq 0.05$$). For example, a criminal trial is a form of a hypothesis test where
+    - Fail to reject $H_0$ based on a *p*-value. (Typically *p*-value < 0.05)
 
-$$ H_0: \texttt{Defendant is innocent} \hspace{.75cm} H_a: \texttt{Defendant is guilty} $$
 
-As the below table illustrates, there are four possible outcomes of a criminal trial with respect to the jury's decision, and what is true in reality.
+--- .class #id
+
+## Why 0.05
+
+- Consider a court case. 
+- In many court systems it is said that a defendant is innocent until proven guilty. 
+- This means:
+$$ H_0: \text{Defendant is innocent} \hspace{.75cm} \text{vs.} \hspace{.75cm} H_a: \text{Defendant is guilty} $$
+
+
+--- .class #id
+
+
+## What our the outcomes? 
+
+![](../Notes/figure/hyp-test-table.PNG)
+
+
+--- .class #id
+
+## What are the possible outcomes? 
+
+- There are four possible outcomes of a criminal trial with respect to the jury's decision, and what is true in reality.
 
 - Correct decisions:
-    - Do not reject $$H_0$$ if there is not enough evidence against the defendant. The jury acquits an innocent person.
-    - Reject $$H_0$$ if there is sufficient evidence against the defendant. The jury convicts a guilty person.
+    - Do not reject $H_0$ if there is not enough evidence against the defendant. The jury acquits an innocent person.
+    - Reject $H_0$ if there is sufficient evidence against the defendant. The jury convicts a guilty person.
+
+--- .class #id
+
+## What are the possible outcomes? 
+
 - Erroneous decisions:
-    - Type I error: Reject $$H_0$$ when $$H_0$$ is true. The jury convicts an innocent person.
-    - Type II error: Do not reject $$H_0$$ when $$H_0$$ is false. The jury acquits a guilter person.
+    - Type I error: Reject $H_0$ when $H_0$ is true. The jury convicts an innocent person.
+    - Type II error: Do not reject $H_0$ when $H_0$ is false. The jury acquits a guilty person.
 
-<div class="figure" style="text-align: center">
-<img src="/public/images/analytics/univariate-inference/hypothesis_confusion_matrix.png" alt="Four possible outcomes of the criminal trial hypothesis test." width="1186" />
-</div>
+--- .class #id
 
-The probability of a Type I error is denoted as $$\alpha$$, while the probability of a Type II error is denoted as $$\beta$$. For a constant sample size, a decrease in $$\alpha$$ is associated with an increase in $$\beta$$, and vice versa. In statistical inference, $$\alpha$$ is usually fixed at some small value, such as 0.05, and called the *level of signficance*.
+## Notation in Statistics
 
-A common treatment of hypothesis testing for the mean is to restrict the hypotheses to the following three forms:
+- The probability of a Type I error is denoted as $\alpha$.
+- The probability of a Type II error is denoted as $\beta$. 
+- For the same sample size,  decrease in $\alpha$ leads to a decrease in $\beta$. 
+- Most of the time $\alpha$ is fixed at 0.05. 
 
-- Left-tailed test. $$H_0: \mu \geq \mu_0$$ versus $$H_a: \mu < \mu_0$$
-- Right-tailed test. $$H_0: \mu \leq \mu_0$$ versus $$H_a: \mu > \mu_0$$
-- Two-tailed test. $$H_0: \mu = \mu_0$$ versus $$H_a: \mu \ne \mu_0$$
+--- .class #id
 
-where $$\mu_0$$ represents a hypothesized value of $$\mu$$. 
+## What does this mean? 
 
-When the sample size is large or the population is normally distributed, we can use *t* (Equation 3) as a test statistic to determine whether *x* deviates from the hypothesized value enough to justify rejecting the null hypothesis.
+- We decide it is most important to fix $\alpha$. 
+- Why?
 
-$$ t = \frac{\bar x - \mu_0}{s / \sqrt{n}} \tag{3} $$
+--- .class #id
 
-The value of *t* is interpreted as the number of standard errors above or below the hypothesized mean $$\mu$$, that the sample mean $$\bar x$$ resides, where the standard error equals $$\frac{s}{\sqrt{n}}$$.  When *t* is large, it provides supporting evidence against the null hypothesis $$H_0$$. How do we determing if we have enough supporting evidence to reject $$H_0$$?  This is measured by the *p*-value.
+## Type I Error
 
-The *p*-value is the probability of observing a sample statistic (such as $$\bar x$$) at least as extreme as the statistic actually observed, if we assume $$H_0$$ is true.  Thus, a *p*-value of 0.05 suggests there is only a 5% probability of observing $$\bar x$$ if the population value is actually $$\mu_0$$ as $$H_0$$ suggests.  Consequently, the smaller the *p*-value, the smaller the probability that $$\bar x$$ aligns with the null hypothesis $$H_0$$.  So how small does the *p*-value need to be to reject $$H_0$$?
+- We believe it is more important to fix the amount of type I error.
+- Remember the Type I error is the act of finding an innocent person guilty. 
+- This means we find it worse to convict an innocent person than to let a guilty person go free. 
 
-Historically, $$p\texttt{-value} \leq 0.05$$ has been the cutoff commonly used to reject $$H_0$$.  However, it is becoming more common for data analysts to not think in terms of whether or not to reject $$H_0$$ so much as to *assess the strength of evidence against the null hypothesis*. The following table provides a rule-of-thumb for interpreting the strength of evidence against $$H_0$$ for various *p*-values.[^domains]
+--- .class #id
 
-*p*-value                            | Strength of Evidence Against $$H_0$$
------------------------------------- | ----------------
-$$p\texttt{-value} \leq 0.001$$        | Extremely strong evidence
-$$0.001 < p\texttt{-value} \leq 0.01$$ | Very strong evidence
-$$0.01 < p\texttt{-value} \leq 0.05$$  | Solid evidence
-$$0.05 < p\texttt{-value} \leq 0.10$$  | Mild evidence
-$$0.10 < p\texttt{-value} \leq 0.15$$  | Slight evidence
-$$0.15 < p\texttt{-value}$$            | No evidence
+## How does $\alpha$ come into play? 
 
-To perform a t-test in R we use the `t.test` function.  For example, if we believe the average square footage of all homes sold in Ames, IA is 1,600 square feet then our hypothesis test would state:
+- Recall how we made the confidence intervl. 
+- We did the following: 
+$$\bar{x} \pm \text{Margin of Error}$ 
+- How was this done:
 
-- $$H_0$$: $$\mu = 1600$$
-- $$H_a$$: $$\mu \ne 1600$$
+$$\bar{x} \pm t_{\alpha/2, n-1} \dfrac{S}{\sqrt{n}}$$
 
-We can test this with `t.test`, which shows that $$t = -8.5491$$, which is sufficiently large.  In fact, it is so large that the *p*-value states there is less than $$2.2 \times 10^{-16}$$ probability of $$\bar x = 1492.856$$ if the population mean was 1600. This provides extremely strong evidence against $$H_0$$. The results also tell us that the 95% confidence interval for the population mean $$\mu_0$$, suggesting that the $$\mu_0$$ likely falls between 1468-1517 square feet.
+--- .class #id
 
+## The $t$-test
+
+- We know that
+$$ t= \dfrac{\bar{x} - \mu_0}{s/\sqrt{n}}$$
+- Where
+    - $\bar{x}$ is the sample mean
+    - $\mu_0$ is the population average stated in the null hypothesis. 
+    - $s$ is the sample standard deviation. 
+    - $n$ is the sample size. 
+
+
+--- .class #id
+
+## What does the $t$ mean?
+
+- The value of *t* is interpreted as the number of standard errors above or below the hypothesized mean $\mu_0$. 
+- When *t* is large, it provides supporting evidence against the null hypothesis $H_0$. 
+- How do we determing if we have enough supporting evidence to reject $H_0$?  
+- This is measured by the *p*-value.
+
+
+--- .class #id
+
+## What is the p-value?
+
+- The *p*-value is the probability of observing a sample statistic (such as $\bar x$) at least as extreme as the statistic actually observed, if we assume $H_0$ is true.  
+- This is the clarified version by the way. 
+
+--- .class #id
+
+## What does the *p*-value tell us?
+
+- Thus, a *p*-value of 0.05 suggests there is only a 5% probability of observing $\bar x$ if the population value is actually $\mu_0$ as $H_0$ suggests.  
+- The smaller the *p*-value, the smaller the probability that $\bar x$ aligns with the null hypothesis $H_0$.  
+
+
+--- .class #id
+
+## How does this work in practice?
+
+- We know some stuff. 
+- We want to know some more. 
+- We design an experiment. 
+- We collect data from the experiement. 
+- We then summarize the results, *Statistic*
+
+
+--- .class #id
+
+
+## The One Sample $t$ test
+
+$$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}}$$
+
+- We use this to compare one sample of data versus a suggested population mean. 
+- We will do this in R. 
+
+
+--- .class #id
+
+## One Sample $t$ test in R
+
+```
+t.test(x, mu, data )
+```
+
+- Where
+    - `x` is a vector of data. 
+    - `mu` is the population mean under the null. 
+    - `data` optional dataframe where the vector `x` is contained. 
+
+--- .class #id
+  
+## SAT scores
+
+- You are a math teacher and have scores from the math portion of the SAT. 
+- The average for this position is listed as 527. 
+- You wish to know if you students score is higher, lower or the same as the avera. 
+
+
+--- .class #id
+
+## The test
+
+```{r}
+sat <- c(527, 554, 534, 541, 539, 542, 498, 512, 528, 531, 
+563, 566, 498, 503, 551, 582, 529, 549, 571, 523, 543, 588, 571)
+
+```
+
+--- .class #id
+
+## Data Distribution
+
+```{r sat-dist, echo=F}
+library(ggplot2)
+ggplot(data=NULL, aes(x=sat)) + 
+      geom_density(fill="lightblue", color="skyblue", alpha=0.5) + 
+      theme_minimal()
+```
+
+
+
+--- .class #id
+
+## The Hypothesis
+
+- We would consider the following hypothesis
+
+$$H_0: \text{ Our class has the average of 527} \text{ vs } H_1: \text{ Our class has a different Average} $$
+
+- Also:
+
+$$ H_0: \mu = 527 \text{ vs } H_1: \mu\ne 527$$
+
+
+
+--- .class #id
+
+## The test 
+
+```{r}
+
+t.test(x=sat, mu=527)
+```
+
+
+
+--- .class #id
+
+## What do we see? 
+
+- $t$ statistic is 2.6516
+- *p*-value 0.01458
+- 95% CI: (530.0501, 551.9499)
+- Mean of class: 541
+
+--- .class #id
+
+## Evaluating Results
+
+- We can check the confidence interval. 
+- We look to see if the suggested mean is in the CI. 
+- It is not in the CI so we would suggest that our sample is different from the mean. 
+- We would conclude that it is higher. 
+
+--- .class #id
+
+## Evaluating Results
+
+- We could consider the *p*-value. 
+- If we are considering a significance level of 0.05, then we would reject the null hypothesis since the p-value is 0.01458. 
+- We then know our average is different from the rest of the population. 
+- The reported mean is 541, suggesting our class is higher than the rest of the population. 
+
+--- .class #id
+
+## The hypothesis
+
+- We tested what was called a 2-sided hypothesis. 
+- This means that we allow for the alternative to be:
+
+$$H_1 \mu\ne 527$$
+
+- Other forms of the alternative may be
+
+$$H_1\text{: } \mu>527$$
+$$H_1\text{: } \mu<527$$
+- We prefer 2-sided
+
+--- .class #id
+
+## Why 2-sided? 
+
+- We must first see how we calculated p-value. 
+- By allowing for the average to be above or  below, we are not sure whether the tails are higher or lower. 
+- Remember our *t* statistic of 2.65
+
+
+--- .class #id
+
+
+## The picture
+
+
+```{r t-dist-sat-hyp, echo=F, fig.height=4}
+ggplot(NULL, aes(c(-3,3))) +
+  geom_area(stat = "function", fun = dt, args = list(df = 22),  fill = "grey80", xlim = c(-4, -2.65)) +
+  geom_area(stat = "function", fun = dt, args = list(df = 22), fill = "#00998a", xlim = c(-2.65, 2.65)) +
+  geom_area(stat = "function", fun = dt,  args = list(df = 22),fill = "grey80", xlim = c(2.65, 4)) +
+  labs(x = "t (df=22)", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks = c(-2.65,2.65))
+```
+
+
+--- .class #id
+
+## The area to the right:
+  
+- We can calculate this area:
+
+```{R}
+1- pt(2.6515, df=22)
+```
+
+--- .class #id 
+
+
+## The area to the left:
+  
+- We can calculate this area:
+
+```{R}
+pt(-2.6516, df=22)
+```
+
+
+--- .class #id
+
+## 2 p-values
+
+- If we do a one-sided test then our *p*-value is the area to the right or the left depending on our alternative:
+- Both of these have the area of 0.007
+- If we use a two-sided we have both the left and right areas:
+$$2*pt(-2.6516, df=22) = 0.0145743$$
+
+
+--- .class #id
+
+## What is the difference? 
+
+- One sided *p*-values are half as much as the Two sided. 
+- It is considered stronger evidence to allow for two sided. 
+
+
+
+
+--- .class #id
+
+
+## The 2 Sample $t$ test. 
+
+
+
+$$ t=\dfrac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2}{n1} + \dfrac{s_2^2}{n_2}}}$$
+
+- Where
+    - $\bar{x}_1$ and $\bar{x}_2$ are the sample means of groups 1 and 2 respectively. 
+    - $s_1^2$ and $s_2^2$ are the sample variances of groups 1 and 2 respectively. 
+    - $n_1$ and $n_2$ are the sample sizes of groups 1 and 2 respectively. 
+
+
+--- .class #id
+
+## The 2 Sample $t$ test DF
+
+$$\text{df}= \dfrac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1} + \dfrac{(s_2^2/n_1^2)^2}{n_2-1}}$$
+ 
+
+--- .class #id
+
+## Equal Variances
+
+- Some people will display a different $t$ test where there are equal variances. 
+- This was an easy way to do things by hand but is truly irrelevant with today's standards. 
+
+
+--- .class #id
+
+## Back to the BRFSS Data
+
+- Let us consider the BRFSS data again:
+
+```{R}
+load("Data/brfss.rda")
+brfss2
+```
+
+--- .class #id
+
+## Difference in Unhealthy Days by General Health
+
+```{r  unhealthy-by-gen-health, echo=F, fig.height=4}
+
+ggplot(brfss2, aes(x=genhlth_bin, y = unhealthy.days)) + 
+   geom_boxplot(aes(fill=genhlth_bin))
+```
+
+
+--- .class #id
+
+## The test in R
+
+```
+t.test(formula, data, var.equal=FALSE)
+```
+
+- Where
+    - `formula` is of the notion: $y\sim x$
+    - `data` is the data frame. 
+    - `var.equal=FALSE` is the fact that R assumes we do not believe variances are the same. 
+
+
+--- .class #id
+
+
+## The hypothesis
+
+$$H_0\text{: The means of the groups are the same}$$
+$$\text{ vs }$$
+$$ H_1\text{: The means of the groups are different. }$$
+or
+
+$$H_0: \mu_1=\mu_2\text{ vs } \mu_1\ne\mu_2$$
+
+or 
+$$H_0: \mu_1-\mu_2=0\text{ vs } \mu_1-\mu_2\ne0$$
+
+
+--- .class #id
+
+## The test in R
+
+```{r}
+t.test(unhealthy.days~genhlth_bin, data=brfss2)
+```
+
+--- .class #id
+
+## The results
+
+- $t$ statistic: -35.503
+- df: 1546.5
+- *p*-value $<2.2x10^{-16}$
+- 95% CI of difference: (-12.91, -11.56)
+- Mean of Good Health: 3.95
+- Mean of Bad Health: 16.18
+
+--- .class #id
+
+## Conclusion
+
+- We can conclude that there is a difference in unhealthy days between the groups. 
+- Based on the means, it appears that those who say they have good health on average have less unhealthy days than those who classify with fair or poor health. 
+
+
+
+--- .class #id
+
+## $t$-test Assumptions for 1 Sample
+
+- $\bar{x}$ is normal with mean $\mu_0$
+- $s^2$ follows a $\chi^2$ distribution with $n-1$ degrees of freedom. 
+- $Z$ and $s$ are independent. 
+
+
+--- .class #id
+
+## $t$-test Assumptions for 2 sample
+
+- Means of populations being compared should be normal. 
+- Groups are independent of each other. 
 
