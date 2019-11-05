@@ -135,9 +135,10 @@ data <- rbinom(10, 10, 0.3)
 
 mn <- mean(data)
 std.dev <- sd(data)
+n <- length(data)
 
-mn - 1.96*std.dev
-mn + 1.96*std.dev
+mn - 1.96*std.dev/n
+mn + 1.96*std.dev/n
 ```
 
 
@@ -299,8 +300,8 @@ qt(0.975, 9)
 
 
 ```
-## [1] 53.99775
-## [1] 75.43369
+## [1] 63.64392
+## [1] 65.78752
 ```
 
 

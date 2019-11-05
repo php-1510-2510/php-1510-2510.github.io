@@ -333,10 +333,10 @@ high
 std.dev = sd(data)
 
 t <- qt(0.975, df=length(data)-1)
+n <- length(data)
 
-
-low = mn - t*std.dev
-high = mn + t*std.dev
+low = mn - t*std.dev/n
+high = mn + t*std.dev/n
 
 low
 high

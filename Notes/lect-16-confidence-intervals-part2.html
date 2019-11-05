@@ -518,18 +518,18 @@ bt_ci
   </hgroup>
   <article data-timings="">
     <pre><code class="r">brfss3 %&gt;% 
-    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T))
+    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T), n=n())
  qt(0.975, df=6662)
 
-5.498013 - 1.96032 * 8.639915
-5.498013 + 1.96032 * 8.639915
+5.498013 - 1.96032 * 8.639915/6663
+5.498013 + 1.96032 * 8.639915/6663
 </code></pre>
 
-<pre><code>##   mean(menthlth, na.rm = T) sd(menthlth, na.rm = T)
-## 1                  5.498013                8.639915
+<pre><code>##   mean(menthlth, na.rm = T) sd(menthlth, na.rm = T)    n
+## 1                  5.498013                8.639915 6663
 ## [1] 1.96032
-## [1] -11.43899
-## [1] 22.43501
+## [1] 5.495471
+## [1] 5.500555
 </code></pre>
 
     

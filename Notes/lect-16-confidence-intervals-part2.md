@@ -280,19 +280,19 @@ bt_ci
 
 ```r
 brfss3 %>% 
-    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T))
+    summarise(mean(menthlth, na.rm=T), sd(menthlth, na.rm=T), n=n())
  qt(0.975, df=6662)
 
-5.498013 - 1.96032 * 8.639915
-5.498013 + 1.96032 * 8.639915
+5.498013 - 1.96032 * 8.639915/6663
+5.498013 + 1.96032 * 8.639915/6663
 ```
 
 ```
-##   mean(menthlth, na.rm = T) sd(menthlth, na.rm = T)
-## 1                  5.498013                8.639915
+##   mean(menthlth, na.rm = T) sd(menthlth, na.rm = T)    n
+## 1                  5.498013                8.639915 6663
 ## [1] 1.96032
-## [1] -11.43899
-## [1] 22.43501
+## [1] 5.495471
+## [1] 5.500555
 ```
 
 

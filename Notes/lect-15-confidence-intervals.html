@@ -311,9 +311,10 @@ qnorm(0.975)
 
 mn &lt;- mean(data)
 std.dev &lt;- sd(data)
+n &lt;- length(data)
 
-mn - 1.96*std.dev
-mn + 1.96*std.dev
+mn - 1.96*std.dev/n
+mn + 1.96*std.dev/n
 </code></pre>
 
     
@@ -686,8 +687,8 @@ qt(0.975, 9)
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code>## [1] 53.99775
-## [1] 75.43369
+    <pre><code>## [1] 63.64392
+## [1] 65.78752
 </code></pre>
 
     
