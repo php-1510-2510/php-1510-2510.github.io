@@ -304,7 +304,7 @@ grid.arrange(p1, p2, p3, p4, p1b, p2b, p3b, p4b, ncol=4, nrow=2)
 # Confidence Intervals
 
 
-## Bonmial Data
+## Binomial Data
 
 
 ### Using Normal Distribution
@@ -313,7 +313,7 @@ grid.arrange(p1, p2, p3, p4, p1b, p2b, p3b, p4b, ncol=4, nrow=2)
 data <- rbinom(10, 1, 0.3)
 
 mn <- mean(data)
-std.dev <- sqrt(10*0.3*0.7)/10
+std.dev <- sqrt(10*0.3*0.7)/sqrt(10)
 
 low = mn - 1.96*std.dev
 high = mn + 1.96*std.dev
@@ -335,8 +335,8 @@ std.dev = sd(data)
 t <- qt(0.975, df=length(data)-1)
 n <- length(data)
 
-low = mn - t*std.dev/n
-high = mn + t*std.dev/n
+low = mn - t*std.dev/sqrt(n)
+high = mn + t*std.dev/sqrt(n)
 
 low
 high
@@ -346,15 +346,23 @@ high
 ### Bootstrapping
 
 
+Consider the organic data. This can be found and downloaded from: [Github](https://github.com/php-1510-2510/php-1510-2510.github.io/tree/master/Notes/Data)
+
+We might wish to understand what is the proportion of individuals in the population who purchase organic foods. We can get an estimate with this from the data and then can bootstrap a confidence interval. 
+
+
 
 ```{r}
+
+load("../Notes/Data/organic.rda") ## your file path will be different
+
 library(rsample)
 library(purrr)
 library(ggplot2)
 library(dplyr)
 
 set.seed(1234)
-bt_data <- bootstraps(data, times = 1000)
+bt_data <- bootstraps(organic, times = 1000)
 
 bt_data
 
@@ -375,7 +383,7 @@ get_mean <- function(split) {
   # access to the sample data 
   split_data <- analysis(split)
   # calculate the sample mean value 
-  split_mean <- mean(split_data$menthlth, na.rm=T)
+  split_mean <- mean(split_data$organic, na.rm=T)
   return(split_mean)
 }
 ```
@@ -383,12 +391,55 @@ get_mean <- function(split) {
 
 #### Pass the data through function:
 
-```{R}
+```{R, eval = F}
 bt_data$bt_means <- map_dbl(bt_data$splits, get_mean)
 bt_data
 ```
 
+The above code gives us an error becuase it says that the mean is not numeric or logical. 
 
+```{r}
+str(organic)
+```
+
+We can see that the organic variable is a factor. We could create a logical one:
+
+```{r}
+organic <- organic %>%
+              mutate(organic2 = organic=="Yes")
+```
+
+We now have a new variables which is true or false:
+
+```{r}
+organic %>%
+  group_by(organic) %>%
+  tally()
+
+organic %>%
+  group_by(organic2) %>%
+  tally()
+```
+
+#### Back to Bootstrap
+
+```{r}
+set.seed(1234)
+bt_data <- bootstraps(organic, times = 1000)
+
+bt_data
+
+get_mean <- function(split) {
+  # access to the sample data 
+  split_data <- analysis(split)
+  # calculate the sample mean value 
+  split_mean <- mean(split_data$organic2, na.rm=T)
+  return(split_mean)
+}
+
+bt_data$bt_means <- map_dbl(bt_data$splits, get_mean)
+bt_data
+```
 
 #### Graph Distribution
 
@@ -396,7 +447,7 @@ bt_data
 
 ggplot(bt_data, aes(x = bt_means)) + 
   geom_line(stat = "density") + 
-  xlab("Mean of Poor Mental Health Days")
+  xlab("Proportion of those purchasing Organic Food")
 ```
 
 
@@ -409,8 +460,21 @@ bt_ci
 
 
 
-- How do these compare? 
+- How do these compare with a t?
 
+
+```{r}
+
+organic %>%
+  summarise(mn = mean(organic2), n=n(), std.dev=sd(organic2))
+
+```
+
+
+```{r}
+mn - qt(0.975, n-1)*std.dev/sqrt(n)
+mn + qt(0.975, n-1)*std.dev/sqrt(n)
+```
 
 
 #### Graphical Display of Bootstrap Interval
@@ -442,3 +506,5 @@ ggplot(bt_data, aes(x = bt_means, y = 0)) +
 
 - Modify the code to use with the other 2 styles of confidence intervals. How do these 3 plots compare? 
 ```{r}
+
+```

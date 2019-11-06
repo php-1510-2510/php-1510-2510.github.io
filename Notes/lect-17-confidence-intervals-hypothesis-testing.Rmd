@@ -39,8 +39,8 @@ library(broom)
 
 
 ```{r}
-load("../Notes/Data/organic.rda")
-organic
+load("../Notes/Data/brfss.rda")
+brfss2
 ```
 
 

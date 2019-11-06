@@ -137,8 +137,8 @@ mn <- mean(data)
 std.dev <- sd(data)
 n <- length(data)
 
-mn - 1.96*std.dev/n
-mn + 1.96*std.dev/n
+mn - 1.96*std.dev/sqrt(n)
+mn + 1.96*std.dev/sqrt(n)
 ```
 
 
@@ -148,8 +148,8 @@ mn + 1.96*std.dev/n
 
 
 ```
-## [1] 0.215969
-## [1] 0.784031
+## [1] -0.3981848
+## [1] 1.398185
 ```
 
 
@@ -166,7 +166,7 @@ mn + 1.96*std.dev/n
 
 ## Interpretation
 
-- The interpretation for the previous example is that we are 95% sure that the interval (0.215969, 0.784031) contains the mean. 
+- The interpretation for the previous example is that we are 95% sure that the interval (-0.3981848, 1.3981848) contains the mean. 
 - This is not the same as saying there is a 95% chance that the population mean is in this interval. 
 
 --- .class #id
@@ -300,8 +300,8 @@ qt(0.975, 9)
 
 
 ```
-## [1] 63.64392
-## [1] 65.78752
+## [1] 61.3264
+## [1] 68.10504
 ```
 
 

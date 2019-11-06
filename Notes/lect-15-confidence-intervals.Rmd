@@ -158,8 +158,8 @@ mn <- mean(data)
 std.dev <- sd(data)
 n <- length(data)
 
-mn - 1.96*std.dev/n
-mn + 1.96*std.dev/n
+mn - 1.96*std.dev/sqrt(n)
+mn + 1.96*std.dev/sqrt(n)
 ```
 
 
@@ -172,7 +172,7 @@ mn + 1.96*std.dev/n
 data <- rbinom(10, 1, 0.3)
 
 mn <- mean(data)
-std.dev <- sqrt(10*0.3*0.7)/10
+std.dev <- sqrt(10*0.3*0.7)/sqrt(10)
 
 low = mn - 1.96*std.dev
 high = mn + 1.96*std.dev
@@ -336,8 +336,8 @@ mn <- mean(data)
 std.dev <- sd(data)
 n <- length(data)
 
-low = mn - 2.26*std.dev/n
-high = mn + 2.26*std.dev/n
+low = mn - 2.26*std.dev/sqrt(n)
+high = mn + 2.26*std.dev/sqrt(n)
 
 low
 high
