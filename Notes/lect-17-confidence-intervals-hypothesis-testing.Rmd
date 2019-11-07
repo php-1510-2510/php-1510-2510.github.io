@@ -146,7 +146,7 @@ $$ H_0: \text{Defendant is innocent} \hspace{.75cm} \text{vs.} \hspace{.75cm} H_
 
 - Recall how we made the confidence intervl. 
 - We did the following: 
-$$\bar{x} \pm \text{Margin of Error}$ 
+$$\bar{x} \pm \text{Margin of Error}$$
 - How was this done:
 
 $$\bar{x} \pm t_{\alpha/2, n-1} \dfrac{S}{\sqrt{n}}$$
@@ -230,7 +230,7 @@ t.test(x, mu, data )
 
 - You are a math teacher and have scores from the math portion of the SAT. 
 - The average for this position is listed as 527. 
-- You wish to know if you students score is higher, lower or the same as the avera. 
+- You wish to know if you students score is higher, lower or the same as the average. 
 
 
 --- .class #id
