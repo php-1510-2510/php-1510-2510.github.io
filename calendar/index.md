@@ -293,7 +293,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">7-Nov</td>
 <td align="left">Hypothesis Testing</td>
-<td align="left"><a href="../Notes/lect-17-confidence-intervals-hypothesis-testing.html">lect-17-confidence-intervals-hypothesis-testing</a></td>
+<td align="left"><a href="../Notes/lect-17-confidence-intervals-hypothesis-testing.html">lect-17-confidence-intervals-hypothesis-testing</a> <a href="https://vimeo.com/371633087/ff4ab36087">Video</a></td>
 <td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
 <td align="left"></td>
 <td align="left"></td>
