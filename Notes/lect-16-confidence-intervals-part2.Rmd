@@ -264,7 +264,7 @@ brfss3 %>%
 
 ## What do we notice?
 
-- Big difference in confidence intervals. 
+- Not a big difference in confidence intervals. 
 - Value of t is the same as the normal. 
 
 
