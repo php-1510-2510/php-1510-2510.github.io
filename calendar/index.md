@@ -17,16 +17,6 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
-<thead>
-<tr>
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Lecture Resources</th>
-<th align="left">Readings</th>
-<th align="left">HW Assigned</th>
-<th align="left">HW Due</th>
-</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -320,7 +310,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">14-Nov</td>
 <td align="left">Hypothesis Testing</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-19-hypothesis-testing-pvals.html">lect-19-hypothesis-testing-pvals</a></td>
 <td align="left">CHEST Ch. 8; <a href="https://bookdown.org/speegled/foundations-of-statistics/HTCI.html">SPEEGLE Ch 7</a>; <a href="https://moderndive.com/10-hypothesis-testing.html">Modern Ch 10</a></td>
 <td align="left"></td>
 <td align="left"></td>

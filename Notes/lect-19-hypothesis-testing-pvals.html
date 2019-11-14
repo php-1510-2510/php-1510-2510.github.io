@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P-Values</title>
+  <meta charset="utf-8">
+  <meta name="description" content="P-Values">
+  <meta name="author" content="Adam J Sullivan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/github.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/publichealthlogo.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/publichealthlogo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>P-Values</h1>
+    <h2></h2>
+    <p>Adam J Sullivan<br/>Assistant Professor of Biostatistics<br/>Brown University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:grey;">
+  <hgroup>
+    <h1>Hypothesis Test on Proportions</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Attrition Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will look at the attrition data. </li>
+<li>This is part of the <code>rsample</code> package. </li>
+<li>You can call it with the following code:</li>
+</ul>
+
+<pre><code class="r">attr_pop &lt;- rsample::attrition
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Attrition Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This data is about employee attrition. </li>
+<li>Many times people are interested in looking into attrition rates as it could be a sign of unhealthy work environments. </li>
+<li>Attrition can happen for normal reasons like retirement or it can be through resignation, ...</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Income of those who left vs stayed</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">t.test(MonthlyIncome~Attrition, data=attr_pop)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Income of those who left vs stayed</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  MonthlyIncome by Attrition
+## t = 7.4826, df = 412.74, p-value = 4.434e-13
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1508.244 2583.050
+## sample estimates:
+##  mean in group No mean in group Yes 
+##          6832.740          4787.093
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Another Question</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Among employees do female employees make up 1/2 of the company? </li>
+<li>Among those who leave, is there a difference in males vs females? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Coding Tables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop %&gt;%
+  group_by(Gender, Attrition) %&gt;%
+  summarise(n = n()) %&gt;%
+  mutate(freq = n/sum(n))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Coding Tables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 4 x 4
+## # Groups:   Gender [2]
+##   Gender Attrition     n  freq
+##   &lt;fct&gt;  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Female No          501 0.852
+## 2 Female Yes          87 0.148
+## 3 Male   No          732 0.830
+## 4 Male   Yes         150 0.170
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Coding Tables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop %&gt;%
+  group_by(Attrition, Gender) %&gt;%
+  summarise(n = n()) %&gt;%
+  mutate(freq = n/sum(n))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Coding Tables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 4 x 4
+## # Groups:   Gender [2]
+##   Gender Attrition     n  freq
+##   &lt;fct&gt;  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Female No          501 0.852
+## 2 Female Yes          87 0.148
+## 3 Male   No          732 0.830
+## 4 Male   Yes         150 0.170
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Coding Tables</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## # A tibble: 4 x 4
+## # Groups:   Gender [2]
+##   Gender Attrition     n  freq
+##   &lt;fct&gt;  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Female No          501 0.852
+## 2 Female Yes          87 0.148
+## 3 Male   No          732 0.830
+## 4 Male   Yes         150 0.170
+## # A tibble: 4 x 4
+## # Groups:   Attrition [2]
+##   Attrition Gender     n  freq
+##   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt;
+## 1 No        Female   501 0.406
+## 2 No        Male     732 0.594
+## 3 Yes       Female    87 0.367
+## 4 Yes       Male     150 0.633
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Test on Proportions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have proportions and this is different from means. </li>
+<li>Proportions are from a binomial distribution. </li>
+<li>This means we can actually use the <em>z</em> distribution. </li>
+<li>When we assume \(H_0\) we assume a probability which gives us the true variance. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Hypothesis Test on Proportions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>\[z = \dfrac{\hat{p} - \pi_0}{\sqrt{\dfrac{\pi_0(1-\pi_0)}{n}}}\]</p>
+
+<ul>
+<li>Where
+
+<ul>
+<li>\(z\) is the test statistic which is normally distributed. </li>
+<li>\(\hat{p}\) is the sample proportion estimate. </li>
+<li>\(\pi_0\) is the proportion under the Null hypothesis. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Are Female employees 50% of the employees?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>\[H_0:\pi=0.5 \text{ vs } H_1: \pi\ne0.5\]</p>
+
+<ul>
+<li>We can do this in R</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Proportion Test in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$Gender) %&gt;% prop.table()
+</code></pre>
+
+<pre><code>## 
+## Female   Male 
+##    0.4    0.6
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Proportion Test in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$Gender) %&gt;% 
+  prop.test()
+</code></pre>
+
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  ., null probability 0.5
+## X-squared = 58.401, df = 1, p-value = 2.138e-14
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.3749127 0.4256156
+## sample estimates:
+##   p 
+## 0.4
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can see that there is evidence that females do not make up half of the company. 
+
+<ul>
+<li><em>p</em>-value &lt;0.0001</li>
+<li>95% CI 0.37, 0.43)</li>
+<li>Mean: 0.4</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Note</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R did the test on the smaller proportion group. </li>
+<li>You can force R to look at the larger group as well:</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Proportion test on Males</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$Gender) %&gt;% 
+  rev() %&gt;%
+  prop.test()
+</code></pre>
+
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  ., null probability 0.5
+## X-squared = 58.401, df = 1, p-value = 2.138e-14
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.5743844 0.6250873
+## sample estimates:
+##   p 
+## 0.6
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Comparing 2 Proportions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can then look at the difference in proportion of attrition with females vs males. </li>
+<li>This can be done with a proportion test as well. </li>
+</ul>
+
+<p>\[z = \dfrac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Comparing 2 Proportions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$Gender, attr_pop$Attrition) %&gt;% 
+  prop.test()
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Comparing 2 Proportions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## 
+##  2-sample test for equality of proportions with continuity
+##  correction
+## 
+## data:  .
+## X-squared = 1.117, df = 1, p-value = 0.2906
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.01723399  0.06145168
+## sample estimates:
+##    prop 1    prop 2 
+## 0.8520408 0.8299320
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There does not seem to be a difference based on employees leaving of different genders.
+
+<ul>
+<li><em>p</em>-value: 0.29</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-Values Clarified</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>Informally, a <em>p</em>-value is the probability under a specified statistical model that a statistical summary of the data (for example, the sample mean difference between 2 compared groups) would be equal to or more extremee than its observed value</p>
+
+<ul>
+<li>(ASA Statement)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-value Clarified</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>That Definition is about as clear as mud. </p>
+
+<ul>
+<li>Christie Aschwanden, lead writer for science, FiveThirtyEight. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Clearer than This</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>The simplest general definition of a <em>p</em>-value of a point null hypothesis that I know of is as follows. Suppose the hypothesis is that \(\mathbb{P}\) is the probability distribution of the data \(X\), which takes on values in the measurable space \(\chi\). Let \(\{R_\alpha\}_{\alpha\in[0,1]}\) be a collection of \(\mathbb{P}\)-measurble subsets of \(\chi\) such that:</p>
+
+<ol>
+<li>\(\mathbb{P}(R_\alpha)= \alpha\)</li>
+<li> \(\alpha^\prime<\alpha\) then \(R_{\alpha^\prime}\subset R_\alpha\). </li>
+</ol>
+
+<p>Then the <em>p</em>-value of  \(H_0\) for the data \(X=x\) is \(inf_{\alpha\in[0,1]}\{\alpha:x\in R_\alpha\}\)</p>
+</blockquote>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What the <em>p</em>-value?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We know some stuff. </li>
+<li>We want to know some more. </li>
+<li>We design an experiment to help us. </li>
+<li>We collect data from the experiment.</li>
+<li>We summarize the results. </li>
+<li>What do we know now?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summarizing the Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We summarize the data into a statistic. </li>
+<li>We compute a probability from that statistic. (<em>p</em>-value)</li>
+<li>If it is small enough we say it is &quot;Statistically Significant&quot;</li>
+<li>This is typically 0.05. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do we Compute <em>p</em>-values?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We assume a bunch of stuff. 
+
+<ul>
+<li>Normality</li>
+<li>Independence</li>
+<li>No difference between exposures. </li>
+<li>Same at baseline.</li>
+<li class='..</li>'></ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What does a p-value of 0.03 mean?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If there is no difference between the treatment and the placebo. </li>
+<li>If everything else we assumed is also true. </li>
+<li>Then the probability we would observe the difference we found or even larger is 0.03. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Statistically Significant</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Small <em>p</em>-values are considered statistically significant. </li>
+<li>R.A. Fisher was the first to call these significant. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Definition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../Notes/figure/significant.PNG" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What did he mean?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>It was worth a closer look. </li>
+<li><a href="https://www.scientificamerican.com/article/just-a-theory-7-misused-science-words/">Scientific American</a> says it is one of the 7 most misused science words. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Another Approach</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../Notes/figure/tindr.PNG" alt="plot of chunk tindr-r"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Correct Interpretation</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../Notes/figure/tindr2.PNG" alt="plot of chunk tindr-r-2"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What you read in Literature:</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../Notes/figure/tindr3.PNG" alt="plot of chunk tindr-r-3"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-values in Literature \(\approx 0.06\)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Almost Significant. </li>
+<li>Almost attained significance. </li>
+<li>Almost significant tendency</li>
+<li>Almost became significant. </li>
+<li>Almost but not quite significant. </li>
+<li>Almost Statistically Significant. </li>
+<li>Almost reached statistical significance. </li>
+<li>Just barely below the level of significance. </li>
+<li>Just beyond Significance. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-values in Literature \(\approx 0.08\)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A certain trend towards significance. </li>
+<li>A definite trend. </li>
+<li>A slight tendency towards significance. </li>
+<li>A strong trend towards significance. </li>
+<li>A trend close to significance. </li>
+<li>An expected trend. </li>
+<li>Approached our criteria for Significance. </li>
+<li>Approaching borderline Signficance.</li>
+<li>Approaching, although not reaching, significance. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-values in Literature \(\approx 0.05\)</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Hovered at nearly a significant level (p=0.058)</li>
+<li>Hovers on the brink of significance (p=0.055)</li>
+<li>Just about significant (p=0.051)</li>
+<li>Just above the margin of significance (p=0.053)</li>
+<li>just at the conventional level of significance (p=0.05001)</li>
+<li>Just barely statistically significant (p=0.054)</li>
+<li>Just escaped significance (p=0.054)</li>
+<li>Just borderline significant (p=0.058)</li>
+<li>Just escaped significance (p=0.057)</li>
+<li>Just failed significance (p=0.057)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Inigo Montoya</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="../Notes/figure/inigo_montoya.jpg" alt=""></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Published Quotes</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>THose are all quotes from published research. </li>
+<li><a href="http://www.academiaobscura.com/still-not-significant/">Matthew Hankins</a> has even more quotes here. </li>
+<li><a href="https://amstat.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#.XcyrAFdKhPa">ASA Statement on P-values</a></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-value Principles</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><em>p</em>-value can indicate how incompatible the data are with a specified statistical model. </li>
+<li><em>p</em>-value doe not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone. </li>
+<li>Scientific conclusions and business or policy decisions should not be based only on whether a <em>p</em>-value passes a specific threshold. </li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><em>p</em>-value Principles</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Proper inference requires ful<br></li>
+<li>A <em>p</em>-value, or statistical significance, does not measure the size of an effect or the importance of a result.l reporting and transparency</li>
+<li>By itself, a <em>p</em>-value does not provide a good measure of evidence regarding a model or hypothesis.</li>
+</ol>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Thoughtful Research considers:
+
+<ul>
+<li>Related prior evidence.</li>
+<li>Plausibility of mechanism.</li>
+<li>Study design.</li>
+<li>Data Quality</li>
+<li>Real world costs and benefits. </li>
+<li>Novelty of finding. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider multiple approaches for solving problems. 
+
+<ul>
+<li>Multiple models</li>
+<li>Multiple tests</li>
+<li>confidence intervals</li>
+<li>magnitude of estimates</li>
+<li>Assume a minimal effect rather than no effect. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Remember all statistics contain error and are uncertain. </li>
+<li>Encourage others to reproduce your work. </li>
+<li>Statistical inference is just one part of the scientific inference process. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Remarks</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Thank you to:
+
+<ul>
+<li>Allen Schirm</li>
+<li>Ron Wasserstein</li>
+</ul></li>
+<li>Much of the content was from a talk they gave. </li>
+<li><a href="https://www.causeweb.org/cause/uscots/uscots19/keynote/2">Moving to a World Beyond p&lt;0.05</a></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Hypothesis Test on Proportions'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Attrition Data'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Attrition Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Income of those who left vs stayed'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Income of those who left vs stayed'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Another Question'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Coding Tables'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Coding Tables'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Coding Tables'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Coding Tables'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Coding Tables'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Hypothesis Test on Proportions'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Hypothesis Test on Proportions'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Are Female employees 50% of the employees?'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Proportion Test in R'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Proportion Test in R'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Conclusions'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Note'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Proportion test on Males'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Comparing 2 Proportions'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Comparing 2 Proportions'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Comparing 2 Proportions'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Conclusions'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='<em>p</em>-Values Clarified'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='<em>p</em>-value Clarified'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Clearer than This'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='What the <em>p</em>-value?'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Summarizing the Data'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='How do we Compute <em>p</em>-values?'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='What does a p-value of 0.03 mean?'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Statistically Significant'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Definition'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='What did he mean?'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Another Approach'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Correct Interpretation'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='What you read in Literature:'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='<em>p</em>-values in Literature \(\approx 0.06\)'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='<em>p</em>-values in Literature \(\approx 0.08\)'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='<em>p</em>-values in Literature \(\approx 0.05\)'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Inigo Montoya'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Published Quotes'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='<em>p</em>-value Principles'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='<em>p</em>-value Principles'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='What can we do?'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='What can we do?'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='What can we do?'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Remarks'>
+         47
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
