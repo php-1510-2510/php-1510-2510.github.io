@@ -327,11 +327,11 @@ title: Calendar
 </tr>
 <tr>
 <td align="left"></td>
+<td align="left">17-Nov</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="../homework/pages/hw4">HW 4: Hypothesis Testing 1</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -368,7 +368,7 @@ title: Calendar
 <td align="left"><a href="../Notes/lect-22-non-parametrics.html">Lect-22-non-parametrics</a></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/RBT.html">SPEEGLE Ch. 8</a></td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="../homework/pages/hw4">HW 4 Due</a></td>
 </tr>
 <tr>
 <td align="left"></td>
