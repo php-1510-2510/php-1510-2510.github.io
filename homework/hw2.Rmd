@@ -3,9 +3,9 @@ title: "Homework 2"
 author: "Your Name"
 date: "Due: October 12, 2019 at 11:59pm"
 output:
-  html_document: default
   word_document: default
   pdf_document: default
+  html_document: default
 ---
 
 
@@ -81,7 +81,7 @@ Use **dplyr** functions to address the following questions. For some you can jus
 9. Create boxplots of life expectancy by continent. Add a layer using `geom_jitter()` to see how the points fall in these boxplots. **Hint: using `alpha=0.04` inside the jitter will lighten the points*
 10. Interpret the plot you made in 9. 
 
-## PHP 2560 Only
+## PHP 2510 Only
 
 11. Which combinations of continent (besides Asia) and year have the highest average population across all countries? *your output should include all results sorted by highest average population*. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. 
 

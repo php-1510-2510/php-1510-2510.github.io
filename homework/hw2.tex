@@ -1,0 +1,252 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 2},
+            pdfauthor={Your Name},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 2}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Your Name}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Due: October 12, 2019 at 11:59pm}
+
+
+\begin{document}
+\maketitle
+
+\subsubsection{Homework Policies:}\label{homework-policies}
+
+\emph{You are encouraged to discuss problem sets with your fellow
+students (and with the Course Instructor of course), but you must write
+your own final answers, in your own words. Solutions prepared ``in
+committee'' or by copying someone else's paper are not acceptable. This
+violates the Brown standards of plagiarism, and you will not have the
+benefit of having thought about and worked the problem when you take the
+examinations.}
+
+\emph{All answers must be in complete sentences and all graphs must be
+properly labeled.}
+
+\textbf{\emph{In this homework you will be required to use .Rmd to do
+it., you can then knit to a word document of PDF to turn it in.}}
+
+\textbf{\emph{For the PDF Version of this assignment:
+\href{https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw2.pdf}{PDF}}}
+
+\textbf{\emph{For the R Markdown Version of this assignment:
+\href{https://raw.githubusercontent.com/php-1510-2510/php-1510-2510.github.io/master/homework/hw2.Rmd}{RMarkdown}}}
+
+\subsubsection{Turning the Homework in:}\label{turning-the-homework-in}
+
+\emph{Please turn the homework in through canvas. You may use a pdf,
+html or word doc file to turn the assignment in.}
+
+\href{https://canvas.brown.edu/courses/1078851/assignments/7744738}{PHP
+1510 Assignment Link}
+
+\href{https://canvas.brown.edu/courses/1078852/assignments/7744739}{PHP
+2510 Assignment Link}
+
+\subsection{The Data}\label{the-data}
+
+We will work with the dataset called
+\href{https://github.com/jennybc/gapminder}{gapminder}, this is a
+cleaned up version from \href{http://www.gapminder.org/data/}{Gapminder
+Data}. Gapminder contains a lot of great data on all of the nations of
+the world. We first need to install the gapminder package in R.
+
+\begin{verbatim}
+install.packages("gapminder")
+\end{verbatim}
+
+\begin{verbatim}
+library(dplyr)
+library(gapminder)
+gapminder
+\end{verbatim}
+
+\subsubsection{Problems for Everyone}\label{problems-for-everyone}
+
+Use \textbf{dplyr} functions to address the following questions. For
+some you can just use arrange to print your solutions to the top.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many unique countries are represented per continent?
+\item
+  Which European nation had the lowest GDP per capita in 1997?
+\item
+  According to the data available, what was the average life expectancy
+  across each continent in the 1980s?
+\item
+  What 5 countries have the highest total GDP over all years combined?
+\item
+  What countries and years had life expectancies of \emph{at least} 80
+  years? \emph{Only output the columns of interest: country, life
+  expectancy and year (in that order).}
+\item
+  Which three countries have had the most consistent population
+  estimates (i.e.~lowest standard deviation) across the years of
+  available data?
+\item
+  Follow the steps below to create a plot about life expectancy.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Create a plot of life expectancy over time where each country has
+    its own line (\texttt{group=country}).\\
+  \item
+    Add a layer to this plot where you use
+    \texttt{geom\_smooth(method="lm")}
+  \item
+    Add a layer to this plot where you use
+    \texttt{geom\_smooth(method="lm")} but it is colored by continent.
+  \end{enumerate}
+\item
+  Interpret the graph you created in 7.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    What types of patterns are you seeing?
+  \item
+    Do all countries follow this pattern?
+  \item
+    etc\ldots{}
+  \end{enumerate}
+\item
+  Create boxplots of life expectancy by continent. Add a layer using
+  \texttt{geom\_jitter()} to see how the points fall in these boxplots.
+  **Hint: using \texttt{alpha=0.04} inside the jitter will lighten the
+  points*
+\item
+  Interpret the plot you made in 9.
+\end{enumerate}
+
+\subsection{PHP 2510 Only}\label{php-2510-only}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\item
+  Which combinations of continent (besides Asia) and year have the
+  highest average population across all countries? \emph{your output
+  should include all results sorted by highest average population}. With
+  what you already know, this one may stump you. See
+  \href{http://stackoverflow.com/q/27207963/654296}{this Q\&A} for how
+  to \texttt{ungroup} before \texttt{arrange}ing.
+\item
+  Consider the function below
+
+\begin{verbatim}
+hourly_delay <- filter(
+          summarise(
+              group_by(
+                  filter(
+                    flights, 
+                    !is.na(dep_delay)
+                    ),
+                    month, day, year, hour
+                    ),
+                    delay=mean(dep_delay),
+                    n=n()
+                    ),
+                    n>10
+                    )
+\end{verbatim}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  What are some problems with this function?
+\item
+  How easy is it to follow the logic of this?
+\item
+  Rewrite this using piping to make it more understandable.
+\item
+  Does your rewritten command give the same results?
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,121 @@
+---
+title       : Categorical Data
+author      : Adam J Sullivan 
+job         : Assistant Professor of Biostatistics
+work        : Brown University
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js # {highlight.js, prettify, highlight}
+hitheme     :  github     # 
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3, libraries/leaflet, libraries/dygraphs]}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : publichealthlogo.png
+biglogo     : publichealthlogo.png
+assets      : {assets: ../../assets}
+---  .segue bg:grey
+
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(results="hold")
+knitr::opts_chunk$set(cache=FALSE)
+library(ggplot2)
+library(fivethirtyeight)
+require(tidyverse)
+library(broom)
+library(dplyr)
+```
+
+# Categorical Data Analysis
+
+--- .class #id
+
+## Categorical Data Analysis
+
+- So far we have focused primarily on continuous outcomes and how to compare them. 
+- Many times we have categorical data that we wish to compare. 
+- We have seen this with a proportion test but there are other methods to doing this. 
+
+--- .class #id
+
+## Chi-Square Distribution
+
+- This is a crucial distribution for working with categorical data and many other things. 
+- This distribution is specifically from the standard normal distribution. 
+
+--- .class #id
+
+## Chi-Square Distribution
+
+- Consider $V$, where
+
+$$V=Z_1^2 + \cdots + Z_n^2$$
+
+- Where
+    - $Z_i$ is a standard normal distribution. 
+    - Each $Z_i$ are independent from each other. 
+
+Then we say that $V \sim \chi^2_n$
+
+
+--- .class #id
+
+## Chi Square Distribution
+
+```{R, echo=F}
+x <- seq(0.1,15, by =0.001)
+plot(x, dchisq(x,1), type="l", col="black", lwd=3, lty=2)
+curve(dchisq(x, 2), add=TRUE, col="red", lwd=3)
+curve(dchisq(x, 3), add=TRUE, col="blue", lwd=3)
+curve(dchisq(x, 5), add=TRUE, col="green", lwd=3)
+curve(dchisq(x, 10), add=TRUE, col="purple", lwd=3)
+legend(10,1.2,legend=c("df=1","df=2", "df=3", "df=5", "df=10"),lty=1,col=c("black", "red", "blue", "green", "purple"))
+```
+
+--- .class #id
+
+## Some Data
+
+- We have some data from a study done in 1894-96 on Cholera Innoculations in Calcutta, India. 
+- Of the 818 exposed subjects, 279 receive an innoculation and 539 did not. 
+
+|     | Infected | Not Infected |  | 
+| -------- | --------- | ---------- | ----------- | 
+| Innoculated | 3 | 276 | 279  | 
+| Not Innoculated | 66 | 473 | 539 | 
+|  | 69 | 749 | 818 | 
+
+
+--- .class #id
+
+## What can we do? 
+
+- We could look at proportions:
+
+$$Pr(\text{Probability of Cholera}| \text{Innoculated}) = \dfrac{3}{279}= 0.011$$
+$$Pr(\text{Probability of Cholera}| \text{Not Innoculated}) = \dfrac{66}{539}= 0.122$$
+
+- How do we decide? 
+
+--- .class #id
+
+## Testing Proportions
+
+1.Test $H_0: p_1=p_2 \text{ vs } H_1: p_1\ne p_2$
+2. Test $H_0: OR=1 \text{ vs } H_1: OR\ne 1$
+3. Pearson $\chi^2$ Test
+
+
+--- .class #id
+
+## Pearson Chi-square Test
+
+$$X = \sum_{i,j} \dfrac{\left(O_{ij} - E_{ij} \right)^2}{E_{ij}}$$
+
+- Where
+    - $O_{ij}$: observed count in cell $i,j$
+    - $E_{ij}$: expected count in cell $i,j$
+    - $x \sim 
