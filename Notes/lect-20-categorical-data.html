@@ -100,7 +100,84 @@
     <hr>
   </hgroup>
   <article data-timings="">
-    <table><thead>
+    <ul>
+<li>This is a crucial distribution for working with categorical data and many other things. </li>
+<li>This distribution is specifically from the standard normal distribution. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Chi-Square Distribution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider \(V\), where</li>
+</ul>
+
+<p>\[V=Z_1^2 + \cdots + Z_n^2\]</p>
+
+<ul>
+<li>Where
+
+<ul>
+<li>\(Z_i\) is a standard normal distribution. </li>
+<li>Each \(Z_i\) are independent from each other. </li>
+</ul></li>
+</ul>
+
+<p>Then we say that \(V \sim \chi^2_n\)</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Chi Square Distribution</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Some Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We have some data from a study done in 1894-96 on Cholera Innoculations in Calcutta, India. </li>
+<li>Of the 818 exposed subjects, 279 receive an innoculation and 539 did not. </li>
+</ul>
+
+<table><thead>
 <tr>
 <th></th>
 <th>Infected</th>
@@ -138,6 +215,1526 @@
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we do?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We could look at proportions:</li>
+</ul>
+
+<p>\[Pr(\text{Probability of Cholera}| \text{Innoculated}) = \dfrac{3}{279}= 0.011\]
+\[Pr(\text{Probability of Cholera}| \text{Not Innoculated}) = \dfrac{66}{539}= 0.122\]</p>
+
+<ul>
+<li>How do we decide? </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Testing Proportions</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>1.Test \(H_0: p_1=p_2 \text{ vs } H_1: p_1\ne p_2\)
+2. Test \(H_0: OR=1 \text{ vs } H_1: OR\ne 1\)
+3. Pearson \(\chi^2\) Test</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Pearson Chi-square Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p>\[X = \sum_{i,j} \dfrac{\left(O_{ij} - E_{ij} \right)^2}{E_{ij}}\]</p>
+
+<ul>
+<li>Where
+
+<ul>
+<li>\(O_{ij}\): observed count in cell \(i,j\)</li>
+<li>\(E_{ij}\): expected count in cell \(i,j\)</li>
+<li>\(x \sim \chi^2(df=(r-1)(c-1))\)</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Our Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">M &lt;- as.table(rbind(c(3, 276), c(66, 473)))
+dimnames(M) &lt;- list(Treatment = c(&quot;Innoculated&quot;, &quot;Not Innoculated&quot;),
+                    Status = c(&quot;Infected&quot;, &quot;Not Infected&quot;))
+M
+</code></pre>
+
+<pre><code>##                  Status
+## Treatment         Infected Not Infected
+##   Innoculated            3          276
+##   Not Innoculated       66          473
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Chi Square Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">chisq.test(M, correct=FALSE)
+</code></pre>
+
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  M
+## X-squared = 29.696, df = 1, p-value = 5.055e-08
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Attrition Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop &lt;- rsample::attrition
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gender vs Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$Gender, attr_pop$Attrition)
+</code></pre>
+
+<pre><code>##         
+##           No Yes
+##   Female 501  87
+##   Male   732 150
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Chi Square Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">T &lt;- table(attr_pop$Gender, attr_pop$Attrition)
+chisq.test(T, correct=F)
+</code></pre>
+
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  T
+## X-squared = 1.2752, df = 1, p-value = 0.2588
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gender vs Performance Rating</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/gender-perfor-1.png" alt="plot of chunk gender-perfor"></p>
+
+<p>--- .class #id</p>
+
+<h2>Gender vs Performance Rating</h2>
+
+<pre><code class="r">table(attr_pop$Gender, attr_pop$PerformanceRating)
+</code></pre>
+
+<pre><code>##         
+##          Low Good Excellent Outstanding
+##   Female   0    0       494          94
+##   Male     0    0       750         132
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gender vs Performance Rating</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">T &lt;- table(attr_pop$Gender, attr_pop$PerformanceRating)
+chisq.test(T, correct=F)
+</code></pre>
+
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  T
+## X-squared = NaN, df = 3, p-value = NA
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gender vs Performance Rating</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop2 &lt;- attr_pop %&gt;%
+    filter(PerformanceRating==&quot;Excellent&quot; | PerformanceRating == &quot;Outstanding&quot;)
+attr_pop2 &lt;- droplevels(attr_pop2)
+T &lt;- table(attr_pop2$Gender, attr_pop2$PerformanceRating)
+chisq.test(T, correct=F)
+</code></pre>
+
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  T
+## X-squared = 0.28235, df = 1, p-value = 0.5952
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/worklife-1.png" alt="plot of chunk worklife"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$WorkLifeBalance, attr_pop$Attrition)
+</code></pre>
+
+<pre><code>##         
+##           No Yes
+##   Bad     55  25
+##   Good   286  58
+##   Better 766 127
+##   Best   126  27
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">T &lt;- table(attr_pop$WorkLifeBalance, attr_pop$Attrition)
+chisq.test(T, correct=F)
+</code></pre>
+
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  T
+## X-squared = 16.325, df = 3, p-value = 0.0009726
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">table(attr_pop$WorkLifeBalance, attr_pop$Attrition) %&gt;%
+prop.table() %&gt;%
+round(., 2)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##         
+##            No  Yes
+##   Bad    0.04 0.02
+##   Good   0.19 0.04
+##   Better 0.52 0.09
+##   Best   0.09 0.02
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop %&gt;%
+    count(WorkLifeBalance, Attrition) %&gt;%
+    mutate(freq = n/sum(n)) %&gt;%
+    select(-n) %&gt;%
+    spread(WorkLifeBalance, freq)
+</code></pre>
+
+<pre><code>## # A tibble: 2 x 5
+##   Attrition    Bad   Good Better   Best
+##   &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 No        0.0374 0.195  0.521  0.0857
+## 2 Yes       0.0170 0.0395 0.0864 0.0184
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop %&gt;%
+    count(WorkLifeBalance, Attrition) %&gt;%
+    mutate(freq = n/sum(n)) %&gt;%
+    select(-n) %&gt;%
+    spread(Attrition, freq)
+</code></pre>
+
+<pre><code>## # A tibble: 4 x 3
+##   WorkLifeBalance     No    Yes
+##   &lt;ord&gt;            &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Bad             0.0374 0.0170
+## 2 Good            0.195  0.0395
+## 3 Better          0.521  0.0864
+## 4 Best            0.0857 0.0184
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Work Life Balance and Attrition</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">attr_pop %&gt;%
+    count( Attrition, WorkLifeBalance) %&gt;%
+    mutate(freq = n/sum(n)) %&gt;%
+    select(-n) %&gt;%
+    spread(Attrition, freq)
+</code></pre>
+
+<pre><code>## # A tibble: 4 x 3
+##   WorkLifeBalance     No    Yes
+##   &lt;ord&gt;            &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Bad             0.0374 0.0170
+## 2 Good            0.195  0.0395
+## 3 Better          0.521  0.0864
+## 4 Best            0.0857 0.0184
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-26" style="background:grey;">
+  <hgroup>
+    <h1>ANOVA</h1>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Recap on our progress:</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Up to this point we have seen basic statistical features:
+
+<ul>
+<li>mean</li>
+<li>variance</li>
+<li>standard deviation</li>
+<li>median</li>
+<li>min </li>
+<li>max</li>
+</ul></li>
+<li>We have also considered a t-test in which we compare a continuous variable across 2 groups. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Enter ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What if we need to compare more than 2 groups? </li>
+<li>Lets say we have the groups: A, B and C</li>
+<li>We could compare:
+
+<ul>
+<li>A vs B</li>
+<li>A vs C</li>
+<li>B vs C</li>
+</ul></li>
+<li>What are some issues with this?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Enter ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Multiple Testing issues
+
+<ul>
+<li>Each time you perform this test on the same data, you use a type 1 error of 0.05, the more tests you perfrom the more this error increases. </li>
+<li>If you need to do multiple testing you then have to do a p-value correction. </li>
+</ul></li>
+<li>Could be a waste of time if all the groups are the same. 
+
+<ul>
+<li>More computational time if there is no difference. </li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Enter ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We then can consider ANOVA: ANalysis Of VAriance</li>
+<li>ANOVA asks a very basic question:
+
+<ul>
+<li>Where is the variability coming from?
+
+<ul>
+<li>Is it coming from within each group?</li>
+<li>Is it coming between the groups? </li>
+</ul></li>
+</ul></li>
+<li>The hypothesis test we perform is </li>
+</ul>
+
+<p>\[ H_0:\;\; \mu_1 = \mu_2 = \cdots = \mu_k\] 
+\[ H_1:\;\; \text{At least one group is different}\]</p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is our test then?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We now move to testing with the \(F\) distribution rather than the \(t\)-distribution:</li>
+<li>We use the following test statistic:
+\[ k = \dfrac{\text{Measure of Between-Group Variability}}{\text{Measure of Within-Group Variability}}\] </li>
+<li>How do we calculate these variabilities?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The math</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We calculate the following values:
+
+<ul>
+<li>Between Sum of Squares
+\[SS_B = \sum_{i=1}^k n_i\left(\bar{y}_i - \bar{y}\right)^2\]</li>
+<li>Within Sum of Squares
+\[SS_W = \sum_{i=1}^k \sum_{j=1}^{n_i} \left(y_{ij} - \bar{y}_i\right)^2\]</li>
+<li>Total Sums of Squares
+\[SS = SS_B + SS_W\]</li>
+</ul></li>
+<li>In all of these: \(i\) is the index for \(k\) groups and \(j\) is the index for the \(n_i\) observations in each group. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>ANOVA Variances</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is where the analysis of variances comes in, we are comparing the variances:
+
+<ul>
+<li>Between group variability</li>
+<li>Within group variability</li>
+</ul></li>
+<li>Traditionally this test was performed using the following table:</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>ANOVA Table</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th align="center"></th>
+<th align="center">DF</th>
+<th align="center">Sum Sq.</th>
+<th align="center">Mean Sq</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Between (treatment)</td>
+<td align="center">\(k-1\)</td>
+<td align="center">\(SS_{B}\)</td>
+<td align="center">\(MS_{B} = \dfrac{SS_B}{k-1}\)</td>
+<td align="center">\(\frac{MS_{B}}{MS_{W}}\)</td>
+<td align="center">p-value</td>
+</tr>
+<tr>
+<td align="center">Within (error)</td>
+<td align="center">\(N-k\)</td>
+<td align="center">\(SS_{W}\)</td>
+<td align="center">\(MS_{W} = \dfrac{SS_W}{N-k}\)</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Total</td>
+<td align="center">\(N-1\)</td>
+<td align="center">\(SS_{T}\)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Calculating ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In a traditional class you would be made to do this by hand</li>
+<li>We won&#39;t do this:
+
+<ol>
+<li>I hate doing it. </li>
+<li>you never do this in real life. </li>
+<li>WE HAVE R!</li>
+</ol></li>
+<li>We will focus on performing this in R. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Data for Class</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We will consider the data behind the story: <a href="http://fivethirtyeight.com/features/women-in-comic-books/">&quot;Comic Books are Still Made By Men, For Men and About Men&quot;</a>.</li>
+<li>This data is part of the <code>fivethirtyeight</code> package:</li>
+<li>To explore the variable names run the following code:</li>
+</ul>
+
+<pre><code class="r">library(fivethirtyeight)
+?comic_characters
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Difference in Appearances by Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Lets consider if the number of appearances of characters is different depending on the gender of the character. </li>
+<li>We could first graph this:</li>
+</ul>
+
+<pre><code class="r">library(ggplot2)
+ggplot(comic_characters, aes(x = sex, y = appearances)) +
+  geom_point()  + 
+  geom_point(stat = &quot;summary&quot;, fun.y = &quot;mean&quot;, color = &quot;red&quot;, size = 3)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Difference in Appearances by Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Table of Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can see that this is hard to read, we can see what the groups look like by counting them </li>
+</ul>
+
+<pre><code class="r">library(tidyverse)
+comic_characters %&gt;%
+    group_by(sex) %&gt;%
+    tally(sort = TRUE)
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Table of Gender</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can see that this is hard to read, we can see what the groups look like by counting them </li>
+</ul>
+
+<pre><code>## # A tibble: 7 x 2
+##   sex                        n
+##   &lt;chr&gt;                  &lt;int&gt;
+## 1 Male Characters        16421
+## 2 Female Characters       5804
+## 3 &lt;NA&gt;                     979
+## 4 Agender Characters        45
+## 5 Genderless Characters     20
+## 6 Genderfluid Characters     2
+## 7 Transgender Characters     1
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Data Cleaning</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can make the names smaller</li>
+</ul>
+
+<pre><code class="r">comic &lt;- comic_characters %&gt;%
+      mutate(sex = fct_recode(sex, 
+      &quot;Agender&quot; = &quot;Agender Characters&quot;,
+      &quot;Female&quot; = &quot;Female Characters&quot;, 
+      &quot;Genderfluid&quot; = &quot;Genderfluid Characters&quot;,
+      &quot;Genderless&quot; = &quot;Genderless Characters&quot;,
+      &quot;Male&quot; = &quot;Male Characters&quot;,
+      &quot;Transgender&quot; = &quot;Transgender Characters&quot;
+      ))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Data Cleaning</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Cleaning Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>we can see that we do not have many people in categories asside from &quot;Male&quot; and &quot;Female&quot;</li>
+<li>This can be a problem with many statistical tests so we can combine categories</li>
+</ul>
+
+<pre><code class="r">comic &lt;- comic_characters %&gt;%
+      mutate(sex = fct_recode(sex, 
+      &quot;Non-Binary&quot; = &quot;Agender Characters&quot;,
+      &quot;Female&quot; = &quot;Female Characters&quot;, 
+      &quot;Non-Binary&quot; = &quot;Genderfluid Characters&quot;,
+      &quot;Non-Binary&quot; = &quot;Genderless Characters&quot;,
+      &quot;Male&quot; = &quot;Male Characters&quot;,
+      &quot;Non-Binary&quot; = &quot;Transgender Characters&quot;
+      ))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Cleaning Data</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can also see that we have a lot of values that seem to be very high compared to the mean. </li>
+<li>In this case many times we pull in the extreme values with a log transform</li>
+<li>We can do this with mutate</li>
+</ul>
+
+<pre><code class="r">comic &lt;- comic %&gt;%
+    mutate(log_app = log(appearances))
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Boxplots</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>we can then try looking at boxplots</li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"></p>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Finally ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>these look a little better now that we have done a log transform</li>
+<li>We can code an ANOVA in r with the following:</li>
+</ul>
+
+<pre><code class="r">aov(log_app~sex, data=comic)
+</code></pre>
+
+<pre><code>## Call:
+##    aov(formula = log_app ~ sex, data = comic)
+## 
+## Terms:
+##                      sex Residuals
+## Sum of Squares    296.09  40225.14
+## Deg. of Freedom        2     20966
+## 
+## Residual standard error: 1.385132
+## Estimated effects may be unbalanced
+## 2303 observations deleted due to missingness
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What can we do to get more information</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Many things in R are stored in objects called lists. </li>
+<li>Lists contain a large amount of objects</li>
+</ul>
+
+<pre><code class="r">my_anova &lt;- aov(log_app~sex, data=comic)
+names(my_anova)
+</code></pre>
+
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;na.action&quot;     &quot;contrasts&quot;     &quot;xlevels&quot;       &quot;call&quot;         
+## [13] &quot;terms&quot;         &quot;model&quot;
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The summary function works with anova and many other functions to give us a basic summary</li>
+</ul>
+
+<pre><code class="r">summary(my_anova)
+</code></pre>
+
+<pre><code>##                Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## sex             2    296  148.05   77.16 &lt;2e-16 ***
+## Residuals   20966  40225    1.92                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 2303 observations deleted due to missingness
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What were we testing again?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Recall our hypothesis:
+\[ H_0:\;\; \mu_1 = \mu_2 = \cdots = \mu_k\] 
+\[ H_1:\;\; \text{At least one group is different}\]</li>
+<li>What can we say about these groups?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is Next?</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Now that we know there is a difference, we need to find out what difference that is. </li>
+<li>This does leave us with a multiple testing problem. </li>
+<li>Previously it was mentioned that performing multiple hypothesis tests we have problems with the type 1 error. </li>
+<li>Type 1 error is the error of making a mistake by rejecting the null hypothesis when you shouldn&#39;t have. </li>
+<li>This means that if we perform 20 studies we can assume that we made a mistake on 5% of them or 1 of them will be significant and lead to rejecting the null hypothesis. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What about Multiple Testing</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>When we perform 20 tests on the same data what we have is:
+\[\begin{align*}
+\Pr(\text{At least 1 Significant Result}) &= 1 - \Pr(\text{No Significant Results})\\
+&= 1 - \left( 1-0.05\right)^{20}\\
+& = 0.6415141
+\end{align*}\]</li>
+<li>We call this the <strong>Family Wise Error Rate (FWER)</strong></li>
+<li>So now we have around 13 tests that we would be making a mistake on. </li>
+<li>On Friday, this will be covered more thoroughly. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What Type of Multiple Tests for ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We need to control the FWER so that \(\text{FWER}\le0.05\). </li>
+<li>There are various methods out there:
+
+<ul>
+<li>Bonferroni Method</li>
+<li>Tukey HSD</li>
+<li>Holm, Hommel, Dunnett, Å idÃ¡k , ...</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Bonferroni  Correction</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Consider the problem of testing \(n\) different tests. - We can do the Bonferroni in 2 different ways:
+
+<ul>
+<li>Adjust the significance level
+\[ \alpha^*  = \dfrac{\alpha}{n}\]</li>
+<li>Bonferroni Correct p-values
+\[\text{min}\left[2\times\binom{k}{2}\times \Pr\left(\mid t\mid < t_{n-k}\right),1\right]\]</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Bonferroni  Correction</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>If we have \(n=20\) then i we wish to control the FWER at \(\alpha=0.05\), then we have
+\[\alpha^* = \dfrac{\alpha}{n}= \dfrac{0.05}{20}=0.0025\]</li>
+<li>What does this mean for the FWER:
+\[\begin{align*}
+\Pr(\text{At least 1 Significant Result}) &= 1 - \Pr(\text{No Significant Results})\\
+&= 1 - \left( 1-0.0025\right)^{20}\\
+& = 0.04883012
+\end{align*}\]</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bonferonni in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can perform multiple t-tests in R using:
+<code>
+pairwise.t.test(x,g,p.adjust.method,...)
+</code></li>
+<li>Where
+
+<ul>
+<li><code>x</code> is the response vector</li>
+<li><code>g</code> is the grouping factor</li>
+<li><code>p.adjust.method</code> is p-value adjustment</li>
+<li><code>...</code> Others you can see in r</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bonferonni in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Perform multiple tests</li>
+</ul>
+
+<pre><code class="r">attach(comic)
+pairwise.t.test(log_app,sex, p.adjust=&quot;none&quot;)
+detach()
+</code></pre>
+
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  log_app and sex 
+## 
+##        Non-Binary Female
+## Female 0.1283     -     
+## Male   0.0023     &lt;2e-16
+## 
+## P value adjustment method: none
+</code></pre>
+
+<ul>
+<li>Remember to compare vs \(\alpha=0.05/3\approx0.017\)</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Bonferonni in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Or correct for Bonferroni in the p-values</li>
+</ul>
+
+<pre><code class="r">attach(comic)
+pairwise.t.test(log_app,sex, p.adjust=&quot;bonferroni&quot;)
+detach()
+</code></pre>
+
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  log_app and sex 
+## 
+##        Non-Binary Female
+## Female 0.3850     -     
+## Male   0.0069     &lt;2e-16
+## 
+## P value adjustment method: bonferroni
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Tukey HSD Test</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is called the Tuker Honest Significant Difference (HSD) test.</li>
+<li>This creates a set of confidence intervals and adjust p-values based on the <em>studentized range distribution</em>. </li>
+<li>Tukey&#39;s is usually preferred in ANOVA as it is less conservative that Bonferroni and in many cases yields and exact correction. </li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Tukey HSD in R</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">TukeyHSD(my_anova, conf.level=0.95)
+</code></pre>
+
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = log_app ~ sex, data = comic)
+## 
+## $sex
+##                         diff        lwr        upr     p adj
+## Female-Non-Binary -0.2648371 -0.6730209  0.1433466 0.2811377
+## Male-Non-Binary   -0.5292183 -0.9358797 -0.1225569 0.0064760
+## Male-Female       -0.2643812 -0.3154401 -0.2133222 0.0000000
+</code></pre>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Results</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What can we confirm from these tests?</li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Assumptions of ANOVA</h2>
+    <hr>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There are assumptions made for every statistical method.</li>
+<li>The assumptions of ANOVA are:
+
+<ul>
+<li>Independent groups</li>
+<li>Homogeneity of Variances</li>
+<li>Normality of residuals</li>
+</ul></li>
+</ul>
+
+    
+    <footer class = 'logo'>
+<div style="position: absolute; right: 900px; top: 600px; z-index:100">
+<img src = "assets/img/publichealthlogo.png" height="100" >
+</div>
+</footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -158,6 +1755,354 @@
       <a href="#" target="_self" rel='tooltip' 
         data-slide=3 title='Chi-Square Distribution'>
          3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Chi-Square Distribution'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Chi Square Distribution'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Some Data'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='What can we do?'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Testing Proportions'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Pearson Chi-square Test'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Our Data'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Chi Square Test'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Attrition Data'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Gender vs Attrition'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Chi Square Test'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Gender vs Performance Rating'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Gender vs Performance Rating'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Gender vs Performance Rating'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Work Life Balance and Attrition'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Work Life Balance and Attrition'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Work Life Balance and Attrition'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Work Life Balance and Attrition'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Work Life Balance and Attrition'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Work Life Balance and Attrition'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Work Life Balance and Attrition'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Work Life Balance and Attrition'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='ANOVA'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Recap on our progress:'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Enter ANOVA'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Enter ANOVA'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Enter ANOVA'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='What is our test then?'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='The math'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='ANOVA Variances'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='ANOVA Table'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Calculating ANOVA'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='The Data for Class'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Difference in Appearances by Gender'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Difference in Appearances by Gender'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Table of Gender'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Table of Gender'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Data Cleaning'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Data Cleaning'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Cleaning Data'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Cleaning Data'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Boxplots'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Finally ANOVA'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='What can we do to get more information'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Summary'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='What were we testing again?'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='What is Next?'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='What about Multiple Testing'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='What Type of Multiple Tests for ANOVA'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='The Bonferroni  Correction'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='The Bonferroni  Correction'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Bonferonni in R'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Bonferonni in R'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Bonferonni in R'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='Tukey HSD Test'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Tukey HSD in R'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Results'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Assumptions of ANOVA'>
+         61
       </a>
     </li>
   </ul>

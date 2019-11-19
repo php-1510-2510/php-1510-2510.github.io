@@ -118,4 +118,625 @@ $$X = \sum_{i,j} \dfrac{\left(O_{ij} - E_{ij} \right)^2}{E_{ij}}$$
 - Where
     - $O_{ij}$: observed count in cell $i,j$
     - $E_{ij}$: expected count in cell $i,j$
-    - $x \sim 
+    - $x \sim \chi^2(df=(r-1)(c-1))$
+
+--- .class #id
+
+## Our Data
+
+
+```{r}
+M <- as.table(rbind(c(3, 276), c(66, 473)))
+dimnames(M) <- list(Treatment = c("Innoculated", "Not Innoculated"),
+                    Status = c("Infected", "Not Infected"))
+M
+```
+
+--- .class #id
+
+## Chi Square Test
+
+```{r}
+chisq.test(M, correct=FALSE)
+```
+
+--- .class #id
+
+## Attrition Data
+
+```{R}
+attr_pop <- rsample::attrition
+```
+
+--- .class #id
+
+## Gender vs Attrition
+
+```{r}
+table(attr_pop$Gender, attr_pop$Attrition)
+```
+
+--- .class #id
+
+## Chi Square Test
+
+```{r}
+T <- table(attr_pop$Gender, attr_pop$Attrition)
+chisq.test(T, correct=F)
+```
+
+--- .class #id
+
+## Gender vs Performance Rating
+
+```{r gender-perfor, echo=F}
+library(ggplot2)
+ggplot(attr_pop, aes(x=PerformanceRating, fill=Gender)) + 
+ geom_bar()
+```
+ 
+--- .class #id
+
+## Gender vs Performance Rating 
+ 
+```{r}
+table(attr_pop$Gender, attr_pop$PerformanceRating)
+```
+
+
+--- .class #id
+
+## Gender vs Performance Rating
+
+```{r}
+T <- table(attr_pop$Gender, attr_pop$PerformanceRating)
+chisq.test(T, correct=F)
+```
+
+
+
+--- .class #id
+
+## Gender vs Performance Rating
+
+```{r}
+attr_pop2 <- attr_pop %>%
+    filter(PerformanceRating=="Excellent" | PerformanceRating == "Outstanding")
+attr_pop2 <- droplevels(attr_pop2)
+T <- table(attr_pop2$Gender, attr_pop2$PerformanceRating)
+chisq.test(T, correct=F)
+```
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r worklife, echo=F}
+ggplot(attr_pop, aes(x=Attrition, fill=WorkLifeBalance)) + geom_bar()
+```
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r}
+table(attr_pop$WorkLifeBalance, attr_pop$Attrition)
+```
+
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r}
+T <- table(attr_pop$WorkLifeBalance, attr_pop$Attrition)
+chisq.test(T, correct=F)
+```
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r, eval=F}
+table(attr_pop$WorkLifeBalance, attr_pop$Attrition) %>%
+prop.table() %>%
+round(., 2)
+```
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r, echo=F}
+table(attr_pop$WorkLifeBalance, attr_pop$Attrition) %>%
+prop.table() %>%
+round(., 2)
+```
+
+
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r}
+attr_pop %>%
+    count(WorkLifeBalance, Attrition) %>%
+    mutate(freq = n/sum(n)) %>%
+    select(-n) %>%
+    spread(WorkLifeBalance, freq)
+```
+
+
+
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r}
+attr_pop %>%
+    count(WorkLifeBalance, Attrition) %>%
+    mutate(freq = n/sum(n)) %>%
+    select(-n) %>%
+    spread(Attrition, freq)
+```
+
+
+
+--- .class #id
+
+## Work Life Balance and Attrition
+
+```{r}
+attr_pop %>%
+    count( Attrition, WorkLifeBalance) %>%
+    mutate(freq = n/sum(n)) %>%
+    select(-n) %>%
+    spread(Attrition, freq)
+```
+
+
+
+---  .segue bg:grey
+
+# ANOVA
+
+--- .class #id
+
+
+## Recap on our progress:
+  
+- Up to this point we have seen basic statistical features:
+  - mean
+  - variance
+  - standard deviation
+  - median
+  - min 
+  - max
+- We have also considered a t-test in which we compare a continuous variable across 2 groups. 
+
+--- .class #id 
+
+## Enter ANOVA
+
+- What if we need to compare more than 2 groups? 
+- Lets say we have the groups: A, B and C
+- We could compare:
+  - A vs B
+  - A vs C
+  - B vs C
+- What are some issues with this?
+
+--- .class #id 
+
+## Enter ANOVA
+
+- Multiple Testing issues
+    - Each time you perform this test on the same data, you use a type 1 error of 0.05, the more tests you perfrom the more this error increases. 
+    - If you need to do multiple testing you then have to do a p-value correction. 
+- Could be a waste of time if all the groups are the same. 
+    - More computational time if there is no difference. 
+
+
+--- .class #id
+
+## Enter ANOVA
+
+- We then can consider ANOVA: ANalysis Of VAriance
+- ANOVA asks a very basic question:
+    - Where is the variability coming from?
+        - Is it coming from within each group?
+        - Is it coming between the groups? 
+- The hypothesis test we perform is 
+
+$$ H_0:\;\; \mu_1 = \mu_2 = \cdots = \mu_k$$ 
+$$ H_1:\;\; \text{At least one group is different}$$
+
+
+
+--- .class #id
+
+## What is our test then? 
+
+- We now move to testing with the $F$ distribution rather than the $t$-distribution:
+- We use the following test statistic:
+$$ k = \dfrac{\text{Measure of Between-Group Variability}}{\text{Measure of Within-Group Variability}}$$ 
+- How do we calculate these variabilities?
+
+
+--- .class #id
+
+## The math
+
+- We calculate the following values:
+    - Between Sum of Squares
+$$SS_B = \sum_{i=1}^k n_i\left(\bar{y}_i - \bar{y}\right)^2$$
+    - Within Sum of Squares
+$$SS_W = \sum_{i=1}^k \sum_{j=1}^{n_i} \left(y_{ij} - \bar{y}_i\right)^2$$
+    - Total Sums of Squares
+$$SS = SS_B + SS_W$$
+- In all of these: $i$ is the index for $k$ groups and $j$ is the index for the $n_i$ observations in each group. 
+
+
+
+--- .class #id
+
+## ANOVA Variances
+
+- This is where the analysis of variances comes in, we are comparing the variances:
+    - Between group variability
+    - Within group variability
+- Traditionally this test was performed using the following table:
+
+
+--- .class #id 
+
+## ANOVA Table
+
+|                     |   DF  |    Sum Sq.   |       Mean Sq       |           F value           |  Pr(>F) |
+|:-------------------:|:-----:|:------------:|:-------------------:|:---------------------------:|:-------:|
+| Between (treatment) | $k-1$ |  $SS_{B}$  |      $MS_{B} = \dfrac{SS_B}{k-1}$     | $\frac{MS_{B}}{MS_{W}}$ | p-value |
+|    Within (error)   | $N-k$ | $SS_{W}$   | $MS_{W} = \dfrac{SS_W}{N-k}$ |                             |         |
+|    Total  | $N-1$ | $SS_{T}$   |  |                             |         |
+
+
+--- .class #id
+
+## Calculating ANOVA
+
+- In a traditional class you would be made to do this by hand
+- We won't do this:
+    1. I hate doing it. 
+    2. you never do this in real life. 
+    3. WE HAVE R!
+- We will focus on performing this in R. 
+
+
+--- .class #id
+
+## The Data for Class
+
+- We will consider the data behind the story: ["Comic Books are Still Made By Men, For Men and About Men"](http://fivethirtyeight.com/features/women-in-comic-books/).
+- This data is part of the `fivethirtyeight` package:
+- To explore the variable names run the following code:
+
+```{r, eval=F}
+library(fivethirtyeight)
+?comic_characters
+```
+
+
+--- .class #id
+
+
+## Difference in Appearances by Gender
+
+- Lets consider if the number of appearances of characters is different depending on the gender of the character. 
+- We could first graph this:
+
+```{r, eval=F}
+library(ggplot2)
+ggplot(comic_characters, aes(x = sex, y = appearances)) +
+  geom_point()  + 
+  geom_point(stat = "summary", fun.y = "mean", color = "red", size = 3)
+```
+
+
+
+--- .class #id
+
+## Difference in Appearances by Gender
+
+```{r, echo=F}
+library(ggplot2)
+ggplot(comic_characters, aes(x = sex, y = appearances)) +
+  geom_point()  + 
+  geom_point(stat = "summary", fun.y = "mean", color = "red", size = 3)
+```
+
+--- .class #id
+
+## Table of Gender
+
+- We can see that this is hard to read, we can see what the groups look like by counting them 
+
+```{r, eval=F}
+library(tidyverse)
+comic_characters %>%
+    group_by(sex) %>%
+    tally(sort = TRUE)
+```
+
+
+--- .class #id
+
+## Table of Gender
+
+- We can see that this is hard to read, we can see what the groups look like by counting them 
+
+```{r, echo=F}
+library(tidyverse)
+comic_characters %>%
+    group_by(sex) %>%
+    tally(sort = TRUE)
+```
+
+--- .class #id 
+
+## Data Cleaning
+
+- We can make the names smaller
+
+```{r}
+comic <- comic_characters %>%
+      mutate(sex = fct_recode(sex, 
+      "Agender" = "Agender Characters",
+      "Female" = "Female Characters", 
+      "Genderfluid" = "Genderfluid Characters",
+      "Genderless" = "Genderless Characters",
+      "Male" = "Male Characters",
+      "Transgender" = "Transgender Characters"
+      ))
+```
+
+--- .class #id
+
+## Data Cleaning
+
+
+```{r, echo=F}
+ggplot(comic, aes(x = sex, y = appearances)) +
+  geom_point()  + 
+  geom_point(stat = "summary", fun.y = "mean", color = "red", size = 3) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+--- .class #id 
+
+## Cleaning Data
+
+- we can see that we do not have many people in categories asside from "Male" and "Female"
+- This can be a problem with many statistical tests so we can combine categories
+
+```{r}
+comic <- comic_characters %>%
+      mutate(sex = fct_recode(sex, 
+      "Non-Binary" = "Agender Characters",
+      "Female" = "Female Characters", 
+      "Non-Binary" = "Genderfluid Characters",
+      "Non-Binary" = "Genderless Characters",
+      "Male" = "Male Characters",
+      "Non-Binary" = "Transgender Characters"
+      ))
+```
+
+
+--- .class #id 
+
+## Cleaning Data
+
+- We can also see that we have a lot of values that seem to be very high compared to the mean. 
+- In this case many times we pull in the extreme values with a log transform
+- We can do this with mutate
+
+```{r}
+comic <- comic %>%
+    mutate(log_app = log(appearances))
+```
+
+--- .class #id
+
+## Boxplots
+
+- we can then try looking at boxplots
+
+```{r, echo=F}
+ggplot(comic, aes(x = sex, y = log_app)) +
+  geom_boxplot()  + 
+  geom_point(stat = "summary", fun.y = "mean", color = "red", size = 3) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+--- .class #id 
+
+## Finally ANOVA
+
+- these look a little better now that we have done a log transform
+- We can code an ANOVA in r with the following:
+  
+```{r}
+aov(log_app~sex, data=comic)
+```
+
+
+--- .class #id
+
+## What can we do to get more information
+
+- Many things in R are stored in objects called lists. 
+- Lists contain a large amount of objects
+
+```{r}
+my_anova <- aov(log_app~sex, data=comic)
+names(my_anova)
+```
+
+--- .class #id 
+
+## Summary
+
+- The summary function works with anova and many other functions to give us a basic summary
+
+```{r}
+summary(my_anova)
+```
+
+
+
+--- .class #id
+
+## What were we testing again?
+
+- Recall our hypothesis:
+$$ H_0:\;\; \mu_1 = \mu_2 = \cdots = \mu_k$$ 
+$$ H_1:\;\; \text{At least one group is different}$$
+- What can we say about these groups?
+
+
+--- .class #id
+
+## What is Next?
+
+- Now that we know there is a difference, we need to find out what difference that is. 
+- This does leave us with a multiple testing problem. 
+- Previously it was mentioned that performing multiple hypothesis tests we have problems with the type 1 error. 
+- Type 1 error is the error of making a mistake by rejecting the null hypothesis when you shouldn't have. 
+- This means that if we perform 20 studies we can assume that we made a mistake on 5% of them or 1 of them will be significant and lead to rejecting the null hypothesis. 
+
+
+--- .class #id
+
+## What about Multiple Testing
+
+- When we perform 20 tests on the same data what we have is:
+$$\begin{align*}
+\Pr(\text{At least 1 Significant Result}) &= 1 - \Pr(\text{No Significant Results})\\
+&= 1 - \left( 1-0.05\right)^{20}\\
+& = 0.6415141
+\end{align*}$$
+- We call this the **Family Wise Error Rate (FWER)**
+- So now we have around 13 tests that we would be making a mistake on. 
+- On Friday, this will be covered more thoroughly. 
+
+
+--- .class #id
+
+## What Type of Multiple Tests for ANOVA
+
+- We need to control the FWER so that $\text{FWER}\le0.05$. 
+- There are various methods out there:
+    - Bonferroni Method
+    - Tukey HSD
+    - Holm, Hommel, Dunnett, Å idÃ¡k , ...
+
+
+--- .class #id
+
+## The Bonferroni  Correction
+
+- Consider the problem of testing $n$ different tests. - We can do the Bonferroni in 2 different ways:
+    - Adjust the significance level
+$$ \alpha^*  = \dfrac{\alpha}{n}$$
+    - Bonferroni Correct p-values
+$$\text{min}\left[2\times\binom{k}{2}\times \Pr\left(\mid t\mid < t_{n-k}\right),1\right]$$
+
+
+--- .class #id
+
+## The Bonferroni  Correction
+
+- If we have $n=20$ then i we wish to control the FWER at $\alpha=0.05$, then we have
+$$\alpha^* = \dfrac{\alpha}{n}= \dfrac{0.05}{20}=0.0025$$
+- What does this mean for the FWER:
+$$\begin{align*}
+\Pr(\text{At least 1 Significant Result}) &= 1 - \Pr(\text{No Significant Results})\\
+&= 1 - \left( 1-0.0025\right)^{20}\\
+& = 0.04883012
+\end{align*}$$
+
+
+--- .class #id
+
+## Bonferonni in R
+
+- We can perform multiple t-tests in R using:
+```
+pairwise.t.test(x,g,p.adjust.method,...)
+```
+- Where
+    - `x` is the response vector
+    - `g` is the grouping factor
+    - `p.adjust.method` is p-value adjustment
+    - `...` Others you can see in r
+
+
+--- .class #id
+
+## Bonferonni in R
+
+- Perform multiple tests
+```{R}
+attach(comic)
+pairwise.t.test(log_app,sex, p.adjust="none")
+detach()
+```
+- Remember to compare vs $\alpha=0.05/3\approx0.017$
+
+
+--- .class #id
+
+## Bonferonni in R
+
+- Or correct for Bonferroni in the p-values
+```{R}
+attach(comic)
+pairwise.t.test(log_app,sex, p.adjust="bonferroni")
+detach()
+```
+
+
+--- .class #id
+
+## Tukey HSD Test
+
+- This is called the Tuker Honest Significant Difference (HSD) test.
+- This creates a set of confidence intervals and adjust p-values based on the *studentized range distribution*. 
+- Tukey's is usually preferred in ANOVA as it is less conservative that Bonferroni and in many cases yields and exact correction. 
+
+--- .class #id
+
+## Tukey HSD in R
+
+```{r}
+TukeyHSD(my_anova, conf.level=0.95)
+```
+
+--- .class #id
+
+## Results
+
+- What can we confirm from these tests?
+
+
+--- .class #id
+
+## Assumptions of ANOVA
+
+- There are assumptions made for every statistical method.
+- The assumptions of ANOVA are:
+    - Independent groups
+    - Homogeneity of Variances
+    - Normality of residuals

@@ -338,7 +338,7 @@ title: Calendar
 <td align="left">Week 12</td>
 <td align="left">19-Nov</td>
 <td align="left">Hypothesis Testing</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-20-categorical-data.html">lect-20-categorical-data</a></td>
 <td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -347,7 +347,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">21-Nov</td>
 <td align="left">Hypothesis Testing</td>
-<td align="left"></td>
+<td align="left"><a href="../Notes/lect-21-non-parametrics.html">Lect-21-non-parametrics</a></td>
 <td align="left">CHEST Ch. 10; <a href="https://bookdown.org/speegled/foundations-of-statistics/tabular-data.html">SPEEGLE Ch. 9</a></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -365,7 +365,7 @@ title: Calendar
 <td align="left">Week 13</td>
 <td align="left">26-Nov</td>
 <td align="left">Non-Parametric Testing</td>
-<td align="left"><a href="../Notes/lect-22-non-parametrics.html">Lect-22-non-parametrics</a></td>
+<td align="left"></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/RBT.html">SPEEGLE Ch. 8</a></td>
 <td align="left"></td>
 <td align="left"><a href="../homework/pages/hw4">HW 4 Due</a></td>
