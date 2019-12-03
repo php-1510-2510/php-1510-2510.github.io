@@ -327,8 +327,8 @@ comic_characters <- comic_characters %>%
 ```{r}
 comic_characters <- comic_characters %>%
       mutate(sex = fct_relevel(sex, 
-                  "Female",
-                 "Male", 
+                  "Male",
+                 "Female", 
                  "Transgender", 
                  "Agender",
                   "Genderfluid" ,
@@ -386,7 +386,8 @@ ggplot(comic_characters, aes(x = sex, y = appearances)) +
 
 ## Whats happening?
 
-```{r, echo=F}
+```{r app-mean-plot, echo=F}
+library(ggplot2)
 ggplot(comic_characters, aes(x = sex, y = appearances)) +
   geom_point()  + 
   geom_point(stat = "summary", fun.y = "mean", color = "red", size = 3) + 
@@ -440,7 +441,7 @@ ggplot(comic_characters, aes(year, appearances)) +
 
 
 
-```{r, echo=F}
+```{r  app-year-plot, echo=F}
 ggplot(comic_characters, aes(year, appearances)) + 
   geom_point() + 
   geom_smooth(method="loess") + 
@@ -568,7 +569,7 @@ text(8,27, label= expression( mu["Y|X"] ~ "=" ~beta[0] + ~ beta[1]~X  ))
 ## Residual Errors
 
 
-```{r, echo=FALSE}
+```{r resid-errors, echo=FALSE}
 plot(x,y, type='n')
 lines(lowess(y~x))
 segments(2, 20, 2, 13, lty=2)
@@ -642,7 +643,7 @@ glance(model)
 
 model <- lm(appearances~year, data=comic_characters)
 
-glance(model)
+tidy(model)
 ```
 
 --- .class #id

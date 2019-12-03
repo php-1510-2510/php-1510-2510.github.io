@@ -372,8 +372,8 @@ comic_characters <- comic_characters %>%
 ```r
 comic_characters <- comic_characters %>%
       mutate(sex = fct_relevel(sex, 
-                  "Female",
-                 "Male", 
+                  "Male",
+                 "Female", 
                  "Transgender", 
                  "Agender",
                   "Genderfluid" ,
@@ -401,14 +401,14 @@ tidy(mod)
 
 ```
 ## # A tibble: 6 x 5
-##   term           estimate std.error statistic  p.value
-##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       21.0       1.29   16.3    2.65e-59
-## 2 sexMale           -2.01      1.50   -1.34   1.81e- 1
-## 3 sexTransgender   -17.0      95.6    -0.178  8.59e- 1
-## 4 sexAgender        -1.37     14.8    -0.0927 9.26e- 1
-## 5 sexGenderfluid   261.       67.6     3.87   1.10e- 4
-## 6 sexGenderless     -8.20     22.0    -0.373  7.09e- 1
+##   term           estimate std.error statistic   p.value
+##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)      19.0       0.770   24.7    5.16e-133
+## 2 sexFemale         2.01      1.50     1.34   1.81e-  1
+## 3 sexTransgender  -15.0      95.6     -0.157  8.75e-  1
+## 4 sexAgender        0.640    14.8      0.0433 9.65e-  1
+## 5 sexGenderfluid  263.       67.6      3.90   9.75e-  5
+## 6 sexGenderless    -6.18     21.9     -0.282  7.78e-  1
 ```
 
 
@@ -441,7 +441,7 @@ ggplot(comic_characters, aes(x = sex, y = appearances)) +
 
 ## Whats happening?
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
+![plot of chunk app-mean-plot](figure/app-mean-plot-1.png)
 
 
 ---  .segue bg:grey
@@ -491,7 +491,7 @@ ggplot(comic_characters, aes(year, appearances)) +
 
 
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+![plot of chunk app-year-plot](figure/app-year-plot-1.png)
 
 
 --- .class #id
@@ -573,7 +573,7 @@ $$Y = \beta_0 + \beta_1X + \varepsilon$$
 ## Picture of this
 
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
 
 
 --- .class #id
@@ -590,7 +590,7 @@ $$Y = \beta_0 + \beta_1X + \varepsilon$$
 ## Residual Errors
 
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png)
+![plot of chunk resid-errors](figure/resid-errors-1.png)
 
 --- .class #id
 
@@ -647,11 +647,11 @@ glance(model)
 
 
 ```
-## # A tibble: 1 x 11
-##   r.squared adj.r.squared sigma statistic  p.value    df  logLik    AIC
-##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>   <dbl>  <dbl>
-## 1    0.0146        0.0145  93.8      313. 1.74e-69     2 -1.26e5 2.52e5
-## # ... with 3 more variables: BIC <dbl>, deviance <dbl>, df.residual <int>
+## # A tibble: 2 x 5
+##   term         estimate std.error statistic  p.value
+##   <chr>           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)  1204.      67.0         18.0 1.09e-71
+## 2 year           -0.596    0.0337     -17.7 1.74e-69
 ```
 
 --- .class #id
