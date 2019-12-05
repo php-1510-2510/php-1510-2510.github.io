@@ -17,6 +17,16 @@ title: Calendar
     <col width="17%" />
     <col width="17%" />
     </colgroup>
+<thead>
+<tr>
+<th align="left">Week</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Lecture Resources</th>
+<th align="left">Readings</th>
+<th align="left">HW Assigned</th>
+<th align="left">HW Due</th>
+</tr>
 </thead><tbody>
 <tr>
 <td align="left">Week 1</td>
@@ -389,6 +399,15 @@ title: Calendar
 </tr>
 <tr>
 <td align="left"></td>
+<td align="left">4-Dec</td>
+<td align="left">Lab 4:</td>
+<td align="left"><a href="../labs/lab4.html">Lab 4 - html</a> <a href="../labs/lab4.Rmd">Lab 4 - rmd</a> <a href="https://vimeo.com/254748467/7723da70df">Video</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
 <td align="left">5-Dec</td>
 <td align="left">Multiple Linear Regression</td>
 <td align="left"><a href="../Notes/lect-24-multiple-linear.html">Lect-24-multiple-linear</a></td>
@@ -399,8 +418,8 @@ title: Calendar
 <tr>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">Final Take Home</td>
+<td align="left"><a href="../exams/php-1510-2510-take-home-final.docx">Final Take Home</a> <a href="../exams/hospital.csv">hospital.csv</a></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
