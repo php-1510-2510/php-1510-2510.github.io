@@ -62,7 +62,7 @@ gapminder
 
 Use **dplyr** functions to address the following questions. For some you can just use arrange to print your solutions to the top. 
 
-1. How many unique countries are represented per continent?
+1. **3 points** How many unique countries are represented per continent?
 
 ```{r}
 library(gapminder)
@@ -75,7 +75,7 @@ gapminder %>%
 
 **This is probably the easiest way to do this but there may be other ways. We can see that Oceania has the fewest number by far.**
 
-2. Which European nation had the lowest GDP per capita in 1997? 
+2. **4 points** Which European nation had the lowest GDP per capita in 1997? 
 
 ```{r}
 gapminder %>%
@@ -95,7 +95,7 @@ gapminder %>%
 ```
 
 
-3. According to the data available, what was the average life expectancy across each continent in the 1980s?
+3. **4 points** According to the data available, what was the average life expectancy across each continent in the 1980s?
 
 ```{r}
 gapminder %>%
@@ -114,9 +114,10 @@ gapminder %>%
     summarize(avg_lifeExp=mean(lifeExp))
 ```
 
-4. What 5 countries have the highest total GDP over all years combined?
+4. **5 points** What 5 countries have the highest total GDP over all years combined?
 
 ```{r}
+
 gapminder %>%
 group_by(country) %>%
     summarize(totalGDP=sum(gdpPercap*pop)) %>%
@@ -145,19 +146,20 @@ group_by(country) %>%
     print(n=5)
 ```
 
-5. What countries and years had life expectancies of _at least_ 80 years? *Only output the columns of interest: country, life expectancy and year (in that order).*
+5. **4 points** What countries and years had life expectancies of _at least_ 80 years? *Only output the columns of interest: country, life expectancy and year (in that order).*
 
 ```{R}
 gapminder %>%
     filter(lifeExp>=80) %>%
     select(country,lifeExp,year) %>%
+    arrange(desc(lifeExp))%>%
     print(n=30)
 ```
 
 **We can see that the first time this was recorded was in 1997 in Hong Kong and Japan. Other countries achieved this in 2002 or 2007.**
 
 
-6. Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data? 
+6. **5 points**  Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data? 
 
 ```{r}
 gapminder %>%
@@ -180,19 +182,19 @@ gapminder %>%
 
 
 7. Follow the steps below to create a plot about life expectancy.  
-    a. Create a plot of life expectancy over time where each country has its own line (`group=country`).  
+    a. **3 points** Create a plot of life expectancy over time where each country has its own line (`group=country`).  
     ```{r}
     library(ggplot2)
     ggplot(data=gapminder, aes(x=year, y=lifeExp, group=country)) + 
       geom_line()
     ```
-    b. Add a layer to this plot where you use `geom_smooth(method="lm")`
+    b. **2 points** Add a layer to this plot where you use `geom_smooth(method="lm")`
     ```{r}
     ggplot(data=gapminder, aes(x=year, y=lifeExp, group=country)) + 
       geom_line() + 
       geom_smooth(method="lm", se=FALSE)
     ```
-    c. Add a layer to this plot where you use `geom_smooth(method="lm")` but it is colored by continent. 
+    c. **3 points** Add a layer to this plot where you use `geom_smooth(method="lm")` but it is colored by continent. 
     ```{r}
     ggplot(data=gapminder, aes(x=year, y=lifeExp, group=country)) + 
       geom_line() + 
@@ -207,27 +209,27 @@ gapminder %>%
 
     
     
-8. Interpret the graph you created in 7. 
+8. **6 points** Interpret the graph you created in 7. 
     a. What types of patterns are you seeing? 
     b. Do all countries follow this pattern? 
     c. etc...
 
 **We can see that most of them have an increasing trend. There are many countries that have some major dips in Life Expectancy. We can see that in 1994 one country dipped down to 36 years life expectancy. Later we will see that this is the Rwandan Genocide.**
 
-9. Create boxplots of life expectancy by continent. Add a layer using `geom_jitter()` to see how the points fall in these boxplots. **Hint: using `alpha=0.04` inside the jitter will lighten the points*
+9. **3 points** Create boxplots of life expectancy by continent. Add a layer using `geom_jitter()` to see how the points fall in these boxplots. **Hint: using `alpha=0.04` inside the jitter will lighten the points*
 
 ```{R}
 ggplot(data=gapminder, aes(x=continent, y=lifeExp)) + 
     geom_boxplot() + 
-  geom_jitter(alpha=0.04) 
+  geom_jitter(alpha=0.09) 
 ```
-10. Interpret the plot you made in 9. 
+10. **4 points** Interpret the plot you made in 9. 
 
 **We can see that Africa has many data points compared to the rest of the continents. They appear to be normally distributed with some positive skewing. Europe may also have a normally distributed life expectancy except with negative skewing. The other distributions for continents shows skewing and the median not in the center of the box. Asia has the biggest variance of all continents. Oceania has the fewest points but this is due to only 2 countries being in this continent.**
 
 ## PHP 2560 Only
 
-11. Which combinations of continent (besides Asia) and year have the highest average population across all countries? *your output should include all results sorted by highest average population*. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. 
+11. **6 points** Which combinations of continent (besides Asia) and year have the highest average population across all countries? *your output should include all results sorted by highest average population*. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. 
 
 ```{r}
 gapminder %>%
@@ -266,23 +268,28 @@ library(nycflights13)
 
 
 
-  a. What are some problems with this function? 
+  a. **2 points** What are some problems with this function? 
   
   **The main issue with this is readability. Also consider what would happen if I asked for some changes to be made to this code. How would you re-nest it to get it to work. It is important to note that R has no problem with either of these and speed would be similar if not the same.**
   
-  b. How easy is it to follow the logic of this? 
+  b. **2 points** How easy is it to follow the logic of this? 
   **Logic for this type of code is not easy to follow**
-  c. Rewrite this using piping to make it more understandable. 
+  c. **4 points** Rewrite this using piping to make it more understandable. 
 ```{r}
 
 
 hourly_delay2 <- flights %>%
-                    filter(!is.na(dep_delay)) %>%
-                    group_by(month, day, year, hour) %>%
-                    summarise(delay=mean(dep_delay), n=n()) %>%
-                    filter(n>10)
+              filter(!is.na(dep_delay)) %>%
+             group_by(month, day, year, hour) %>%
+    summarise(delay=mean(dep_delay), n = n(),is.rm=TRUE)%>%
+           filter(n>10)
+                  
+hourly_delay2
 ```
-  d. Does your rewritten command give the same results? 
+
+  
+  
+  d. **2 points** Does your rewritten command give the same results? 
 
 ```{r}
 all.equal(hourly_delay, hourly_delay2)

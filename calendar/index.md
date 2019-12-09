@@ -410,7 +410,7 @@ title: Calendar
 <td align="left"></td>
 <td align="left">5-Dec</td>
 <td align="left">Multiple Linear Regression</td>
-<td align="left"><a href="../Notes/lect-24-multiple-linear.html">Lect-24-multiple-linear</a></td>
+<td align="left"><a href="../Notes/lect-24-multiple-linear.html">Lect-24-multiple-linear</a> <a href="https://vimeo.com/378195461/4da50db969">Video</a></td>
 <td align="left"><a href="https://bookdown.org/speegled/foundations-of-statistics/multiple-regression.html">SPEEGLE Ch. 12</a>; <a href="https://rafalab.github.io/dsbook/linear-models.html">RAFA Ch. 19</a></td>
 <td align="left"></td>
 <td align="left"></td>
