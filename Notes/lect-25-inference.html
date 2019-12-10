@@ -142,8 +142,35 @@
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code>## Error in glance(mod.final): object &#39;mod.final&#39; not found
-</code></pre>
+    <table><thead>
+<tr>
+<th align="right">r.squared</th>
+<th align="right">adj.r.squared</th>
+<th align="right">sigma</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+<th align="right">df</th>
+<th align="right">logLik</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">deviance</th>
+<th align="right">df.residual</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="right">0.1949699</td>
+<td align="right">0.1943778</td>
+<td align="right">162.5889</td>
+<td align="right">329.2869</td>
+<td align="right">0</td>
+<td align="right">9</td>
+<td align="right">-70865.13</td>
+<td align="right">141750.3</td>
+<td align="right">141823.2</td>
+<td align="right">287534958</td>
+<td align="right">10877</td>
+</tr>
+</tbody></table>
 
     
     <footer class = 'logo'>
@@ -261,8 +288,79 @@ E[count] &= \beta_0 +  \beta_1 season(Summer) + \beta_2 season(Fall) + \\
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code>## Error in tidy(mod.final): object &#39;mod.final&#39; not found
-</code></pre>
+    <table><thead>
+<tr>
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">(Intercept)</td>
+<td align="right">298.3348913</td>
+<td align="right">7.3616043</td>
+<td align="right">40.5257985</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">season2</td>
+<td align="right">115.8007186</td>
+<td align="right">4.4387984</td>
+<td align="right">26.0883030</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">season3</td>
+<td align="right">148.3532069</td>
+<td align="right">4.5043842</td>
+<td align="right">32.9352918</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">season4</td>
+<td align="right">118.4943844</td>
+<td align="right">4.5112582</td>
+<td align="right">26.2663719</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">weather2</td>
+<td align="right">19.9875113</td>
+<td align="right">3.7920390</td>
+<td align="right">5.2709140</td>
+<td align="right">0.0000001</td>
+</tr>
+<tr>
+<td align="left">weather3</td>
+<td align="right">0.1237865</td>
+<td align="right">6.3645757</td>
+<td align="right">0.0194493</td>
+<td align="right">0.9844830</td>
+</tr>
+<tr>
+<td align="left">weather4</td>
+<td align="right">162.2596870</td>
+<td align="right">162.6554195</td>
+<td align="right">0.9975670</td>
+<td align="right">0.3185115</td>
+</tr>
+<tr>
+<td align="left">humidity</td>
+<td align="right">-3.4929513</td>
+<td align="right">0.0960939</td>
+<td align="right">-36.3493686</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">windspeed</td>
+<td align="right">0.6328680</td>
+<td align="right">0.2052323</td>
+<td align="right">3.0836662</td>
+<td align="right">0.0020498</td>
+</tr>
+</tbody></table>
 
     
     <footer class = 'logo'>
@@ -348,13 +446,15 @@ anova(mod1, mod2)
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code>## Error in is.data.frame(data): object &#39;bikes&#39; not found
-</code></pre>
-
-<pre><code>## Error in is.data.frame(data): object &#39;bikes&#39; not found
-</code></pre>
-
-<pre><code>## Error in anova(mod1, mod2): object &#39;mod1&#39; not found
+    <pre><code>## Analysis of Variance Table
+## 
+## Model 1: count ~ season + weather + humidity + windspeed
+## Model 2: count ~ weather + humidity + windspeed
+##   Res.Df       RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1  10877 287534958                                  
+## 2  10880 320760441 -3 -33225483 418.96 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </code></pre>
 
     
@@ -417,13 +517,15 @@ anova(mod1, mod2)
     <hr>
   </hgroup>
   <article data-timings="">
-    <pre><code>## Error in is.data.frame(data): object &#39;bikes&#39; not found
-</code></pre>
-
-<pre><code>## Error in is.data.frame(data): object &#39;bikes&#39; not found
-</code></pre>
-
-<pre><code>## Error in anova(mod1, mod2): object &#39;mod1&#39; not found
+    <pre><code>## Analysis of Variance Table
+## 
+## Model 1: count ~ season + weather + humidity + windspeed
+## Model 2: count ~ season + humidity + windspeed
+##   Res.Df       RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1  10877 287534958                                  
+## 2  10880 288348337 -3   -813379 10.256 9.704e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </code></pre>
 
     
@@ -1901,7 +2003,7 @@ ggplot(pbc, aes(mean_cent_age, platelet, color=stage)) + geom_smooth(method=&quo
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"></p>
+    <p><img src="figure/trend1-1.png" alt="plot of chunk trend1"></p>
 
     
     <footer class = 'logo'>
@@ -1939,7 +2041,7 @@ ggplot(pbc, aes(mean_cent_age, platelet, color=stage_dummy)) + geom_smooth(metho
     <hr>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"></p>
+    <p><img src="figure/indicator-1.png" alt="plot of chunk indicator"></p>
 
     
     <footer class = 'logo'>

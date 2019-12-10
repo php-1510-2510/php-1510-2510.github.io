@@ -19,6 +19,12 @@ assets      : {assets: ../../assets}
 
 
 
+
+
+
+
+
+
           
 # Inference on Linear Regressions
 
@@ -57,9 +63,9 @@ kable(glance(mod.final))
 ## Overall Model F test: Bike Sharing
 
 
-```
-## Error in glance(mod.final): object 'mod.final' not found
-```
+| r.squared| adj.r.squared|    sigma| statistic| p.value| df|    logLik|      AIC|      BIC|  deviance| df.residual|
+|---------:|-------------:|--------:|---------:|-------:|--:|---------:|--------:|--------:|---------:|-----------:|
+| 0.1949699|     0.1943778| 162.5889|  329.2869|       0|  9| -70865.13| 141750.3| 141823.2| 287534958|       10877|
 
 --- .class #id
 
@@ -118,9 +124,17 @@ tidy(mod.final)
 ## Individual Coefficients $t$-Test
 
 
-```
-## Error in tidy(mod.final): object 'mod.final' not found
-```
+|term        |    estimate|   std.error|   statistic|   p.value|
+|:-----------|-----------:|-----------:|-----------:|---------:|
+|(Intercept) | 298.3348913|   7.3616043|  40.5257985| 0.0000000|
+|season2     | 115.8007186|   4.4387984|  26.0883030| 0.0000000|
+|season3     | 148.3532069|   4.5043842|  32.9352918| 0.0000000|
+|season4     | 118.4943844|   4.5112582|  26.2663719| 0.0000000|
+|weather2    |  19.9875113|   3.7920390|   5.2709140| 0.0000001|
+|weather3    |   0.1237865|   6.3645757|   0.0194493| 0.9844830|
+|weather4    | 162.2596870| 162.6554195|   0.9975670| 0.3185115|
+|humidity    |  -3.4929513|   0.0960939| -36.3493686| 0.0000000|
+|windspeed   |   0.6328680|   0.2052323|   3.0836662| 0.0020498|
 
 
 --- .class #id
@@ -163,15 +177,15 @@ anova(mod1, mod2)
 
 
 ```
-## Error in is.data.frame(data): object 'bikes' not found
-```
-
-```
-## Error in is.data.frame(data): object 'bikes' not found
-```
-
-```
-## Error in anova(mod1, mod2): object 'mod1' not found
+## Analysis of Variance Table
+## 
+## Model 1: count ~ season + weather + humidity + windspeed
+## Model 2: count ~ weather + humidity + windspeed
+##   Res.Df       RSS Df Sum of Sq      F    Pr(>F)    
+## 1  10877 287534958                                  
+## 2  10880 320760441 -3 -33225483 418.96 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 --- .class #id
@@ -203,15 +217,15 @@ anova(mod1, mod2)
 
 
 ```
-## Error in is.data.frame(data): object 'bikes' not found
-```
-
-```
-## Error in is.data.frame(data): object 'bikes' not found
-```
-
-```
-## Error in anova(mod1, mod2): object 'mod1' not found
+## Analysis of Variance Table
+## 
+## Model 1: count ~ season + weather + humidity + windspeed
+## Model 2: count ~ season + humidity + windspeed
+##   Res.Df       RSS Df Sum of Sq      F    Pr(>F)    
+## 1  10877 287534958                                  
+## 2  10880 288348337 -3   -813379 10.256 9.704e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 
@@ -1338,7 +1352,7 @@ ggplot(pbc, aes(mean_cent_age, platelet, color=stage)) + geom_smooth(method="lm"
 
 ## Regression plot with trend:
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk trend1](figure/trend1-1.png)
 
 --- .class #id
 
@@ -1357,7 +1371,7 @@ ggplot(pbc, aes(mean_cent_age, platelet, color=stage_dummy)) + geom_smooth(metho
 
 ## Regression plot with Indicators:
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+![plot of chunk indicator](figure/indicator-1.png)
 
 --- .class #id
 

@@ -29,6 +29,20 @@ library(broom)
 ```
 
 
+
+```{r, echo=F}
+library(readr)
+library(tidyverse)
+bikes <- read_csv("../Notes/Data/bike_sharing.csv") %>%
+        mutate(season = as.factor(season)) %>%
+        mutate(weather=as.factor(weather)) 
+mod.final <- lm(count~season+weather+humidity+windspeed, data=bikes)        
+        
+```
+
+
+
+
           
 # Inference on Linear Regressions
 
@@ -486,7 +500,7 @@ ggplot(pbc, aes(mean_cent_age, platelet, color=stage)) + geom_smooth(method="lm"
 
 ## Regression plot with trend:
 
-```{R, echo=F}
+```{R trend1, echo=F}
 library(ggplot2)
 ggplot(pbc, aes(mean_cent_age, platelet, color=stage)) + geom_smooth(method="lm")
 ```
@@ -507,7 +521,7 @@ ggplot(pbc, aes(mean_cent_age, platelet, color=stage_dummy)) + geom_smooth(metho
 
 ## Regression plot with Indicators:
 
-```{R, echo=F}
+```{R indicator, echo=F}
 library(ggplot2)
 ggplot(pbc, aes(mean_cent_age, platelet, color=stage_dummy)) + geom_smooth(method="lm", se=FALSE)
 ```
